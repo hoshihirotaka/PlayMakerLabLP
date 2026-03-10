@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="screen-orientation" content="portrait">
+  <title>ねこレストラン物語</title>
+  
+  <!--
+  ゲーム要件:
+  - ネコが店主のレストラン経営シミュレーション
+  - プレイヤーは店長（ミケ）を操作して店を盛り上げる
+  - 最初はボロボロの店だが、コインを稼いで家具を買ったりメニューを増やしたりして成長させる
+  - 登場キャラクターはネコや森の動物たち
+  - モバイル縦画面専用、タッチ操作（ジョイスティック移動、カメラ操作、アクションボタン）
+  - デザインは「KAWAII」「ゆめかわいい」パステルカラー、丸みのある3D形状
+  - 日本語UI
+  -->
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #FFF0F5; /* Lavender Blush */
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      color: #555;
+    }
+
+    #game-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* UI Overlay */
+    #ui-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header Info */
+    #header {
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: auto;
+    }
+
+    .status-box {
+      background: rgba(255, 255, 255, 0.9);
+      border: 3px solid #FF69B4;
+      border-radius: 20px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 0 rgba(255, 105, 180, 0.4);
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #FF69B4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .coin-icon {
+      color: #FFD700;
+      font-size: 1.2em;
+    }
+
+    #shop-btn {
+      background: #4ECDC4;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: white;
+      box-shadow: 0 4px 0 rgba(78, 205, 196, 0.4);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.1s;
+    }
+    #shop-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Controls */
+    #controls {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      pointer-events: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 20px;
+    }
+
+    #joystick-zone {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.4);
+      border: 3px solid rgba(255, 105, 180, 0.5);
+      border-radius: 50%;
+    }
+    #joystick-stick {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: #FF69B4;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      margin-left: -25px;
+      margin-top: -25px;
+      transition: transform 0.05s;
+    }
+
+    #action-btn {
+      width: 80px;
+      height: 80px;
+      background: #FF69B4;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 6px 0 rgba(255, 105, 180, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      color: white;
+      pointer-events: auto;
+      margin-bottom: 20px;
+      transition: transform 0.1s, background 0.2s, opacity 0.2s;
+    }
+    #action-btn:active {
+      transform: scale(0.95) translateY(4px);
+      box-shadow: 0 2px 0 rgba(255, 105, 180, 0.4);
+    }
+    #action-btn.inactive {
+      opacity: 0.4;
+      box-shadow: 0 2px 0 rgba(255, 105, 180, 0.2);
+    }
+
+    /* World Labels (Bubbles) */
+    .bubble {
+      position: absolute;
+      background: white;
+      border-radius: 15px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #555;
+      pointer-events: none;
+      transform: translate(-50%, -100%);
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border: 2px solid #FF69B4;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 5;
+    }
+    .bubble.visible {
+      opacity: 1;
+    }
+
+    /* Shop Modal */
+    #shop-modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 90%;
+      max-width: 400px;
+      max-height: 80%;
+      background: #FFF;
+      border-radius: 20px;
+      border: 5px solid #FF69B4;
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      pointer-events: auto;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    #shop-modal.open {
+      display: flex;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 2px dashed #FFD700;
+      padding-bottom: 10px;
+    }
+    .modal-title {
+      font-size: 20px;
+      color: #FF69B4;
+      font-weight: bold;
+    }
+    .close-btn {
+      background: #ccc;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+
+    .shop-items {
+      overflow-y: auto;
+      flex: 1;
+    }
+    
+    .shop-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FFF0F5;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+    }
+    .shop-item.locked {
+      opacity: 0.6;
+      filter: grayscale(0.8);
+    }
+    .shop-item-info h4 {
+      margin: 0 0 5px 0;
+      color: #555;
+    }
+    .shop-item-info p {
+      margin: 0;
+      font-size: 12px;
+      color: #888;
+    }
+    .buy-btn {
+      background: #4ECDC4;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #3aa8a0;
+    }
+    .buy-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #3aa8a0;
+    }
+    .buy-btn:disabled {
+      background: #ccc;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* Toast Message */
+    #toast {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 105, 180, 0.9);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 200;
+      text-align: center;
+      white-space: pre-line;
+    }
+
+    /* Loading */
+    #loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #FFF0F5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: #FF69B4;
+      font-weight: bold;
+      font-size: 24px;
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading">準備中ニャ...</div>
+
+  <div id="game-container"></div>
+
+  <div id="ui-layer">
+    <div id="header">
+      <div>
+        <div class="status-box">
+          <span class="coin-icon">🪙</span> <span id="coin-display">0</span>
+        </div>
+        <div class="status-box" style="border-color: #9370DB; color: #9370DB; box-shadow: 0 4px 0 rgba(147, 112, 219, 0.4);">
+          <span>❤️</span> <span id="reputation-display">評判: 1</span>
+        </div>
+      </div>
+      <div id="shop-btn">🏠</div>
+    </div>
+
+    <div id="controls">
+      <div id="joystick-zone"><div id="joystick-stick"></div></div>
+      <div id="action-btn">🐾</div>
+    </div>
+  </div>
+
+  <!-- Shop Modal -->
+  <div id="shop-modal">
+    <div class="modal-header">
+      <div class="modal-title">家具ショップ</div>
+      <button class="close-btn" id="close-shop">×</button>
+    </div>
+    <div class="shop-items" id="shop-list">
+      <!-- Items injected by JS -->
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Audio Elements -->
+  <audio id="bgm" loop preload="none" hidden></audio>
+  
+  <!-- Import Maps -->
+  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.176.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.176.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    
+    // --- Constants ---
+    const COLORS = {
+      bg: 0xFFF0F5,
+      floor: 0xE6E6FA, // Lavender
+      wall: 0xFFB7C5, // Cherry Blossom
+      player: 0xFFFFFF, // White
+      playerSpot: 0x8B4513, // Brown
+      table: 0xDEB887, // Burlywood
+      chair: 0xCD853F, // Peru
+      customer: [0x87CEEB, 0x98FB98, 0xDDA0DD, 0xF0E68C], // Pastel variations
+      food: 0xFF6347, // Tomato
+      highlight: 0xFF69B4
+    };
+
+    const GAME_CONFIG = {
+      moveSpeed: 0.15,
+      cameraSensitivity: 0.005,
+      interactDist: 2.5,
+      spawnInterval: 300, // frames
+    };
+
+    // --- Global State ---
+    let state = {
+      coins: 0,
+      reputation: 1,
+      tables: [], // {id, x, z, occupied: false, customer: null}
+      kitchen: { x: 0, z: -8, foodReady: false, cookingProgress: 0 },
+      unlockedItems: ['table1'],
+      level: 1
+    };
+
+    // --- Three.js Setup ---
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(COLORS.bg);
+    scene.fog = new THREE.Fog(COLORS.bg, 15, 40);
+
+    // Camera (Orthographic for miniature look)
+    const aspect = window.innerWidth / window.innerHeight;
+    const frustumSize = 20;
+    const camera = new THREE.OrthographicCamera(
+      frustumSize * aspect / -2,
+      frustumSize * aspect / 2,
+      frustumSize / 2,
+      frustumSize / -2,
+      1,
+      1000
+    );
+    
+    // Initial camera setup (Isometric-ish)
+    const cameraRig = new THREE.Object3D();
+    scene.add(cameraRig);
+    cameraRig.add(camera);
+    
+    camera.position.set(0, 20, 20);
+    camera.lookAt(0, 0, 0);
+    
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambientLight);
+    
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    dirLight.position.set(10, 20, 10);
+    dirLight.castShadow = true;
+    dirLight.shadow.mapSize.width = 1024;
+    dirLight.shadow.mapSize.height = 1024;
+    scene.add(dirLight);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.SoftShadowMap;
+    document.getElementById('game-container').appendChild(renderer.domElement);
+
+    // --- Game Objects ---
+    const objects = []; // For update loop
+    const interactables = []; // For collision/interaction
+    
+    // Materials
+    const toonMaterial = (color) => new THREE.MeshToonMaterial({ color: color });
+    
+    // --- Classes ---
+
+    class Player {
+      constructor() {
+        this.mesh = new THREE.Group();
+        
+        // Body
+        const bodyGeo = new THREE.CapsuleGeometry(0.6, 0.8, 4, 8);
+        const bodyMat = toonMaterial(COLORS.player);
+        this.body = new THREE.Mesh(bodyGeo, bodyMat);
+        this.body.position.y = 0.7;
+        this.body.castShadow = true;
+        this.mesh.add(this.body);
+
+        // Head
+        const headGeo = new THREE.SphereGeometry(0.5, 16, 16);
+        this.head = new THREE.Mesh(headGeo, bodyMat);
+        this.head.position.y = 1.4;
+        this.head.castShadow = true;
+        this.mesh.add(this.head);
+
+        // Ears
+        const earGeo = new THREE.ConeGeometry(0.15, 0.3, 8);
+        const earMat = toonMaterial(COLORS.playerSpot);
+        
+        const earL = new THREE.Mesh(earGeo, earMat);
+        earL.position.set(-0.2, 1.8, 0);
+        earL.rotation.z = 0.3;
+        this.mesh.add(earL);
+        
+        const earR = new THREE.Mesh(earGeo, earMat);
+        earR.position.set(0.2, 1.8, 0);
+        earR.rotation.z = -0.3;
+        this.mesh.add(earR);
+
+        // Tail
+        const tailGeo = new THREE.CylinderGeometry(0.1, 0.05, 0.8, 8);
+        this.tail = new THREE.Mesh(tailGeo, earMat);
+        this.tail.position.set(0, 0.6, -0.5);
+        this.tail.rotation.x = -1;
+        this.mesh.add(this.tail);
+
+        // Item holding (Tray)
+        this.tray = new THREE.Group();
+        const trayGeo = new THREE.CylinderGeometry(0.6, 0.5, 0.1, 16);
+        const trayMat = toonMaterial(0x8B4513);
+        const trayMesh = new THREE.Mesh(trayGeo, trayMat);
+        this.tray.add(trayMesh);
+        this.tray.position.set(0, 1.0, 0.8);
+        this.tray.visible = false;
+        this.mesh.add(this.tray);
+
+        // Food on tray
+        const foodGeo = new THREE.SphereGeometry(0.25, 8, 8);
+        const foodMat = toonMaterial(COLORS.food);
+        this.foodMesh = new THREE.Mesh(foodGeo, foodMat);
+        this.foodMesh.position.y = 0.2;
+        this.tray.add(this.foodMesh);
+
+        scene.add(this.mesh);
+        
+        this.pos = new THREE.Vector3(0, 0, 0);
+        this.vel = new THREE.Vector3(0, 0, 0);
+        this.angle = 0;
+        this.holding = null; // null, 'order', 'food'
+        this.targetOrder = null; // tableId
+      }
+
+      update() {
+        // Movement applied in main loop based on joystick
+        this.mesh.position.copy(this.pos);
+        this.mesh.rotation.y = this.angle;
+
+        // Animation
+        const time = Date.now() * 0.005;
+        this.tail.rotation.z = Math.sin(time * 2) * 0.2;
+        this.body.scale.y = 1 + Math.sin(time * 4) * 0.02;
+        
+        // Tray visibility
+        this.tray.visible = (this.holding === 'food');
+      }
+    }
+
+    class Customer {
+      constructor(id) {
+        this.id = id;
+        this.mesh = new THREE.Group();
+        
+        // Random color
+        const color = COLORS.customer[Math.floor(Math.random() * COLORS.customer.length)];
+        
+        // Body (Round)
+        const bodyGeo = new THREE.SphereGeometry(0.6, 16, 16);
+        const bodyMat = toonMaterial(color);
+        this.body = new THREE.Mesh(bodyGeo, bodyMat);
+        this.body.position.y = 0.6;
+        this.body.castShadow = true;
+        this.mesh.add(this.body);
+
+        // Ears (Animal variety)
+        const type = Math.random();
+        if (type < 0.33) { // Bear
+            const earGeo = new THREE.SphereGeometry(0.2, 8, 8);
+            const earL = new THREE.Mesh(earGeo, bodyMat);
+            earL.position.set(-0.4, 1.0, 0);
+            this.mesh.add(earL);
+            const earR = new THREE.Mesh(earGeo, bodyMat);
+            earR.position.set(0.4, 1.0, 0);
+            this.mesh.add(earR);
+        } else if (type < 0.66) { // Rabbit
+            const earGeo = new THREE.CapsuleGeometry(0.15, 0.6, 4, 8);
+            const earL = new THREE.Mesh(earGeo, bodyMat);
+            earL.position.set(-0.3, 1.3, 0);
+            this.mesh.add(earL);
+            const earR = new THREE.Mesh(earGeo, bodyMat);
+            earR.position.set(0.3, 1.3, 0);
+            this.mesh.add(earR);
+        } else { // Cat
+            const earGeo = new THREE.ConeGeometry(0.2, 0.4, 8);
+            const earL = new THREE.Mesh(earGeo, bodyMat);
+            earL.position.set(-0.3, 1.1, 0);
+            this.mesh.add(earL);
+            const earR = new THREE.Mesh(earGeo, bodyMat);
+            earR.position.set(0.3, 1.1, 0);
+            this.mesh.add(earR);
+        }
+
+        // Bubble
+        this.bubble = document.createElement('div');
+        this.bubble.className = 'bubble';
+        document.getElementById('game-container').appendChild(this.bubble);
+
+        scene.add(this.mesh);
+        
+        // State
+        this.state = 'entering'; // entering, waiting_order, waiting_food, eating, leaving
+        this.targetTable = null;
+        this.pos = new THREE.Vector3(0, 0, 15); // Start outside
+        this.mesh.position.copy(this.pos);
+        this.timer = 0;
+        this.maxWait = 1000;
+      }
+
+      update() {
+        // State Machine
+        switch (this.state) {
+          case 'entering':
+            if (this.targetTable) {
+              const targetPos = new THREE.Vector3(this.targetTable.x, 0, this.targetTable.z);
+              this.moveTo(targetPos, () => {
+                this.state = 'waiting_order';
+                this.showBubble('✋ 注文!');
+                this.mesh.lookAt(0, 0.6, -8); // Look at kitchen
+              });
+            } else {
+                // No table found, leave
+                this.state = 'leaving';
+            }
+            break;
+            
+          case 'waiting_order':
+            // Waiting for player interaction
+            this.timer++;
+            if (this.timer > this.maxWait) {
+                this.showBubble('😡 遅い!');
+                this.state = 'leaving';
+                this.targetTable.occupied = false;
+                this.targetTable.customer = null;
+                this.targetTable = null;
+            }
+            break;
+
+          case 'waiting_food':
+            this.timer++;
+            if (this.timer > this.maxWait * 1.5) {
+                this.showBubble('😡 まだ?');
+                this.state = 'leaving';
+                this.targetTable.occupied = false;
+                this.targetTable.customer = null;
+                this.targetTable = null;
+            }
+            break;
+
+          case 'eating':
+            this.timer++;
+            if (this.timer > 200) { // Eating duration
+                this.state = 'leaving';
+                this.showBubble('😋 美味!');
+                spawnCoin(this.mesh.position.clone());
+                
+                // Free table
+                this.targetTable.occupied = false;
+                this.targetTable.customer = null;
+                this.targetTable = null;
+            }
+            break;
+
+          case 'leaving':
+            this.moveTo(new THREE.Vector3(0, 0, 18), () => {
+                this.destroy();
+            });
+            break;
+        }
+
+        // Update Bubble Position
+        const screenPos = this.pos.clone();
+        screenPos.y += 2.0;
+        screenPos.project(camera);
+        const x = (screenPos.x * .5 + .5) * window.innerWidth;
+        const y = (-(screenPos.y * .5) + .5) * window.innerHeight;
+        
+        this.bubble.style.left = `${x}px`;
+        this.bubble.style.top = `${y}px`;
+        
+        // Hop animation when moving
+        if (this.isMoving) {
+            this.mesh.position.y = 0.6 + Math.abs(Math.sin(Date.now() * 0.01)) * 0.2;
+        } else {
+            this.mesh.position.y = 0.6;
+        }
+      }
+
+      moveTo(target, onComplete) {
+        this.isMoving = true;
+        const dir = new THREE.Vector3().subVectors(target, this.pos);
+        const dist = dir.length();
+        
+        if (dist < 0.1) {
+            this.pos.copy(target);
+            this.isMoving = false;
+            if (onComplete) onComplete();
+        } else {
+            dir.normalize();
+            this.pos.add(dir.multiplyScalar(0.08));
+            this.mesh.position.copy(this.pos);
+            this.mesh.lookAt(target);
+        }
+      }
+
+      showBubble(text) {
+        this.bubble.innerText = text;
+        this.bubble.classList.add('visible');
+      }
+
+      hideBubble() {
+        this.bubble.classList.remove('visible');
+      }
+
+      destroy() {
+        scene.remove(this.mesh);
+        this.bubble.remove();
+        const idx = objects.indexOf(this);
+        if (idx > -1) objects.splice(idx, 1);
+      }
+    }
+
+    class Coin {
+        constructor(pos) {
+            this.mesh = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.3, 0.3, 0.05, 16),
+                toonMaterial(0xFFD700)
+            );
+            this.mesh.rotation.x = Math.PI / 2;
+            this.mesh.position.copy(pos);
+            this.mesh.position.y = 0.5;
+            scene.add(this.mesh);
+            this.life = 0;
+            objects.push(this);
+            this.isCoin = true;
+        }
+        update() {
+            this.life++;
+            this.mesh.rotation.z += 0.1;
+            this.mesh.position.y = 0.5 + Math.sin(this.life * 0.1) * 0.2;
+            
+            // Magnet to player
+            const dist = this.mesh.position.distanceTo(player.pos);
+            if (dist < 1.5) {
+                const dir = new THREE.Vector3().subVectors(player.pos, this.mesh.position).normalize();
+                this.mesh.position.add(dir.multiplyScalar(0.2));
+                if (dist < 0.5) {
+                    addCoin(10);
+                    this.destroy();
+                }
+            }
+        }
+        destroy() {
+            scene.remove(this.mesh);
+            const idx = objects.indexOf(this);
+            if (idx > -1) objects.splice(idx, 1);
+        }
+    }
+
+    // --- Game Logic Functions ---
+
+    const player = new Player();
+    
+    function initWorld() {
+        // Floor
+        const floorGeo = new THREE.PlaneGeometry(20, 30);
+        const floorMat = new THREE.MeshStandardMaterial({ color: COLORS.floor });
+        const floor = new THREE.Mesh(floorGeo, floorMat);
+        floor.rotation.x = -Math.PI / 2;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        // Walls
+        const wallMat = toonMaterial(COLORS.wall);
+        const backWall = new THREE.Mesh(new THREE.BoxGeometry(20, 4, 1), wallMat);
+        backWall.position.set(0, 2, -15);
+        backWall.receiveShadow = true;
+        scene.add(backWall);
+
+        // Kitchen Area
+        const kitchenGeo = new THREE.BoxGeometry(6, 1.5, 2);
+        const kitchenMat = toonMaterial(0xFFFFFF);
+        const kitchen = new THREE.Mesh(kitchenGeo, kitchenMat);
+        kitchen.position.set(state.kitchen.x, 0.75, state.kitchen.z);
+        kitchen.castShadow = true;
+        kitchen.receiveShadow = true;
+        scene.add(kitchen);
+        
+        // Kitchen Label
+        const kLabel = document.createElement('div');
+        kLabel.className = 'bubble visible';
+        kLabel.innerText = '🍳 キッチン';
+        document.getElementById('game-container').appendChild(kLabel);
+        
+        // Update kitchen label pos
+        state.kitchen.mesh = kitchen;
+        state.kitchen.label = kLabel;
+
+        // Initial Table
+        addTable(0, 0);
+    }
+
+    function addTable(x, z) {
+        const id = Date.now();
+        const group = new THREE.Group();
+        group.position.set(x, 0, z);
+
+        // Table top
+        const tableGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.1, 16);
+        const tableMat = toonMaterial(COLORS.table);
+        const table = new THREE.Mesh(tableGeo, tableMat);
+        table.position.y = 1.0;
+        table.castShadow = true;
+        group.add(table);
+
+        // Leg
+        const legGeo = new THREE.CylinderGeometry(0.2, 0.2, 1.0, 8);
+        const leg = new THREE.Mesh(legGeo, tableMat);
+        leg.position.y = 0.5;
+        group.add(leg);
+
+        // Chairs
+        const chairGeo = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 8);
+        const chairMat = toonMaterial(COLORS.chair);
+        
+        const c1 = new THREE.Mesh(chairGeo, chairMat);
+        c1.position.set(0, 0.5, 1.5);
+        group.add(c1);
+        
+        const c2 = new THREE.Mesh(chairGeo, chairMat);
+        c2.position.set(0, 0.5, -1.5);
+        group.add(c2);
+
+        scene.add(group);
+        
+        state.tables.push({
+            id: id,
+            x: x,
+            z: z,
+            occupied: false,
+            customer: null,
+            mesh: group
+        });
+    }
+
+    function spawnCustomer() {
+        // Find empty table
+        const emptyTables = state.tables.filter(t => !t.occupied);
+        if (emptyTables.length === 0) return;
+
+        const table = emptyTables[Math.floor(Math.random() * emptyTables.length)];
+        table.occupied = true;
+
+        const customer = new Customer(Date.now());
+        customer.targetTable = table;
+        table.customer = customer;
+        objects.push(customer);
+    }
+
+    function spawnCoin(pos) {
+        new Coin(pos);
+    }
+
+    function addCoin(amount) {
+        state.coins += amount;
+        document.getElementById('coin-display').innerText = state.coins;
+        
+        // Reputation logic
+        if (state.coins > state.reputation * 200) {
+            state.reputation++;
+            document.getElementById('reputation-display').innerText = `評判: ${state.reputation}`;
+            showToast(`評判が上がったニャ！
+レベル ${state.reputation}`);
+        }
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.innerText = msg;
+        t.style.opacity = 1;
+        setTimeout(() => t.style.opacity = 0, 3000);
+    }
+
+    // --- Interaction Logic ---
+    
+    function checkActionAvailable() {
+        const pPos = player.mesh.position;
+        let canAct = false;
+
+        const kDist = pPos.distanceTo(state.kitchen.mesh.position);
+        if (kDist < GAME_CONFIG.interactDist) {
+            if (player.holding === 'order' || (player.holding === null && state.kitchen.foodReady)) {
+                canAct = true;
+            }
+        }
+
+        if (!canAct) {
+            for (let i = 0; i < state.tables.length; i++) {
+                const table = state.tables[i];
+                if (table.customer) {
+                    const dist = pPos.distanceTo(table.mesh.position);
+                    if (dist < GAME_CONFIG.interactDist) {
+                        const c = table.customer;
+                        if ((c.state === 'waiting_order' && player.holding === null) ||
+                            (c.state === 'waiting_food' && player.holding === 'food')) {
+                            canAct = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        const btn = document.getElementById('action-btn');
+        if (canAct) {
+            btn.classList.remove('inactive');
+        } else {
+            btn.classList.add('inactive');
+        }
+    }
+
+    function handleAction() {
+        const pPos = player.mesh.position;
+        let acted = false;
+
+        // 1. Check Kitchen
+        const kDist = pPos.distanceTo(state.kitchen.mesh.position);
+        if (kDist < GAME_CONFIG.interactDist) {
+            if (player.holding === 'order') {
+                // Place order
+                player.holding = null;
+                showToast('調理開始ニャ！');
+                // Simulate cooking time
+                setTimeout(() => {
+                    state.kitchen.foodReady = true;
+                    state.kitchen.label.innerText = '🍳 料理できた!';
+                }, 1000);
+                acted = true;
+            } else if (player.holding === null && state.kitchen.foodReady) {
+                // Pick up food
+                player.holding = 'food';
+                state.kitchen.foodReady = false;
+                state.kitchen.label.innerText = '🍳 キッチン';
+                showToast('料理を持ったニャ！');
+                acted = true;
+            }
+        }
+
+        // 2. Check Tables/Customers
+        if (!acted) {
+            state.tables.forEach(table => {
+                if (table.customer) {
+                    const dist = pPos.distanceTo(table.mesh.position);
+                    if (dist < GAME_CONFIG.interactDist) {
+                        const c = table.customer;
+                        if (c.state === 'waiting_order' && player.holding === null) {
+                            // Take order
+                            c.state = 'waiting_food';
+                            c.showBubble('⏳ 待機中...');
+                            player.holding = 'order';
+                            player.targetOrder = table.id;
+                            showToast('注文を受けたニャ！');
+                            acted = true;
+                        } else if (c.state === 'waiting_food' && player.holding === 'food') {
+                            // Serve food
+                            // Ideally check if correct order, but simplified here
+                            c.state = 'eating';
+                            c.showBubble('🍽️ モグモグ');
+                            player.holding = null;
+                            showToast('お待たせニャ！');
+                            acted = true;
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Visual feedback
+        const btn = document.getElementById('action-btn');
+        btn.style.transform = 'scale(0.9)';
+        setTimeout(() => btn.style.transform = 'scale(1)', 100);
+    }
+
+    // --- Input Handling ---
+    
+    let joystickData = { active: false, id: null, startX: 0, startY: 0, curX: 0, curY: 0, vec: {x:0, y:0} };
+
+    const joystickZone = document.getElementById('joystick-zone');
+    const joystickStick = document.getElementById('joystick-stick');
+    const actionBtn = document.getElementById('action-btn');
+    const shopBtn = document.getElementById('shop-btn');
+    const closeShopBtn = document.getElementById('close-shop');
+
+    // Keyboard Support
+    const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false };
+    window.addEventListener('keydown', e => { 
+        if(keys.hasOwnProperty(e.key)) keys[e.key] = true; 
+        if(e.code === 'Space') handleAction();
+    });
+    window.addEventListener('keyup', e => { 
+        if(keys.hasOwnProperty(e.key)) keys[e.key] = false; 
+    });
+
+    // Joystick
+    joystickZone.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touch = e.changedTouches[0];
+        joystickData.active = true;
+        joystickData.id = touch.identifier;
+        joystickData.startX = touch.clientX;
+        joystickData.startY = touch.clientY;
+        joystickData.curX = touch.clientX;
+        joystickData.curY = touch.clientY;
+    }, { passive: false });
+
+    joystickZone.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (!joystickData.active) return;
+        for (let i=0; i<e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === joystickData.id) {
+                const touch = e.changedTouches[i];
+                joystickData.curX = touch.clientX;
+                joystickData.curY = touch.clientY;
+                
+                const dx = joystickData.curX - joystickData.startX;
+                const dy = joystickData.curY - joystickData.startY;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                const maxDist = 40;
+                
+                const nx = dx / (dist || 1);
+                const ny = dy / (dist || 1);
+                
+                const clampDist = Math.min(dist, maxDist);
+                joystickData.vec.x = nx * (clampDist / maxDist);
+                joystickData.vec.y = ny * (clampDist / maxDist);
+                
+                joystickStick.style.transform = `translate(${nx * clampDist}px, ${ny * clampDist}px)`;
+            }
+        }
+    }, { passive: false });
+
+    const endJoystick = (e) => {
+        for (let i=0; i<e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === joystickData.id) {
+                joystickData.active = false;
+                joystickData.vec.x = 0;
+                joystickData.vec.y = 0;
+                joystickStick.style.transform = `translate(0px, 0px)`;
+            }
+        }
+    };
+    joystickZone.addEventListener('touchend', endJoystick);
+    joystickZone.addEventListener('touchcancel', endJoystick);
+
+    // Mouse support for joystick
+    const startJoystickWithPointer = (clientX, clientY, id = 'mouse') => {
+        joystickData.active = true;
+        joystickData.id = id;
+        joystickData.startX = clientX;
+        joystickData.startY = clientY;
+        joystickData.curX = clientX;
+        joystickData.curY = clientY;
+    };
+
+    const moveJoystickWithPointer = (clientX, clientY) => {
+        if (!joystickData.active) return;
+        joystickData.curX = clientX;
+        joystickData.curY = clientY;
+
+        const dx = joystickData.curX - joystickData.startX;
+        const dy = joystickData.curY - joystickData.startY;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const maxDist = 40;
+
+        const nx = dx / (dist || 1);
+        const ny = dy / (dist || 1);
+
+        const clampDist = Math.min(dist, maxDist);
+        joystickData.vec.x = nx * (clampDist / maxDist);
+        joystickData.vec.y = ny * (clampDist / maxDist);
+
+        joystickStick.style.transform = `translate(${nx * clampDist}px, ${ny * clampDist}px)`;
+    };
+
+    const endJoystickWithPointer = () => {
+        if (!joystickData.active) return;
+        joystickData.active = false;
+        joystickData.vec.x = 0;
+        joystickData.vec.y = 0;
+        joystickStick.style.transform = `translate(0px, 0px)`;
+    };
+
+    joystickZone.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        startJoystickWithPointer(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!joystickData.active || joystickData.id !== 'mouse') return;
+        moveJoystickWithPointer(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', (e) => {
+        if (joystickData.id !== 'mouse') return;
+        endJoystickWithPointer();
+    });
+
+    // Action Button
+    actionBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevent ghost clicks
+        handleAction();
+    }, { passive: false });
+    
+    actionBtn.addEventListener('click', (e) => {
+        // Fallback for mouse
+        handleAction();
+    });
+
+    // Shop Logic
+    const shopItems = [
+        { id: 'table2', name: '木のテーブル', cost: 100, type: 'table' },
+        { id: 'plant1', name: '観葉植物', cost: 150, type: 'deco' },
+        { id: 'rug1', name: 'ふわふわラグ', cost: 200, type: 'deco' },
+        { id: 'table3', name: 'おしゃれテーブル', cost: 300, type: 'table' },
+        { id: 'statue', name: '金のネコ像', cost: 1000, type: 'deco' }
+    ];
+
+    function renderShop() {
+        const list = document.getElementById('shop-list');
+        list.innerHTML = '';
+        shopItems.forEach(item => {
+            const div = document.createElement('div');
+            const isBought = state.unlockedItems.includes(item.id);
+            div.className = `shop-item ${isBought ? 'locked' : ''}`;
+            div.innerHTML = `
+                <div class="shop-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${isBought ? '購入済み' : item.cost + ' コイン'}</p>
+                </div>
+                <button class="buy-btn" ${isBought || state.coins < item.cost ? 'disabled' : ''} data-id="${item.id}">
+                    ${isBought ? '済' : '購入'}
+                </button>
+            `;
+            
+            const btn = div.querySelector('.buy-btn');
+            if (!isBought && state.coins >= item.cost) {
+                btn.onclick = () => buyItem(item);
+            }
+            list.appendChild(div);
+        });
+    }
+
+    function buyItem(item) {
+        if (state.coins >= item.cost) {
+            state.coins -= item.cost;
+            state.unlockedItems.push(item.id);
+            document.getElementById('coin-display').innerText = state.coins;
+            
+            // Apply item effect
+            if (item.type === 'table') {
+                // Find a spot
+                const offset = state.tables.length * 4;
+                const x = (Math.random() - 0.5) * 8;
+                const z = (Math.random() - 0.5) * 8;
+                // Simple placement logic: try to place in grid
+                const row = Math.floor(state.tables.length / 2);
+                const col = state.tables.length % 2;
+                addTable(-4 + col * 8, -2 + row * 5);
+                showToast('テーブルが増えたニャ！');
+            } else {
+                // Deco
+                const decoGeo = new THREE.ConeGeometry(0.5, 1.5, 8);
+                const decoMat = toonMaterial(0x32CD32);
+                const deco = new THREE.Mesh(decoGeo, decoMat);
+                deco.position.set((Math.random()-0.5)*10, 0.75, -13 + Math.random()*2);
+                scene.add(deco);
+                showToast('お店が可愛くなったニャ！');
+            }
+            
+            renderShop();
+        }
+    }
+
+    shopBtn.addEventListener('click', () => {
+        renderShop();
+        document.getElementById('shop-modal').classList.add('open');
+    });
+    
+    closeShopBtn.addEventListener('click', () => {
+        document.getElementById('shop-modal').classList.remove('open');
+    });
+
+    // --- Main Loop ---
+    
+    let frameCount = 0;
+    const clock = new THREE.Clock();
+
+    function animate() {
+        requestAnimationFrame(animate);
+        
+        const delta = clock.getDelta();
+        frameCount++;
+
+        // Player Movement
+        let moveX = 0;
+        let moveY = 0;
+
+        if (joystickData.vec.x !== 0 || joystickData.vec.y !== 0) {
+            moveX = joystickData.vec.x;
+            moveY = joystickData.vec.y;
+        } else {
+            if (keys.w || keys.ArrowUp) moveY -= 1;
+            if (keys.s || keys.ArrowDown) moveY += 1;
+            if (keys.a || keys.ArrowLeft) moveX -= 1;
+            if (keys.d || keys.ArrowRight) moveX += 1;
+            
+            if (moveX !== 0 || moveY !== 0) {
+                const length = Math.sqrt(moveX*moveX + moveY*moveY);
+                moveX /= length;
+                moveY /= length;
+            }
+        }
+
+        if (moveX !== 0 || moveY !== 0) {
+            // Convert input to world space relative to camera
+            const camAngle = cameraRig.rotation.y;
+            
+            const worldMoveX = moveX * Math.cos(camAngle) - moveY * Math.sin(camAngle);
+            const worldMoveZ = moveX * Math.sin(camAngle) + moveY * Math.cos(camAngle);
+            
+            player.pos.x += worldMoveX * GAME_CONFIG.moveSpeed;
+            player.pos.z += worldMoveZ * GAME_CONFIG.moveSpeed;
+            
+            // Bounds check
+            player.pos.x = Math.max(-9, Math.min(9, player.pos.x));
+            player.pos.z = Math.max(-14, Math.min(14, player.pos.z));
+            
+            // Rotation
+            player.angle = Math.atan2(worldMoveX, worldMoveZ);
+        }
+
+        player.update();
+
+        // Objects Update
+        objects.forEach(obj => obj.update());
+
+        // Spawner
+        if (frameCount % Math.max(100, GAME_CONFIG.spawnInterval - state.reputation * 20) === 0) {
+            spawnCustomer();
+        }
+
+        // Update Kitchen Label Position
+        if (state.kitchen.label) {
+            const kPos = state.kitchen.mesh.position.clone();
+            kPos.y += 1.5;
+            kPos.project(camera);
+            const kx = (kPos.x * .5 + .5) * window.innerWidth;
+            const ky = (-(kPos.y * .5) + .5) * window.innerHeight;
+            state.kitchen.label.style.left = `${kx}px`;
+            state.kitchen.label.style.top = `${ky}px`;
+        }
+
+        checkActionAvailable();
+
+        // Camera follow player loosely
+        const targetX = player.pos.x * 0.3;
+        const targetZ = player.pos.z * 0.3;
+        cameraRig.position.x += (targetX - cameraRig.position.x) * 0.1;
+        cameraRig.position.z += (targetZ - cameraRig.position.z) * 0.1;
+
+        renderer.render(scene, camera);
+    }
+
+    // --- Init ---
+    initWorld();
+    document.getElementById('loading').style.opacity = 0;
+    setTimeout(() => document.getElementById('loading').remove(), 500);
+    animate();
+
+    // Resize
+    window.addEventListener('resize', () => {
+        const aspect = window.innerWidth / window.innerHeight;
+        camera.left = frustumSize * aspect / -2;
+        camera.right = frustumSize * aspect / 2;
+        camera.top = frustumSize / 2;
+        camera.bottom = frustumSize / -2;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a76ec8cc7d5d41af9a83111a93703c6e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
