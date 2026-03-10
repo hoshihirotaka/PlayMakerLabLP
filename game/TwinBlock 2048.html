@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!--
+    ゲーム要件:
+    - タイトル: TwinBlock 2048
+    - ゲームタイプ: パズル
+    - 動作環境: モバイル（縦画面）、タッチ操作のみ
+    - デザイン: 日本の「KAWAII」カルチャー、ゆめかわいい、パステルカラー、丸ゴシック体
+    - 基本ルール:
+      - 5x5のグリッド
+      - 手札から2つの数字ブロック（ペア）をドラッグ＆ドロップで配置
+      - 配置後、同じ数字が隣接しているとマージして倍の数字になる
+      - 連鎖（Chain）とコンボ（Combo）でスコアアップ
+      - 手札が置けなくなったらゲームオーバー
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TwinBlock 2048</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #FFF0F5; /* Lavender Blush */
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            overflow: hidden;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        #game-container {
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script>
+        // KAWAIIカラーパレット定義
+        const COLORS = {
+            bg: 0xFFF0F5,      // 背景色
+            gridBg: 0xFFE4E1,  // グリッド背景
+            gridCell: 0xFFFFFF,// 空セル
+            text: '#5D4037',   // テキスト色（柔らかい茶色）
+            textHighlight: '#FF69B4', // 強調テキスト（ホットピンク）
+            highlightOk: 0x4ECDC4, // 配置可能（ミントグリーン）
+            highlightNg: 0xFF6B6B, // 配置不可（パステルレッド）
+            
+            // 数字ブロックの色（パステルネオン）
+            numbers: {
+                1: 0xFFFFFF,
+                2: 0xFFB7B2,   // Pastel Red
+                4: 0xFFDAC1,   // Pastel Orange
+                8: 0xE2F0CB,   // Pastel Green
+                16: 0xB5EAD7,  // Mint
+                32: 0xC7CEEA,  // Pastel Purple
+                64: 0xF48FB1,  // Pink
+                128: 0xCE93D8, // Purple
+                256: 0xB39DDB, // Deep Purple
+                512: 0x9FA8DA, // Indigo
+                1024: 0x90CAF9,// Blue
+                2048: 0xFFD54F,// Gold
+                4096: 0xFFAB91 // Deep Orange
+            }
+        };
+
+        // 画面サイズに応じた設定
+        const isMobile = window.innerWidth < 600;
+        const gameWidth = Math.min(500, window.innerWidth);
+        const gameHeight = Math.min(800, window.innerHeight);
+
+        const config = {
+            type: Phaser.AUTO,
+            width: gameWidth,
+            height: gameHeight,
+            parent: 'game-container',
+            backgroundColor: '#FFF0F5',
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        const game = new Phaser.Game(config);
+
+        // ゲーム定数
+        const GRID_SIZE = 5;
+        const CELL_SIZE = Math.floor(gameWidth * 0.16); // 少し大きめに
+        const GRID_OFFSET_X = (gameWidth - CELL_SIZE * GRID_SIZE) / 2;
+        const GRID_OFFSET_Y = gameHeight * 0.20; // 上部にスコアエリアを確保
+        const HAND_Y = gameHeight * 0.82;
+        const HAND_SPACING = gameWidth * 0.28;
+        const HAND_START_X = gameWidth * 0.22;
+
+        // ゲーム状態変数
+        let board = [];
+        let handCards = [];
+        let score = 0;
+        let highScore = 0;
+        let scoreText;
+        let highScoreText;
+        let draggedCard = null;
+        let gridGraphics;
+        let tileContainer;
+        let handContainer;
+        let uiContainer;
+        let highlightGraphics;
+        let mergeInProgress = false;
+        let currentCombo = 0;
+
+        function preload() {
+            // アセットのロードはなし（Graphicsで描画）
+        }
+
+        function create() {
+            initGame(this);
+        }
+
+        function initGame(scene) {
+            // 既存のオブジェクトをクリア
+            if (gridGraphics) gridGraphics.clear();
+            if (highlightGraphics) highlightGraphics.clear();
+            if (tileContainer) tileContainer.removeAll(true);
+            if (handContainer) handContainer.removeAll(true);
+            if (uiContainer) uiContainer.removeAll(true);
+
+            // ボードの初期化
+            board = [];
+            for (let y = 0; y < GRID_SIZE; y++) {
+                board[y] = [];
+                for (let x = 0; x < GRID_SIZE; x++) {
+                    board[y][x] = 0;
+                }
+            }
+
+            // 変数リセット
+            score = 0;
+            draggedCard = null;
+            handCards = [];
+            mergeInProgress = false;
+            currentCombo = 0;
+
+            // レイヤー作成
+            if (!gridGraphics) gridGraphics = scene.add.graphics();
+            if (!highlightGraphics) highlightGraphics = scene.add.graphics();
+            if (!tileContainer) tileContainer = scene.add.container(0, 0);
+            if (!handContainer) handContainer = scene.add.container(0, 0);
+            if (!uiContainer) uiContainer = scene.add.container(0, 0);
+
+            // 背景装飾（ゆめかわいい雰囲気）
+            drawBackgroundDecoration(scene);
+            
+            // グリッド描画
+            drawGrid(scene);
+
+            // UIヘッダー背景
+            const headerBg = scene.add.graphics();
+            headerBg.fillStyle(0xFFFFFF, 0.8);
+            headerBg.fillRoundedRect(20, 20, gameWidth - 40, gameHeight * 0.12, 20);
+            uiContainer.add(headerBg);
+
+            // スコア表示
+            const fontSize = Math.floor(gameWidth * 0.05);
+            const labelStyle = {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: (fontSize * 0.6) + 'px',
+                fill: COLORS.text,
+                fontStyle: 'bold'
+            };
+            const scoreValueStyle = {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: (fontSize * 1.2) + 'px',
+                fill: COLORS.textHighlight,
+                fontStyle: '800'
+            };
+
+            // スコアラベル
+            const scoreLabel = scene.add.text(gameWidth * 0.3, 35, 'スコア', labelStyle).setOrigin(0.5);
+            scoreText = scene.add.text(gameWidth * 0.3, 65, '0', scoreValueStyle).setOrigin(0.5);
+
+            // ハイスコアラベル
+            const highLabel = scene.add.text(gameWidth * 0.7, 35, 'ハイスコア', labelStyle).setOrigin(0.5);
+            highScoreText = scene.add.text(gameWidth * 0.7, 65, highScore.toString(), scoreValueStyle).setOrigin(0.5);
+
+            uiContainer.add([scoreLabel, scoreText, highLabel, highScoreText]);
+
+            // 手札の初期化
+            initializeHand(scene);
+        }
+
+        function drawBackgroundDecoration(scene) {
+            const bgGraphics = scene.add.graphics();
+            // ドット柄や円を配置してポップな背景に
+            bgGraphics.fillStyle(0xFFE4E1, 0.5);
+            for(let i=0; i<10; i++) {
+                const x = Math.random() * gameWidth;
+                const y = Math.random() * gameHeight;
+                const r = Math.random() * 50 + 20;
+                bgGraphics.fillCircle(x, y, r);
+            }
+            uiContainer.add(bgGraphics);
+            uiContainer.sendToBack(bgGraphics);
+        }
+
+        function update() {
+            if (draggedCard) {
+                const isVertical = draggedCard.getData('isVertical');
+                const blockSize = CELL_SIZE * 0.8; // 手札サイズ調整
+                const offset = blockSize * 0.55;
+                
+                // ドラッグ中のカードの位置補正
+                let firstCellX, firstCellY;
+                if (isVertical) {
+                    firstCellX = draggedCard.x;
+                    firstCellY = draggedCard.y - offset;
+                } else {
+                    firstCellX = draggedCard.x - offset;
+                    firstCellY = draggedCard.y;
+                }
+                updateHighlight(firstCellX, firstCellY);
+            } else {
+                clearHighlight();
+            }
+        }
+
+        function drawGrid(scene) {
+            gridGraphics.clear();
+
+            // グリッド全体の背景（角丸）
+            const padding = 10;
+            gridGraphics.fillStyle(COLORS.gridBg, 1);
+            gridGraphics.fillRoundedRect(
+                GRID_OFFSET_X - padding, 
+                GRID_OFFSET_Y - padding, 
+                CELL_SIZE * GRID_SIZE + padding * 2, 
+                CELL_SIZE * GRID_SIZE + padding * 2, 
+                20
+            );
+
+            for (let y = 0; y < GRID_SIZE; y++) {
+                for (let x = 0; x < GRID_SIZE; x++) {
+                    const posX = GRID_OFFSET_X + x * CELL_SIZE;
+                    const posY = GRID_OFFSET_Y + y * CELL_SIZE;
+                    const size = CELL_SIZE - 6; // マージン確保
+
+                    gridGraphics.fillStyle(COLORS.gridCell, 1);
+                    gridGraphics.fillRoundedRect(posX + 3, posY + 3, size, size, 12);
+                }
+            }
+        }
+
+        function updateHighlight(x, y) {
+            highlightGraphics.clear();
+
+            if (!draggedCard) return;
+
+            const gridPos = getGridPosition(x, y);
+            const isVertical = draggedCard.getData('isVertical');
+
+            if (gridPos) {
+                const canPlace = canPlacePair(gridPos.x, gridPos.y, isVertical);
+                const color = canPlace ? COLORS.highlightOk : COLORS.highlightNg;
+                
+                if (isVertical) {
+                    if (gridPos.y + 1 < GRID_SIZE) {
+                        drawHighlightCell(gridPos.x, gridPos.y, color, 0.5);
+                        drawHighlightCell(gridPos.x, gridPos.y + 1, color, 0.5);
+                    }
+                } else {
+                    if (gridPos.x + 1 < GRID_SIZE) {
+                        drawHighlightCell(gridPos.x, gridPos.y, color, 0.5);
+                        drawHighlightCell(gridPos.x + 1, gridPos.y, color, 0.5);
+                    }
+                }
+            }
+        }
+
+        function drawHighlightCell(gridX, gridY, color, alpha) {
+            const posX = GRID_OFFSET_X + gridX * CELL_SIZE;
+            const posY = GRID_OFFSET_Y + gridY * CELL_SIZE;
+            const size = CELL_SIZE - 6;
+
+            highlightGraphics.fillStyle(color, alpha);
+            highlightGraphics.fillRoundedRect(posX + 3, posY + 3, size, size, 12);
+        }
+
+        function clearHighlight() {
+            highlightGraphics.clear();
+        }
+
+        function initializeHand(scene) {
+            handCards.forEach(card => card.destroy());
+            handCards = [];
+
+            for (let i = 0; i < 3; i++) {
+                createHandCard(scene, i);
+            }
+        }
+
+        function getBoardMaxValue() {
+            let maxValue = 0;
+            for (let y = 0; y < GRID_SIZE; y++) {
+                for (let x = 0; x < GRID_SIZE; x++) {
+                    if (board[y][x] > maxValue) {
+                        maxValue = board[y][x];
+                    }
+                }
+            }
+            return maxValue;
+        }
+
+        function getRandomNumber() {
+            const maxValue = getBoardMaxValue();
+            const rand = Math.random();
+
+            // 盤面の最大値に応じて出現する数字を調整
+            if (maxValue <= 4) {
+                if (rand < 0.5) return 1; // 1も出現させる
+                if (rand < 0.8) return 2;
+                return 4;
+            } else if (maxValue <= 16) {
+                if (rand < 0.5) return 2;
+                if (rand < 0.8) return 4;
+                return 8;
+            } else if (maxValue <= 64) {
+                if (rand < 0.5) return 4;
+                if (rand < 0.8) return 8;
+                return 16;
+            } else if (maxValue <= 256) {
+                if (rand < 0.5) return 8;
+                if (rand < 0.8) return 16;
+                return 32;
+            } else {
+                if (rand < 0.5) return 16;
+                if (rand < 0.8) return 32;
+                return 64;
+            }
+        }
+
+        function createHandCard(scene, index) {
+            const isVertical = Math.random() < 0.5;
+            const number1 = getRandomNumber();
+            const number2 = getRandomNumber();
+
+            const x = HAND_START_X + index * HAND_SPACING;
+            const y = HAND_Y;
+
+            const card = scene.add.container(x, y);
+
+            const blockSize = CELL_SIZE * 0.8; // 手札は少し小さく
+            const offset = blockSize * 0.55;
+            const fontSize = Math.floor(blockSize * 0.4);
+            const radius = 10;
+
+            // ブロック生成ヘルパー
+            const createBlock = (ox, oy, num) => {
+                const color = COLORS.numbers[num] || COLORS.numbers[4096];
+                const bg = scene.add.graphics();
+                bg.fillStyle(color, 1);
+                // 影
+                bg.fillStyle(0x000000, 0.1);
+                bg.fillRoundedRect(ox + 2, oy + 2, blockSize, blockSize, radius);
+                // 本体
+                bg.fillStyle(color, 1);
+                bg.fillRoundedRect(ox, oy, blockSize, blockSize, radius);
+                // 白いハイライト（ツヤ）
+                bg.fillStyle(0xFFFFFF, 0.3);
+                bg.fillCircle(ox + blockSize*0.2, oy + blockSize*0.2, blockSize*0.1);
+
+                const text = scene.add.text(ox + blockSize/2, oy + blockSize/2, num.toString(), {
+                    fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                    fontSize: fontSize + 'px',
+                    fill: COLORS.text,
+                    fontStyle: '800'
+                }).setOrigin(0.5);
+                
+                return [bg, text];
+            };
+
+            if (isVertical) {
+                const b1 = createBlock(-blockSize/2, -offset - blockSize/2, number1);
+                const b2 = createBlock(-blockSize/2, offset - blockSize/2, number2);
+                card.add([...b1, ...b2]);
+            } else {
+                const b1 = createBlock(-offset - blockSize/2, -blockSize/2, number1);
+                const b2 = createBlock(offset - blockSize/2, -blockSize/2, number2);
+                card.add([...b1, ...b2]);
+            }
+
+            // ヒットエリア設定
+            const hitW = isVertical ? blockSize : blockSize * 2.2;
+            const hitH = isVertical ? blockSize * 2.2 : blockSize;
+            card.setSize(hitW, hitH);
+            
+            card.setInteractive({ draggable: true });
+            card.setData('number1', number1);
+            card.setData('number2', number2);
+            card.setData('isVertical', isVertical);
+            card.setData('index', index);
+            card.setData('originalX', x);
+            card.setData('originalY', y);
+
+            // ドラッグイベント
+            card.on('dragstart', function(pointer) {
+                draggedCard = this;
+                
+                // 優先順位判定
+                const isVertical = this.getData('isVertical');
+                const number1 = this.getData('number1');
+                const number2 = this.getData('number2');
+
+                if (number1 === number2) {
+                    const localX = pointer.x - this.x;
+                    const localY = pointer.y - this.y;
+                    if (isVertical) {
+                        this.setData('prioritizeFirst', localY < 0);
+                    } else {
+                        this.setData('prioritizeFirst', localX < 0);
+                    }
+                } else {
+                    this.setData('prioritizeFirst', true);
+                }
+
+                // 持ち上げアニメーション
+                scene.tweens.add({
+                    targets: this,
+                    scaleX: 1.1,
+                    scaleY: 1.1,
+                    alpha: 0.9,
+                    duration: 100
+                });
+                
+                handContainer.bringToTop(this);
+            });
+
+            card.on('drag', function(pointer, dragX, dragY) {
+                this.x = dragX;
+                this.y = dragY - 50; // 指の上に表示されるように少しずらす
+            });
+
+            card.on('dragend', function(pointer) {
+                // ブロックの第1セル中心座標でグリッド判定
+                const isVertical = this.getData('isVertical');
+                const blockSize = CELL_SIZE * 0.8;
+                const offsetVal = blockSize * 0.55;
+                let firstCellX, firstCellY;
+                
+                if (isVertical) {
+                    firstCellX = this.x;
+                    firstCellY = this.y - offsetVal;
+                } else {
+                    firstCellX = this.x - offsetVal;
+                    firstCellY = this.y;
+                }
+                
+                const gridPos = getGridPosition(firstCellX, firstCellY);
+
+                if (gridPos && canPlacePair(gridPos.x, gridPos.y, isVertical)) {
+                    const number1 = this.getData('number1');
+                    const number2 = this.getData('number2');
+                    const prioritizeFirst = this.getData('prioritizeFirst');
+                    
+                    placePair(scene, gridPos.x, gridPos.y, number1, number2, isVertical, prioritizeFirst);
+
+                    const cardIndex = this.getData('index');
+                    this.destroy();
+                    createHandCard(scene, cardIndex);
+                } else {
+                    // 元の位置に戻るアニメーション
+                    scene.tweens.add({
+                        targets: this,
+                        x: this.getData('originalX'),
+                        y: this.getData('originalY'),
+                        scaleX: 1,
+                        scaleY: 1,
+                        alpha: 1,
+                        duration: 300,
+                        ease: 'Back.easeOut'
+                    });
+                }
+
+                draggedCard = null;
+                clearHighlight();
+            });
+
+            handContainer.add(card);
+            handCards[index] = card;
+        }
+
+        function getGridPosition(x, y) {
+            const gridX = Math.floor((x - GRID_OFFSET_X) / CELL_SIZE);
+            const gridY = Math.floor((y - GRID_OFFSET_Y) / CELL_SIZE);
+
+            if (gridX >= 0 && gridX < GRID_SIZE && gridY >= 0 && gridY < GRID_SIZE) {
+                return { x: gridX, y: gridY };
+            }
+            return null;
+        }
+
+        function canPlacePair(gridX, gridY, isVertical) {
+            if (isVertical) {
+                if (gridY + 1 >= GRID_SIZE) return false;
+                return board[gridY][gridX] === 0 && board[gridY + 1][gridX] === 0;
+            } else {
+                if (gridX + 1 >= GRID_SIZE) return false;
+                return board[gridY][gridX] === 0 && board[gridY][gridX + 1] === 0;
+            }
+        }
+
+        function placePair(scene, gridX, gridY, number1, number2, isVertical, prioritizeFirst) {
+            mergeInProgress = true;
+            currentCombo = 0;
+
+            // 配置SE（視覚効果のみ）
+            // scene.cameras.main.shake(100, 0.005);
+
+            if (isVertical) {
+                board[gridY][gridX] = number1;
+                board[gridY + 1][gridX] = number2;
+
+                if (prioritizeFirst) {
+                    processMerge(scene, gridX, gridY);
+                    processMerge(scene, gridX, gridY + 1);
+                } else {
+                    processMerge(scene, gridX, gridY + 1);
+                    processMerge(scene, gridX, gridY);
+                }
+            } else {
+                board[gridY][gridX] = number1;
+                board[gridY][gridX + 1] = number2;
+
+                if (prioritizeFirst) {
+                    processMerge(scene, gridX, gridY);
+                    processMerge(scene, gridX + 1, gridY);
+                } else {
+                    processMerge(scene, gridX + 1, gridY);
+                    processMerge(scene, gridX, gridY);
+                }
+            }
+
+            redrawBoard(scene);
+
+            scene.time.delayedCall(500, () => {
+                mergeInProgress = false;
+                checkGameOver(scene);
+            });
+        }
+
+        function processMerge(scene, startX, startY) {
+            const targetNumber = board[startY][startX];
+            if (targetNumber === 0) return;
+
+            const directions = [
+                { dx: 0, dy: -1 },
+                { dx: 1, dy: 0 },
+                { dx: 0, dy: 1 },
+                { dx: -1, dy: 0 }
+            ];
+
+            let chainCount = 0;
+
+            for (const dir of directions) {
+                const newX = startX + dir.dx;
+                const newY = startY + dir.dy;
+
+                if (newX >= 0 && newX < GRID_SIZE && newY >= 0 && newY < GRID_SIZE) {
+                    if (board[newY][newX] === targetNumber) {
+                        board[newY][newX] = 0;
+                        chainCount++;
+                        
+                        // 吸収エフェクト
+                        showAbsorbEffect(scene, newX, newY, startX, startY);
+                    }
+                }
+            }
+
+            if (chainCount > 0) {
+                const newNumber = targetNumber * 2;
+                // 上限なし、または適当な上限
+                if (newNumber <= 131072) {
+                    board[startY][startX] = newNumber;
+                    currentCombo++;
+
+                    const chainScore = newNumber * chainCount * currentCombo;
+                    score += chainScore;
+                    scoreText.setText(score.toString());
+
+                    // スコア更新アニメーション
+                    scene.tweens.add({
+                        targets: scoreText,
+                        scale: 1.5,
+                        duration: 100,
+                        yoyo: true
+                    });
+
+                    if (score > highScore) {
+                        highScore = score;
+                        highScoreText.setText(highScore.toString());
+                    }
+
+                    showChainAndCombo(scene, startX, startY, chainCount, newNumber, chainScore, currentCombo);
+
+                    scene.time.delayedCall(300, () => {
+                        processMerge(scene, startX, startY);
+                        redrawBoard(scene);
+                    });
+                }
+            }
+        }
+
+        function showAbsorbEffect(scene, fromX, fromY, toX, toY) {
+            const startX = GRID_OFFSET_X + fromX * CELL_SIZE + CELL_SIZE / 2;
+            const startY = GRID_OFFSET_Y + fromY * CELL_SIZE + CELL_SIZE / 2;
+            const endX = GRID_OFFSET_X + toX * CELL_SIZE + CELL_SIZE / 2;
+            const endY = GRID_OFFSET_Y + toY * CELL_SIZE + CELL_SIZE / 2;
+
+            const particle = scene.add.circle(startX, startY, CELL_SIZE/3, 0xFFFFFF, 0.8);
+            scene.tweens.add({
+                targets: particle,
+                x: endX,
+                y: endY,
+                scale: 0,
+                duration: 200,
+                onComplete: () => particle.destroy()
+            });
+        }
+
+        function showChainAndCombo(scene, gridX, gridY, chainCount, number, totalScore, combo) {
+            const posX = GRID_OFFSET_X + gridX * CELL_SIZE + CELL_SIZE / 2;
+            const posY = GRID_OFFSET_Y + gridY * CELL_SIZE + CELL_SIZE / 2;
+
+            const chainFontSize = Math.floor(gameWidth * 0.04);
+            const calcFontSize = Math.floor(gameWidth * 0.035);
+            const comboFontSize = Math.floor(gameWidth * 0.08);
+
+            // ポップアップテキスト
+            const chainText = scene.add.text(posX, posY - CELL_SIZE * 0.6, `${chainCount} Chain!`, {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: chainFontSize + 'px',
+                fill: '#FFD700',
+                fontStyle: '800',
+                stroke: '#FFFFFF',
+                strokeThickness: 4
+            }).setOrigin(0.5);
+
+            const calcText = scene.add.text(posX, posY - CELL_SIZE * 0.3, `+${totalScore}`, {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: calcFontSize + 'px',
+                fill: COLORS.textHighlight,
+                fontStyle: 'bold',
+                stroke: '#FFFFFF',
+                strokeThickness: 3
+            }).setOrigin(0.5);
+
+            uiContainer.add([chainText, calcText]);
+
+            scene.tweens.add({
+                targets: [chainText, calcText],
+                y: '-=80',
+                alpha: 0,
+                duration: 1500,
+                ease: 'Power2',
+                onComplete: () => {
+                    chainText.destroy();
+                    calcText.destroy();
+                }
+            });
+
+            // コンボ表示
+            if (combo >= 2) {
+                const comboDisplay = scene.add.text(gameWidth / 2, gameHeight * 0.15, `${combo} COMBO!`, {
+                    fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                    fontSize: comboFontSize + 'px',
+                    fill: '#FF6B6B',
+                    fontStyle: '800',
+                    stroke: '#FFFFFF',
+                    strokeThickness: 6,
+                    shadow: { offsetX: 2, offsetY: 2, color: '#000', blur: 2, fill: true }
+                }).setOrigin(0.5);
+
+                uiContainer.add(comboDisplay);
+
+                comboDisplay.setScale(0);
+                scene.tweens.add({
+                    targets: comboDisplay,
+                    scale: 1.2,
+                    angle: Math.random() * 20 - 10,
+                    duration: 300,
+                    ease: 'Back.easeOut',
+                    onComplete: () => {
+                        scene.tweens.add({
+                            targets: comboDisplay,
+                            scale: 1.0,
+                            alpha: 0,
+                            y: '-=50',
+                            duration: 1000,
+                            delay: 500,
+                            onComplete: () => comboDisplay.destroy()
+                        });
+                    }
+                });
+            }
+        }
+
+        function redrawBoard(scene) {
+            tileContainer.removeAll(true);
+
+            for (let y = 0; y < GRID_SIZE; y++) {
+                for (let x = 0; x < GRID_SIZE; x++) {
+                    if (board[y][x] > 0) {
+                        const posX = GRID_OFFSET_X + x * CELL_SIZE + CELL_SIZE / 2;
+                        const posY = GRID_OFFSET_Y + y * CELL_SIZE + CELL_SIZE / 2;
+                        drawTile(scene, posX, posY, board[y][x]);
+                    }
+                }
+            }
+        }
+
+        function drawTile(scene, x, y, number) {
+            const tileSize = CELL_SIZE - 6;
+            const color = COLORS.numbers[number] || COLORS.numbers[4096];
+            
+            const bg = scene.add.graphics();
+            // 影
+            bg.fillStyle(0x000000, 0.1);
+            bg.fillRoundedRect(x - tileSize/2 + 2, y - tileSize/2 + 2, tileSize, tileSize, 12);
+            // 本体
+            bg.fillStyle(color, 1);
+            bg.fillRoundedRect(x - tileSize/2, y - tileSize/2, tileSize, tileSize, 12);
+            // ハイライト
+            bg.fillStyle(0xFFFFFF, 0.3);
+            bg.fillCircle(x - tileSize/2 + tileSize*0.2, y - tileSize/2 + tileSize*0.2, tileSize*0.1);
+
+            const fontSize = Math.floor(CELL_SIZE * 0.35);
+            const text = scene.add.text(x, y, number.toString(), {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: fontSize + 'px',
+                fill: COLORS.text,
+                fontStyle: '800'
+            }).setOrigin(0.5);
+
+            // 出現アニメーション（新規配置時のみ適用したいが、再描画で毎回呼ばれるので簡易的に）
+            // 本格的にやるならTileクラスを作るべきだが、ここでは省略
+
+            tileContainer.add([bg, text]);
+        }
+
+        function checkGameOver(scene) {
+            if (mergeInProgress) return;
+
+            // 手札が置けるかチェック
+            for (let card of handCards) {
+                if (!card.active) continue;
+                const isVertical = card.getData('isVertical');
+                for (let y = 0; y < GRID_SIZE; y++) {
+                    for (let x = 0; x < GRID_SIZE; x++) {
+                        if (canPlacePair(x, y, isVertical)) {
+                            return; // まだ置ける
+                        }
+                    }
+                }
+            }
+
+            // ゲームオーバー処理
+            const overlay = scene.add.rectangle(gameWidth / 2, gameHeight / 2, gameWidth, gameHeight, 0xFFF0F5, 0.9);
+            
+            const goFontSize = Math.floor(gameWidth * 0.1);
+            const scoreFontSize = Math.floor(gameWidth * 0.06);
+            const buttonFontSize = Math.floor(gameWidth * 0.05);
+
+            const gameOverText = scene.add.text(gameWidth / 2, gameHeight * 0.35, 'GAME OVER', {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: goFontSize + 'px',
+                fill: '#FF6B6B',
+                fontStyle: '800',
+                stroke: '#FFFFFF',
+                strokeThickness: 6
+            }).setOrigin(0.5);
+
+            const finalScoreText = scene.add.text(gameWidth / 2, gameHeight * 0.45, 'Score: ' + score, {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: scoreFontSize + 'px',
+                fill: COLORS.text,
+                fontStyle: 'bold'
+            }).setOrigin(0.5);
+
+            // リトライボタン（ステッカー風）
+            const btnW = gameWidth * 0.5;
+            const btnH = gameHeight * 0.08;
+            const btnY = gameHeight * 0.6;
+            
+            const btnShadow = scene.add.graphics();
+            btnShadow.fillStyle(0x000000, 0.2);
+            btnShadow.fillRoundedRect(gameWidth/2 - btnW/2 + 4, btnY - btnH/2 + 4, btnW, btnH, 25);
+            
+            const btnBg = scene.add.graphics();
+            btnBg.fillStyle(0x4ECDC4, 1); // Tiffany Blue
+            btnBg.fillRoundedRect(gameWidth/2 - btnW/2, btnY - btnH/2, btnW, btnH, 25);
+            
+            const retryText = scene.add.text(gameWidth / 2, btnY, 'もう一度あそぶ', {
+                fontFamily: '"M PLUS Rounded 1c", sans-serif',
+                fontSize: buttonFontSize + 'px',
+                fill: '#FFFFFF',
+                fontStyle: 'bold'
+            }).setOrigin(0.5);
+
+            const retryContainer = scene.add.container(0, 0, [btnShadow, btnBg, retryText]);
+            retryContainer.setSize(btnW, btnH);
+            retryContainer.setInteractive(new Phaser.Geom.Rectangle(gameWidth/2 - btnW/2, btnY - btnH/2, btnW, btnH), Phaser.Geom.Rectangle.Contains);
+
+            retryContainer.on('pointerdown', () => {
+                // ボタン押し込みアニメーション
+                scene.tweens.add({
+                    targets: retryContainer,
+                    scale: 0.95,
+                    duration: 50,
+                    yoyo: true,
+                    onComplete: () => {
+                        overlay.destroy();
+                        gameOverText.destroy();
+                        finalScoreText.destroy();
+                        retryContainer.destroy();
+                        initGame(scene);
+                    }
+                });
+            });
+
+            uiContainer.add([overlay, gameOverText, finalScoreText, retryContainer]);
+            uiContainer.bringToTop(overlay);
+            uiContainer.bringToTop(gameOverText);
+            uiContainer.bringToTop(finalScoreText);
+            uiContainer.bringToTop(retryContainer);
+        }
+    </script>
+</body>
+</html>
