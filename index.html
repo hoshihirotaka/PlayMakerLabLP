@@ -3,25 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ブロマス体験会 | Robloxゲーム制作ワークショップ</title>
+    <title>ブロマスゲームラボ | ボードゲーム×Roblox×AI 体験会</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap");
 
       :root {
-        --bg: #0a2f66;
-        --bg-2: #0f4da0;
+        --bg: #0b1220;
+        --bg-2: #111e36;
         --surface: #ffffff;
-        --surface-soft: #eef6ff;
-        --text: #0f2140;
-        --subtext: #41557c;
-        --headline: #ffffff;
-        --accent-yellow: #ffd64f;
-        --accent-red: #ff4c47;
-        --accent-cyan: #2fd5ff;
-        --accent-green: #38c68a;
+        --surface-soft: #f2f5ff;
+        --text: #0d1a2d;
+        --subtext: #415375;
+        --accent: #ff5a4f;
+        --accent-2: #2dd6ff;
+        --accent-3: #ffe27a;
+        --accent-4: #47d18c;
+        --shadow: 0 20px 40px rgba(6, 20, 45, 0.22);
         --radius-lg: 24px;
         --radius-md: 16px;
-        --shadow: 0 14px 28px rgba(4, 22, 54, 0.22);
       }
 
       * {
@@ -30,12 +29,37 @@
 
       body {
         margin: 0;
-        font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+        font-family: "M PLUS Rounded 1c", "Kaisei Tokumin", serif;
         color: var(--text);
         background:
-          radial-gradient(circle at 12% 10%, rgba(47, 213, 255, 0.24), transparent 30%),
-          radial-gradient(circle at 90% 2%, rgba(255, 214, 79, 0.2), transparent 26%),
-          linear-gradient(165deg, var(--bg) 0%, var(--bg-2) 75%);
+          radial-gradient(circle at 10% 10%, rgba(255, 226, 122, 0.2), transparent 35%),
+          radial-gradient(circle at 90% 5%, rgba(45, 214, 255, 0.2), transparent 30%),
+          linear-gradient(160deg, var(--bg), var(--bg-2));
+        min-height: 100vh;
+      }
+
+      .orb {
+        position: fixed;
+        inset: auto;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 90, 79, 0.35), transparent 70%);
+        filter: blur(2px);
+        z-index: -1;
+        animation: float 10s ease-in-out infinite;
+      }
+
+      .orb.one {
+        top: 12%;
+        left: -60px;
+      }
+
+      .orb.two {
+        bottom: 8%;
+        right: -40px;
+        background: radial-gradient(circle, rgba(71, 209, 140, 0.3), transparent 65%);
+        animation-delay: -4s;
       }
 
       .container {
@@ -44,389 +68,427 @@
       }
 
       .section {
-        padding: 28px 0;
+        padding: 44px 0;
       }
 
-      .section-title {
-        margin: 0 0 14px;
-        font-size: clamp(1.35rem, 4.8vw, 2rem);
-        line-height: 1.3;
-      }
-
-      .white-card {
+      .card {
         background: var(--surface);
         border-radius: var(--radius-lg);
-        padding: 18px;
+        padding: 24px;
         box-shadow: var(--shadow);
       }
 
       .hero {
-        padding: 18px 0 22px;
+        padding: 36px 0 48px;
       }
 
       .hero-inner {
-        border-radius: 28px;
-        padding: 20px;
+        display: grid;
+        gap: 24px;
         background:
-          linear-gradient(130deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-          linear-gradient(155deg, #0b3b80 0%, #1362bd 100%);
+          linear-gradient(130deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02)),
+          linear-gradient(165deg, #0f2c59 0%, #183f7a 55%, #0c2045 100%);
+        color: #f5fbff;
+        border-radius: 28px;
+        padding: 28px;
         box-shadow: var(--shadow);
-        color: var(--headline);
+        position: relative;
+        overflow: hidden;
+        animation: rise 1s ease-out both;
       }
 
-      .hero-topline {
-        display: inline-block;
-        background: var(--accent-yellow);
-        color: #113067;
-        font-weight: 800;
-        font-size: 0.85rem;
-        border-radius: 999px;
-        padding: 7px 13px;
+      .hero h1 {
+        font-family: "Kaisei Tokumin", serif;
+        font-size: clamp(2rem, 7vw, 3.3rem);
+        line-height: 1.2;
+        margin: 0 0 12px;
+      }
+
+      .hero p {
+        margin: 0 0 12px;
+        font-size: clamp(1rem, 2.8vw, 1.2rem);
+        color: #d9ecff;
+      }
+
+      .tagline {
+        display: inline-flex;
+        gap: 10px;
+        flex-wrap: wrap;
         margin-bottom: 12px;
       }
 
-      h1 {
-        margin: 0;
-        font-size: clamp(1.8rem, 8vw, 3rem);
-        line-height: 1.24;
-        letter-spacing: 0.01em;
-        text-shadow: 0 2px 0 rgba(0, 0, 0, 0.14);
-      }
-
-      .hero-sub {
-        margin: 12px 0;
-        font-size: clamp(1rem, 3.8vw, 1.25rem);
-        font-weight: 700;
-        color: #dff3ff;
-      }
-
-      .hero-chip {
-        display: inline-block;
-        border: 2px solid rgba(255, 255, 255, 0.55);
+      .tag {
+        background: rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 6px 12px;
         border-radius: 999px;
-        padding: 7px 12px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         font-weight: 700;
-        margin: 0 6px 6px 0;
       }
 
-      .cta-btn {
-        display: inline-block;
-        text-decoration: none;
-        background: linear-gradient(180deg, #ff6f61 0%, #e44039 100%);
-        color: #fff;
-        font-weight: 800;
-        border-radius: 999px;
-        padding: 14px 22px;
-        margin-top: 14px;
-        box-shadow: 0 8px 0 #ab2e2a;
-      }
-
-      .hero-photo-grid {
-        margin-top: 16px;
-        display: grid;
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
         gap: 10px;
-        grid-template-columns: 1fr 1fr;
+        margin-top: 16px;
       }
 
-      .photo-box {
-        min-height: 120px;
-        border-radius: 14px;
-        border: 2px solid rgba(255, 255, 255, 0.42);
-        background:
-          linear-gradient(160deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15)),
-          radial-gradient(circle at 20% 20%, #6ec8ff 0%, #2d69b3 65%);
-        color: #eff8ff;
-        font-weight: 700;
-        font-size: 0.9rem;
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 999px;
+        font-weight: 800;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
+        box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
+      }
+
+      .cta.secondary {
+        background: linear-gradient(180deg, #2dd6ff 0%, #1aa7d6 100%);
+        box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
+      }
+
+      .cta.tertiary {
+        background: linear-gradient(180deg, #47d18c 0%, #2fab70 100%);
+        box-shadow: 0 8px 0 rgba(21, 91, 60, 0.85);
+      }
+
+      .hero-grid {
         display: grid;
-        place-items: center;
-        text-align: center;
+        gap: 12px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero-tile {
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-tile img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-note {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 226, 122, 0.2);
+        color: #fff0bf;
+        font-weight: 700;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+      }
+
+      .split {
+        display: grid;
+        gap: 18px;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        background: var(--surface-soft);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-weight: 700;
+        color: var(--subtext);
+        font-size: 0.85rem;
+      }
+
+      .grid-2,
+      .grid-3 {
+        display: grid;
+        gap: 14px;
+      }
+
+      .info {
+        background: var(--surface-soft);
+        padding: 16px;
+        border-radius: var(--radius-md);
+      }
+
+      .info strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .course-card {
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.12);
+        display: grid;
+        gap: 12px;
+      }
+
+      .course-card.highlight {
+        border: 2px solid #ffb2ac;
+        background: linear-gradient(160deg, #fff7f6 0%, #ffffff 60%);
+      }
+
+      .course-head {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .course-head img {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        background: #f6f8ff;
+        border-radius: 16px;
         padding: 10px;
       }
 
-      .highlight-strip {
-        margin-top: 14px;
-        border-radius: 16px;
-        background: linear-gradient(92deg, var(--accent-red), #ff8f3f);
-        color: #fff;
-        padding: 12px;
+      .course-title {
         font-weight: 800;
-        text-align: center;
+        font-size: 1.1rem;
       }
 
-      .list-grid,
-      .feature-grid,
-      .safe-grid {
+      .course-meta {
+        color: var(--subtext);
+        font-size: 0.9rem;
+      }
+
+      .course-cta {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 10px 14px;
+        text-align: center;
+        background: #0f2c59;
+      }
+
+      .timeline {
         display: grid;
         gap: 10px;
       }
 
-      .item {
-        background: var(--surface-soft);
-        border-radius: var(--radius-md);
-        padding: 14px;
-        font-weight: 700;
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: #f7f9ff;
       }
 
-      .item::before {
-        margin-right: 8px;
-      }
-
-      .recommend .item::before {
-        content: "◎";
-        color: #0e64c0;
-      }
-
-      .experience .item::before {
-        content: "🎮";
+      .timeline-time {
+        font-weight: 800;
+        color: #0f2c59;
       }
 
       .compare {
         display: grid;
-        gap: 12px;
+        gap: 14px;
       }
 
       .compare-card {
-        border-radius: var(--radius-md);
-        padding: 16px;
+        border-radius: var(--radius-lg);
+        padding: 18px;
       }
 
-      .compare-card h3 {
-        margin: 0 0 8px;
+      .compare-card strong {
+        display: block;
+        margin-bottom: 8px;
       }
 
-      .normal {
-        background: #f2f5fb;
-        border-left: 8px solid #8fa3c8;
-      }
-
-      .bromas {
-        background: #edfff6;
-        border-left: 8px solid var(--accent-green);
-      }
-
-      .compare ul,
-      .simple-list {
+      .compare-card ul {
         margin: 0;
         padding-left: 1.1em;
       }
 
-      .event-bar {
-        background: linear-gradient(90deg, #102f66, #184a9b);
-        color: #fff;
-        border-radius: 18px;
-        padding: 16px;
-        font-weight: 800;
-        box-shadow: var(--shadow);
+      .compare-card.normal {
+        background: #f1f3f8;
       }
 
-      .event-bar .date {
-        color: var(--accent-yellow);
-        font-size: clamp(1.1rem, 4.7vw, 1.5rem);
+      .compare-card.creator {
+        background: #effff7;
+        border: 2px solid rgba(71, 209, 140, 0.35);
       }
 
-      .event-info {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
+      .faq {
+        background: #f7f9ff;
+        border-radius: var(--radius-lg);
+        padding: 18px;
       }
 
-      .event-item {
-        background: #fff;
-        border-radius: 12px;
-        padding: 12px;
+      .faq-item {
+        padding: 10px 0;
+        border-bottom: 1px dashed #d7e0f2;
       }
 
-      .event-label {
-        color: var(--subtext);
-        font-size: 0.84rem;
-        font-weight: 700;
-      }
-
-      .event-value {
-        margin-top: 2px;
-        font-weight: 800;
+      .faq-item:last-child {
+        border-bottom: none;
       }
 
       .teacher {
         display: grid;
-        gap: 12px;
+        gap: 16px;
+        align-items: center;
       }
 
-      .teacher-photo {
-        min-height: 220px;
-        border-radius: 16px;
-        background:
-          linear-gradient(140deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)),
-          linear-gradient(120deg, #357bd0, #123e84);
-        color: #fff;
-        font-weight: 800;
-        display: grid;
-        place-items: center;
+      .teacher img {
+        width: 100%;
+        border-radius: 18px;
+        object-fit: cover;
+        height: 220px;
       }
 
-      .final-cta {
+      .final {
         text-align: center;
         color: #fff;
-        border-radius: 24px;
-        padding: 24px 18px;
-        background: linear-gradient(120deg, #0f397a 0%, #195dbb 100%);
+        padding: 28px;
+        border-radius: 26px;
+        background: linear-gradient(120deg, #102b57 0%, #1c4f98 100%);
         box-shadow: var(--shadow);
       }
 
       footer {
-        color: #d5e7ff;
+        color: #c5d7f6;
         text-align: center;
-        font-size: 0.84rem;
-        padding: 22px 0 32px;
+        font-size: 0.85rem;
+        padding: 30px 0 40px;
       }
 
       @media (min-width: 768px) {
-        .section {
-          padding: 50px 0;
-        }
-
         .hero-inner {
-          display: grid;
-          grid-template-columns: 1.05fr 0.95fr;
-          gap: 20px;
-          padding: 30px;
+          grid-template-columns: 1.1fr 0.9fr;
+          align-items: center;
+          padding: 36px;
         }
 
-        .hero-photo-grid {
-          margin-top: 0;
+        .split {
           grid-template-columns: 1fr 1fr;
-          align-content: start;
+          align-items: start;
         }
 
-        .list-grid,
-        .feature-grid,
-        .safe-grid {
-          grid-template-columns: 1fr 1fr;
+        .grid-2 {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        .compare {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .event-info {
-          grid-template-columns: 1fr 1fr;
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
         }
 
         .teacher {
-          grid-template-columns: 0.9fr 1.1fr;
-          align-items: center;
+          grid-template-columns: 0.8fr 1.2fr;
+        }
+
+        .compare {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-18px);
         }
       }
     </style>
   </head>
   <body>
+    <div class="orb one" aria-hidden="true"></div>
+    <div class="orb two" aria-hidden="true"></div>
+
     <header class="hero">
       <div class="container hero-inner">
         <div>
-          <span class="hero-topline">小中学生向け Roblox 体験会</span>
-          <h1>ゲームを作って学ぶ！<br />新しいカタチの教室体験</h1>
-          <p class="hero-sub">ゲームが好きな子どもが「作る側」になる90分。プログラミング未経験OK。</p>
-          <div>
-            <span class="hero-chip">対象: 小学生〜中学生</span>
-            <span class="hero-chip">保護者見学OK</span>
+          <div class="tagline">
+            <span class="tag">2026年3月15日(日) 11:00-17:00</span>
+            <span class="tag">路地裏GarageMarket（埼玉・南与野）</span>
+            <span class="tag">対象: 小3〜中3 + 保護者見学OK</span>
           </div>
-          <a class="cta-btn" href="#apply">体験会に申し込む</a>
-          <div class="highlight-strip">現役ゲームクリエイターがサポートします</div>
+          <h1>Robloxを主役に、<br />ボードゲーム×AIで「企画力」が跳ねる1日。</h1>
+          <p>
+            ただ遊ぶだけで終わらせない。<br />
+            いつものRobloxを、君だけのゲームに改造する60分。<br />
+            さらにボードゲームとAIで、
+            「どうすれば面白くなるか？」を体で学ぶ特別体験会です。
+          </p>
+          <div class="cta-row" id="apply">
+            <a class="cta" href="https://gameschool.doorkeeper.jp/events/195448">Robloxで申し込む</a>
+            <a class="cta secondary" href="https://gameschool.doorkeeper.jp/events/195450">AIで申し込む</a>
+            <a class="cta tertiary" href="https://gameschool.doorkeeper.jp/events/195449">ボドゲで申し込む</a>
+          </div>
+          <div class="hero-note">現役ゲームクリエイター2名が直接サポート。PCは会場で用意。</div>
         </div>
-        <div class="hero-photo-grid" aria-label="教室の様子">
-          <div class="photo-box">教室の様子写真</div>
-          <div class="photo-box">チーム制作の様子</div>
-          <div class="photo-box">発表タイム</div>
-          <div class="photo-box">講師サポート</div>
+        <div>
+          <div class="hero-grid" aria-label="体験のイメージ">
+            <div class="hero-tile"><img src="assets/roblox.png" alt="Roblox制作イメージ" /></div>
+            <div class="hero-tile"><img src="assets/ai.png" alt="AI制作イメージ" /></div>
+            <div class="hero-tile"><img src="assets/boardgame.png" alt="ボードゲームイメージ" /></div>
+          </div>
+          <div class="hero-note">小3がAIと企画会議を始める時代。最短ルートで「作る側」へ。</div>
         </div>
       </div>
     </header>
 
     <main>
-      <section class="section recommend">
-        <div class="container white-card">
-          <h2 class="section-title">こんなお子さんにおすすめ</h2>
-          <div class="list-grid">
-            <div class="item">ゲームが好き</div>
-            <div class="item">Robloxを遊んでいる</div>
-            <div class="item">YouTubeばかり見ている</div>
-            <div class="item">何か作る体験をしてほしい</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section experience">
-        <div class="container white-card">
-          <h2 class="section-title">体験できること</h2>
-          <div class="feature-grid">
-            <div class="item">Robloxでゲーム制作</div>
-            <div class="item">自分のゲームを作る</div>
-            <div class="item">友達のゲームで遊ぶ</div>
-            <div class="item">ゲームのアイデアを考える</div>
-          </div>
-        </div>
-      </section>
-
       <section class="section">
-        <div class="container white-card">
-          <h2 class="section-title">他のプログラミング教室との違い</h2>
-          <div class="compare">
-            <article class="compare-card normal">
-              <h3>普通の教室</h3>
-              <ul>
-                <li>タイピング</li>
-                <li>コード練習</li>
-              </ul>
-            </article>
-            <article class="compare-card bromas">
-              <h3>ブロマス</h3>
-              <ul>
-                <li>ゲームを作る</li>
-                <li>アイデアを形にする</li>
-                <li>クリエイター思考</li>
-              </ul>
-            </article>
+        <div class="container card split">
+          <div>
+            <h2>この体験会が大事にしていること</h2>
+            <p>
+              「プログラミング」を教えるのではなく、
+              「ゲームの作り方」を教えます。<br />
+              文法よりも、企画と設計。
+              つまり「どうすれば面白くなるか？」を主役にします。
+            </p>
+            <div class="chips">
+              <span class="chip">目的主導型: 作りたいから学ぶ</span>
+              <span class="chip">AIで時間を解放する</span>
+              <span class="chip">体験→発表で定着</span>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container white-card">
-          <h2 class="section-title">安心ポイント</h2>
-          <div class="safe-grid">
-            <div class="item">ゲームクリエイター経験者がサポート</div>
-            <div class="item">初心者OK</div>
-            <div class="item">失敗してもOK</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="event-bar">
-            <div class="date">2026年3月22日(日) 10:00〜16:00</div>
-            <div>南与野周辺コミュニティ会場で開催</div>
-          </div>
-          <div class="white-card" style="margin-top: 12px">
-            <h2 class="section-title">体験会情報</h2>
-            <div class="event-info">
-              <div class="event-item">
-                <div class="event-label">対象</div>
-                <div class="event-value">小学生〜中学生</div>
+          <div>
+            <h2>たった60分で起きること</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-time">前半</div>
+                <div>ボードゲームで企画力とルール設計のセンスを体で掴む</div>
               </div>
-              <div class="event-item">
-                <div class="event-label">時間</div>
-                <div class="event-value">90分</div>
+              <div class="timeline-item">
+                <div class="timeline-time">中盤</div>
+                <div>AIで「面白さの芯」を素早く検証する</div>
               </div>
-              <div class="event-item">
-                <div class="event-label">持ち物</div>
-                <div class="event-value">PCまたはタブレット</div>
-              </div>
-              <div class="event-item">
-                <div class="event-label">場所</div>
-                <div class="event-value">南与野周辺</div>
+              <div class="timeline-item">
+                <div class="timeline-time">後半</div>
+                <div>Robloxで形にして、遊んで、改善する</div>
               </div>
             </div>
           </div>
@@ -434,26 +496,199 @@
       </section>
 
       <section class="section">
-        <div class="container white-card teacher">
-          <div class="teacher-photo">講師写真</div>
-          <div>
-            <h2 class="section-title">講師紹介</h2>
-            <p>
-              ゲーム業界経験20年以上。コンシューマーゲーム、ソーシャルゲーム、カジュアルゲームまで幅広く開発。<br />
-              子ども向けに、楽しく分かるゲーム制作の教え方でサポートしています。
-            </p>
+        <div class="container card">
+          <h2>ただのゲーム遊び vs 世界へ届けるクリエイター</h2>
+          <div class="compare">
+            <div class="compare-card normal">
+              <strong>ただ遊ぶだけ</strong>
+              <ul>
+                <li>遊んで終わり</li>
+                <li>仕組みは分からない</li>
+                <li>発想が広がらない</li>
+              </ul>
+            </div>
+            <div class="compare-card creator">
+              <strong>クリエイター思考</strong>
+              <ul>
+                <li>ルールを設計する</li>
+                <li>面白さを言語化できる</li>
+                <li>世界へ公開できる</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <div class="container final-cta" id="apply">
-          <h2 class="section-title">まずは体験会で、作る楽しさを体感しよう！</h2>
-          <a class="cta-btn" href="#">体験会に申し込む</a>
+        <div class="container card">
+          <h2>体験会で得られること</h2>
+          <div class="grid-3">
+            <div class="info">
+              <strong>Roblox制作の基礎</strong>
+              Roblox Studio操作 / ゲーム要素の作り方 / 配信の考え方
+            </div>
+            <div class="info">
+              <strong>AIの使い方</strong>
+              DreamCore・ClaudeCode・Codexを使って最短で試作
+            </div>
+            <div class="info">
+              <strong>企画力と発想法</strong>
+              ルール設計 / 面白さの検証 / 改善サイクル
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card">
+          <h2>コース選択（同日開催）</h2>
+          <div class="grid-3">
+            <div class="course-card highlight">
+              <div class="course-head">
+                <img src="assets/roblox.png" alt="Robloxコース" />
+                <div>
+                  <div class="course-title">Robloxアクション制作</div>
+                  <div class="course-meta">推奨: 小4以上 / 参加費 1500円</div>
+                </div>
+              </div>
+              <div>自分だけのミニゲームを作って、遊んで、改善まで体験。</div>
+              <a class="course-cta" href="https://gameschool.doorkeeper.jp/events/195448">Robloxで申し込む</a>
+            </div>
+            <div class="course-card">
+              <div class="course-head">
+                <img src="assets/ai.png" alt="AIコース" />
+                <div>
+                  <div class="course-title">AIゲームワークショップ</div>
+                  <div class="course-meta">文字入力できればOK / 参加費 1500円</div>
+                </div>
+              </div>
+              <div>AIに指示を出して、アイデアの芯を素早く形に。</div>
+              <a class="course-cta" href="https://gameschool.doorkeeper.jp/events/195450">AIで申し込む</a>
+            </div>
+            <div class="course-card">
+              <div class="course-head">
+                <img src="assets/boardgame.png" alt="ボドゲコース" />
+                <div>
+                  <div class="course-title">ボードゲーム体験会</div>
+                  <div class="course-meta">小中学生OK / 参加費 1000円</div>
+                </div>
+              </div>
+              <div>ルール理解と戦略思考。企画の土台を楽しく鍛える。</div>
+              <a class="course-cta" href="https://gameschool.doorkeeper.jp/events/195449">ボドゲで申し込む</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card split">
+          <div>
+            <h2>イベント詳細</h2>
+            <div class="grid-2">
+              <div class="info">
+                <strong>日時</strong>
+                2026年3月15日(日) 11:00-17:00
+              </div>
+              <div class="info">
+                <strong>場所</strong>
+                路地裏GarageMarket<br />
+                〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3
+              </div>
+              <div class="info">
+                <strong>対象</strong>
+                小学3年生〜中学3年生（保護者見学OK）
+              </div>
+              <div class="info">
+                <strong>定員</strong>
+                各時間帯 最大6名（予約優先）
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2>タイムテーブル</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-time">11:00</div>
+                <div>ボードゲーム 1回目</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">13:00</div>
+                <div>Roblox 1回目</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">14:00</div>
+                <div>AIワークショップ</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">15:00</div>
+                <div>Roblox 2回目</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">16:00</div>
+                <div>ボードゲーム 2回目</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card teacher">
+          <img src="assets/classroom.jpg" alt="教室の様子" />
+          <div>
+            <h2>講師紹介</h2>
+            <p>
+              主催: 星 弘高（ゲーム企画職）<br />
+              ゲーム業界歴20年近く。コンソールからスマホゲームまで幅広く開発・運営。<br />
+              現在はフリーランスとして活動し、こども向けゲームクリエイターワークショップを運営。
+            </p>
+            <div class="chips">
+              <span class="chip">現役クリエイター2名がサポート</span>
+              <span class="chip">初心者OK</span>
+              <span class="chip">PCは会場で用意</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card">
+          <h2>よくある質問</h2>
+          <div class="faq">
+            <div class="faq-item">
+              Q: プログラミング経験がなくても参加できますか？<br />
+              A: まったく経験がなくてもOK。操作方法はその場でサポートします。
+            </div>
+            <div class="faq-item">
+              Q: パソコンは持参した方が良いですか？<br />
+              A: 会場に用意があります。持参も可能です。
+            </div>
+            <div class="faq-item">
+              Q: 親も参加できますか？<br />
+              A: 見学可能です。場所の都合上、お子さまの活動を優先します。
+            </div>
+            <div class="faq-item">
+              Q: 継続的な教室はありますか？<br />
+              A: 反応を見て検討中です。アンケートでご意見をお聞かせください。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container final">
+          <h2>「作る楽しさ」を、今日から体感しよう。</h2>
+          <p>定員になり次第締め切ります。予約優先です。</p>
+          <div class="cta-row" style="justify-content: center;">
+            <a class="cta" href="https://gameschool.doorkeeper.jp/events/195448">Robloxで申し込む</a>
+            <a class="cta secondary" href="https://gameschool.doorkeeper.jp/events/195450">AIで申し込む</a>
+            <a class="cta tertiary" href="https://gameschool.doorkeeper.jp/events/195449">ボドゲで申し込む</a>
+          </div>
+          <p style="margin-top: 14px; color: #d9ecff;">お問い合わせ: hitta.games@gmail.com</p>
         </div>
       </section>
     </main>
 
-    <footer>© ブロマス Robloxゲーム制作ワークショップ</footer>
+    <footer>© ブロマスゲームラボ | Robloxゲーム制作ワークショップ</footer>
   </body>
 </html>
