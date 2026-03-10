@@ -8,17 +8,17 @@
       @import url("https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap");
 
       :root {
-        --bg: #0b1220;
-        --bg-2: #111e36;
+        --bg: #f7f5f0;
+        --bg-2: #f0f6ff;
         --surface: #ffffff;
-        --surface-soft: #f2f5ff;
-        --text: #0d1a2d;
-        --subtext: #415375;
-        --accent: #ff5a4f;
-        --accent-2: #2dd6ff;
-        --accent-3: #ffe27a;
-        --accent-4: #47d18c;
-        --shadow: 0 20px 40px rgba(6, 20, 45, 0.22);
+        --surface-soft: #f6f1ff;
+        --text: #1a2333;
+        --subtext: #495972;
+        --accent: #ff6b6b;
+        --accent-2: #3cc2ff;
+        --accent-3: #ffd166;
+        --accent-4: #49d6a3;
+        --shadow: 0 20px 40px rgba(33, 52, 92, 0.12);
         --radius-lg: 24px;
         --radius-md: 16px;
       }
@@ -32,8 +32,8 @@
         font-family: "M PLUS Rounded 1c", "Kaisei Tokumin", serif;
         color: var(--text);
         background:
-          radial-gradient(circle at 10% 10%, rgba(255, 226, 122, 0.2), transparent 35%),
-          radial-gradient(circle at 90% 5%, rgba(45, 214, 255, 0.2), transparent 30%),
+          radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.26), transparent 35%),
+          radial-gradient(circle at 90% 12%, rgba(60, 194, 255, 0.2), transparent 32%),
           linear-gradient(160deg, var(--bg), var(--bg-2));
         min-height: 100vh;
       }
@@ -44,7 +44,7 @@
         width: 280px;
         height: 280px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(255, 90, 79, 0.35), transparent 70%);
+        background: radial-gradient(circle, rgba(255, 107, 107, 0.3), transparent 70%);
         filter: blur(2px);
         z-index: -1;
         animation: float 10s ease-in-out infinite;
@@ -86,9 +86,9 @@
         display: grid;
         gap: 24px;
         background:
-          linear-gradient(130deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02)),
-          linear-gradient(165deg, #0f2c59 0%, #183f7a 55%, #0c2045 100%);
-        color: #f5fbff;
+          linear-gradient(140deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.3)),
+          linear-gradient(165deg, #fff1e9 0%, #fff7d6 55%, #e9f4ff 100%);
+        color: #1c2a3d;
         border-radius: 28px;
         padding: 28px;
         box-shadow: var(--shadow);
@@ -107,7 +107,7 @@
       .hero p {
         margin: 0 0 12px;
         font-size: clamp(1rem, 2.8vw, 1.2rem);
-        color: #d9ecff;
+        color: #44546f;
       }
 
       .tagline {
@@ -118,12 +118,13 @@
       }
 
       .tag {
-        background: rgba(255, 255, 255, 0.16);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(140, 168, 214, 0.35);
         padding: 6px 12px;
         border-radius: 999px;
         font-size: 0.85rem;
         font-weight: 700;
+        color: #2a3c56;
       }
 
       .cta-row {
@@ -165,8 +166,8 @@
       .hero-tile {
         border-radius: 16px;
         overflow: hidden;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.65);
       }
 
       .hero-tile img {
@@ -180,8 +181,8 @@
         margin-top: 12px;
         padding: 12px 14px;
         border-radius: 14px;
-        background: rgba(255, 226, 122, 0.2);
-        color: #fff0bf;
+        background: rgba(255, 209, 102, 0.25);
+        color: #7a4e00;
         font-weight: 700;
       }
 
@@ -318,12 +319,12 @@
       }
 
       .compare-card.normal {
-        background: #f1f3f8;
+        background: #f6f4f1;
       }
 
       .compare-card.creator {
         background: #effff7;
-        border: 2px solid rgba(71, 209, 140, 0.35);
+        border: 2px solid rgba(73, 214, 163, 0.35);
       }
 
       .faq {
@@ -356,15 +357,15 @@
 
       .final {
         text-align: center;
-        color: #fff;
+        color: #1b2b45;
         padding: 28px;
         border-radius: 26px;
-        background: linear-gradient(120deg, #102b57 0%, #1c4f98 100%);
+        background: linear-gradient(120deg, #ffe9d8 0%, #e6f2ff 100%);
         box-shadow: var(--shadow);
       }
 
       footer {
-        color: #c5d7f6;
+        color: #6c7f9c;
         text-align: center;
         font-size: 0.85rem;
         padding: 30px 0 40px;
@@ -433,7 +434,7 @@
             <span class="tag">路地裏GarageMarket（埼玉・南与野）</span>
             <span class="tag">対象: 小3〜中3 + 保護者見学OK</span>
           </div>
-          <h1>Robloxを主役に、<br />ボードゲーム×AIで「企画力」が跳ねる1日。</h1>
+          <h1>遊ぶを超えて、<br />企画する子へ。<br />ボドゲ×AI×Roblox<br />体験会</h1>
           <p>
             ただ遊ぶだけで終わらせない。<br />
             いつものRobloxを、君だけのゲームに改造する60分。<br />
@@ -460,37 +461,18 @@
 
     <main>
       <section class="section">
-        <div class="container card split">
-          <div>
-            <h2>この体験会が大事にしていること</h2>
-            <p>
-              「プログラミング」を教えるのではなく、
-              「ゲームの作り方」を教えます。<br />
-              文法よりも、企画と設計。
-              つまり「どうすれば面白くなるか？」を主役にします。
-            </p>
-            <div class="chips">
-              <span class="chip">目的主導型: 作りたいから学ぶ</span>
-              <span class="chip">AIで時間を解放する</span>
-              <span class="chip">体験→発表で定着</span>
-            </div>
-          </div>
-          <div>
-            <h2>たった60分で起きること</h2>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-time">前半</div>
-                <div>ボードゲームで企画力とルール設計のセンスを体で掴む</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">中盤</div>
-                <div>AIで「面白さの芯」を素早く検証する</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">後半</div>
-                <div>Robloxで形にして、遊んで、改善する</div>
-              </div>
-            </div>
+        <div class="container card">
+          <h2>この体験会が大事にしていること</h2>
+          <p>
+            「プログラミング」を教えるのではなく、
+            「ゲームの作り方」を教えます。<br />
+            文法よりも、企画と設計。
+            つまり「どうすれば面白くなるか？」を主役にします。
+          </p>
+          <div class="chips">
+            <span class="chip">目的主導型: 作りたいから学ぶ</span>
+            <span class="chip">AIで時間を解放する</span>
+            <span class="chip">体験→発表で定着</span>
           </div>
         </div>
       </section>
@@ -532,8 +514,8 @@
               DreamCore・ClaudeCode・Codexを使って最短で試作
             </div>
             <div class="info">
-              <strong>企画力と発想法</strong>
-              ルール設計 / 面白さの検証 / 改善サイクル
+              <strong>ボドゲのアレンジ発想法</strong>
+              ルール設計 / 面白さの検証 / 改善アレンジ
             </div>
           </div>
         </div>
@@ -684,11 +666,11 @@
             <a class="cta secondary" href="https://gameschool.doorkeeper.jp/events/195450">AIで申し込む</a>
             <a class="cta tertiary" href="https://gameschool.doorkeeper.jp/events/195449">ボドゲで申し込む</a>
           </div>
-          <p style="margin-top: 14px; color: #d9ecff;">お問い合わせ: hitta.games@gmail.com</p>
+          <p style="margin-top: 14px; color: #2a3c56;">お問い合わせ: hitta.games@gmail.com</p>
         </div>
       </section>
     </main>
 
-    <footer>© ブロマスゲームラボ | Robloxゲーム制作ワークショップ</footer>
+    <footer>© ブロマスゲームラボ</footer>
   </body>
 </html>
