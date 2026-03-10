@@ -166,15 +166,19 @@
       .hero-tile {
         border-radius: 16px;
         overflow: hidden;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.85);
         border: 1px solid rgba(255, 255, 255, 0.65);
+        aspect-ratio: 1 / 1;
+        display: grid;
+        place-items: center;
       }
 
       .hero-tile img {
         width: 100%;
-        height: 140px;
-        object-fit: cover;
+        height: 100%;
+        object-fit: contain;
         display: block;
+        padding: 12px;
       }
 
       .hero-note {
@@ -508,7 +512,7 @@
             <span class="tag">路地裏GarageMarket（埼玉・南与野）</span>
             <span class="tag">対象: 小3〜中3 + 保護者見学OK</span>
           </div>
-          <h1>遊ぶを超えて、<br />企画する子へ。<br />ボドゲ×AI×Roblox<br />体験会</h1>
+          <h1>遊ぶを超えて、<br />企画する子へ。<br />Roblox×AI×ボドゲ<br />体験会</h1>
           <p>
             ただ遊ぶだけで終わらせない。<br />
             いつものRobloxを、君だけのゲームに改造する60分。<br />
@@ -524,8 +528,8 @@
         </div>
         <div>
           <div class="hero-grid" aria-label="体験のイメージ">
-            <div class="hero-tile"><img src="assets/roblox.png" alt="Roblox制作イメージ" /></div>
             <div class="hero-tile"><img src="assets/ai.png" alt="AI制作イメージ" /></div>
+            <div class="hero-tile"><img src="assets/roblox.png" alt="Roblox制作イメージ" /></div>
             <div class="hero-tile"><img src="assets/boardgame.png" alt="ボードゲームイメージ" /></div>
           </div>
           <div class="hero-note">小3がAIと企画会議を始める時代。最短ルートで「作る側」へ。</div>
