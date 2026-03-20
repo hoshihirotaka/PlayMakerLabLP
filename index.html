@@ -189,6 +189,22 @@
         padding: 12px;
       }
 
+      .hero-photo {
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        box-shadow: 0 12px 24px rgba(28, 40, 70, 0.18);
+        background: #fff;
+        margin-bottom: 12px;
+      }
+
+      .hero-photo img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+      }
+
       .hero-note {
         margin-top: 12px;
         padding: 12px 14px;
@@ -533,9 +549,12 @@
           <div class="hero-note">親御さんもご一緒に。家族でのゲーム開発を応援します。</div>
         </div>
         <div>
+          <div class="hero-photo">
+            <img src="assets/R.png" alt="教室の様子" />
+          </div>
           <div class="hero-grid" aria-label="体験のイメージ">
-            <div class="hero-tile"><img src="assets/ai.png" alt="AI制作イメージ" /></div>
             <div class="hero-tile"><img src="assets/roblox.png" alt="Roblox制作イメージ" /></div>
+            <div class="hero-tile"><img src="assets/ai.png" alt="AI制作イメージ" /></div>
           </div>
           <div class="hero-note">小3がAIと企画会議を始める時代。最短ルートで「作る側」へ。</div>
         </div>
