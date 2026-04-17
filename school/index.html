@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ゲーム制作教室（継続型）| ブロマスゲームラボ</title>
+    <meta name="description" content="プランナー歴20年以上のプロが直接指導。お子さんの「好き」と「得意」から逆算するゲーム制作教室。Roblox×AIで月2〜4コマ、さいたま市・路地裏GarageMarket開催。無料体験会あり。" />
+    <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/school/" />
+    <meta property="og:title" content="ゲーム制作教室（継続型）| ブロマスゲームラボ" />
+    <meta property="og:description" content="プランナー歴20年以上のプロが直接指導。お子さんの「好き」と「得意」から逆算するゲーム制作教室。Roblox×AIで月2〜4コマ。" />
+    <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/school/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E9YKGSCX5B');
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap");
+
+      :root {
+        --bg: #f7f5f0;
+        --bg-2: #f0f6ff;
+        --surface: #ffffff;
+        --surface-soft: #f6f1ff;
+        --text: #1a2333;
+        --subtext: #495972;
+        --accent: #ff6b6b;
+        --accent-2: #3cc2ff;
+        --accent-3: #ffd166;
+        --accent-4: #49d6a3;
+        --shadow: 0 20px 40px rgba(33, 52, 92, 0.12);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "M PLUS Rounded 1c", "Kaisei Tokumin", serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.26), transparent 35%),
+          radial-gradient(circle at 90% 12%, rgba(60, 194, 255, 0.2), transparent 32%),
+          linear-gradient(160deg, var(--bg), var(--bg-2));
+        min-height: 100vh;
+      }
+
+      .orb {
+        position: fixed;
+        inset: auto;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 107, 107, 0.3), transparent 70%);
+        filter: blur(2px);
+        z-index: -1;
+        animation: float 10s ease-in-out infinite;
+      }
+
+      .orb.one { top: 12%; left: -60px; }
+      .orb.two {
+        bottom: 8%;
+        right: -40px;
+        background: radial-gradient(circle, rgba(71, 209, 140, 0.3), transparent 65%);
+        animation-delay: -4s;
+      }
+
+      .container {
+        width: min(1120px, 92%);
+        margin: 0 auto;
+      }
+
+      .section { padding: 44px 0; }
+
+      .card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      /* ナビ */
+      .nav {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(42, 60, 86, 0.1);
+        background: rgba(247, 245, 240, 0.9);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .nav-logo {
+        font-weight: 800;
+        font-size: 1rem;
+        color: #0f2c59;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #2a3c56;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(42, 60, 86, 0.2);
+      }
+
+      .nav-link.active {
+        background: #0f2c59;
+        color: #fff;
+        border-color: #0f2c59;
+      }
+
+      /* ヒーロー */
+      .hero { padding: 36px 0 48px; }
+
+      .hero-inner {
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.3)),
+          linear-gradient(165deg, #e9f7ff 0%, #fff7d6 55%, #fff1e9 100%);
+        color: #1c2a3d;
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+        animation: rise 1s ease-out both;
+      }
+
+      .hero h1 {
+        font-family: "Kaisei Tokumin", serif;
+        font-size: clamp(1.9rem, 6vw, 3rem);
+        line-height: 1.25;
+        margin: 0 0 14px;
+      }
+
+      .hero p {
+        margin: 0 0 12px;
+        font-size: clamp(1rem, 2.6vw, 1.15rem);
+        color: #44546f;
+      }
+
+      .tagline {
+        display: inline-flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .tag {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(140, 168, 214, 0.35);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #2a3c56;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 20px;
+        border-radius: 999px;
+        font-weight: 800;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
+        box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
+      }
+
+      .cta.secondary {
+        background: linear-gradient(180deg, #2dd6ff 0%, #1aa7d6 100%);
+        box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
+      }
+
+      .cta.outline {
+        background: transparent;
+        color: #2a3c56;
+        border: 2px solid rgba(42, 60, 86, 0.25);
+        box-shadow: none;
+      }
+
+      h2 {
+        margin: 0 0 14px;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #0f2c59;
+      }
+
+      .centered { text-align: center; }
+      .centered .chips { justify-content: center; }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        background: var(--surface-soft);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-weight: 700;
+        color: var(--subtext);
+        font-size: 0.85rem;
+      }
+
+      .grid-2, .grid-3 {
+        display: grid;
+        gap: 14px;
+      }
+
+      .split {
+        display: grid;
+        gap: 18px;
+      }
+
+      .info {
+        background: var(--surface-soft);
+        padding: 16px;
+        border-radius: var(--radius-md);
+      }
+
+      .info strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #0f2c59;
+      }
+
+      /* 特徴カード */
+      .feature-card {
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.1);
+        display: grid;
+        gap: 10px;
+      }
+
+      .feature-icon {
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      /* 料金カード */
+      .plan-card {
+        padding: 22px;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.1);
+        display: grid;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .plan-card.recommend {
+        border: 2px solid #ffb2ac;
+        background: linear-gradient(160deg, #fff7f6 0%, #ffffff 60%);
+        position: relative;
+      }
+
+      .plan-badge {
+        display: inline-block;
+        background: var(--accent);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 999px;
+        margin-bottom: 6px;
+      }
+
+      .plan-name {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #0f2c59;
+      }
+
+      .plan-price {
+        font-family: "Kaisei Tokumin", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0f2c59;
+        line-height: 1.1;
+      }
+
+      .plan-price span {
+        font-size: 1rem;
+        color: var(--subtext);
+        font-weight: 400;
+      }
+
+      .plan-note {
+        font-size: 0.85rem;
+        color: var(--subtext);
+      }
+
+      /* コース */
+      .course-row {
+        display: grid;
+        gap: 14px;
+      }
+
+      .course-item {
+        padding: 16px 18px;
+        border-radius: var(--radius-md);
+        background: var(--surface-soft);
+        display: grid;
+        gap: 6px;
+      }
+
+      .course-item-title {
+        font-weight: 800;
+        color: #0f2c59;
+        font-size: 1rem;
+      }
+
+      /* FAQ */
+      .faq { display: grid; gap: 0; }
+
+      .faq-item {
+        padding: 14px 0;
+        border-bottom: 1px dashed #d7e0f2;
+        line-height: 1.7;
+      }
+
+      .faq-item:last-child { border-bottom: none; }
+
+      .faq-q {
+        font-weight: 800;
+        color: #0f2c59;
+        margin-bottom: 4px;
+      }
+
+      .faq-a {
+        color: #44546f;
+      }
+
+      /* 注意書き */
+      .notice {
+        background: rgba(255, 209, 102, 0.2);
+        border: 1px solid rgba(255, 209, 102, 0.5);
+        border-radius: var(--radius-md);
+        padding: 14px 18px;
+        color: #7a4e00;
+        font-weight: 600;
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      /* 最終CTA */
+      .final {
+        text-align: center;
+        color: #1b2b45;
+        padding: 28px;
+        border-radius: 26px;
+        background: linear-gradient(120deg, #ffe9d8 0%, #e6f2ff 100%);
+        box-shadow: var(--shadow);
+      }
+
+      footer {
+        color: #6c7f9c;
+        text-align: center;
+        font-size: 0.85rem;
+        padding: 30px 0 40px;
+      }
+
+      @media (min-width: 768px) {
+        .hero-inner {
+          padding: 36px;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+        .split {
+          grid-template-columns: 1fr 1fr;
+          align-items: start;
+        }
+
+        .course-row { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-18px); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="orb one" aria-hidden="true"></div>
+    <div class="orb two" aria-hidden="true"></div>
+
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="nav-logo" href="https://hoshihirotaka.github.io/PlayMakerLabLP/">ブロマスゲームラボ</a>
+        <div class="nav-links">
+          <a class="nav-link" href="https://hoshihirotaka.github.io/PlayMakerLabLP/">体験会</a>
+          <a class="nav-link active" href="./">継続型教室</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container hero-inner">
+        <div class="tagline">
+          <span class="tag">継続型ゲーム制作教室</span>
+          <span class="tag">さいたま市・路地裏GarageMarket</span>
+          <span class="tag">月2〜4コマ / 1コマ1時間</span>
+        </div>
+        <h1>ゲームを作る力を、<br />本気で育てる教室。</h1>
+        <p>
+          プログラミングだけを教える場所ではありません。<br />
+          お子さんの「好き」と「得意」から逆算して、<br />
+          ゲーム制作のリアルな楽しさを一緒に見つけます。
+        </p>
+        <div class="cta-row">
+          <a class="cta" href="https://hoshihirotaka.github.io/PlayMakerLabLP/#apply">まず体験会に参加する</a>
+          <a class="cta outline" href="#pricing">料金・コースを見る</a>
+        </div>
+        <div style="margin-top:14px; padding:12px 14px; border-radius:14px; background:rgba(255,209,102,0.25); color:#7a4e00; font-weight:700; display:inline-block;">
+          入会は無料体験会に参加された方のみご案内しています。
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- 特徴 -->
+      <section class="section">
+        <div class="container">
+          <div class="card centered" style="margin-bottom:18px;">
+            <h2>ゲーム制作に特化した教室です</h2>
+            <p>「とりあえずプログラミング」ではなく、<br />お子さんがゲームを<strong>作れる人</strong>になるための場所を目指しています。</p>
+          </div>
+          <div class="grid-3">
+            <div class="feature-card">
+              <div class="feature-icon">🎮</div>
+              <h3>プロが直接みます</h3>
+              <p>ゲームプランナー歴20年以上の講師が毎回直接指導。現場のリアルな視点で、お子さんの発想を形に変えます。</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3>特性から逆算します</h3>
+              <p>ゲーム制作はプログラミングだけではありません。企画・デザイン・サウンド・AIなど、お子さんの「好き」と「得意」に合ったアプローチを一緒に探します。</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🤝</div>
+              <h3>業界ネットワークで広がる</h3>
+              <p>3D・音楽・プログラミングなど、各分野の専門クリエイターと連携。講師の得意分野以外も、本物のプロの視点を届けます。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- コース -->
+      <section class="section">
+        <div class="container card">
+          <h2>コースの種類</h2>
+          <p style="color:var(--subtext); margin:0 0 18px;">月の変わり目でやりたいことを選択。忙しい時期に合わせて柔軟に調整できます。</p>
+          <div class="course-row">
+            <div class="course-item">
+              <div class="course-item-title">Roblox制作コース</div>
+              <div>Roblox Studioでミニゲームを設計・実装。マウス操作中心で始められ、スクリプトへ段階的にステップアップ。</div>
+            </div>
+            <div class="course-item">
+              <div class="course-item-title">AIゲームコース</div>
+              <div>AIに指示を出してゲームを試作。「どう指示すれば面白くなるか」を繰り返す企画思考を鍛えます。</div>
+            </div>
+            <div class="course-item">
+              <div class="course-item-title">アバター・エフェクトコース</div>
+              <div>キャラクターデザインやエフェクト制作を体験。ビジュアル表現に興味があるお子さんに。</div>
+            </div>
+            <div class="course-item">
+              <div class="course-item-title">ゲーム企画コース</div>
+              <div>ルール設計・面白さの言語化・改善サイクルを学ぶ。プログラミングより「考える力」を重視したいお子さんに。</div>
+            </div>
+          </div>
+          <div class="notice" style="margin-top:14px;">
+            AIエージェントで教材を管理しているため、常に最新の内容で学べます。<br />
+            コースは月ごとに選択可能。前月末までに希望を伝えてください。
+          </div>
+        </div>
+      </section>
+
+      <!-- 料金 -->
+      <section class="section" id="pricing">
+        <div class="container card">
+          <h2>料金プラン</h2>
+          <p style="color:var(--subtext); margin:0 0 18px;">1コマ1時間。月のコマ数でプランを選択してください。親子でコマを分け合うことも可能です。</p>
+          <div class="grid-3">
+            <div class="plan-card">
+              <div class="plan-name">月2コマ</div>
+              <div class="plan-price">¥ ——<span> / 月</span></div>
+              <div class="plan-note">週1ペースでじっくり取り組みたい方に</div>
+            </div>
+            <div class="plan-card recommend">
+              <div class="plan-badge">人気</div>
+              <div class="plan-name">月3コマ</div>
+              <div class="plan-price">¥ ——<span> / 月</span></div>
+              <div class="plan-note">バランスよく続けたい方におすすめ</div>
+            </div>
+            <div class="plan-card">
+              <div class="plan-name">月4コマ</div>
+              <div class="plan-price">¥ ——<span> / 月</span></div>
+              <div class="plan-note">集中して取り組みたい・兄弟で分け合いたい方に</div>
+            </div>
+          </div>
+          <div class="notice" style="margin-top:16px;">
+            料金は体験会終了後にご案内します。繰り越しはご相談ください（現時点では回数制限なし）。<br />
+            友達・きょうだいと一緒に申し込むと割引あり。詳細はお問い合わせください。
+          </div>
+        </div>
+      </section>
+
+      <!-- 場所 -->
+      <section class="section">
+        <div class="container card split">
+          <div>
+            <h2>開催場所</h2>
+            <div class="grid-2" style="margin-bottom:14px;">
+              <div class="info">
+                <strong>会場</strong>
+                路地裏GarageMarket<br />
+                〒338-0013<br />
+                埼玉県さいたま市中央区<br />鈴谷7丁目7-3
+              </div>
+              <div class="info">
+                <strong>エリア方針</strong>
+                まずはさいたま市を重点的に活動。拠点を持たないスタイルで、地域密着の会場と連携して展開します。
+              </div>
+            </div>
+            <div class="notice">
+              オンライン開催は要望が増えてきたら検討します。希望がある方は体験会時にお声がけください。
+            </div>
+          </div>
+          <div>
+            <h2>入会の流れ</h2>
+            <div style="display:grid; gap:12px;">
+              <div class="info">
+                <strong>STEP 1 — 体験会に参加する</strong>
+                まずは単発の体験会で実際の雰囲気を確かめてください。入会のご案内は参加者の方のみに行っています。
+              </div>
+              <div class="info">
+                <strong>STEP 2 — 個別に相談する</strong>
+                体験会後、お子さんの特性・興味・ペースをお聞きして、最適なコース・プランをご提案します。
+              </div>
+              <div class="info">
+                <strong>STEP 3 — 入会・初回レッスン</strong>
+                コース・プランが決まったら入会手続きへ。次の月から通常レッスン開始です。
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section">
+        <div class="container card">
+          <h2>よくある質問</h2>
+          <div class="faq">
+            <div class="faq-item">
+              <div class="faq-q">Q: 対象年齢は？</div>
+              <div class="faq-a">小学1年生〜中学3年生を対象としています。それ以外の年齢もお気軽にご相談ください。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Q: 保護者の同伴は必要ですか？</div>
+              <div class="faq-a">必須ではありませんが、一緒に参加・見学も大歓迎です。保護者の方もコマを使って一緒に制作することもできます。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Q: AIツールを使いますか？年齢制限や安全対策は？</div>
+              <div class="faq-a">使用するAIツールはその都度ご説明します。年齢制限のあるサービスは保護者の同意のうえで使用し、内容の安全確認は講師が行います。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Q: パソコンは必要ですか？</div>
+              <div class="faq-a">会場に機材を用意しています。ご自分のパソコンの持参も可能です。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Q: 途中でコースの変更はできますか？</div>
+              <div class="faq-a">月の変わり目でコースの変更が可能です。お子さんの興味の変化に合わせて柔軟に対応します。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Q: 退会の手続きは？</div>
+              <div class="faq-a">いつでも退会できます。翌月の開始前までにお申し出ください。縛りや違約金はありません。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 最終CTA -->
+      <section class="section">
+        <div class="container final">
+          <h2>まずは、体験会から始めよう。</h2>
+          <p>入会は体験会に参加された方のみご案内しています。<br />気軽に一度、遊びに来てください。</p>
+          <div class="cta-row" style="justify-content:center;">
+            <a class="cta" href="https://hoshihirotaka.github.io/PlayMakerLabLP/#apply">体験会に申し込む</a>
+            <a class="cta secondary" href="https://hoshihirotaka.github.io/PlayMakerLabLP/">体験会の詳細を見る</a>
+          </div>
+          <p style="margin-top:14px; color:#2a3c56;">お問い合わせ: hitta.games@gmail.com</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>© ブロマスゲームラボ</footer>
+  </body>
+</html>
