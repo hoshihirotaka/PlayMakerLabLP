@@ -53,7 +53,7 @@
                 "price": "1900",
                 "priceCurrency": "JPY",
                 "validFrom": "2026-04-04T00:00:00+09:00",
-                "url": "https://gameschool.doorkeeper.jp/events/195888",
+                "url": "https://gameschool.doorkeeper.jp/events/197106",
                 "availability": "https://schema.org/InStock"
               },
               {
@@ -62,7 +62,7 @@
                 "price": "900",
                 "priceCurrency": "JPY",
                 "validFrom": "2026-04-04T00:00:00+09:00",
-                "url": "https://gameschool.doorkeeper.jp/events/195888",
+                "url": "https://gameschool.doorkeeper.jp/events/197106",
                 "availability": "https://schema.org/InStock"
               }
             ]
@@ -618,76 +618,8 @@
           <h2>開催日程</h2>
           <p style="color:var(--subtext); margin: 0 0 16px;">各イベントをタップすると詳細とタイムテーブルを確認できます。</p>
 
-          <div class="event-list">
-
-            <!-- ▼ イベント追加時は <details class="event-detail"> ブロックをここに追加する -->
-
-            <details class="event-detail" open>
-              <summary class="event-summary">
-                <span class="event-date-badge">2026年6月7日（日）</span>
-                <span class="event-location-label">路地裏GarageMarket（埼玉・南与野）</span>
-              </summary>
-              <div class="event-body">
-                <div class="grid-2">
-                  <div class="info">
-                    <strong>日時</strong>
-                    2026年6月7日(日) 11:00-16:50
-                  </div>
-                  <div class="info">
-                    <strong>場所</strong>
-                    路地裏GarageMarket<br />
-                    〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3
-                  </div>
-                  <div class="info">
-                    <strong>対象</strong>
-                    小学1年生〜中学3年生（保護者参加OK）
-                  </div>
-                  <div class="info">
-                    <strong>定員</strong>
-                    各時間帯 最大6名（予約優先）
-                  </div>
-                  <div class="info">
-                    <strong>持ち物</strong>
-                    パソコン持参大歓迎（会場でも用意あり）
-                  </div>
-                </div>
-                <div>
-                  <h3 style="margin: 0 0 10px; font-size: 1rem; font-weight: 800; color: #0f2c59;">タイムテーブル</h3>
-                  <div class="timeline">
-                    <div class="timeline-item">
-                      <div class="timeline-time">11:00-12:20</div>
-                      <div>Roblox</div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-time">12:30-13:00</div>
-                      <div>AI</div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-time">13:00-13:30</div>
-                      <div>休憩</div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-time">13:30-14:50</div>
-                      <div>Roblox</div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-time">15:00-15:30</div>
-                      <div>AI</div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-time">15:30-16:50</div>
-                      <div>Roblox</div>
-                    </div>
-                  </div>
-                </div>
-                <!-- ▼ イベントごとの申し込みURLをここで変更する -->
-                <a class="event-apply" href="https://gameschool.doorkeeper.jp/" target="_blank" rel="noreferrer">
-                  このイベントに申し込む
-                </a>
-              </div>
-            </details>
-
-          </div>
+          <!-- イベントはここに自動描画されます -->
+          <div id="event-list" class="event-list"></div>
         </div>
       </section>
 
@@ -757,10 +689,6 @@
               Q: 親も参加できますか？<br />
               A: 見学可能です。参加も大歓迎です！
             </div>
-            <div class="faq-item">
-              Q: 継続的な教室はありますか？<br />
-              A: 継続型の教室も運営しています。<a href="school/" style="color: #0f2c59; font-weight: 700;">詳しくはこちら</a>
-            </div>
           </div>
         </div>
       </section>
@@ -816,5 +744,68 @@
     </main>
 
     <footer>© ブロマスゲームラボ</footer>
+
+    <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
+    <script src="events/2026-06-07.js"></script>
+
+    <script>
+      (function () {
+        var list = document.getElementById("event-list");
+        if (!list || !window.EVENTS || !window.EVENTS.length) return;
+
+        var events = window.EVENTS.slice().sort(function (a, b) {
+          return a.id.localeCompare(b.id);
+        });
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        var openIndex = -1;
+
+        for (var j = 0; j < events.length; j++) {
+          var d = new Date(events[j].id + "T00:00:00+09:00");
+          if (!isNaN(d.getTime()) && d >= today) {
+            openIndex = j;
+            break;
+          }
+        }
+        if (openIndex === -1) {
+          openIndex = events.length - 1;
+        }
+
+        list.innerHTML = events.map(function (ev, i) {
+          var timetableRows = ev.timetable.map(function (t) {
+            return (
+              '<div class="timeline-item">' +
+                '<div class="timeline-time">' + t.time + "</div>" +
+                "<div>" + t.label + "</div>" +
+              "</div>"
+            );
+          }).join("");
+
+          return (
+            '<details class="event-detail"' + (i === openIndex ? " open" : "") + ">" +
+              '<summary class="event-summary">' +
+                '<span class="event-date-badge">' + ev.date + "</span>" +
+                '<span class="event-location-label">' + ev.location + "（" + ev.area + "）</span>" +
+              "</summary>" +
+              '<div class="event-body">' +
+                '<div class="grid-2">' +
+                  '<div class="info"><strong>日時</strong>' + ev.datetime + "</div>" +
+                  '<div class="info"><strong>場所</strong>' + ev.location + "<br />" + ev.address + "</div>" +
+                  '<div class="info"><strong>対象</strong>' + ev.target + "</div>" +
+                  '<div class="info"><strong>定員</strong>' + ev.capacity + "</div>" +
+                  '<div class="info"><strong>持ち物</strong>' + ev.equipment + "</div>" +
+                "</div>" +
+                "<div>" +
+                  '<h3 style="margin: 0 0 10px; font-size: 1rem; font-weight: 800; color: #0f2c59;">タイムテーブル</h3>' +
+                  '<div class="timeline">' + timetableRows + "</div>" +
+                "</div>" +
+                '<a class="event-apply" href="' + ev.doorkeeperUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>' +
+              "</div>" +
+            "</details>"
+          );
+        }).join("");
+      })();
+    </script>
   </body>
 </html>
