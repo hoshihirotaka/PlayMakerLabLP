@@ -15,47 +15,57 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "ブロマスゲームラボ Roblox×AI 体験会",
-        "startDate": "2026-06-07T11:00:00+09:00",
-        "endDate": "2026-06-07T16:50:00+09:00",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "url": "https://hoshihirotaka.github.io/PlayMakerLabLP/",
-        "description": "ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。親子参加歓迎、地域密着の会場で開催。",
-        "image": "https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png",
-        "location": {
-          "@type": "Place",
-          "name": "路地裏GarageMarket",
-          "address": "〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3"
-        },
-        "performer": {
-          "@type": "Organization",
-          "name": "ブロマスゲームラボ"
-        },
-        "organizer": {
-          "@type": "Organization",
-          "name": "ブロマスゲームラボ",
-          "url": "https://hoshihirotaka.github.io/PlayMakerLabLP/"
-        },
-        "offers": [
+        "@graph": [
           {
-            "@type": "Offer",
-            "name": "Robloxコース",
-            "price": "1900",
-            "priceCurrency": "JPY",
-            "validFrom": "2026-04-04T00:00:00+09:00",
-            "url": "https://gameschool.doorkeeper.jp/events/197106",
-            "availability": "https://schema.org/InStock"
+            "@type": "Organization",
+            "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization",
+            "name": "ブロマスゲームラボ",
+            "url": "https://hoshihirotaka.github.io/PlayMakerLabLP/",
+            "sameAs": [
+              "https://www.instagram.com/hirotaka_hoshi/",
+              "https://www.threads.com/@hirotaka_hoshi",
+              "https://www.facebook.com/hirotaka.hoshi",
+              "https://x.com/shgame"
+            ]
           },
           {
-            "@type": "Offer",
-            "name": "AIコース",
-            "price": "900",
-            "priceCurrency": "JPY",
-            "validFrom": "2026-04-04T00:00:00+09:00",
-            "url": "https://gameschool.doorkeeper.jp/events/197106",
-            "availability": "https://schema.org/InStock"
+            "@type": "Event",
+            "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#event-2026-06-07",
+            "name": "ブロマスゲームラボ Roblox×AI 体験会（2026年6月7日）",
+            "startDate": "2026-06-07T11:00:00+09:00",
+            "endDate": "2026-06-07T16:50:00+09:00",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "url": "https://gameschool.doorkeeper.jp/",
+            "description": "ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。親子参加歓迎、地域密着の会場で開催。",
+            "image": "https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png",
+            "location": {
+              "@type": "Place",
+              "name": "路地裏GarageMarket",
+              "address": "〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3"
+            },
+            "organizer": { "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization" },
+            "performer": { "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization" },
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "Robloxコース",
+                "price": "1900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-04-04T00:00:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/197106",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "AIコース",
+                "price": "900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-04-04T00:00:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/197106",
+                "availability": "https://schema.org/InStock"
+              }
+            ]
           }
         ]
       }
@@ -87,9 +97,7 @@
         --radius-md: 16px;
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       body {
         margin: 0;
@@ -104,7 +112,6 @@
 
       .orb {
         position: fixed;
-        inset: auto;
         width: 280px;
         height: 280px;
         border-radius: 50%;
@@ -113,12 +120,7 @@
         z-index: -1;
         animation: float 10s ease-in-out infinite;
       }
-
-      .orb.one {
-        top: 12%;
-        left: -60px;
-      }
-
+      .orb.one { top: 12%; left: -60px; }
       .orb.two {
         bottom: 8%;
         right: -40px;
@@ -126,14 +128,8 @@
         animation-delay: -4s;
       }
 
-      .container {
-        width: min(1120px, 92%);
-        margin: 0 auto;
-      }
-
-      .section {
-        padding: 44px 0;
-      }
+      .container { width: min(1120px, 92%); margin: 0 auto; }
+      .section { padding: 44px 0; }
 
       .card {
         background: var(--surface);
@@ -142,9 +138,8 @@
         box-shadow: var(--shadow);
       }
 
-      .hero {
-        padding: 36px 0 48px;
-      }
+      /* ヒーロー */
+      .hero { padding: 36px 0 48px; }
 
       .hero-inner {
         display: grid;
@@ -163,23 +158,14 @@
 
       .hero h1 {
         font-family: "Kaisei Tokumin", serif;
-        font-size: clamp(2rem, 7vw, 3.3rem);
+        font-size: clamp(1.8rem, 6.2vw, 2.9rem);
         line-height: 1.2;
         margin: 0 0 12px;
       }
 
-      .hero p {
-        margin: 0 0 12px;
-        font-size: clamp(1rem, 2.8vw, 1.2rem);
-        color: #44546f;
-      }
+      .hero p { margin: 0 0 12px; font-size: clamp(1rem, 2.8vw, 1.2rem); color: #44546f; }
 
-      .tagline {
-        display: inline-flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 12px;
-      }
+      .tagline { display: inline-flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
 
       .tag {
         background: rgba(255, 255, 255, 0.8);
@@ -191,12 +177,7 @@
         color: #2a3c56;
       }
 
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 16px;
-      }
+      .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
       .cta {
         display: inline-flex;
@@ -210,17 +191,10 @@
         background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
         box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
       }
-
       .cta.secondary {
         background: linear-gradient(180deg, #2dd6ff 0%, #1aa7d6 100%);
         box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
       }
-
-      .cta.tertiary {
-        background: linear-gradient(180deg, #47d18c 0%, #2fab70 100%);
-        box-shadow: 0 8px 0 rgba(21, 91, 60, 0.85);
-      }
-
       .cta.outline {
         background: transparent;
         color: #2a3c56;
@@ -228,11 +202,7 @@
         box-shadow: none;
       }
 
-      .hero-grid {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .hero-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
 
       .hero-tile {
         border-radius: 16px;
@@ -243,14 +213,7 @@
         display: grid;
         place-items: center;
       }
-
-      .hero-tile img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
-        padding: 12px;
-      }
+      .hero-tile img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 12px; }
 
       .hero-photo {
         border-radius: 18px;
@@ -260,13 +223,7 @@
         background: #fff;
         margin-bottom: 12px;
       }
-
-      .hero-photo img {
-        width: 100%;
-        display: block;
-        object-fit: cover;
-        aspect-ratio: 16 / 9;
-      }
+      .hero-photo img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16 / 9; }
 
       .hero-note {
         margin-top: 12px;
@@ -277,29 +234,13 @@
         font-weight: 700;
       }
 
-      h2 {
-        margin: 0 0 12px;
-        font-size: clamp(1.4rem, 4vw, 2rem);
-      }
+      h2 { margin: 0 0 12px; font-size: clamp(1.4rem, 4vw, 2rem); }
 
-      .split {
-        display: grid;
-        gap: 18px;
-      }
+      .split { display: grid; gap: 18px; }
 
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .centered {
-        text-align: center;
-      }
-
-      .centered .chips {
-        justify-content: center;
-      }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .centered { text-align: center; }
+      .centered .chips { justify-content: center; }
 
       .chip {
         background: var(--surface-soft);
@@ -310,23 +251,12 @@
         font-size: 0.85rem;
       }
 
-      .grid-2,
-      .grid-3 {
-        display: grid;
-        gap: 14px;
-      }
+      .grid-2, .grid-3 { display: grid; gap: 14px; }
 
-      .info {
-        background: var(--surface-soft);
-        padding: 16px;
-        border-radius: var(--radius-md);
-      }
+      .info { background: var(--surface-soft); padding: 16px; border-radius: var(--radius-md); }
+      .info strong { display: block; margin-bottom: 6px; }
 
-      .info strong {
-        display: block;
-        margin-bottom: 6px;
-      }
-
+      /* コースカード */
       .course-card {
         padding: 18px;
         border-radius: var(--radius-lg);
@@ -336,144 +266,104 @@
         display: grid;
         gap: 12px;
       }
-
       .course-card.highlight {
         border: 2px solid #ffb2ac;
         background: linear-gradient(160deg, #fff7f6 0%, #ffffff 60%);
       }
 
-      .course-head {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
-
+      .course-head { display: flex; gap: 12px; align-items: center; }
       .course-head img {
-        width: 72px;
-        height: 72px;
+        width: 72px; height: 72px;
         object-fit: contain;
         background: #f6f8ff;
         border-radius: 16px;
         padding: 10px;
       }
+      .course-title { font-weight: 800; font-size: 1.1rem; }
+      .course-meta { color: var(--subtext); font-size: 0.9rem; }
 
-      .course-title {
-        font-weight: 800;
-        font-size: 1.1rem;
-      }
-
-      .course-meta {
-        color: var(--subtext);
-        font-size: 0.9rem;
-      }
-
-      .course-cta {
-        text-decoration: none;
-        color: #fff;
-        font-weight: 800;
-        border-radius: 12px;
-        padding: 10px 14px;
-        text-align: center;
-        background: #0f2c59;
-      }
-
-      .flow-card {
-        padding: 18px;
-        border-radius: var(--radius-lg);
-        background: #fff;
-        border: 1px solid #e6ddff;
-        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.1);
-        display: grid;
-        gap: 12px;
-      }
-
-      .flow-card.highlight {
-        border: 2px solid rgba(255, 107, 107, 0.35);
-        background: linear-gradient(160deg, #fff3f3 0%, #ffffff 60%);
-      }
-
-      .timeline {
-        display: grid;
-        gap: 10px;
-      }
-
+      /* タイムライン */
+      .timeline { display: grid; gap: 10px; }
       .timeline-item {
         display: grid;
-        grid-template-columns: 90px 1fr;
+        grid-template-columns: 112px 1fr;
         gap: 12px;
         align-items: center;
         padding: 12px 14px;
         border-radius: 14px;
         background: #f7f9ff;
       }
-
       .timeline-time {
         font-weight: 800;
         color: #0f2c59;
+        white-space: nowrap;
       }
 
-      .compare {
-        display: grid;
-        gap: 14px;
-      }
+      /* 日程（details/summary） */
+      .event-list { display: grid; gap: 12px; }
 
-      .compare-card {
-        border-radius: var(--radius-lg);
-        padding: 18px;
-      }
-
-      .compare-card strong {
-        display: block;
-        margin-bottom: 8px;
-      }
-
-      .compare-card ul {
-        margin: 0;
-        padding-left: 1.1em;
-      }
-
-      .compare-card.normal {
-        background: #f6f4f1;
-      }
-
-      .compare-card.creator {
-        background: #effff7;
-        border: 2px solid rgba(73, 214, 163, 0.35);
-      }
-
-      .faq {
-        background: #f7f9ff;
-        border-radius: var(--radius-lg);
-        padding: 18px;
-      }
-
-      .join-block {
-        background: #fff;
-        border-radius: var(--radius-lg);
-        padding: 20px;
-        box-shadow: 0 12px 24px rgba(33, 52, 92, 0.1);
+      .event-detail {
         border: 1px solid #e2e8ff;
-        text-align: center;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(18, 34, 64, 0.08);
       }
 
-      .join-block p {
-        margin: 8px 0 14px;
-        color: #566b88;
-      }
-
-      .join-links {
+      .event-summary {
         display: flex;
+        align-items: center;
+        gap: 14px;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 12px;
+        padding: 16px 20px;
+        cursor: pointer;
+        background: var(--surface-soft);
+        list-style: none;
+        user-select: none;
+      }
+      .event-summary::-webkit-details-marker { display: none; }
+      .event-summary::after {
+        content: '▼';
+        margin-left: auto;
+        font-size: 0.75rem;
+        color: var(--subtext);
+        transition: transform 0.2s ease;
+      }
+      details[open] .event-summary::after { transform: rotate(180deg); }
+
+      .event-date-badge { font-weight: 800; font-size: 1.05rem; color: #0f2c59; }
+      .event-location-label { font-size: 0.9rem; color: var(--subtext); font-weight: 600; }
+
+      .event-body { padding: 20px; display: grid; gap: 16px; }
+
+      .event-apply {
+        display: inline-flex;
+        align-items: center;
         justify-content: center;
+        padding: 13px 24px;
+        border-radius: 999px;
+        font-weight: 800;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
+        box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
+        width: fit-content;
       }
 
-      .game-grid {
-        display: grid;
-        gap: 16px;
-      }
+      /* 比較 */
+      .compare { display: grid; gap: 14px; }
+      .compare-card { border-radius: var(--radius-lg); padding: 18px; }
+      .compare-card strong { display: block; margin-bottom: 8px; }
+      .compare-card ul { margin: 0; padding-left: 1.1em; }
+      .compare-card.normal { background: #f6f4f1; }
+      .compare-card.creator { background: #effff7; border: 2px solid rgba(73, 214, 163, 0.35); }
 
+      /* FAQ */
+      .faq { background: #f7f9ff; border-radius: var(--radius-lg); padding: 18px; }
+      .faq-item { padding: 10px 0; border-bottom: 1px dashed #d7e0f2; }
+      .faq-item:last-child { border-bottom: none; }
+
+      /* 作品ギャラリー */
+      .game-grid { display: grid; gap: 16px; }
       .game-card {
         background: #fff;
         border-radius: var(--radius-lg);
@@ -481,12 +371,7 @@
         box-shadow: 0 12px 24px rgba(33, 52, 92, 0.1);
         border: 1px solid #e2e8ff;
       }
-
-      .game-title {
-        font-weight: 800;
-        margin-bottom: 10px;
-      }
-
+      .game-title { font-weight: 800; margin-bottom: 10px; }
       .game-frame {
         width: 100%;
         aspect-ratio: 9 / 16;
@@ -495,71 +380,27 @@
         background: #f1f5ff;
       }
 
-      .faq-item {
-        padding: 10px 0;
-        border-bottom: 1px dashed #d7e0f2;
-      }
+      /* 講師 */
+      .teacher { display: grid; gap: 16px; align-items: center; }
+      .teacher img { width: 100%; border-radius: 18px; object-fit: cover; height: 220px; }
 
-      .faq-item:last-child {
-        border-bottom: none;
-      }
-
-      .teacher {
-        display: grid;
-        gap: 16px;
-        align-items: center;
-      }
-
-      .teacher img {
-        width: 100%;
-        border-radius: 18px;
-        object-fit: cover;
-        height: 220px;
-      }
-
-      .social-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 12px;
-        margin-bottom: 10px;
-        flex-wrap: wrap;
-      }
-
-      .social-label {
-        font-weight: 700;
-        color: #2a3c56;
-        font-size: 0.9rem;
-      }
-
-      .social-icons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
+      /* SNS */
+      .social-row { display: flex; align-items: center; gap: 12px; margin-top: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+      .social-label { font-weight: 700; color: #2a3c56; font-size: 0.9rem; }
+      .social-icons { display: flex; gap: 10px; flex-wrap: wrap; }
       .social-link {
-        width: 40px;
-        height: 40px;
+        width: 40px; height: 40px;
         border-radius: 999px;
-        display: grid;
-        place-items: center;
+        display: grid; place-items: center;
         background: #fff;
         border: 1px solid rgba(42, 60, 86, 0.15);
         box-shadow: 0 6px 12px rgba(28, 40, 70, 0.08);
         transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
+      .social-link:hover { transform: translateY(-2px); box-shadow: 0 10px 18px rgba(28, 40, 70, 0.14); }
+      .social-link img { width: 20px; height: 20px; }
 
-      .social-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 18px rgba(28, 40, 70, 0.14);
-      }
-
-      .social-link img {
-        width: 20px;
-        height: 20px;
-      }
-
+      /* ビジョン */
       .vision {
         background: #fff8ee;
         border-radius: var(--radius-lg);
@@ -568,18 +409,22 @@
         border: 1px solid rgba(255, 209, 102, 0.45);
         text-align: center;
       }
+      .vision p { margin: 0 0 10px; color: #2a3c56; line-height: 1.7; font-weight: 600; }
+      .vision p:last-child { margin-bottom: 0; }
 
-      .vision p {
-        margin: 0 0 10px;
-        color: #2a3c56;
-        line-height: 1.7;
-        font-weight: 600;
+      /* Join */
+      .join-block {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        box-shadow: 0 12px 24px rgba(33, 52, 92, 0.1);
+        border: 1px solid #e2e8ff;
+        text-align: center;
       }
+      .join-block p { margin: 8px 0 14px; color: #566b88; }
+      .join-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; justify-content: center; }
 
-      .vision p:last-child {
-        margin-bottom: 0;
-      }
-
+      /* 最終CTA */
       .final {
         text-align: center;
         color: #1b2b45;
@@ -589,66 +434,25 @@
         box-shadow: var(--shadow);
       }
 
-      footer {
-        color: #6c7f9c;
-        text-align: center;
-        font-size: 0.85rem;
-        padding: 30px 0 40px;
-      }
+      footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
 
       @media (min-width: 768px) {
-        .hero-inner {
-          grid-template-columns: 1.1fr 0.9fr;
-          align-items: center;
-          padding: 36px;
-        }
-
-        .split {
-          grid-template-columns: 1fr 1fr;
-          align-items: start;
-        }
-
-        .grid-2 {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .grid-3 {
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .game-grid {
-          grid-template-columns: repeat(2, 1fr);
-          align-items: start;
-        }
-
-        .teacher {
-          grid-template-columns: 0.8fr 1.2fr;
-        }
-
-        .compare {
-          grid-template-columns: repeat(2, 1fr);
-        }
+        .hero-inner { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 36px; }
+        .split { grid-template-columns: 1fr 1fr; align-items: start; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .game-grid { grid-template-columns: repeat(2, 1fr); align-items: start; }
+        .teacher { grid-template-columns: 0.8fr 1.2fr; }
+        .compare { grid-template-columns: repeat(2, 1fr); }
       }
 
       @keyframes rise {
-        from {
-          opacity: 0;
-          transform: translateY(16px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
       }
-
       @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-18px);
-        }
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-18px); }
       }
     </style>
   </head>
@@ -660,18 +464,17 @@
       <div class="container hero-inner">
         <div>
           <div class="tagline">
-            <span class="tag">2026年6月7日(日) 11:00-16:50</span>
-            <span class="tag">路地裏GarageMarket（埼玉・南与野）</span>
+            <span class="tag">埼玉・南与野 開催</span>
             <span class="tag">対象: 小1〜中3 + 保護者参加OK</span>
           </div>
           <h1>Roblox×AIで、<br />自分だけのゲームを作ろう！</h1>
           <p>
             ただ遊ぶだけで終わらせない。<br />
             いつものRobloxを、君だけのゲーム制作の時間に。<br />
-            AIで「どうすれば面白くなるか？」を体で学ぶ特別体験会です。
+            AIで「どうすれば面白くなるか？」を体で学ぶ体験会です。
           </p>
-          <div class="cta-row" id="apply">
-            <a class="cta" href="https://gameschool.doorkeeper.jp/events/197106">申し込みフォーム</a>
+          <div class="cta-row">
+            <a class="cta" href="#schedule">日程を確認する</a>
             <a class="cta outline" href="#join">すぐに参加はできないが興味はある</a>
           </div>
           <div class="hero-note">親御さんもご一緒に。家族でのゲーム開発を応援します。</div>
@@ -690,6 +493,8 @@
     </header>
 
     <main>
+
+      <!-- この体験会が大事にしていること -->
       <section class="section">
         <div class="container card centered">
           <h2>この体験会が大事にしていること</h2>
@@ -707,6 +512,7 @@
         </div>
       </section>
 
+      <!-- ただのゲーム遊び vs クリエイター思考 -->
       <section class="section">
         <div class="container card">
           <h2>ただのゲーム遊び vs 世界へ届けるクリエイター</h2>
@@ -731,6 +537,7 @@
         </div>
       </section>
 
+      <!-- 体験会で得られること -->
       <section class="section">
         <div class="container card">
           <h2>体験会で得られること</h2>
@@ -751,42 +558,21 @@
         </div>
       </section>
 
+      <!-- コースの説明（コース選択＋タイムテーブル 統合） -->
       <section class="section">
         <div class="container card">
-          <h2>コース選択（同日開催）</h2>
+          <h2>コースの説明</h2>
+          <p style="color:var(--subtext); margin: 0 0 16px;">2コースを同日開催。どちらか1つ、または両方参加できます。</p>
           <div class="grid-2">
             <div class="course-card highlight">
               <div class="course-head">
                 <img src="assets/roblox.png" alt="Robloxコース" />
                 <div>
                   <div class="course-title">Robloxアクション制作</div>
-                  <div class="course-meta">推奨: 小1以上 / 参加費 1900円</div>
+                  <div class="course-meta">推奨: 小1以上 / 参加費 1,900円<br />（友達と一緒に参加で両方300円引き）</div>
                 </div>
               </div>
               <div>自分だけのミニゲームを作って、遊んで、改善まで体験。</div>
-              <a class="course-cta" href="https://gameschool.doorkeeper.jp/events/197106">申し込みフォーム</a>
-            </div>
-            <div class="course-card">
-              <div class="course-head">
-                <img src="assets/ai.png" alt="AIコース" />
-                <div>
-                  <div class="course-title">AIゲームワークショップ</div>
-                  <div class="course-meta">文字入力できればOK / 参加費 900円</div>
-                </div>
-              </div>
-              <div>AIに指示を出して、アイデアの芯を素早く形に。</div>
-              <a class="course-cta" href="https://gameschool.doorkeeper.jp/events/197106">申し込みフォーム</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card">
-          <h2>時間内で起きること（各コース）</h2>
-          <div class="grid-2">
-            <div class="flow-card highlight">
-              <div class="course-title">Robloxコース</div>
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="timeline-time">前半</div>
@@ -802,8 +588,15 @@
                 </div>
               </div>
             </div>
-            <div class="flow-card">
-              <div class="course-title">AIコース</div>
+            <div class="course-card">
+              <div class="course-head">
+                <img src="assets/ai.png" alt="AIコース" />
+                <div>
+                  <div class="course-title">AIゲームワークショップ</div>
+                  <div class="course-meta">文字入力できればOK / 参加費 900円<br />（友達と一緒に参加で両方300円引き）</div>
+                </div>
+              </div>
+              <div>AIに指示を出して、アイデアの芯を素早く形に。</div>
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="timeline-time">前半</div>
@@ -823,83 +616,18 @@
         </div>
       </section>
 
-      <section class="section">
-        <div class="container card split">
-          <div>
-            <h2>イベント詳細</h2>
-            <p><strong>親御さんもご一緒に。ご家族でのゲーム開発を応援します。</strong></p>
-            <div class="grid-2">
-              <div class="info">
-                <strong>日時</strong>
-                2026年6月7日(日) 11:00-16:50
-              </div>
-              <div class="info">
-                <strong>場所</strong>
-                路地裏GarageMarket<br />
-                〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3
-              </div>
-              <div class="info">
-                <strong>対象</strong>
-                小学1年生〜中学3年生（保護者参加OK）
-              </div>
-              <div class="info">
-                <strong>定員</strong>
-                Roblox 6名 / AI 4名（予約優先）
-              </div>
-              <div class="info">
-                <strong>持ち物</strong>
-                パソコン持参大歓迎（会場でも用意あり）
-              </div>
-            </div>
-          </div>
-          <div>
-            <h2>タイムテーブル</h2>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-time">11:00-12:20</div>
-                <div>Roblox</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">12:30-13:00</div>
-                <div>AI</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">13:00-13:30</div>
-                <div>休憩</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">13:30-14:50</div>
-                <div>Roblox</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">15:00-15:30</div>
-                <div>AI</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-time">15:30-16:50</div>
-                <div>Roblox</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
+      <!-- 開催日程 -->
+      <section class="section" id="schedule">
         <div class="container card">
-          <h2>作品ギャラリー</h2>
-          <div class="game-grid">
-            <div class="game-card">
-              <div class="game-title">小学3年生の作品: ねこレストラン物語</div>
-              <iframe class="game-frame" src="game/NekoRestaurant.html" title="Neko Restaurant" loading="lazy"></iframe>
-            </div>
-            <div class="game-card">
-              <div class="game-title">先生の作品: TwinBlock 2048</div>
-              <iframe class="game-frame" src="game/TwinBlock%202048.html" title="TwinBlock 2048" loading="lazy"></iframe>
-            </div>
-          </div>
+          <h2>開催日程</h2>
+          <p style="color:var(--subtext); margin: 0 0 16px;">各イベントをタップすると詳細とタイムテーブルを確認できます。</p>
+
+          <!-- イベントはここに自動描画されます -->
+          <div id="event-list" class="event-list"></div>
         </div>
       </section>
 
+      <!-- 講師紹介 -->
       <section class="section">
         <div class="container card teacher">
           <img src="assets/classroom.jpg" alt="教室の様子" />
@@ -936,17 +664,19 @@
         </div>
       </section>
 
+      <!-- この活動に込めた想い -->
       <section class="section">
         <div class="container vision">
           <h2>この活動に込めた想い</h2>
           <p>子どもたちは、もう「面白さの設計」を頭の中に持っている。</p>
           <p>RobloxとAIを見た甥が、勝手に企画会議を始めた光景で確信しました。</p>
           <p>プログラミング教室はあっても「作り方」を教える場所は少ない。</p>
-          <p>だから、遊びから逆算して学ぶ“企画の入口”を用意したい。</p>
+          <p>だから、遊びから逆算して学ぶ"企画の入口"を用意したい。</p>
           <p>日本からも、10代でヒットを出す時代を作りたい。</p>
         </div>
       </section>
 
+      <!-- よくある質問（ギャラリーの前に移動） -->
       <section class="section">
         <div class="container card">
           <h2>よくある質問</h2>
@@ -963,14 +693,28 @@
               Q: 親も参加できますか？<br />
               A: 見学可能です。参加も大歓迎です！
             </div>
-            <div class="faq-item">
-              Q: 継続的な教室はありますか？<br />
-              A: 反応を見て検討中です。アンケートでご意見をお聞かせください。
+          </div>
+        </div>
+      </section>
+
+      <!-- 作品ギャラリー（FAQの後に移動） -->
+      <section class="section">
+        <div class="container card">
+          <h2>作品ギャラリー</h2>
+          <div class="game-grid">
+            <div class="game-card">
+              <div class="game-title">小学3年生の作品: ねこレストラン物語</div>
+              <iframe class="game-frame" src="game/NekoRestaurant.html" title="Neko Restaurant" loading="lazy"></iframe>
+            </div>
+            <div class="game-card">
+              <div class="game-title">先生の作品: TwinBlock 2048</div>
+              <iframe class="game-frame" src="game/TwinBlock%202048.html" title="TwinBlock 2048" loading="lazy"></iframe>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- まずは一度、遊びに来てください -->
       <section class="section" id="join">
         <div class="container join-block">
           <h2>まずは一度、遊びに来てください</h2>
@@ -989,18 +733,85 @@
         </div>
       </section>
 
+      <!-- 最終CTA -->
       <section class="section">
         <div class="container final">
           <h2>「作る楽しさ」を、今日から体感しよう。</h2>
           <p>定員になり次第締め切ります。予約優先です。</p>
           <div class="cta-row" style="justify-content: center;">
-            <a class="cta" href="https://gameschool.doorkeeper.jp/events/197106">申し込みフォーム</a>
+            <a class="cta" href="#schedule">日程・申し込みを見る</a>
           </div>
           <p style="margin-top: 14px; color: #2a3c56;">お問い合わせ: hitta.games@gmail.com</p>
         </div>
       </section>
+
     </main>
 
     <footer>© ブロマスゲームラボ</footer>
+
+    <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
+    <script src="events/2026-06-07.js"></script>
+
+    <script>
+      (function () {
+        var list = document.getElementById("event-list");
+        if (!list || !window.EVENTS || !window.EVENTS.length) return;
+
+        var events = window.EVENTS.slice().sort(function (a, b) {
+          return a.id.localeCompare(b.id);
+        });
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        var openIndex = -1;
+
+        for (var j = 0; j < events.length; j++) {
+          var d = new Date(events[j].id + "T00:00:00+09:00");
+          if (!isNaN(d.getTime()) && d >= today) {
+            openIndex = j;
+            break;
+          }
+        }
+        if (openIndex === -1) {
+          openIndex = events.length - 1;
+        }
+
+        list.innerHTML = events.map(function (ev, i) {
+          var locationText = (ev.location || "").trim();
+          var areaText = (ev.area || "").trim();
+          var timetableRows = ev.timetable.map(function (t) {
+            return (
+              '<div class="timeline-item">' +
+                '<div class="timeline-time">' + t.time + "</div>" +
+                "<div>" + t.label + "</div>" +
+              "</div>"
+            );
+          }).join("");
+
+          return (
+            '<details class="event-detail"' + (i === openIndex ? " open" : "") + ">" +
+              '<summary class="event-summary">' +
+                '<span class="event-date-badge">' + ev.date + "</span>" +
+                '<span class="event-location-label">' + locationText + "（" + areaText + "）</span>" +
+              "</summary>" +
+              '<div class="event-body">' +
+                '<div class="grid-2">' +
+                  '<div class="info"><strong>日時</strong>' + ev.datetime + "</div>" +
+                  '<div class="info"><strong>場所</strong>' + ev.location + "<br />" + ev.address + "</div>" +
+                  '<div class="info"><strong>対象</strong>' + ev.target + "</div>" +
+                  '<div class="info"><strong>定員</strong>' + ev.capacity + "</div>" +
+                  '<div class="info"><strong>持ち物</strong>' + ev.equipment + "</div>" +
+                "</div>" +
+                "<div>" +
+                  '<h3 style="margin: 0 0 10px; font-size: 1rem; font-weight: 800; color: #0f2c59;">タイムテーブル</h3>' +
+                  '<div class="timeline">' + timetableRows + "</div>" +
+                "</div>" +
+                '<a class="event-apply" href="' + ev.doorkeeperUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>' +
+              "</div>" +
+            "</details>"
+          );
+        }).join("");
+      })();
+    </script>
   </body>
 </html>
