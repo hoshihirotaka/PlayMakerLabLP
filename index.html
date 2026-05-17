@@ -158,7 +158,7 @@
 
       .hero h1 {
         font-family: "Kaisei Tokumin", serif;
-        font-size: clamp(2rem, 7vw, 3.3rem);
+        font-size: clamp(1.8rem, 6.2vw, 2.9rem);
         line-height: 1.2;
         margin: 0 0 12px;
       }
@@ -286,14 +286,18 @@
       .timeline { display: grid; gap: 10px; }
       .timeline-item {
         display: grid;
-        grid-template-columns: 90px 1fr;
+        grid-template-columns: 112px 1fr;
         gap: 12px;
         align-items: center;
         padding: 12px 14px;
         border-radius: 14px;
         background: #f7f9ff;
       }
-      .timeline-time { font-weight: 800; color: #0f2c59; }
+      .timeline-time {
+        font-weight: 800;
+        color: #0f2c59;
+        white-space: nowrap;
+      }
 
       /* 日程（details/summary） */
       .event-list { display: grid; gap: 12px; }
@@ -773,6 +777,8 @@
         }
 
         list.innerHTML = events.map(function (ev, i) {
+          var locationText = (ev.location || "").trim();
+          var areaText = (ev.area || "").trim();
           var timetableRows = ev.timetable.map(function (t) {
             return (
               '<div class="timeline-item">' +
@@ -786,7 +792,7 @@
             '<details class="event-detail"' + (i === openIndex ? " open" : "") + ">" +
               '<summary class="event-summary">' +
                 '<span class="event-date-badge">' + ev.date + "</span>" +
-                '<span class="event-location-label">' + ev.location + "（" + ev.area + "）</span>" +
+                '<span class="event-location-label">' + locationText + "（" + areaText + "）</span>" +
               "</summary>" +
               '<div class="event-body">' +
                 '<div class="grid-2">' +
