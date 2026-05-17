@@ -59,3 +59,63 @@
 - 「プログラミング教室」との差別化：特性から逆算・プロ直接指導・業界ネットワーク
 - 料金は体験会後に個別案内（LP上は枠のみ）
 - コースは月の変わり目で選択式（Roblox・AI・アバター・企画など）
+<<<<<<< HEAD
+=======
+
+---
+
+## イベント管理の仕様
+
+### 仕組み
+
+`index.html` にイベントをハードコードせず、イベントごとに独立したJSファイルで管理する。
+ファイルを追加するだけでLPに反映される。
+
+```
+events/
+  2026-06-07.js   ← イベントごとに1ファイル
+  2026-08-XX.js   ← 次回以降はここに追加
+```
+
+### イベント追加手順
+
+**① `events/YYYY-MM-DD.js` を作成する**（既存ファイルをコピーして編集）
+
+```js
+(window.EVENTS = window.EVENTS || []).push({
+  id: "2026-08-XX",           // ファイル名と合わせる（ソート順に使用）
+  date: "2026年8月XX日（X）",
+  datetime: "2026年8月XX日(X) HH:MM-HH:MM",
+  location: "会場名",
+  area: "エリア名",
+  address: "〒XXX-XXXX 住所",
+  target: "小学1年生〜中学3年生（保護者参加OK）",
+  capacity: "Roblox X名 / AI X名（予約優先）",
+  equipment: "パソコン持参大歓迎（会場でも用意あり）",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/XXXXXX",
+  timetable: [
+    { time: "HH:MM-HH:MM", label: "Roblox" },
+    { time: "HH:MM-HH:MM", label: "AI" }
+  ]
+});
+```
+
+**② `index.html` の所定箇所に1行追加する**
+
+```html
+<!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
+<script src="events/2026-06-07.js"></script>
+<script src="events/2026-08-XX.js"></script>  ← 追加
+```
+
+**③ `index.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
+
+`@id` と各日時・URLをイベントに合わせて追記する。
+
+### 注意事項
+
+- イベントは `id`（YYYY-MM-DD）の昇順で自動ソートされ、初期表示は「今日以降で最も近い開催日」が `open` 状態になる（すべて過去日の場合は最新日を `open`）
+- `index.html` の変更は `<script>` 1行追加のみのため、ブランチ間のコンフリクトはほぼ発生しない
+- 各イベントファイルは独立しているため、編集しても他のイベントに影響しない
+- ローカル確認はブラウザで `index.html` を直接開けばよい（サーバー不要）
+>>>>>>> main
