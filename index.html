@@ -434,6 +434,55 @@
         box-shadow: var(--shadow);
       }
 
+      /* nav */
+      .nav {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(42, 60, 86, 0.1);
+        background: rgba(247, 245, 240, 0.9);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .nav-logo {
+        font-weight: 800;
+        font-size: 1rem;
+        color: #0f2c59;
+        text-decoration: none;
+      }
+
+      /* 特徴カード */
+      .feature-card {
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.1);
+        display: grid;
+        gap: 10px;
+      }
+      .feature-icon { font-size: 2rem; line-height: 1; }
+      .feature-card h3 { margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f2c59; }
+      .feature-card p { margin: 0; color: var(--subtext); line-height: 1.7; }
+
+      /* コースアイテム */
+      .course-item {
+        padding: 16px 18px;
+        border-radius: var(--radius-md);
+        background: var(--surface-soft);
+        display: grid;
+        gap: 6px;
+      }
+      .course-item-title { font-weight: 800; color: #0f2c59; font-size: 1rem; }
+      .course-item p { margin: 0; color: var(--subtext); line-height: 1.7; }
+
       footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
 
       @media (min-width: 768px) {
@@ -444,6 +493,7 @@
         .game-grid { grid-template-columns: repeat(2, 1fr); align-items: start; }
         .teacher { grid-template-columns: 0.8fr 1.2fr; }
         .compare { grid-template-columns: repeat(2, 1fr); }
+        .course-item-grid { grid-template-columns: repeat(2, 1fr); }
       }
 
       @keyframes rise {
@@ -459,6 +509,13 @@
   <body>
     <div class="orb one" aria-hidden="true"></div>
     <div class="orb two" aria-hidden="true"></div>
+
+    <nav class="nav">
+      <div class="container nav-inner">
+        <span class="nav-logo">ブロマスゲームラボ</span>
+        <!-- ▼ ナビゲーションリンクは追加予定 -->
+      </div>
+    </nav>
 
     <header class="hero">
       <div class="container hero-inner">
@@ -494,20 +551,35 @@
 
     <main>
 
-      <!-- この体験会が大事にしていること -->
+      <!-- ゲーム制作に特化した教室です -->
       <section class="section">
-        <div class="container card centered">
-          <h2>この体験会が大事にしていること</h2>
-          <p>
-            「プログラミング」を教えるのではなく、
-            「ゲームの作り方」を教えます。<br />
-            文法よりも、企画と設計。
-            つまり「どうすれば面白くなるか？」を主役にします。
-          </p>
-          <div class="chips">
-            <span class="chip">目的主導型: 作りたいから学ぶ</span>
-            <span class="chip">AIで時間を解放する</span>
-            <span class="chip">体験→発表で定着</span>
+        <div class="container">
+          <div class="card centered" style="margin-bottom: 18px;">
+            <h2>ゲーム制作に特化した教室です</h2>
+            <p>「ゲームを作りたい」という欲求は普遍的です。<br />この好奇心を大切に「必要そうだからプログラミングを教える」のではなく、「興味のあるゲーム制作を通して、形にしていくプロセス」を大切にしていきます。</p>
+            <p>文法よりも、企画と設計。つまり「どうすれば実現していくか」を主役にします。</p>
+            <div class="chips" style="justify-content: center; margin-top: 14px;">
+              <span class="chip">目的主導型: 作りたいから学ぶ</span>
+              <span class="chip">AIや大人の協力で時間を解放する</span>
+              <span class="chip">体験→発表で定着</span>
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="feature-card">
+              <div class="feature-icon">🎮</div>
+              <h3>プロが直接みます</h3>
+              <p>ゲームプランナー歴20年以上の講師が毎回直接指導。現場のリアルな視点で、お子さんの発想を形に変えます。</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3>特性から逆算します</h3>
+              <p>ゲーム制作はプログラミングだけではありません。企画・デザイン・サウンド・AIなど、お子さんの「好き」と「得意」に合ったアプローチを一緒に探します。</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🤝</div>
+              <h3>業界ネットワークで広がる</h3>
+              <p>3D・音楽・プログラミングなど、各分野の専門クリエイターと連携。講師の得意分野以外も、本物のプロの視点を届けます。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -540,7 +612,7 @@
       <!-- 体験会で得られること -->
       <section class="section">
         <div class="container card">
-          <h2>体験会で得られること</h2>
+          <h2>まず初めに挑戦すること</h2>
           <div class="grid-3">
             <div class="info">
               <strong>Roblox制作の基礎</strong>
@@ -558,11 +630,11 @@
         </div>
       </section>
 
-      <!-- コースの説明（コース選択＋タイムテーブル 統合） -->
+      <!-- 体験会で選べる2つの入り口 -->
       <section class="section">
         <div class="container card">
-          <h2>コースの説明</h2>
-          <p style="color:var(--subtext); margin: 0 0 16px;">2コースを同日開催。どちらか1つ、または両方参加できます。</p>
+          <h2>体験会で選べる2つの入り口</h2>
+          <p style="color:var(--subtext); margin: 0 0 16px;">まずは体験会で「どちらから始めるか」を選びます。継続参加では、通常コースまたは個別トレーニングコースへ進めます。</p>
           <div class="grid-2">
             <div class="course-card highlight">
               <div class="course-head">
@@ -611,6 +683,24 @@
                   <div>指示を改善して「自分のゲーム」に寄せる</div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- コースの種類 -->
+      <section class="section">
+        <div class="container card">
+          <h2>継続コースの進み方</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;">体験会後に、お子さんの特性と目標に合わせて次の2つから選べます。途中での切り替えも相談しながら調整できます。</p>
+          <div class="grid-2 course-item-grid">
+            <div class="course-item">
+              <div class="course-item-title">通常コース（カリキュラム選択型）</div>
+              <p>各イベントページから日程とコースを選び、お子さんが「やってみたい」カリキュラムを選んで進めるコースです。</p>
+            </div>
+            <div class="course-item">
+              <div class="course-item-title">個別トレーニングコース（ロードマップ型）</div>
+              <p>作りたいものが明確なお子さん向けに、完成までのロードマップを作って進めます。詳細は別途ご相談ください。</p>
             </div>
           </div>
         </div>
