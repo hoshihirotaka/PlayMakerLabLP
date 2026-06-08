@@ -6,6 +6,10 @@
     <title>親子で体験するゲーム制作 | Roblox×AIワークショップ（ブロマス）</title>
     <meta name="description" content="ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。ゲームの習い事として、親子参加歓迎・地域密着の会場で開催。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="assets/R.webp" type="image/webp" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" />
     <meta property="og:title" content="親子で体験するゲーム制作 | Roblox×AIワークショップ（ブロマス）" />
     <meta property="og:description" content="ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。ゲームの習い事として、親子参加歓迎・地域密着の会場で開催。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -79,8 +83,6 @@
       gtag('config', 'G-E9YKGSCX5B');
     </script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap");
-
       :root {
         --bg: #f7f5f0;
         --bg-2: #f0f6ff;
@@ -129,7 +131,11 @@
       }
 
       .container { width: min(1120px, 92%); margin: 0 auto; }
-      .section { padding: 44px 0; }
+      .section {
+        padding: 44px 0;
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 700px;
+      }
 
       .card {
         background: var(--surface);
@@ -175,6 +181,8 @@
         font-size: 0.85rem;
         font-weight: 700;
         color: #2a3c56;
+        max-width: 100%;
+        white-space: normal;
       }
 
       .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
@@ -222,6 +230,13 @@
         box-shadow: 0 12px 24px rgba(28, 40, 70, 0.18);
         background: #fff;
         margin-bottom: 12px;
+      }
+      .hero-photo picture,
+      .hero-tile picture,
+      .teacher picture {
+        display: block;
+        width: 100%;
+        height: 100%;
       }
       .hero-photo img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16 / 9; }
 
@@ -272,8 +287,12 @@
       }
 
       .course-head { display: flex; gap: 12px; align-items: center; }
-      .course-head img {
+      .course-head picture {
         width: 72px; height: 72px;
+        flex: 0 0 72px;
+      }
+      .course-head img {
+        width: 100%; height: 100%;
         object-fit: contain;
         background: #f6f8ff;
         border-radius: 16px;
@@ -509,6 +528,10 @@
         .course-item-grid { grid-template-columns: repeat(2, 1fr); }
       }
 
+      @media (max-width: 767px) {
+        .tagline { flex-direction: column; align-items: flex-start; }
+      }
+
       @keyframes rise {
         from { opacity: 0; transform: translateY(16px); }
         to { opacity: 1; transform: translateY(0); }
@@ -532,11 +555,11 @@
 
     <header class="hero">
       <div class="container hero-inner">
-        <div>
-          <div class="tagline">
-            <span class="tag">埼玉・南与野 開催</span>
-            <span class="tag">対象: 小1〜中3 + 保護者参加OK</span>
-          </div>
+          <div>
+            <div class="tagline">
+              <span class="tag">埼玉・南与野 開催</span>
+              <span class="tag">対象: 小1〜中3 + 保護者参加OK</span>
+            </div>
           <h1>Roblox×AIで、<br />自分だけのゲームを作ろう！</h1>
           <p>
             ただ遊ぶだけで終わらせない。<br />
@@ -551,11 +574,24 @@
         </div>
         <div>
           <div class="hero-photo">
-            <img src="assets/R.png" alt="教室の様子" />
+            <picture>
+              <source srcset="assets/R.webp" type="image/webp" />
+              <img src="assets/R.png" alt="教室の様子" width="960" height="540" fetchpriority="high" decoding="async" />
+            </picture>
           </div>
           <div class="hero-grid" aria-label="体験のイメージ">
-            <div class="hero-tile"><img src="assets/roblox.png" alt="Roblox制作イメージ" /></div>
-            <div class="hero-tile"><img src="assets/ai.png" alt="AI制作イメージ" /></div>
+            <div class="hero-tile">
+              <picture>
+                <source srcset="assets/roblox.webp" type="image/webp" />
+                <img src="assets/roblox.png" alt="Roblox制作イメージ" width="256" height="256" decoding="async" />
+              </picture>
+            </div>
+            <div class="hero-tile">
+              <picture>
+                <source srcset="assets/ai.webp" type="image/webp" />
+                <img src="assets/ai.png" alt="AI制作イメージ" width="256" height="256" decoding="async" />
+              </picture>
+            </div>
           </div>
           <div class="hero-note">小3がAIと企画会議を始める時代。最短ルートで「作る側」へ。</div>
         </div>
@@ -645,7 +681,10 @@
           <div class="grid-2">
             <div class="course-card highlight">
               <div class="course-head">
-                <img src="assets/roblox.png" alt="Robloxコース" />
+                <picture>
+                  <source srcset="assets/roblox.webp" type="image/webp" />
+                  <img src="assets/roblox.png" alt="Robloxコース" width="256" height="256" loading="lazy" decoding="async" />
+                </picture>
                 <div>
                   <div class="course-title">Robloxアクション制作</div>
                   <div class="course-meta">推奨: 小1以上 / 参加費 1,900円<br /><!-- （友達と一緒に参加で両方300円引き） --></div>
@@ -669,7 +708,10 @@
             </div>
             <div class="course-card">
               <div class="course-head">
-                <img src="assets/ai.png" alt="AIコース" />
+                <picture>
+                  <source srcset="assets/ai.webp" type="image/webp" />
+                  <img src="assets/ai.png" alt="AIコース" width="256" height="256" loading="lazy" decoding="async" />
+                </picture>
                 <div>
                   <div class="course-title">AIゲームワークショップ</div>
                   <div class="course-meta">文字入力できればOK / 参加費 900円<br /><!-- （友達と一緒に参加で両方300円引き） --></div>
@@ -731,7 +773,10 @@
       <!-- 講師紹介 -->
       <section class="section">
         <div class="container card teacher">
-          <img src="assets/classroom.jpg" alt="教室の様子" />
+          <picture>
+            <source srcset="assets/classroom.webp" type="image/webp" />
+            <img src="assets/classroom.jpg" alt="教室の様子" width="960" height="540" loading="lazy" decoding="async" />
+          </picture>
           <div>
             <h2>講師紹介</h2>
             <p>
