@@ -6,10 +6,7 @@
     <title>親子で体験するゲーム制作 | Roblox×AIワークショップ（ブロマス）</title>
     <meta name="description" content="ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。ゲームの習い事として、親子参加歓迎・地域密着の会場で開催。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="assets/R.webp" type="image/webp" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" />
     <meta property="og:title" content="親子で体験するゲーム制作 | Roblox×AIワークショップ（ブロマス）" />
     <meta property="og:description" content="ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。ゲームの習い事として、親子参加歓迎・地域密着の会場で開催。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -75,12 +72,17 @@
       }
     </script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-E9YKGSCX5B');
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B";
+        document.head.appendChild(script);
+        gtag("js", new Date());
+        gtag("config", "G-E9YKGSCX5B");
+      });
     </script>
     <style>
       :root {
@@ -103,7 +105,7 @@
 
       body {
         margin: 0;
-        font-family: "M PLUS Rounded 1c", "Kaisei Tokumin", serif;
+        font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
         color: var(--text);
         background:
           radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.26), transparent 35%),
@@ -167,7 +169,7 @@
       }
 
       .hero h1 {
-        font-family: "Kaisei Tokumin", serif;
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif;
         font-size: clamp(1.8rem, 6.2vw, 2.9rem);
         line-height: 1.2;
         margin: 0 0 12px;
