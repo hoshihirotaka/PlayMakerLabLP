@@ -161,6 +161,10 @@
         overflow: hidden;
         animation: rise 1s ease-out both;
       }
+      .hero-inner > div,
+      .course-head > div {
+        min-width: 0;
+      }
 
       .hero h1 {
         font-family: "Kaisei Tokumin", serif;
@@ -169,7 +173,12 @@
         margin: 0 0 12px;
       }
 
-      .hero p { margin: 0 0 12px; font-size: clamp(1rem, 2.8vw, 1.2rem); color: #44546f; }
+      .hero p {
+        margin: 0 0 12px;
+        font-size: clamp(1rem, 2.8vw, 1.2rem);
+        color: #44546f;
+        overflow-wrap: anywhere;
+      }
 
       .tagline { display: inline-flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
 
