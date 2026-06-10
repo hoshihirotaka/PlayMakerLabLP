@@ -71,8 +71,8 @@
 
 ```
 events/
-  2026-06-07.js   ← イベントごとに1ファイル
-  2026-08-XX.js   ← 次回以降はここに追加
+  2026-06-26.js   ← イベントごとに1ファイル
+  2026-XX-XX.js   ← 次回以降はここに追加
 ```
 
 ### イベント追加手順
@@ -102,8 +102,8 @@ events/
 
 ```html
 <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
-<script src="events/2026-06-07.js"></script>
-<script src="events/2026-08-XX.js"></script>  ← 追加
+<script src="events/2026-06-26.js"></script>
+<script src="events/2026-XX-XX.js"></script>  ← 追加
 ```
 
 **③ `index.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
