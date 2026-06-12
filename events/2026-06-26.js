@@ -9,7 +9,7 @@
   target: "小学1年生〜中学3年生（保護者参加OK）",
   capacity: "Robloxコース 6名 / AIコース 4名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197148/tickets/new",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197148?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
   note: "※Facebookでの登録が通信エラーになりやすいようです。別の方法をお試しください。複数コースを受ける方は「受講確認」にチェックを入れるか、当日スタッフにお申し付けください。",
   timetable: [
     { time: "17:00-18:20", label: "Robloxコース", price: "1,900円" },

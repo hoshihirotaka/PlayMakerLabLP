@@ -54,7 +54,7 @@
                 "price": "1900",
                 "priceCurrency": "JPY",
                 "validFrom": "2026-06-10T00:00:00+09:00",
-                "url": "https://gameschool.doorkeeper.jp/events/197148/tickets/new",
+                "url": "https://gameschool.doorkeeper.jp/events/197148?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
                 "availability": "https://schema.org/InStock"
               },
               {
@@ -63,7 +63,7 @@
                 "price": "900",
                 "priceCurrency": "JPY",
                 "validFrom": "2026-06-10T00:00:00+09:00",
-                "url": "https://gameschool.doorkeeper.jp/events/197148/tickets/new",
+                "url": "https://gameschool.doorkeeper.jp/events/197148?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
                 "availability": "https://schema.org/InStock"
               }
             ]
@@ -557,6 +557,92 @@
         color: #0f2c59;
         text-decoration: none;
       }
+      .nav-links {
+        display: flex;
+        gap: 2px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        max-width: 100%;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a {
+        color: #2a3c56;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .nav-links a:hover { background: rgba(15, 44, 89, 0.08); }
+      [id] { scroll-margin-top: 96px; }
+
+      /* カリキュラム一覧 */
+      .curri-grid { display: grid; gap: 14px; }
+      .curri-card {
+        background: #fff;
+        border: 1px solid #e2e8ff;
+        border-radius: var(--radius-lg);
+        padding: 18px;
+        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.1);
+        display: grid;
+        gap: 8px;
+        align-content: start;
+      }
+      .curri-card.soon {
+        background: #f6f4f1;
+        border: 1px dashed #c9c2b8;
+        box-shadow: none;
+      }
+      .curri-icon { font-size: 1.8rem; line-height: 1; }
+      .curri-title { font-weight: 800; font-size: 1.05rem; color: #0f2c59; }
+      .curri-desc { margin: 0; color: var(--subtext); line-height: 1.7; font-size: 0.9rem; }
+      .curri-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+      .curri-badge {
+        font-size: 0.72rem;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(60, 194, 255, 0.16);
+        color: #0f6e9e;
+      }
+      .curri-badge.keizoku { background: rgba(73, 214, 163, 0.18); color: #1d7a55; }
+      .curri-badge.soon { background: rgba(255, 209, 102, 0.3); color: #7a4e00; }
+      .curri-note {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 209, 102, 0.25);
+        color: #7a4e00;
+        font-weight: 700;
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        .curri-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      /* リピート強調バッジ */
+      .tag.tag-strong {
+        background: linear-gradient(180deg, #fff3cf 0%, #ffe9ae 100%);
+        border: 1px solid rgba(212, 160, 23, 0.45);
+        color: #7a4e00;
+      }
+
+      /* お試し価格バッジ */
+      .price-badge {
+        display: inline-block;
+        background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-left: 4px;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
 
       /* 特徴カード */
       .feature-card {
@@ -650,7 +736,14 @@
     <nav class="nav">
       <div class="container nav-inner">
         <span class="nav-logo">ブロマスゲームラボ</span>
-        <!-- ▼ ナビゲーションリンクは追加予定 -->
+        <div class="nav-links">
+          <a href="#curriculum">カリキュラム</a>
+          <a href="#works">作品ギャラリー</a>
+          <a href="#voices">参加者の声</a>
+          <a href="#schedule">日程</a>
+          <a href="#teacher">講師</a>
+          <a href="#faq">FAQ</a>
+        </div>
       </div>
     </nav>
 
@@ -660,6 +753,7 @@
             <div class="tagline">
               <span class="tag">埼玉・南与野 開催</span>
               <span class="tag">対象: 小1〜中3 + 保護者参加OK</span>
+              <span class="tag tag-strong">🔁 参加した3人に1人がリピート</span>
             </div>
           <h1>Roblox×AIで、<br />自分だけのゲームを作ろう！</h1>
           <p>
@@ -813,11 +907,11 @@
                   <img src="assets/roblox.png" alt="Robloxコース" width="256" height="256" loading="lazy" decoding="async" />
                 </picture>
                 <div>
-                  <div class="course-title">Robloxコース（アクション制作）</div>
-                  <div class="course-meta">推奨: 小1以上 / 参加費 1,900円<br /><!-- （友達と一緒に参加で両方300円引き） --></div>
+                  <div class="course-title">Robloxコース（ゲーム制作）</div>
+                  <div class="course-meta">推奨: 小1以上 / 参加費 1,900円 <span class="price-badge">今だけお試し価格</span><br /><!-- （友達と一緒に参加で両方300円引き） --></div>
                 </div>
               </div>
-              <div>自分だけのミニゲームを作って、遊んで、改善まで体験。</div>
+              <div>自分だけのミニゲームを作って、遊んで、改善まで体験。教材（テーマ）は回ごとに変わります（<a href="#curriculum" style="color: #0f6e9e;">カリキュラム一覧</a>）。</div>
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="timeline-time">前半</div>
@@ -841,7 +935,7 @@
                 </picture>
                 <div>
                   <div class="course-title">AIコース（AIでゲーム作り）</div>
-                  <div class="course-meta">文字入力できればOK / 参加費 900円<br /><!-- （友達と一緒に参加で両方300円引き） --></div>
+                  <div class="course-meta">文字入力できればOK / 参加費 900円 <span class="price-badge">今だけお試し価格</span><br /><!-- （友達と一緒に参加で両方300円引き） --></div>
                 </div>
               </div>
               <div>AIに指示を出して、アイデアの芯を素早く形に。</div>
@@ -864,10 +958,64 @@
         </div>
       </section>
 
-      <!-- STEP 2 -->
-      <section class="section">
+      <!-- カリキュラム一覧 -->
+      <section class="section" id="curriculum">
         <div class="container card">
           <div class="step-badge">STEP 2</div>
+          <h2>カリキュラム一覧</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;">体験会・継続プランで取り組める教材のラインナップです。どれも「遊べる形」まで作りきります。</p>
+          <div class="curri-grid">
+            <div class="curri-card">
+              <div class="curri-icon">🏔️</div>
+              <div class="curri-title">アスレチック</div>
+              <p class="curri-desc">地形と仕掛けでゴールを目指す王道</p>
+              <div class="curri-badges">
+                <span class="curri-badge">体験会で選べる</span>
+                <span class="curri-badge keizoku">継続カリキュラムあり</span>
+              </div>
+            </div>
+            <div class="curri-card">
+              <div class="curri-icon">🗺️</div>
+              <div class="curri-title">たからさがし</div>
+              <p class="curri-desc">マップとアイテム配置で「探す楽しさ」を設計</p>
+              <div class="curri-badges">
+                <span class="curri-badge">体験会で選べる</span>
+                <span class="curri-badge keizoku">継続カリキュラムあり</span>
+              </div>
+            </div>
+            <div class="curri-card">
+              <div class="curri-icon">🏁</div>
+              <div class="curri-title">レース</div>
+              <p class="curri-desc">スピード感とコース設計で競争を作る</p>
+              <div class="curri-badges">
+                <span class="curri-badge">体験会で選べる</span>
+              </div>
+            </div>
+            <div class="curri-card">
+              <div class="curri-icon">🎉</div>
+              <div class="curri-title">ミニゲームパーティ</div>
+              <p class="curri-desc">みんなで遊べる小さいゲームを詰め込む</p>
+              <div class="curri-badges">
+                <span class="curri-badge keizoku">継続カリキュラムあり</span>
+              </div>
+            </div>
+            <div class="curri-card soon">
+              <div class="curri-icon">🛍️</div>
+              <div class="curri-title">アバターショップ</div>
+              <p class="curri-desc">着せ替えアイテムとお店を作る</p>
+              <div class="curri-badges">
+                <span class="curri-badge soon">COMING SOON</span>
+              </div>
+            </div>
+          </div>
+          <div class="curri-note">回によってテーマが変わります。2回目以降も新しい教材で参加できます。</div>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="section">
+        <div class="container card">
+          <div class="step-badge">STEP 3</div>
           <h2>続けていく選択肢</h2>
           <p style="color: var(--subtext); margin: 0 0 16px;">体験会後、継続的に取り組みたい方は2つのプランから選べます。途中での切り替えも相談しながら調整できます。</p>
           <div class="grid-2 course-item-grid">
@@ -880,14 +1028,14 @@
               <p>作りたいものが明確なお子さん向けに、完成までのロードマップを作って進めます。詳細は別途ご相談ください。</p>
             </div>
           </div>
-          <div class="notice" style="margin-top: 16px;">
-            現在、アバター制作・ゲーム企画・カードゲームなど複数のカリキュラムを追加準備中です。
+          <div class="info" style="margin-top: 16px;">
+            取り組める教材は<a href="#curriculum" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。
           </div>
         </div>
       </section>
 
       <!-- 参加したご家族の声 -->
-      <section class="section">
+      <section class="section" id="voices">
         <div class="container card">
           <h2>参加したご家族の声</h2>
           <p style="color: var(--subtext); margin: 0 0 16px;">アンケートにいただいた声を、原文のまま掲載しています（氏名は伏せています）。</p>
@@ -924,7 +1072,7 @@
       </section>
 
       <!-- 講師紹介 -->
-      <section class="section">
+      <section class="section" id="teacher">
         <div class="container card teacher">
           <picture>
             <source srcset="assets/classroom.webp" type="image/webp" />
@@ -976,28 +1124,44 @@
       </section>
 
       <!-- よくある質問（ギャラリーの前に移動） -->
-      <section class="section">
+      <section class="section" id="faq">
         <div class="container card">
           <h2>よくある質問</h2>
           <div class="faq">
             <div class="faq-item">
               Q: プログラミング経験がなくても参加できますか？<br />
-              A: まったく経験がなくてもOK。操作方法はその場でサポートします。
+              A: はい、まったく経験がなくても大丈夫です。マウス操作ができると良いですが、その場でも使い方を教えることもできます。
             </div>
             <div class="faq-item">
-              Q: パソコンは持参した方が良いですか？<br />
-              A: 会場に用意があります。持参も可能です。
+              Q: パソコンは持参する必要がありますか？<br />
+              A: 会場でご用意しています。持参しても構いません。
             </div>
             <div class="faq-item">
-              Q: 親も参加できますか？<br />
-              A: 見学可能です。参加も大歓迎です！
+              Q: 親も一緒に参加できますか？<br />
+              A: 大歓迎です。親御様もお申し込みいただいて問題ありません。
+            </div>
+            <div class="faq-item">
+              Q: 作りたいものが思いつかなくても参加できますか？<br />
+              A: はい。決められたテーマに沿って作ることもできます。
+            </div>
+            <div class="faq-item">
+              Q: 2回目の参加でも楽しめますか？<br />
+              A: はい。教材を回ごとに切り替えているので、毎回違うゲーム作りを体験できます。前回の続きを作り込むこともできます。
+            </div>
+            <div class="faq-item">
+              Q: 継続的な教室はありますか？<br />
+              A: あります。日程とカリキュラムを選んで通う「通常プラン」と、作りたいものの完成を目指す「個別プラン」（詳細は別途ご相談ください）があります。体験会と教材が共通なので、続きからスムーズに始められます。詳しくは当日お声がけください。
+            </div>
+            <div class="faq-item">
+              Q: 料金はいくらですか？<br />
+              A: 体験会はRobloxコース 1,900円／AIコース 900円（当日現金払い・今だけのお試し価格）です。継続プラン（通常プラン・個別プラン）の料金は、体験会の際に個別にご案内しています。
             </div>
           </div>
         </div>
       </section>
 
       <!-- 作品ギャラリー（FAQの後に移動） -->
-      <section class="section">
+      <section class="section" id="works">
         <div class="container card">
           <h2>作品ギャラリー</h2>
           <h3 style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ワークショップで生まれた作品（講師コメント付き）</h3>
@@ -1067,7 +1231,7 @@
           <h2>まずは一度、遊びに来てください</h2>
           <p>地域密着の会場で、気軽に参加できます。</p>
           <div class="join-links">
-            <a class="cta" href="https://gameschool.doorkeeper.jp/" target="_blank" rel="noreferrer">参加登録・メールを受け取る</a>
+            <a class="cta" href="https://gameschool.doorkeeper.jp/?utm_source=lp&utm_medium=footer" target="_blank" rel="noreferrer">参加登録・メールを受け取る</a>
           </div>
           <p>最新情報は公式Instagramでチェックしてください。</p>
           <div class="join-links">
