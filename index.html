@@ -37,7 +37,7 @@
             "endDate": "2026-06-26T20:30:00+09:00",
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
-            "url": "https://gameschool.doorkeeper.jp/",
+            "url": "https://gameschool.doorkeeper.jp/events/197148",
             "description": "ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。親子参加歓迎、地域密着の会場で開催。",
             "image": "https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png",
             "location": {
@@ -196,6 +196,20 @@
         white-space: normal;
       }
 
+      .hero-next {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        background: #0f2c59;
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.95rem;
+        padding: 8px 16px;
+        border-radius: 999px;
+        margin-top: 4px;
+      }
+      .hero-next.show { display: inline-flex; }
+
       .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
       .cta {
@@ -328,6 +342,13 @@
         color: #0f2c59;
         white-space: nowrap;
       }
+      .timeline-price {
+        margin-left: 8px;
+        color: var(--subtext);
+        font-size: 0.85rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
 
       /* 日程（details/summary） */
       .event-list { display: grid; gap: 12px; }
@@ -365,6 +386,15 @@
 
       .event-body { padding: 20px; display: grid; gap: 16px; }
 
+      .event-note {
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 209, 102, 0.25);
+        color: #7a4e00;
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
       .event-apply {
         display: inline-flex;
         align-items: center;
@@ -378,6 +408,46 @@
         box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
         width: fit-content;
       }
+
+      /* 実績 */
+      .stats-band { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+      .stat {
+        background: var(--surface);
+        border-radius: var(--radius-md);
+        padding: 18px 12px;
+        text-align: center;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 8px 20px rgba(18, 34, 64, 0.08);
+      }
+      .stat-number { font-size: clamp(1.6rem, 5vw, 2.1rem); font-weight: 800; color: #0f2c59; line-height: 1.2; }
+      .stat-label { color: var(--subtext); font-size: 0.85rem; font-weight: 700; margin-top: 6px; }
+      .stats-note { color: var(--subtext); font-size: 0.8rem; text-align: center; margin: 10px 0 0; }
+
+      /* 参加者の声 */
+      .voice-card {
+        background: #fff;
+        border-radius: var(--radius-md);
+        padding: 16px 18px;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 8px 20px rgba(18, 34, 64, 0.08);
+      }
+      .voice-text { margin: 0 0 8px; font-weight: 700; line-height: 1.7; color: var(--text); }
+      .voice-meta { color: var(--subtext); font-size: 0.85rem; }
+
+      /* 作品ピックアップ */
+      .work-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid #e2e8ff;
+        box-shadow: 0 12px 24px rgba(33, 52, 92, 0.1);
+      }
+      .work-card img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+      .work-body { padding: 14px 16px 16px; display: grid; gap: 6px; }
+      .work-title { font-weight: 800; color: #0f2c59; }
+      .work-meta { color: var(--subtext); font-size: 0.85rem; font-weight: 700; }
+      .work-comment { margin: 0; color: var(--subtext); line-height: 1.7; font-size: 0.9rem; }
+      .work-comment strong { color: #7a4e00; }
 
       /* 比較 */
       .compare { display: grid; gap: 14px; }
@@ -528,12 +598,32 @@
 
       footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
 
+      /* モバイル固定CTA */
+      .fixed-cta {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 -8px 24px rgba(33, 52, 92, 0.15);
+      }
+      .fixed-cta .cta { width: 100%; }
+      @media (max-width: 767px) {
+        .fixed-cta.show { display: block; }
+        body.has-fixed-cta { padding-bottom: 84px; }
+      }
+
       @media (min-width: 768px) {
         .hero-inner { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 36px; }
         .split { grid-template-columns: 1fr 1fr; align-items: start; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
         .game-grid { grid-template-columns: repeat(2, 1fr); align-items: start; }
+        .stats-band { grid-template-columns: repeat(4, 1fr); }
         .teacher { grid-template-columns: 0.8fr 1.2fr; }
         .compare { grid-template-columns: repeat(2, 1fr); }
         .course-item-grid { grid-template-columns: repeat(2, 1fr); }
@@ -577,6 +667,7 @@
             いつものRobloxを、君だけのゲーム制作の時間に。<br />
             AIで「どうすれば面白くなるか？」を体で学ぶゲームクリエイター教室です。
           </p>
+          <div class="hero-next" id="hero-next"></div>
           <div class="cta-row">
             <a class="cta" href="#schedule">日程を確認する</a>
             <a class="cta outline" href="#join">すぐに参加はできないが興味はある</a>
@@ -610,6 +701,31 @@
     </header>
 
     <main>
+
+      <!-- 開催実績 -->
+      <section class="section" style="padding-top: 8px;">
+        <div class="container">
+          <div class="stats-band">
+            <div class="stat">
+              <div class="stat-number">7回</div>
+              <div class="stat-label">開催実績（第8回受付中）</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">80名超</div>
+              <div class="stat-label">延べ参加した親子の数</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">3人に1人</div>
+              <div class="stat-label">がリピート参加</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">9割</div>
+              <div class="stat-label">が「楽しかった」と回答</div>
+            </div>
+          </div>
+          <p class="stats-note">※第1〜7回の参加記録・アンケート集計より</p>
+        </div>
+      </section>
 
       <!-- ゲーム制作に特化した教室です -->
       <section class="section">
@@ -770,6 +886,32 @@
         </div>
       </section>
 
+      <!-- 参加したご家族の声 -->
+      <section class="section">
+        <div class="container card">
+          <h2>参加したご家族の声</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;">アンケートにいただいた声を、原文のまま掲載しています（氏名は伏せています）。</p>
+          <div class="grid-2">
+            <div class="voice-card">
+              <p class="voice-text">「家とちがい話しをちゃんと聞けていた」</p>
+              <div class="voice-meta">保護者アンケートより</div>
+            </div>
+            <div class="voice-card">
+              <p class="voice-text">「没頭していた」「夢中になっていた」「集中してやっているすがたが見えた」</p>
+              <div class="voice-meta">保護者アンケートより（複数回答）</div>
+            </div>
+            <div class="voice-card">
+              <p class="voice-text">「参加したいです。プログラムをもっと理解したいです」</p>
+              <div class="voice-meta">参加者アンケートより（中学生）</div>
+            </div>
+            <div class="voice-card">
+              <p class="voice-text">「みんなのロブロックスをやったこと」</p>
+              <div class="voice-meta">参加者アンケートより（小2・一番楽しかったこと）</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 開催日程 -->
       <section class="section" id="schedule">
         <div class="container card">
@@ -858,6 +1000,54 @@
       <section class="section">
         <div class="container card">
           <h2>作品ギャラリー</h2>
+          <h3 style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ワークショップで生まれた作品（講師コメント付き）</h3>
+          <div class="grid-2" style="margin-bottom: 24px;">
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/cheetah.webp" type="image/webp" />
+                <img src="assets/works/cheetah.jpg" alt="チーターマンの28M競歩のプレイ画面" width="720" height="369" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">チーターマンの28M競歩</div>
+                <div class="work-meta">小学2年生・AIコース（初参加）</div>
+                <p class="work-comment"><strong>講師コメント:</strong> 「歩く」から連想したチーターが、つまずきながら競走するギャップが面白い。初参加でナイスアイデアです！</p>
+              </div>
+            </div>
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/horror-obby.webp" type="image/webp" />
+                <img src="assets/works/horror-obby.jpg" alt="ホラーオービーのプレイ画面" width="720" height="400" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">ホラーオービー</div>
+                <div class="work-meta">小学生・Robloxコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> お題のアスレチックをホラーの世界観でしっかり形に。NPCに触れたら即死など、ドキッとするギミックの配置が光ります。</p>
+              </div>
+            </div>
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/colorful-obby.webp" type="image/webp" />
+                <img src="assets/works/colorful-obby.jpg" alt="カラフルなアスレチックゲームのプレイ画面" width="720" height="405" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">カラフルなアスレチック</div>
+                <div class="work-meta">小学生・Robloxコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> 向きの調整が難しい回転階段を丁寧に配置。ランダムで切り替わる床など、定番ギミックを使いこなしています。</p>
+              </div>
+            </div>
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/zombie-world.webp" type="image/webp" />
+                <img src="assets/works/zombie-world.jpg" alt="ゾンビが襲撃してくるワールドのプレイ画面" width="720" height="406" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">ゾンビが襲撃してくるワールド</div>
+                <div class="work-meta">小学生・Robloxコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> 飛行機や滑走路まで設置したダイナミックな作品。オブジェクトをたくさん配置できていて、基本操作に慣れてきていますね。</p>
+              </div>
+            </div>
+          </div>
+          <h3 style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ブラウザでそのまま遊べる作品</h3>
           <div class="game-grid">
             <div class="game-card">
               <div class="game-title">小学3年生の作品: ねこレストラン物語</div>
@@ -906,6 +1096,10 @@
 
     <footer>© ブロマスゲームラボ</footer>
 
+    <div class="fixed-cta" id="fixed-cta">
+      <a class="cta" id="fixed-cta-link" href="#schedule">日程・申し込みを見る</a>
+    </div>
+
     <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
     <script src="events/2026-06-26.js"></script>
 
@@ -921,11 +1115,13 @@
         var today = new Date();
         today.setHours(0, 0, 0, 0);
         var openIndex = -1;
+        var nextEvent = null;
 
         for (var j = 0; j < events.length; j++) {
           var d = new Date(events[j].id + "T00:00:00+09:00");
           if (!isNaN(d.getTime()) && d >= today) {
             openIndex = j;
+            nextEvent = events[j];
             break;
           }
         }
@@ -937,13 +1133,15 @@
           var locationText = (ev.location || "").trim();
           var areaText = (ev.area || "").trim();
           var timetableRows = ev.timetable.map(function (t) {
+            var price = t.price ? '<span class="timeline-price">' + t.price + "</span>" : "";
             return (
               '<div class="timeline-item">' +
                 '<div class="timeline-time">' + t.time + "</div>" +
-                "<div>" + t.label + "</div>" +
+                "<div>" + t.label + price + "</div>" +
               "</div>"
             );
           }).join("");
+          var noteBlock = ev.note ? '<div class="event-note">' + ev.note + "</div>" : "";
 
           return (
             '<details class="event-detail"' + (i === openIndex ? " open" : "") + ">" +
@@ -963,11 +1161,34 @@
                   '<h3 style="margin: 0 0 10px; font-size: 1rem; font-weight: 800; color: #0f2c59;">タイムテーブル</h3>' +
                   '<div class="timeline">' + timetableRows + "</div>" +
                 "</div>" +
+                noteBlock +
                 '<a class="event-apply" href="' + ev.doorkeeperUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>' +
               "</div>" +
             "</details>"
           );
         }).join("");
+
+        if (nextEvent) {
+          var heroNext = document.getElementById("hero-next");
+          if (heroNext) {
+            heroNext.textContent = "次回開催: " + nextEvent.date + "｜" + nextEvent.area;
+            heroNext.classList.add("show");
+          }
+
+          var fixedCta = document.getElementById("fixed-cta");
+          var fixedCtaLink = document.getElementById("fixed-cta-link");
+          if (fixedCta && fixedCtaLink) {
+            var md = nextEvent.id.split("-");
+            var dayMatch = nextEvent.date.match(/（(.+?)）/);
+            var shortDate = parseInt(md[1], 10) + "/" + parseInt(md[2], 10) + (dayMatch ? "（" + dayMatch[1] + "）" : "");
+            fixedCtaLink.textContent = shortDate + " 体験会に申し込む";
+            fixedCtaLink.href = nextEvent.doorkeeperUrl;
+            fixedCtaLink.target = "_blank";
+            fixedCtaLink.rel = "noreferrer";
+            fixedCta.classList.add("show");
+            document.body.classList.add("has-fixed-cta");
+          }
+        }
       })();
     </script>
   </body>
