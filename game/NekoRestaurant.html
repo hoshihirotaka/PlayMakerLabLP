@@ -370,18 +370,11 @@
   <audio id="bgm" loop preload="none" hidden></audio>
   
   <!-- Import Maps -->
-  <script async src="lib/es-module-shims.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "./lib/three.module.js"
-      }
-    }
-  </script>
+  <!-- file://直接開きでも動くよう、ESモジュールではなくIIFEバンドルを使用（TwinBlockのPhaser同梱と同方式） -->
+  <script src="lib/three.min.js"></script>
 
   <script type="module">
-    import * as THREE from 'three';
-    
+
     // --- Constants ---
     const COLORS = {
       bg: 0xFFF0F5,
