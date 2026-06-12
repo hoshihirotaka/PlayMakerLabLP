@@ -27,6 +27,8 @@
 ## 今後の展望
 定期的なワークショップやゲーム開発教室の開催を通じて、2027年には本格的なゲーム開発教室の運営を目指しています。子どもたちがただゲームを消費するだけでなく、自ら創り出し、世界に発信できるクリエイターへと成長する場を提供していきたいと考えています。
 
+教室の詳しい紹介・カリキュラム・作品ギャラリーは[公式サイト](https://hoshihirotaka.github.io/PlayMakerLabLP/?utm_source=doorkeeper&utm_medium=community)へ
+
 # お問い合わせ先
 メール：hitta.games@gmail.com
 
@@ -35,7 +37,7 @@
 ゲーム企画職全般。ゲーム業界歴20年近く。  
 コンソールからスマホゲームの開発と運営に携わる。  
 フリーランスとして活動中。  
-現在は子供向けのプログラミング教室も運営。  
+現在は子供向けのゲームクリエイター教室を運営。  
 活動報告などnoteにまとめています。[noteはこちら](https://note.com/shgame/magazines)
 
 <img src="https://gameschool.doorkeeper.jp/files/80b2a904f22fc8a6a81e4f9c3c351165f8367b85/%E3%83%95%E3%82%9A%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F.png" width="50%">
