@@ -87,13 +87,15 @@ events/
   location: "会場名",
   area: "エリア名",
   address: "〒XXX-XXXX 住所",
+  access: "最寄駅: XX駅（徒歩X分）",
   target: "小学1年生〜中学3年生（保護者参加OK）",
-  capacity: "Roblox X名 / AI X名（予約優先）",
+  capacity: "Robloxコース X名 / AIコース X名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/XXXXXX",
+  note: "※注意事項があれば記載（省略可。開催日程の申込ボタン上に表示される）",
   timetable: [
-    { time: "HH:MM-HH:MM", label: "Roblox" },
-    { time: "HH:MM-HH:MM", label: "AI" }
+    { time: "HH:MM-HH:MM", label: "Robloxコース", price: "X,XXX円" },
+    { time: "HH:MM-HH:MM", label: "AIコース", price: "XXX円" }
   ]
 });
 ```

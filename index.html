@@ -813,7 +813,7 @@
                   <img src="assets/roblox.png" alt="Robloxコース" width="256" height="256" loading="lazy" decoding="async" />
                 </picture>
                 <div>
-                  <div class="course-title">Robloxアクション制作</div>
+                  <div class="course-title">Robloxコース（アクション制作）</div>
                   <div class="course-meta">推奨: 小1以上 / 参加費 1,900円<br /><!-- （友達と一緒に参加で両方300円引き） --></div>
                 </div>
               </div>
@@ -840,7 +840,7 @@
                   <img src="assets/ai.png" alt="AIコース" width="256" height="256" loading="lazy" decoding="async" />
                 </picture>
                 <div>
-                  <div class="course-title">AIゲームワークショップ</div>
+                  <div class="course-title">AIコース（AIでゲーム作り）</div>
                   <div class="course-meta">文字入力できればOK / 参加費 900円<br /><!-- （友達と一緒に参加で両方300円引き） --></div>
                 </div>
               </div>
@@ -869,14 +869,14 @@
         <div class="container card">
           <div class="step-badge">STEP 2</div>
           <h2>続けていく選択肢</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;">体験会後、継続的に取り組みたい方は2つのコースから選べます。途中での切り替えも相談しながら調整できます。</p>
+          <p style="color: var(--subtext); margin: 0 0 16px;">体験会後、継続的に取り組みたい方は2つのプランから選べます。途中での切り替えも相談しながら調整できます。</p>
           <div class="grid-2 course-item-grid">
             <div class="course-item">
-              <div class="course-item-title">通常コース（カリキュラム選択型）</div>
+              <div class="course-item-title">通常プラン（カリキュラム選択型）</div>
               <p>各イベントから日程とコースを選び、お子さんが「やってみたい」カリキュラムを選んで進めます。</p>
             </div>
             <div class="course-item">
-              <div class="course-item-title">個別トレーニングコース（ロードマップ型）</div>
+              <div class="course-item-title">個別プラン（ロードマップ型）</div>
               <p>作りたいものが明確なお子さん向けに、完成までのロードマップを作って進めます。詳細は別途ご相談ください。</p>
             </div>
           </div>
@@ -1152,7 +1152,7 @@
               '<div class="event-body">' +
                 '<div class="grid-2">' +
                   '<div class="info"><strong>日時</strong>' + ev.datetime + "</div>" +
-                  '<div class="info"><strong>場所</strong>' + ev.location + "<br />" + ev.address + "</div>" +
+                  '<div class="info"><strong>場所</strong>' + ev.location + "<br />" + ev.address + (ev.access ? "<br />" + ev.access : "") + "</div>" +
                   '<div class="info"><strong>対象</strong>' + ev.target + "</div>" +
                   '<div class="info"><strong>定員</strong>' + ev.capacity + "</div>" +
                   '<div class="info"><strong>持ち物</strong>' + ev.equipment + "</div>" +
