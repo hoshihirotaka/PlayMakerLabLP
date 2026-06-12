@@ -735,7 +735,7 @@
 
     <nav class="nav">
       <div class="container nav-inner">
-        <span class="nav-logo">ブロマスゲームラボ</span>
+        <a class="nav-logo" href="#" aria-label="ページの先頭に戻る">ブロマスゲームラボ</a>
         <div class="nav-links">
           <a href="#curriculum">カリキュラム</a>
           <a href="#works">作品ギャラリー</a>
@@ -1297,7 +1297,7 @@
           var locationText = (ev.location || "").trim();
           var areaText = (ev.area || "").trim();
           var timetableRows = ev.timetable.map(function (t) {
-            var price = t.price ? '<span class="timeline-price">' + t.price + "</span>" : "";
+            var price = t.price ? '<span class="timeline-price">' + t.price + '</span><span class="price-badge">今だけお試し価格</span>' : "";
             return (
               '<div class="timeline-item">' +
                 '<div class="timeline-time">' + t.time + "</div>" +

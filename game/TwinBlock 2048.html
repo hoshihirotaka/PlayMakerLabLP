@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <script src="lib/phaser.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -87,7 +87,7 @@
         const gameHeight = Math.min(800, window.innerHeight);
 
         const config = {
-            type: Phaser.AUTO,
+            type: Phaser.CANVAS,
             width: gameWidth,
             height: gameHeight,
             parent: 'game-container',
