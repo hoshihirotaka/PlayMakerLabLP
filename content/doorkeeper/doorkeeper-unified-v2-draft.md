@@ -81,12 +81,10 @@
 - 定員: Roblox 6名 / AI 4名（予約優先）
 - 持ち物: パソコン持参大歓迎（会場でも用意あり）
 
-活動報告などnoteにまとめています。
-https://note.com/shgame/magazines
-
-教室の詳しい紹介・作品ギャラリーは[公式サイト](https://hoshihirotaka.github.io/PlayMakerLabLP/?utm_source=doorkeeper&utm_medium=event)へ
-
-教室の今後の日程や風景を確認したいときは[公式インスタ](https://www.instagram.com/block.master.game.lab/)へ
+## 🎨 その他
+- 詳しい紹介・作品ギャラリーは[公式サイト](https://hoshihirotaka.github.io/PlayMakerLabLP/?utm_source=doorkeeper&utm_medium=event)へ
+- 今後の日程や風景を確認したいときは[公式インスタ](https://www.instagram.com/block.master.game.lab/)へ
+- 活動報告は[note](https://note.com/shgame/magazines)へ
 
 ## 👨‍👩‍👧 家族参加
 親御さんもご一緒に。ご家族でのゲーム開発を応援します。
