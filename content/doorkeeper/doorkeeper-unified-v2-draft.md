@@ -84,7 +84,7 @@
 ## 🎨 その他
 - 詳しい紹介・作品ギャラリーは[公式サイト](https://hoshihirotaka.github.io/PlayMakerLabLP/?utm_source=doorkeeper&utm_medium=event)へ
 - 今後の日程や風景を確認したいときは[公式インスタ](https://www.instagram.com/block.master.game.lab/)へ
-- 活動報告は[note](https://note.com/shgame/magazines)へ
+- 活動報告は[note](https://note.com/shgame/m/m2f1705076900)へ
 
 ## 👨‍👩‍👧 家族参加
 親御さんもご一緒に。ご家族でのゲーム開発を応援します。
