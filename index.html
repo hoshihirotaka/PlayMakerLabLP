@@ -409,6 +409,13 @@
         width: fit-content;
       }
 
+      .event-apply--soon {
+        background: #999;
+        box-shadow: 0 8px 0 rgba(80, 80, 80, 0.6);
+        cursor: default;
+        pointer-events: none;
+      }
+
       /* 実績 */
       .stats-band { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
       .stat {
@@ -1274,6 +1281,9 @@
 
     <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
     <script src="events/2026-06-26.js"></script>
+    <script src="events/2026-07-05.js"></script>
+    <script src="events/2026-07-18.js"></script>
+    <script src="events/2026-07-31.js"></script>
 
     <script>
       (function () {
@@ -1334,7 +1344,9 @@
                   '<div class="timeline">' + timetableRows + "</div>" +
                 "</div>" +
                 noteBlock +
-                '<a class="event-apply" href="' + ev.doorkeeperUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>' +
+                (ev.comingSoon
+                  ? '<span class="event-apply event-apply--soon">申込受付準備中</span>'
+                  : '<a class="event-apply" href="' + ev.doorkeeperUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>') +
               "</div>" +
             "</details>"
           );
