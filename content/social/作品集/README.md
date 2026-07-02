@@ -62,3 +62,4 @@ instagram-works-YYYY-MM-DD.md  ← 制作日（作品情報のスライドに記
 |----------|----------|--------|--------|
 | instagram-works-2026-04-22.md | THE HUGGING DREAM | DreamCore | 2026-04-22 |
 | instagram-works-2026-06-03.md | タイトルがないゲーム | RobloxStudio | 2026-06-03 |
+| instagram-works-2026-07-02.md | チーターマンの28m競歩 | DreamCore | 2026-07-02 |
