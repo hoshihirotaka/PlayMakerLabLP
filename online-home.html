@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>オンライン・自宅で通う | ブロマスゲームラボ</title>
+    <meta name="description" content="ブロマスゲームラボのオンライン・自宅レッスン。トレーナー紹介と、オンライン／自宅それぞれの前提条件・料金体系・スケジュール・ご予約カレンダー。" />
+    <meta name="robots" content="noindex,follow" />
+
+    <!-- Google tag (gtag.js) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B";
+        document.head.appendChild(script);
+        gtag("js", new Date());
+        gtag("config", "G-E9YKGSCX5B");
+      });
+    </script>
+    <!-- Google tag (gtag.js) - Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-977501883"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-977501883');
+    </script>
+
+    <style>
+      :root {
+        --bg: #f7f5f0;
+        --surface: #ffffff;
+        --surface-soft: #f6f1ff;
+        --text: #1a2333;
+        --subtext: #495972;
+        --accent: #ff6b6b;
+        --accent-2: #3cc2ff;
+        --shadow: 0 20px 40px rgba(33, 52, 92, 0.12);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.7;
+      }
+      [id] { scroll-margin-top: 20px; }
+      .container { width: min(760px, 92%); margin: 0 auto; }
+      header { padding: 18px 0; }
+      header a {
+        color: #0f2c59;
+        font-weight: 800;
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      main { padding: 20px 0 60px; }
+      .card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        padding: 28px 24px;
+        margin-bottom: 20px;
+      }
+      h1 { font-size: 1.5rem; margin: 0 0 10px; color: #0f2c59; }
+      h2 { font-size: 1.2rem; margin: 0 0 12px; color: #0f2c59; }
+      h3 { font-size: 1.05rem; margin: 24px 0 10px; color: #0f2c59; }
+      .info { background: var(--surface-soft); padding: 16px; border-radius: var(--radius-md); margin-bottom: 18px; }
+      .info strong { display: block; margin-bottom: 6px; }
+      ul { margin: 8px 0 0; padding-left: 20px; }
+      li { margin-bottom: 4px; }
+      .timerex-embed { border-radius: var(--radius-md); overflow: hidden; background: var(--surface-soft); }
+      .timerex-embed iframe { display: block; }
+      footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
+
+      /* トレーナー紹介（将来の複数人対応を見込んだ構造） */
+      .trainer-grid { display: grid; gap: 16px; }
+      .trainer-card { display: grid; gap: 8px; }
+      .trainer-name { font-weight: 800; font-size: 1.1rem; color: #0f2c59; }
+      .trainer-bio { margin: 0; color: var(--subtext); }
+
+      /* ご利用の流れ */
+      .flow-list { display: grid; gap: 4px; }
+      .flow-step { background: var(--surface-soft); padding: 14px 18px; border-radius: var(--radius-md); }
+      .flow-title { font-weight: 800; color: #0f2c59; }
+      .flow-step p { margin: 6px 0 0; color: var(--subtext); }
+      .flow-step ul { margin: 6px 0 0; padding-left: 20px; color: var(--subtext); }
+      .flow-step a { color: #0f6e9e; }
+      .flow-arrow { text-align: center; color: var(--subtext); font-size: 1.1rem; margin: 2px 0; }
+
+      /* オンライン・自宅の選択ボタン */
+      .choice-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
+      .choice-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 800;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
+        box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
+      }
+      .choice-link.home {
+        background: linear-gradient(180deg, #2dd6ff 0%, #1aa7d6 100%);
+        box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="index.html">← ブロマスゲームラボ トップに戻る</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+
+        <!-- トレーナー紹介（今回は1名分。今後トレーナーが増える場合は .trainer-card を追加していく） -->
+        <div class="card">
+          <h1>トレーナー紹介</h1>
+          <div class="trainer-grid">
+            <div class="trainer-card">
+              <div class="trainer-name">星 弘高（ひった）</div>
+              <p class="trainer-bio">
+                ゲーム業界20年以上のキャリア（コンシューマー→ソーシャルゲーム→ハイパーカジュアル・企業案件）を経験。<br />
+                現在はRobloxでのUGC開発とAI活用を通じた教育事業を運営しています。<br />
+                「面白さの設計（ゲームデザイン）」を軸に、専門領域は業界クリエイターと連携しながら進めます。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 共通のご案内 -->
+        <div class="card">
+          <h2>共通のご案内</h2>
+
+          <div class="info">
+            <strong>ご予約前に必ずご確認ください</strong>
+            <ul>
+              <li>PCをお持ちの方のみご予約いただけます</li>
+              <li>必要な機材のインストール・立ち上げは事前にお願いします</li>
+              <li>小学生の方は保護者の同席をお願いします</li>
+              <li>対象は小学3年生以上です。3年生未満の方は、まず路地裏でのリアルイベントにご参加いただき、習熟度を確認させてください</li>
+            </ul>
+          </div>
+
+          <div class="info">
+            <strong>料金体系</strong>
+            <ul>
+              <li>通常プラン: 3,000〜4,000円（1回）</li>
+              <li>個別プラン: 通常＋2,000円（1回）※オリジナル企画・ロードマップ設計・都度の調査対応込み</li>
+              <li>複数回契約時の割引: 現在検討中</li>
+              <li>リリース後の伴走オプション: 別途相談（金額未定）</li>
+            </ul>
+          </div>
+
+          <div class="info" style="margin-bottom: 0;">
+            <strong>スケジュール</strong>
+            平日: 17:00〜18:00 / 18:30〜19:30（前後30分バッファあり）<br />
+            土日: 11:00〜17:00の間で同様の枠をご用意しています
+          </div>
+        </div>
+
+        <!-- ご利用の流れ -->
+        <div class="card">
+          <h2>ご利用の流れ</h2>
+          <div class="flow-list">
+            <div class="flow-step">
+              <div class="flow-title">① まずは無料相談（オンライン）</div>
+              <p><a href="consultation.html">無料相談</a>で、機材の確認・カリキュラムの決定・決済方法・次の日程を決めていきます。</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-title">② プランを選択</div>
+              <ul>
+                <li>通常プラン（路地裏などの既存イベントに参加）</li>
+                <li>個別プラン（内容をご相談の上、決定）※その場で内容が決まらない場合は、別日程で改めて相談できます</li>
+              </ul>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-title">③ 開催形式を選択</div>
+              <p>オンライン・自宅・リアルイベント参加の3つから選べます。リアルイベント参加は不慣れな方向けですが、日程が合わない方はご相談ください。</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-title">④ 当日、通常通りレッスンを実施</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 選択導線 -->
+        <div class="card" style="text-align: center;">
+          <h2>ご希望のスタイルをお選びください</h2>
+          <div class="choice-row">
+            <a class="choice-link" href="#online">💻 オンラインを選ぶ</a>
+            <a class="choice-link home" href="#home">🏠 自宅を選ぶ</a>
+          </div>
+        </div>
+
+        <!-- オンライン -->
+        <section id="online" class="card">
+          <h2>💻 オンライン</h2>
+          <p>Web会議で実施します。教材は画面共有・ファイル共有で対応します。</p>
+
+          <h3>ご希望の日時をお選びください</h3>
+          <div class="timerex-embed">
+            <iframe src="https://timerex.net/s/hitta.games_7713/39efda12/embed" style="width:100%; min-height:700px; border:0;" loading="lazy" title="オンラインプラン予約カレンダー"></iframe>
+          </div>
+        </section>
+
+        <!-- 自宅 -->
+        <section id="home" class="card">
+          <h2>🏠 自宅</h2>
+          <p>ひったさんのご自宅で対面実施します。住所は非公開で、予約確定後にLINEで個別にご案内します。</p>
+
+          <h3>ご希望の日時をお選びください</h3>
+          <div class="timerex-embed">
+            <iframe src="https://timerex.net/s/hitta.games_7713/7b486fd5/embed" style="width:100%; min-height:700px; border:0;" loading="lazy" title="自宅プラン予約カレンダー"></iframe>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer>© ブロマスゲームラボ</footer>
+  </body>
+</html>

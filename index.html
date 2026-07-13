@@ -225,6 +225,18 @@
         border: 2px solid rgba(42, 60, 86, 0.25);
         box-shadow: none;
       }
+      .cta.disabled {
+        opacity: 0.5;
+        cursor: default;
+        pointer-events: none;
+        box-shadow: none;
+      }
+      .cta .cta-soon {
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-left: 6px;
+        opacity: 0.85;
+      }
 
       .hero-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
 
@@ -606,8 +618,40 @@
         background: rgba(60, 194, 255, 0.16);
         color: #0f6e9e;
       }
-      .curri-badge.chukyu { background: rgba(73, 214, 163, 0.18); color: #1d7a55; }
+      .curri-badge.tag-taiken { background: rgba(60, 194, 255, 0.16); color: #0f6e9e; }
+      .curri-badge.tag-program { background: rgba(73, 214, 163, 0.18); color: #1d7a55; }
+      .curri-badge.tag-creative { background: rgba(178, 138, 255, 0.2); color: #6b3fb0; }
+      .curri-badge.subject { background: rgba(15, 44, 89, 0.1); color: #0f2c59; }
       .curri-badge.soon { background: rgba(255, 209, 102, 0.3); color: #7a4e00; }
+      .curri-sessions { font-size: 0.8rem; color: var(--subtext); font-weight: 700; }
+      .curri-detail { margin-top: 2px; }
+      .curri-detail summary {
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #0f6e9e;
+        list-style: none;
+      }
+      .curri-detail summary::-webkit-details-marker { display: none; }
+      .curri-detail summary::before { content: "詳しく見る ＋"; }
+      .curri-detail[open] summary::before { content: "とじる －"; }
+      .curri-detail p { margin: 8px 0 0; color: var(--subtext); line-height: 1.7; font-size: 0.88rem; }
+      .curri-loading { color: var(--subtext); grid-column: 1 / -1; }
+
+      /* カリキュラム 科目タブ */
+      .curri-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+      .curri-tab {
+        border: 1px solid #d6def5;
+        background: #fff;
+        color: #2a3c56;
+        font-weight: 800;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .curri-tab.is-active { background: #0f2c59; color: #fff; border-color: #0f2c59; }
+
       .curri-note {
         margin-top: 14px;
         padding: 12px 14px;
@@ -757,7 +801,7 @@
       <div class="container hero-inner">
           <div>
             <div class="tagline">
-              <span class="tag">埼玉・南与野 開催</span>
+              <span class="tag">埼玉（南与野・浦和）開催</span>
               <span class="tag">対象: 小1〜中3 + 保護者参加OK</span>
               <span class="tag tag-strong">🔁 参加した3人に1人がリピート</span>
             </div>
@@ -795,7 +839,7 @@
               </picture>
             </div>
           </div>
-          <div class="hero-note">小3がAIと企画会議を始める時代。最短ルートで「作る側」へ。</div>
+          <div class="hero-note">AIとRobloxで、「作る側」になるハードルは子ども世代まで下がりました。大人になるまで待つ理由はありません。</div>
         </div>
       </div>
     </header>
@@ -837,7 +881,6 @@
             <div class="chips" style="justify-content: center; margin-top: 14px;">
               <span class="chip">目的主導型: 作りたいから学ぶ</span>
               <span class="chip">AIや大人の協力で時間を解放する</span>
-              <span class="chip">体験→発表で定着</span>
             </div>
           </div>
           <div class="grid-3">
@@ -969,52 +1012,16 @@
         <div class="container card">
           <div class="step-badge">STEP 2</div>
           <h2>カリキュラム一覧</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;">どれも「遊べる形」まで作りきります。初級はプログラミングなしで初めて体験したい方におすすめ、中級はプログラミングありで基礎操作に慣れた方・学習経験者向けです。</p>
-          <div class="curri-grid">
-            <div class="curri-card">
-              <div class="curri-icon">🏔️</div>
-              <div class="curri-title">アスレチック</div>
-              <p class="curri-desc">地形と仕掛けでゴールを目指す王道</p>
-              <div class="curri-badges">
-                <span class="curri-badge">初級</span>
-                <span class="curri-badge chukyu">中級</span>
-              </div>
-            </div>
-            <div class="curri-card">
-              <div class="curri-icon">🗺️</div>
-              <div class="curri-title">たからさがし</div>
-              <p class="curri-desc">マップとアイテム配置で「探す楽しさ」を設計</p>
-              <div class="curri-badges">
-                <span class="curri-badge">初級</span>
-                <span class="curri-badge chukyu">中級</span>
-              </div>
-            </div>
-            <div class="curri-card">
-              <div class="curri-icon">🏁</div>
-              <div class="curri-title">レース</div>
-              <p class="curri-desc">スピード感とコース設計で競争を作る</p>
-              <div class="curri-badges">
-                <span class="curri-badge">初級</span>
-              </div>
-            </div>
-            <div class="curri-card">
-              <div class="curri-icon">🎉</div>
-              <div class="curri-title">ミニゲームパーティ</div>
-              <p class="curri-desc">みんなで遊べる小さいゲームを詰め込む</p>
-              <div class="curri-badges">
-                <span class="curri-badge chukyu">中級</span>
-              </div>
-            </div>
-            <div class="curri-card soon">
-              <div class="curri-icon">🛍️</div>
-              <div class="curri-title">アバターショップ</div>
-              <p class="curri-desc">着せ替えアイテムとお店を作る</p>
-              <div class="curri-badges">
-                <span class="curri-badge soon">COMING SOON</span>
-              </div>
-            </div>
+          <p style="color: var(--subtext); margin: 0 0 16px;"><strong>体験用</strong>はプログラミングなしで初めての方向け、<strong>プログラミング</strong>は仕組みや動きをコードで作る教材、<strong>クリエイティブ</strong>はデザインや演出など「表現」を楽しむ教材です。</p>
+          <div class="curri-tabs" id="curriTabs">
+            <button class="curri-tab is-active" type="button" data-filter="all">すべて</button>
+            <button class="curri-tab" type="button" data-filter="Roblox">Robloxコース</button>
+            <button class="curri-tab" type="button" data-filter="AI">AIコース</button>
           </div>
-          <div class="curri-note">回によって初級のテーマが変わります。2回目以降も新しい教材で参加できます。</div>
+          <div class="curri-grid" id="curriGrid">
+            <p class="curri-loading">カリキュラムを読み込み中…</p>
+          </div>
+          <div class="curri-note">体験会（体験用の教材）は回によってテーマが変わります。2回目以降も新しい教材で参加できます。</div>
         </div>
       </section>
 
@@ -1026,12 +1033,12 @@
           <p style="color: var(--subtext); margin: 0 0 16px;">体験会後、継続的に取り組みたい方は2つのプランから選べます。途中での切り替えも相談しながら調整できます。</p>
           <div class="grid-2 course-item-grid">
             <div class="course-item">
-              <div class="course-item-title">通常プラン（カリキュラム選択型）</div>
-              <p>各イベントから日程とコースを選び、お子さんが「やってみたい」カリキュラムを選んで進めます。</p>
+              <div class="course-item-title">通常プラン（グループ学習・制作）</div>
+              <p>みんなで一緒に学び・制作するスタイルです。イベントページから日程とコースを選んでお申し込みください。</p>
             </div>
             <div class="course-item">
-              <div class="course-item-title">個別プラン（ロードマップ型）</div>
-              <p>作りたいものが明確なお子さん向けに、完成までのロードマップを作って進めます。詳細は別途ご相談ください。</p>
+              <div class="course-item-title">個別プラン（個別学習・制作）</div>
+              <p>お子さんに合わせて個別に学び・制作するスタイルです。担当講師から専用ページをご案内し、日程などを選んでいただきます。（現在準備中）</p>
             </div>
           </div>
           <div class="info" style="margin-top: 16px;">
@@ -1112,6 +1119,11 @@
               <span class="chip">現役クリエイター2名がサポート</span>
               <span class="chip">初心者OK</span>
               <span class="chip">親子参加OK</span>
+            </div>
+            <div class="cta-row">
+              <span class="cta outline disabled" aria-disabled="true">💬 無料相談<span class="cta-soon">準備中</span></span>
+              <span class="cta outline disabled" aria-disabled="true">💻 オンライン<span class="cta-soon">準備中</span></span>
+              <span class="cta outline disabled" aria-disabled="true">🏠 自宅<span class="cta-soon">準備中</span></span>
             </div>
           </div>
         </div>
@@ -1273,6 +1285,7 @@
     <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
     <script src="events/2026-07-18.js"></script>
     <script src="events/2026-07-31.js"></script>
+    <script src="reference/curriculum.js"></script>
 
     <script>
       (function () {
@@ -1361,6 +1374,107 @@
             fixedCta.classList.add("show");
             document.body.classList.add("has-fixed-cta");
           }
+        }
+      })();
+    </script>
+
+    <!-- カリキュラム一覧の描画 -->
+    <script>
+      (function () {
+        var grid = document.getElementById("curriGrid");
+        var tabs = document.getElementById("curriTabs");
+        if (!grid || !tabs) return;
+
+        var TAG_CLASS = {
+          "体験用": "tag-taiken",
+          "プログラミング": "tag-program",
+          "クリエイティブ": "tag-creative"
+        };
+        var materials = [];
+        var currentFilter = "all";
+
+        function esc(s) {
+          return String(s == null ? "" : s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        }
+
+        function sessionsText(v) {
+          if (typeof v === "number") return "📚 全" + v + "回";
+          if (v == null || v === "") return "";
+          if (v === "未定") return "📚 コマ数未定";
+          return "📚 " + v;
+        }
+
+        function cardHtml(m) {
+          var badges = '<span class="curri-badge subject">' + esc(m.subject) + "コース</span>";
+          (m.tags || []).forEach(function (t) {
+            badges += '<span class="curri-badge ' + (TAG_CLASS[t] || "") + '">' + esc(t) + "</span>";
+          });
+          if (m.status === "coming_soon") {
+            badges += '<span class="curri-badge soon">準備中</span>';
+          }
+          var sess = sessionsText(m.sessions);
+          var sessHtml = sess ? '<div class="curri-sessions">' + esc(sess) + "</div>" : "";
+          var detailHtml = m.detail
+            ? '<details class="curri-detail"><summary></summary><p>' + esc(m.detail) + "</p></details>"
+            : "";
+          var icon = m.icon ? '<div class="curri-icon">' + esc(m.icon) + "</div>" : "";
+          return (
+            '<div class="curri-card' + (m.status === "coming_soon" ? " soon" : "") + '">' +
+            icon +
+            '<div class="curri-title">' + esc(m.name) + "</div>" +
+            '<div class="curri-badges">' + badges + "</div>" +
+            (m.summary ? '<p class="curri-desc">' + esc(m.summary) + "</p>" : "") +
+            sessHtml +
+            detailHtml +
+            "</div>"
+          );
+        }
+
+        function render() {
+          var list = materials.filter(function (m) {
+            return currentFilter === "all" || m.subject === currentFilter;
+          });
+          grid.innerHTML = list.length
+            ? list.map(cardHtml).join("")
+            : '<p class="curri-loading">該当する教材がありません。</p>';
+        }
+
+        tabs.addEventListener("click", function (e) {
+          var btn = e.target.closest(".curri-tab");
+          if (!btn) return;
+          currentFilter = btn.getAttribute("data-filter");
+          Array.prototype.forEach.call(tabs.querySelectorAll(".curri-tab"), function (b) {
+            b.classList.toggle("is-active", b === btn);
+          });
+          render();
+        });
+
+        function load(data) {
+          materials = (data && data.materials) || [];
+          var order = { published: 0, coming_soon: 1 };
+          materials.sort(function (a, b) {
+            return (order[a.status] || 0) - (order[b.status] || 0);
+          });
+          render();
+        }
+
+        // reference/curriculum.js が window.CURRICULUM を定義（file://でも動く）。
+        // 万一未読み込みなら http 経由で JSON を fetch する。
+        if (window.CURRICULUM) {
+          load(window.CURRICULUM);
+        } else {
+          fetch("reference/curriculum.json")
+            .then(function (res) {
+              if (!res.ok) throw new Error("HTTP " + res.status);
+              return res.json();
+            })
+            .then(load)
+            .catch(function () {
+              grid.innerHTML = '<p class="curri-loading">カリキュラムを読み込めませんでした。</p>';
+            });
         }
       })();
     </script>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>無料相談 | ブロマスゲームラボ</title>
+    <meta name="description" content="ブロマスゲームラボのオンライン無料相談。機材の確認、カリキュラムの決定、決済方法、次の日程をその場で決めていきます。" />
+    <meta name="robots" content="noindex,follow" />
+
+    <!-- Google tag (gtag.js) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B";
+        document.head.appendChild(script);
+        gtag("js", new Date());
+        gtag("config", "G-E9YKGSCX5B");
+      });
+    </script>
+    <!-- Google tag (gtag.js) - Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-977501883"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-977501883');
+    </script>
+
+    <style>
+      :root {
+        --bg: #f7f5f0;
+        --surface: #ffffff;
+        --surface-soft: #f6f1ff;
+        --text: #1a2333;
+        --subtext: #495972;
+        --accent-2: #3cc2ff;
+        --shadow: 0 20px 40px rgba(33, 52, 92, 0.12);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.7;
+      }
+      .container { width: min(760px, 92%); margin: 0 auto; }
+      header { padding: 18px 0; }
+      header a {
+        color: #0f2c59;
+        font-weight: 800;
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      main { padding: 20px 0 60px; }
+      .card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        padding: 28px 24px;
+        margin-bottom: 20px;
+      }
+      h1 { font-size: 1.5rem; margin: 0 0 10px; color: #0f2c59; }
+      h2 { font-size: 1.1rem; margin: 0 0 12px; color: #0f2c59; }
+      .info { background: var(--surface-soft); padding: 16px; border-radius: var(--radius-md); margin-bottom: 18px; }
+      .info strong { display: block; margin-bottom: 6px; }
+      ul { margin: 8px 0 0; padding-left: 20px; }
+      li { margin-bottom: 4px; }
+      .timerex-embed { border-radius: var(--radius-md); overflow: hidden; background: var(--surface-soft); }
+      .timerex-embed iframe { display: block; }
+      footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="index.html">← ブロマスゲームラボ トップに戻る</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="card">
+          <h1>無料相談</h1>
+          <p>オンラインでの無料相談を受け付けています。相談では以下を決めていきます。</p>
+          <ul>
+            <li>必要な機材の確認</li>
+            <li>今後のカリキュラムの決定（通常プラン／個別プランどちらでも相談可）</li>
+            <li>決済方法の決定</li>
+            <li>次の日程の決定</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="info" style="margin-bottom: 0;">
+            <strong>ご予約前に必ずご確認ください</strong>
+            <ul>
+              <li>PCをお持ちの方のみご予約いただけます</li>
+              <li>必要な機材のインストール・立ち上げは事前にお願いします</li>
+              <li>小学生の方は保護者の同席をお願いします</li>
+              <li>対象は小学3年生以上です。3年生未満の方は、まず路地裏でのリアルイベントにご参加いただき、習熟度を確認させてください</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>ご希望の日時をお選びください</h2>
+          <!-- Begin TimeRex Widget -->
+          <div id="timerex_calendar" data-url="https://timerex.net/s/hitta.games_7713/8a2129d7"></div>
+          <script id="timerex_embed" src="https://asset.timerex.net/js/embed.js"></script>
+          <script type="text/javascript">
+            TimerexCalendar();
+          </script>
+          <!-- End TimeRex Widget -->
+        </div>
+      </div>
+    </main>
+
+    <footer>© ブロマスゲームラボ</footer>
+  </body>
+</html>
