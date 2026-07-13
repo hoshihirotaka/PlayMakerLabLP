@@ -10,7 +10,7 @@
 
 LPリポジトリと教材リポジトリが、それぞれ「相手への申し送りMarkdown」を1枚ずつ持ち、往復させて両方を改善する。
 
-- **LP → 教材**: `reference/curriculum-feedback.md`（このリポジトリ。LP側が書く）
+- **LP → 教材**: `curriculum/curriculum-feedback.md`（このリポジトリ。LP側が書く）
   … 受領ログ・表示側の要望・gaps優先度・教材側からの質問への回答
 - **教材 → LP**: `curriculum-for-lp.md`（教材リポジトリ側。教材エージェントが書く）
   … 今回の変更点・除外/要判断・gaps・LP側への質問

@@ -11,7 +11,7 @@
 
 | 取り込み日 | generatedAt | 教材数 | 備考 |
 |---|---|---|---|
-| 2026-07-13 | 2026-07-13 | 16（Roblox 12 / AI 4） | 初回。LPのカリキュラム一覧に反映済み（`reference/curriculum.js` 生成済み） |
+| 2026-07-13 | 2026-07-13 | 16（Roblox 12 / AI 4） | 初回。LPのカリキュラム一覧に反映済み（`curriculum/curriculum.js` 生成済み） |
 
 ---
 

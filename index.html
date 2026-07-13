@@ -1285,7 +1285,7 @@
     <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
     <script src="events/2026-07-18.js"></script>
     <script src="events/2026-07-31.js"></script>
-    <script src="reference/curriculum.js"></script>
+    <script src="curriculum/curriculum.js"></script>
 
     <script>
       (function () {
@@ -1461,12 +1461,12 @@
           render();
         }
 
-        // reference/curriculum.js が window.CURRICULUM を定義（file://でも動く）。
+        // curriculum/curriculum.js が window.CURRICULUM を定義（file://でも動く）。
         // 万一未読み込みなら http 経由で JSON を fetch する。
         if (window.CURRICULUM) {
           load(window.CURRICULUM);
         } else {
-          fetch("reference/curriculum.json")
+          fetch("curriculum/curriculum.json")
             .then(function (res) {
               if (!res.ok) throw new Error("HTTP " + res.status);
               return res.json();
