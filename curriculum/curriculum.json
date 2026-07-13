@@ -91,7 +91,7 @@
       "sessions": 21,
       "summary": "ロビーから始まるミニゲーム集を作る。",
       "detail": "待合ロビーと複数のミニゲームを組み合わせた、みんなで遊べるパーティゲームを作ります。順番の管理や得点の仕組みをプログラムで学びます。",
-      "status": "published"
+      "status": "coming_soon"
     },
     {
       "id": "roblox-mechanics",
@@ -113,7 +113,7 @@
       "sessions": 6,
       "summary": "見た目が切り替わる着せ替えの仕組みを作る。",
       "detail": "アバターの見た目やアクセサリーを、ボタンやスクリプトで着せ替えできる仕組みを作ります。プログラムと見た目づくりの両方を学びます。",
-      "status": "published"
+      "status": "coming_soon"
     },
     {
       "id": "roblox-effect",
@@ -135,7 +135,7 @@
       "sessions": 12,
       "summary": "ブラシで山・川・海の地形を手作りする。",
       "detail": "地形ブラシを使って、山・谷・川・海・雪山などの自然な世界を手作業で作ります。プログラミングは不要で、世界観づくりに集中できます。",
-      "status": "published"
+      "status": "coming_soon"
     },
     {
       "id": "ai-dreamcore",
@@ -168,7 +168,7 @@
       "sessions": 1,
       "summary": "AIでゲームに使う画像素材を作る。",
       "detail": "AI画像生成を使って、ゲームに組み込む本格的な画像素材を作ります。ねらった画風を言葉で指定するコツも学びます。",
-      "status": "published"
+      "status": "coming_soon"
     },
     {
       "id": "ai-music",
@@ -179,7 +179,7 @@
       "sessions": 1,
       "summary": "AIでゲームのBGMを作る。",
       "detail": "言葉で雰囲気を伝えるだけで、自分のゲームに合うBGMをAIで作ります。作った音楽はRobloxのゲームにも取り込めます。",
-      "status": "published"
+      "status": "coming_soon"
     }
   ],
   "gaps": [
