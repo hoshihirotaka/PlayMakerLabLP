@@ -1,0 +1,206 @@
+window.CURRICULUM = {
+  "meta": {
+    "generatedAt": "2026-07-13",
+    "sourceRepo": "curriculum",
+    "note": "掲載対象はRoblox・AIの制作教材のみ。以下は科目区分に合わないため除外した：M1-00-公開とKPI（アカウント・公開・KPIの運営知識）、M0-基礎（マウス操作・タイピング等のPC基礎）、M3-ボードゲーム（非デジタル科目）。roblox-uefnはUEFN（Epic製ツール）を含むが、体験会としてRoblox Studioでも実施でき内容もアスレチック制作のためRoblox枠で掲載した。roblox-avatarはメインREADMEでは『未整備』表記だが実際は全6コマ整備済みのためpublishedとした。"
+  },
+  "materials": [
+    {
+      "id": "roblox-athletic",
+      "name": "アスレチック",
+      "subject": "Roblox",
+      "tags": ["体験用", "プログラミング"],
+      "icon": "🏔️",
+      "sessions": 2,
+      "summary": "ブロックと仕掛けでゴールを目指す王道ゲーム。",
+      "detail": "足場や仕掛けを配置して、最後まで遊べるアスレチックを作ります。2回目はブロックを動かすスクリプトやBGM追加、ゲームの公開にも挑戦します。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-hideandseek",
+      "name": "かくれんぼ",
+      "subject": "Roblox",
+      "tags": ["体験用"],
+      "icon": "🔦",
+      "sessions": 1,
+      "summary": "街に隠したコインを探す宝さがしゲーム。",
+      "detail": "テンプレートの街にコインを隠し、夜の雰囲気に変えて探索ゲームを作ります。基本操作を身につけながら「隠す・見つける」面白さを体験します。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-action",
+      "name": "アクション",
+      "subject": "Roblox",
+      "tags": ["体験用"],
+      "icon": "🕹️",
+      "sessions": 1,
+      "summary": "仕掛けだらけのコースに挑むアクションゲーム。",
+      "detail": "プラットフォーマーのテンプレートに、トラップやチェックポイントなどの仕掛けを追加して、自分だけの難関コースを作ります。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-racing",
+      "name": "レーシング",
+      "subject": "Roblox",
+      "tags": ["体験用"],
+      "icon": "🏎️",
+      "sessions": 1,
+      "summary": "障害物とショートカットで白熱レースコース。",
+      "detail": "レースのテンプレートに障害物やジャンプ台、近道を追加してオリジナルコースを作ります。動く床などの仕掛けにも挑戦できます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-uefn",
+      "name": "UEFN体験",
+      "subject": "Roblox",
+      "tags": ["体験用"],
+      "icon": "🛠️",
+      "sessions": 1,
+      "summary": "本格エンジンでアスレチック制作を体験。",
+      "detail": "RobloxやフォートナイトのUEFNを使って、ゴールを目指すアスレチックを作り、公開まで体験します。プロが使う制作ツールに触れる特別回です。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-obby",
+      "name": "オビー（本格アスレチック）",
+      "subject": "Roblox",
+      "tags": ["体験用", "プログラミング"],
+      "icon": "🧗",
+      "sessions": 25,
+      "summary": "全25回でアスレチックを作り込む本格コース。",
+      "detail": "パーツ配置から、動く床や点滅する足場などのギミックまで、スクリプトを少しずつ学びながら本格的なアスレチックを完成させます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-find",
+      "name": "たからさがし（探索ゲーム）",
+      "subject": "Roblox",
+      "tags": ["プログラミング"],
+      "icon": "💎",
+      "sessions": 20,
+      "summary": "隠したアイテムを集める探索ゲームを作る。",
+      "detail": "コインやアイテムを配置し、集めた数の表示・音のヒント・時間制限などをプログラムで作ります。「かくれんぼ」体験の本格版です。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-party",
+      "name": "パーティゲーム",
+      "subject": "Roblox",
+      "tags": ["プログラミング"],
+      "icon": "🎉",
+      "sessions": 21,
+      "summary": "ロビーから始まるミニゲーム集を作る。",
+      "detail": "待合ロビーと複数のミニゲームを組み合わせた、みんなで遊べるパーティゲームを作ります。順番の管理や得点の仕組みをプログラムで学びます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-mechanics",
+      "name": "メカニクス体験",
+      "subject": "Roblox",
+      "tags": ["プログラミング"],
+      "icon": "⚙️",
+      "sessions": "9種・全21回",
+      "summary": "人気ゲームの仕組みを1回ずつ作って試す。",
+      "detail": "「追いかける敵」「迫る津波」「奪い合い」「変身かくれんぼ」など、流行ゲームの仕組みを1回完結で作ります。9種類から好きなものを選べます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-avatar",
+      "name": "アバター変身",
+      "subject": "Roblox",
+      "tags": ["プログラミング", "クリエイティブ"],
+      "icon": "🧑‍🎤",
+      "sessions": 6,
+      "summary": "見た目が切り替わる着せ替えの仕組みを作る。",
+      "detail": "アバターの見た目やアクセサリーを、ボタンやスクリプトで着せ替えできる仕組みを作ります。プログラムと見た目づくりの両方を学びます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-effect",
+      "name": "エフェクト（特殊演出）",
+      "subject": "Roblox",
+      "tags": ["クリエイティブ"],
+      "icon": "✨",
+      "sessions": 16,
+      "summary": "炎や光などの演出をコードなしで作る。",
+      "detail": "パーティクル（粒）の数値を変えるだけで、炎・煙・キラキラなどの演出を作ります。プログラミングなしで表現の幅を広げます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-terrain",
+      "name": "テレイン（地形づくり）",
+      "subject": "Roblox",
+      "tags": ["クリエイティブ"],
+      "icon": "⛰️",
+      "sessions": 12,
+      "summary": "ブラシで山・川・海の地形を手作りする。",
+      "detail": "地形ブラシを使って、山・谷・川・海・雪山などの自然な世界を手作業で作ります。プログラミングは不要で、世界観づくりに集中できます。",
+      "status": "published"
+    },
+    {
+      "id": "ai-dreamcore",
+      "name": "AIゲームづくり（DreamCore）",
+      "subject": "AI",
+      "tags": ["体験用", "プログラミング"],
+      "icon": "🤖",
+      "sessions": 7,
+      "summary": "AIに言葉で伝えてゲームを作る。",
+      "detail": "「こんなゲームを作って」と言葉で伝えるとAIが形にしてくれるツールで、自分のアイデアをゲームにします。ランキングや記録の仕組みにも挑戦します。",
+      "status": "published"
+    },
+    {
+      "id": "ai-illust",
+      "name": "AIイラスト作成",
+      "subject": "AI",
+      "tags": ["クリエイティブ"],
+      "icon": "🎨",
+      "sessions": "未定",
+      "summary": "AIでイラストやキャラクターを描く。",
+      "detail": "AIを使って、ゲームやオリジナルのイラスト・キャラクターを作る教材です。（準備中）",
+      "status": "coming_soon"
+    },
+    {
+      "id": "ai-image",
+      "name": "AI画像素材づくり",
+      "subject": "AI",
+      "tags": ["クリエイティブ"],
+      "icon": "🖼️",
+      "sessions": 1,
+      "summary": "AIでゲームに使う画像素材を作る。",
+      "detail": "AI画像生成を使って、ゲームに組み込む本格的な画像素材を作ります。ねらった画風を言葉で指定するコツも学びます。",
+      "status": "published"
+    },
+    {
+      "id": "ai-music",
+      "name": "AI音楽づくり",
+      "subject": "AI",
+      "tags": ["クリエイティブ"],
+      "icon": "🎵",
+      "sessions": 1,
+      "summary": "AIでゲームのBGMを作る。",
+      "detail": "言葉で雰囲気を伝えるだけで、自分のゲームに合うBGMをAIで作ります。作った音楽はRobloxのゲームにも取り込めます。",
+      "status": "published"
+    }
+  ],
+  "gaps": [
+    {
+      "suggestedName": "レーシング制作コース",
+      "subject": "Roblox",
+      "tags": ["プログラミング"],
+      "reason": "体験会の「レーシング」は人気ジャンルだが、そこからプログラミングで本格的に作り込む続きの教材がない。体験用→プログラミングの進度がレーシングで途切れている。"
+    },
+    {
+      "suggestedName": "アクション制作コース",
+      "subject": "Roblox",
+      "tags": ["プログラミング"],
+      "reason": "体験会の「アクション」を楽しんだ子が次に進める、ギミックやスコアをプログラムで作る中級教材がない。オビー（アスレチック）にはあるがアクションにはない受け皿の穴。"
+    },
+    {
+      "suggestedName": "AIアニメ・動画づくり",
+      "subject": "AI",
+      "tags": ["クリエイティブ"],
+      "reason": "AIのクリエイティブ教材は画像・音楽はあるが、動く映像（アニメ・動画）を作る教材がない。子どもの関心が高い分野で、AI科目のクリエイティブの幅を広げられる。"
+    }
+  ]
+}
+;

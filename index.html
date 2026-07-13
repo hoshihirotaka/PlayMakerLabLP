@@ -1012,7 +1012,7 @@
         <div class="container card">
           <div class="step-badge">STEP 2</div>
           <h2>カリキュラム一覧</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;">どれも「遊べる形」まで作りきります。<strong>体験用</strong>はプログラミングなしで初めての方向け、<strong>プログラミング</strong>は仕組みや動きをコードで作る教材、<strong>クリエイティブ</strong>はデザインや演出など「表現」を楽しむ教材です。</p>
+          <p style="color: var(--subtext); margin: 0 0 16px;"><strong>体験用</strong>はプログラミングなしで初めての方向け、<strong>プログラミング</strong>は仕組みや動きをコードで作る教材、<strong>クリエイティブ</strong>はデザインや演出など「表現」を楽しむ教材です。</p>
           <div class="curri-tabs" id="curriTabs">
             <button class="curri-tab is-active" type="button" data-filter="all">すべて</button>
             <button class="curri-tab" type="button" data-filter="Roblox">Robloxコース</button>
@@ -1285,6 +1285,7 @@
     <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
     <script src="events/2026-07-18.js"></script>
     <script src="events/2026-07-31.js"></script>
+    <script src="reference/curriculum.js"></script>
 
     <script>
       (function () {
@@ -1451,22 +1452,30 @@
           render();
         });
 
-        fetch("reference/curriculum.json")
-          .then(function (res) {
-            if (!res.ok) throw new Error("HTTP " + res.status);
-            return res.json();
-          })
-          .then(function (data) {
-            materials = (data && data.materials) || [];
-            var order = { published: 0, coming_soon: 1 };
-            materials.sort(function (a, b) {
-              return (order[a.status] || 0) - (order[b.status] || 0);
-            });
-            render();
-          })
-          .catch(function () {
-            grid.innerHTML = '<p class="curri-loading">カリキュラムを読み込めませんでした。</p>';
+        function load(data) {
+          materials = (data && data.materials) || [];
+          var order = { published: 0, coming_soon: 1 };
+          materials.sort(function (a, b) {
+            return (order[a.status] || 0) - (order[b.status] || 0);
           });
+          render();
+        }
+
+        // reference/curriculum.js が window.CURRICULUM を定義（file://でも動く）。
+        // 万一未読み込みなら http 経由で JSON を fetch する。
+        if (window.CURRICULUM) {
+          load(window.CURRICULUM);
+        } else {
+          fetch("reference/curriculum.json")
+            .then(function (res) {
+              if (!res.ok) throw new Error("HTTP " + res.status);
+              return res.json();
+            })
+            .then(load)
+            .catch(function () {
+              grid.innerHTML = '<p class="curri-loading">カリキュラムを読み込めませんでした。</p>';
+            });
+        }
       })();
     </script>
   </body>
