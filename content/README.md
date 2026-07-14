@@ -36,6 +36,7 @@ content/
 
 - イベント紐づきファイル: `{種別}-{YYYY-MM-DD}.md`（例: `dm-2026-07-05.md`）
 - DM（用途別）: `dm-YYYY-MM-DD-事前連絡.md` / `dm-YYYY-MM-DD-開催後フォロー.md`（日付で募集DMと同日が並ぶ）
+- DMは先頭に `- タイトル:`（Doorkeeper件名）を毎回書く
 - テンプレート: `dm-template-事前連絡.md` など内容がわかる名前（例: `instagram-hooks.md`）
 - ドラフト: 末尾に `-draft`（例: `doorkeeper-unified-v2-draft.md`）
 
