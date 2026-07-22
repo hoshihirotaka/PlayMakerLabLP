@@ -118,3 +118,27 @@ events/
 - `index.html` の変更は `<script>` 1行追加のみのため、ブランチ間のコンフリクトはほぼ発生しない
 - 各イベントファイルは独立しているため、編集しても他のイベントに影響しない
 - ローカル確認はブラウザで `index.html` を直接開けばよい（サーバー不要）
+
+---
+
+## 教材リポジトリとの連携
+
+カリキュラムの元ネタは別リポジトリ。ローカルではこのLPリポの兄弟ディレクトリに置く。
+
+| | |
+|--|--|
+| ローカルパス | `../curriculum`（絶対パス例: `/Users/hirotakahoshi/curriculum`） |
+| GitHub | https://github.com/hoshihirotaka/curriculum |
+
+### 役割分担
+- **正（source of truth）**: このLPの `curriculum/curriculum.json`（公開可否・公開名・表示タグ・集客文言はLPが決める）
+- **教材側**: 事実の申告と提案のみ。`curriculum.json` は作らない
+
+### やり取りファイル
+| 方向 | ファイル | 置き場 |
+|------|----------|--------|
+| LP → 教材 | `curriculum/curriculum-feedback.md` | このリポ |
+| 教材 → LP | `curriculum/curriculum-for-lp.md` | 教材リポ（`../curriculum/curriculum/`） |
+| 教材エージェント用プロンプト | `curriculum/curriculum-agent-prompt.md` | このリポ（詳細は同ファイル） |
+
+エージェントは必要に応じて `../curriculum` を直接読んでよい（コピペ渡しを省略してよい）。教材側の変更が必要なときはそのリポを作業ルートにする。
