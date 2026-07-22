@@ -18,6 +18,7 @@ content/
 ├── 01_開催前作業/
 │   ├── doorkeeper/        # Doorkeeperイベント説明文・ドラフト
 │   ├── instagram/         # Instagram告知投稿（未登録の方も見ている前提）
+│   │   └── calendar/      # 月次カレンダー告知（instagram-calendar-YYYY-MM.md）
 │   └── dm/                # DM・参加者向け配信（募集 / 事前連絡 / 開催後フォロー）
 ├── 02_開催後作業/
 │   ├── note/              # noteセッション報告記事
@@ -35,6 +36,8 @@ content/
 ## ファイル命名規則
 
 - イベント紐づきファイル: `{種別}-{YYYY-MM-DD}.md`（例: `dm-2026-07-05.md`）
+- 月次カレンダー告知: `instagram/calendar/instagram-calendar-YYYY-MM.md`（例: `instagram-calendar-2026-07.md`）
+- カレンダー告知テンプレ: `instagram/calendar/instagram-calendar-template.md`
 - DM（用途別）: `dm-YYYY-MM-DD-事前連絡.md` / `dm-YYYY-MM-DD-開催後フォロー.md`（日付で募集DMと同日が並ぶ）
 - DMは先頭に `- タイトル:`（Doorkeeper件名）を毎回書く
 - テンプレート: `dm-template-事前連絡.md` など内容がわかる名前（例: `instagram-hooks.md`）
