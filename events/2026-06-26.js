@@ -6,7 +6,7 @@
   area: "埼玉・南与野",
   address: "〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3",
   access: "最寄駅: 南与野駅（徒歩16分）",
-  target: "小学1年生〜中学3年生（保護者参加OK）",
+  target: "小学1年生〜高校生（保護者参加OK、小学生は同伴推奨）",
   capacity: "Robloxコース 6名 / AIコース 4名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197148?utm_source=lp&utm_medium=referral&utm_campaign=bromas",

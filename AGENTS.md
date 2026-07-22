@@ -88,7 +88,7 @@ events/
   area: "エリア名",
   address: "〒XXX-XXXX 住所",
   access: "最寄駅: XX駅（徒歩X分）",
-  target: "小学1年生〜中学3年生（保護者参加OK）",
+  target: "小学1年生〜高校生（保護者参加OK、小学生は同伴推奨）",
   capacity: "Robloxコース X名 / AIコース X名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/XXXXXX",

@@ -6,7 +6,7 @@
   area: "埼玉・南与野",
   address: "〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3",
   access: "最寄駅: 南与野駅（徒歩16分）",
-  target: "①②: 小学1年生〜中学3年生（保護者参加OK） / ③: 大人の方向け（保護者参加OK）",
+  target: "①②: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ③: 大人の方向け（保護者参加OK）",
   capacity: "①②各回4名 / ③大人向けAIコース 6名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197911?utm_source=lp&utm_medium=referral&utm_campaign=bromas",

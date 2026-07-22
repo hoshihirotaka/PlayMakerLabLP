@@ -6,7 +6,7 @@
   area: "埼玉・浦和",
   address: "〒330-0062 埼玉県さいたま市浦和区仲町１丁目１０−７ 尾張屋第１ビル 5F",
   access: "最寄駅: 浦和駅（徒歩約5分）",
-  target: "小学1年生〜中学3年生（保護者参加OK）",
+  target: "小学1年生〜高校生（保護者参加OK、小学生は同伴推奨）",
   capacity: "各回6名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197910?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
