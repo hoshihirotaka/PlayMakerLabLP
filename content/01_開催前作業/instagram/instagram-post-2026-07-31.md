@@ -34,7 +34,7 @@ NotebookLM（スライド作成）＋ Google連携（カレンダー・メール
 
 お申し込みはプロフィールのリンクからお願いします。
 
-#ブロマスゲームラボ #Roblox #AI #ゲーム制作 #子ども向け #親子参加 #さいたま #南与野 #ワークショップ #大人向けAI #NotebookLM #Gemini
+#南与野 #ワークショップ #大人向けAI #NotebookLM #Gemini
 
 ---
 
