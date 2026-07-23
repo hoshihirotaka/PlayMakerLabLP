@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-07-14",
-    "sourceRepo": "LP編集（curriculum-for-lp.md 2026-07-14 を取り込み）",
-    "note": "このファイルはLPが編集する公開カタログ（source of truth）。教材リポジトリの curriculum-for-lp.md を元に、status・命名・タグ・公開可否はLPが確定する。掲載外の教材（PC基礎・公開とKPI・ボードゲーム）は科目タブに馴染まないため現状は非掲載。UEFNはEpic製ツールだが当面Roblox枠に置き表示名で明示。"
+    "generatedAt": "2026-07-23",
+    "sourceRepo": "LP編集（教材リポ E0-05-アバターモーション を取り込み）",
+    "note": "このファイルはLPが編集する公開カタログ（source of truth）。教材リポジトリの curriculum-for-lp.md を元に、status・命名・タグ・公開可否はLPが確定する。掲載外の教材（PC基礎・公開とKPI・ボードゲーム）は科目タブに馴染まないため現状は非掲載。UEFNはEpic製ツールだが当面Roblox枠に置き表示名で明示。アバターモーション体験（E0-05）は体験用。既存のアバター変身（roblox-avatar・準備中）とは別教材。"
   },
   "materials": [
     {
@@ -58,6 +58,17 @@
       "sessions": 1,
       "summary": "暗さとライティングでこわい雰囲気を作る。",
       "detail": "暗い空間にモンスターや隠れ場所を置き、ライティングでこわい雰囲気を作るゲームです。プログラミングなしで「演出で怖さを作る」を体験します。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-avatar-motion",
+      "name": "アバターモーション体験",
+      "subject": "Roblox",
+      "tags": ["体験用", "クリエイティブ"],
+      "icon": "💃",
+      "sessions": 1,
+      "summary": "動きとかぶりものでアバターを変身させる。",
+      "detail": "歩き方の切り替え、おどり床でのモーション再生、パーツで帽子を作って装着まで体験します。色変えより「動き」で別人になる面白さが中心です。",
       "status": "published"
     },
     {
