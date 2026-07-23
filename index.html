@@ -742,6 +742,16 @@
       .course-item-title { font-weight: 800; color: #0f2c59; font-size: 1rem; }
       .course-item p { margin: 0; color: var(--subtext); line-height: 1.7; }
 
+      /* 続けていく選択肢：流れ */
+      .flow-list { display: grid; gap: 4px; margin: 0 0 16px; }
+      .flow-step { background: var(--surface-soft); padding: 14px 18px; border-radius: var(--radius-md); }
+      .flow-title { font-weight: 800; color: #0f2c59; }
+      .flow-step p { margin: 6px 0 0; color: var(--subtext); }
+      .flow-step ul { margin: 6px 0 0; padding-left: 20px; color: var(--subtext); }
+      .flow-step li { margin-bottom: 4px; }
+      .flow-arrow { text-align: center; color: var(--subtext); font-size: 1.1rem; margin: 2px 0; }
+      .flow-note { font-size: 0.9em; }
+
       footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
 
       /* モバイル固定CTA */
@@ -1044,15 +1054,37 @@
         <div class="container card">
           <div class="step-badge">STEP 3</div>
           <h2>続けていく選択肢</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;">体験会後、継続的に取り組みたい方は2つのプランから選べます。途中での切り替えも相談しながら調整できます。</p>
+          <p style="color: var(--subtext); margin: 0 0 16px;">体験会のあとに、続け方を選べます。オリジナルの企画・作品づくりは、どちらのプランにも追加できるオプションです。途中での切り替えも相談しながら調整できます。</p>
+
+          <div class="flow-list" aria-label="体験から継続・オプションまでの流れ">
+            <div class="flow-step">
+              <div class="flow-title">① 体験</div>
+              <p>イベントページからお申し込み。特定の会場（路地裏など）で開催します。</p>
+            </div>
+            <div class="flow-arrow">↓<span class="flow-note">（参加後にお知らせ）</span></div>
+            <div class="flow-step">
+              <div class="flow-title">② 継続を選ぶ</div>
+              <ul>
+                <li>通常プラン継続（同じ会場、既存カリキュラム）</li>
+                <li>個別プラン（オンライン・自宅、場所とペースを合わせる）<span class="flow-note">※現在準備中</span></li>
+              </ul>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-title">③ オプション：オリジナル企画・作品づくり</div>
+              <p>通常プラン・個別プランどちらでも追加できます。</p>
+            </div>
+          </div>
+
           <div class="grid-2 course-item-grid">
             <div class="course-item">
               <div class="course-item-title">通常プラン（グループ学習・制作）</div>
-              <p>みんなで一緒に学び・制作するスタイルです。イベントページから日程とコースを選んでお申し込みください。</p>
+              <p>みんなで一緒に学び・制作するスタイルです。同じ会場で、既存カリキュラムから日程とコースを選んでお申し込みください。</p>
             </div>
             <div class="course-item">
-              <div class="course-item-title">個別プラン（個別学習・制作）</div>
-              <p>お子さんに合わせて個別に学び・制作するスタイルです。担当講師から専用ページをご案内し、日程などを選んでいただきます。（現在準備中）</p>
+              <div class="course-item-title">個別プラン（オンライン・自宅）</div>
+              <p>場所や時間を、お子さんのペースに合わせて選べるスタイルです。学ぶ内容は通常プランと同じカリキュラムから選べます。担当講師から専用ページをご案内し、日程などを選んでいただきます。（現在準備中）</p>
+              <p>オリジナルの企画・作品づくりに挑戦したい方は、通常プラン・個別プランどちらでもオプションとしてご相談いただけます。</p>
             </div>
           </div>
           <div class="info" style="margin-top: 16px;">
@@ -1182,7 +1214,7 @@
             </div>
             <div class="faq-item">
               Q: 継続的な教室はありますか？<br />
-              A: あります。日程とカリキュラムを選んで通う「通常プラン」と、作りたいものの完成を目指す「個別プラン」（詳細は別途ご相談ください）があります。体験会と教材が共通なので、続きからスムーズに始められます。詳しくは当日お声がけください。
+              A: あります。日程とカリキュラムを選んで通う「通常プラン」と、場所やペースをお子さんに合わせて選べる「個別プラン」（オンライン・自宅、詳細は別途ご相談ください）があります。オリジナルの企画・作品づくりに挑戦したい場合は、どちらのプランでもオプションとしてご相談いただけます。体験会と教材が共通なので、続きからスムーズに始められます。詳しくは当日お声がけください。
             </div>
             <div class="faq-item">
               Q: 料金はいくらですか？<br />
