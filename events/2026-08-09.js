@@ -9,8 +9,7 @@
   target: "小学1年生〜高校生（保護者参加OK、小学生は同伴推奨）",
   capacity: "各回4名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  doorkeeperUrl: "",
-  comingSoon: true,
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198458?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
   timetable: [
     { time: "11:00-12:00", label: "①Robloxコース", price: "1,900円" },
     { time: "12:00-12:20", label: "延長タイム・親御様個別相談" },
