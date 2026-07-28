@@ -205,6 +205,7 @@
         white-space: normal;
       }
 
+      /* 次回開催バー＝「情報」。ボタン（ピル型＋影）と区別するため角丸四角・影なしにする */
       .hero-next {
         display: none;
         align-items: center;
@@ -213,13 +214,19 @@
         color: #fff;
         font-weight: 800;
         font-size: 0.95rem;
-        padding: 8px 16px;
-        border-radius: 999px;
+        padding: 10px 16px;
+        border-radius: 12px;
         margin-top: 4px;
       }
       .hero-next.show { display: inline-flex; }
+      .hero-next::before { content: "📅"; }
 
       .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+      /* ヒーローの2ボタンは幅を揃える（モバイル=全幅、PC=均等2列） */
+      .hero .cta-row { display: grid; grid-template-columns: 1fr; }
+      @media (min-width: 768px) {
+        .hero .cta-row { grid-template-columns: repeat(2, 1fr); }
+      }
 
       .cta {
         display: inline-flex;
@@ -237,11 +244,12 @@
         background: linear-gradient(180deg, #2dd6ff 0%, #1aa7d6 100%);
         box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
       }
+      /* 副ボタン。主ボタンと同じ「浮いている」影を持たせて押せると分かるようにする（色だけ控えめ） */
       .cta.outline {
-        background: transparent;
+        background: #fff;
         color: #2a3c56;
         border: 2px solid rgba(42, 60, 86, 0.25);
-        box-shadow: none;
+        box-shadow: 0 6px 0 rgba(42, 60, 86, 0.18);
       }
       .cta.disabled {
         opacity: 0.5;
@@ -574,39 +582,75 @@
         top: 0;
         z-index: 10;
       }
+      /* ロゴと同じ1行に収める（モバイルはハンバーガー、PCは横並び） */
       .nav-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
       }
       .nav-logo {
         font-weight: 800;
         font-size: 1rem;
         color: #0f2c59;
         text-decoration: none;
+        white-space: nowrap;
       }
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        flex: none;
+        font-size: 1.15rem;
+        line-height: 1;
+        color: #0f2c59;
+        background: transparent;
+        border: 1px solid rgba(42, 60, 86, 0.2);
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      /* モバイル: リンクは折りたたみ（ハンバーガーで開閉） */
       .nav-links {
-        display: flex;
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        flex-direction: column;
         gap: 2px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        max-width: 100%;
+        padding: 8px 16px 12px;
+        background: #f7f5f0;
+        border-bottom: 1px solid rgba(42, 60, 86, 0.1);
+        box-shadow: 0 12px 24px rgba(18, 34, 64, 0.12);
       }
-      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links.open { display: flex; }
       .nav-links a {
         color: #2a3c56;
         text-decoration: none;
         font-weight: 700;
-        font-size: 0.85rem;
-        padding: 6px 10px;
-        border-radius: 999px;
+        font-size: 0.9rem;
+        padding: 10px 12px;
+        border-radius: 10px;
         white-space: nowrap;
       }
       .nav-links a:hover { background: rgba(15, 44, 89, 0.08); }
+      /* PC: 従来どおり横並び */
+      @media (min-width: 768px) {
+        .nav-toggle { display: none; }
+        .nav-links {
+          display: flex;
+          position: static;
+          flex-direction: row;
+          padding: 0;
+          background: transparent;
+          border-bottom: 0;
+          box-shadow: none;
+        }
+        .nav-links a { font-size: 0.85rem; padding: 6px 10px; border-radius: 999px; }
+      }
       [id] { scroll-margin-top: 96px; }
 
       /* カリキュラム一覧 */
@@ -787,10 +831,6 @@
         .course-item-grid { grid-template-columns: repeat(2, 1fr); }
       }
 
-      @media (max-width: 767px) {
-        .tagline { flex-direction: column; align-items: flex-start; }
-      }
-
       @keyframes rise {
         from { opacity: 0; transform: translateY(16px); }
         to { opacity: 1; transform: translateY(0); }
@@ -816,7 +856,8 @@
     <nav class="nav">
       <div class="container nav-inner">
         <a class="nav-logo" href="#" aria-label="ページの先頭に戻る">ブロマスゲームラボ</a>
-        <div class="nav-links">
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <div class="nav-links" id="nav-links">
           <a href="#curriculum">カリキュラム</a>
           <a href="#works">作品ギャラリー</a>
           <a href="#voices">参加者の声</a>
@@ -830,21 +871,20 @@
     <header class="hero">
       <div class="container hero-inner">
           <div>
+            <!-- 会場は直下の次回開催バーと重複、リピート率は実績バンドと重複のため割愛 -->
             <div class="tagline">
-              <span class="tag">埼玉（南与野・浦和）開催</span>
-              <span class="tag">対象: 小1〜高校生（小学生は同伴推奨）</span>
-              <span class="tag tag-strong">🔁 参加した3人に1人がリピート</span>
+              <span class="tag">小1〜高校生</span>
+              <span class="tag tag-strong">体験 900円/1,900円</span>
             </div>
           <h1>Roblox×AIで、<br />自分だけのゲームを作ろう！</h1>
           <p>
             ただ遊ぶだけで終わらせない。<br />
-            いつものRobloxを、君だけのゲーム制作の時間に。<br />
-            AIで「どうすれば面白くなるか？」を体で学ぶゲームクリエイター教室です。
+            「どうすれば面白くなるか？」を考えて形にする、ゲームクリエイター教室です。
           </p>
           <div class="hero-next" id="hero-next"></div>
           <div class="cta-row">
             <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">日程を確認する</a>
-            <a class="cta outline" href="#join">すぐに参加はできないが興味はある</a>
+            <a class="cta outline" href="#join">今後の日程を受け取る</a>
           </div>
           <div class="hero-note">小学生は保護者の同伴を推奨。中高生は単独参加もOK。家族でのゲーム開発も応援します。</div>
         </div>
@@ -1524,6 +1564,42 @@
               grid.innerHTML = '<p class="curri-loading">カリキュラムを読み込めませんでした。</p>';
             });
         }
+      })();
+    </script>
+
+    <!-- モバイルナビの開閉 -->
+    <script>
+      (function () {
+        var toggle = document.getElementById("nav-toggle");
+        var links = document.getElementById("nav-links");
+        if (!toggle || !links) return;
+
+        function setOpen(open) {
+          links.classList.toggle("open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+          toggle.textContent = open ? "✕" : "☰";
+        }
+
+        toggle.addEventListener("click", function () {
+          setOpen(!links.classList.contains("open"));
+        });
+
+        // リンクを選んだら閉じる
+        links.addEventListener("click", function (e) {
+          if (e.target.tagName === "A") setOpen(false);
+        });
+
+        // メニュー外をタップしたら閉じる
+        document.addEventListener("click", function (e) {
+          if (!links.classList.contains("open")) return;
+          if (!links.contains(e.target) && e.target !== toggle) setOpen(false);
+        });
+
+        // PC幅に戻ったら開閉状態をリセット
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 768) setOpen(false);
+        });
       })();
     </script>
   </body>
