@@ -183,18 +183,6 @@ window.CURRICULUM = {
       "status": "published"
     },
     {
-      "id": "ai-illust",
-      "name": "AIイラスト作成",
-      "subject": "AI",
-      "tags": ["クリエイティブ"],
-      "icon": "🎨",
-      "sessions": "未定",
-      "summary": "AIでイラストやキャラクターを描く。",
-      "detail": "AIを使って、ゲームやオリジナルのイラスト・キャラクターを作る教材です。（準備中）",
-      "ageNote": "小学生も参加OK。ツールの規約により13歳未満は講師が操作を代行します",
-      "status": "coming_soon"
-    },
-    {
       "id": "ai-image",
       "name": "AI画像素材づくり",
       "subject": "AI",
@@ -204,7 +192,7 @@ window.CURRICULUM = {
       "summary": "AIでゲームに使う画像素材を作る。",
       "detail": "AI画像生成を使って、ゲームに組み込む本格的な画像素材を作ります。ねらった画風を言葉で指定するコツも学びます。",
       "ageNote": "小学生も参加OK。ツールの規約により13歳未満は講師が操作を代行します",
-      "status": "coming_soon"
+      "status": "on_request"
     },
     {
       "id": "ai-music",
@@ -216,7 +204,7 @@ window.CURRICULUM = {
       "summary": "AIでゲームのBGMを作る。",
       "detail": "言葉で雰囲気を伝えて、自分のゲームに合うBGMをAIで作る体験です。",
       "ageNote": "小学生も参加OK。ツールの規約により13歳未満は講師が操作を代行します",
-      "status": "coming_soon"
+      "status": "on_request"
     }
   ],
   "gaps": [
