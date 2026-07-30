@@ -179,18 +179,8 @@
       "sessions": 7,
       "summary": "AIに言葉で伝えてゲームを作る。",
       "detail": "「こんなゲームを作って」と言葉で伝えるとAIが形にしてくれるツールで、自分のアイデアをゲームにします。ランキングや記録の仕組みにも挑戦します。",
+      "ageNote": "小学生から自分で操作できます",
       "status": "published"
-    },
-    {
-      "id": "ai-illust",
-      "name": "AIイラスト作成",
-      "subject": "AI",
-      "tags": ["クリエイティブ"],
-      "icon": "🎨",
-      "sessions": "未定",
-      "summary": "AIでイラストやキャラクターを描く。",
-      "detail": "AIを使って、ゲームやオリジナルのイラスト・キャラクターを作る教材です。（準備中）",
-      "status": "coming_soon"
     },
     {
       "id": "ai-image",
@@ -201,7 +191,8 @@
       "sessions": 1,
       "summary": "AIでゲームに使う画像素材を作る。",
       "detail": "AI画像生成を使って、ゲームに組み込む本格的な画像素材を作ります。ねらった画風を言葉で指定するコツも学びます。",
-      "status": "coming_soon"
+      "ageNote": "小学生も参加OK。ツールの規約により13歳未満は講師が操作を代行します",
+      "status": "on_request"
     },
     {
       "id": "ai-music",
@@ -212,7 +203,8 @@
       "sessions": 1,
       "summary": "AIでゲームのBGMを作る。",
       "detail": "言葉で雰囲気を伝えて、自分のゲームに合うBGMをAIで作る体験です。",
-      "status": "coming_soon"
+      "ageNote": "小学生も参加OK。ツールの規約により13歳未満は講師が操作を代行します",
+      "status": "on_request"
     }
   ],
   "gaps": [

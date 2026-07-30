@@ -765,7 +765,18 @@
       .curri-badge.tag-creative { background: rgba(178, 138, 255, 0.2); color: #6b3fb0; }
       .curri-badge.subject { background: rgba(15, 44, 89, 0.1); color: #0f2c59; }
       .curri-badge.soon { background: rgba(255, 209, 102, 0.3); color: #7a4e00; }
+      /* 要相談＝実施はできるが個別に相談が必要（準備中とは区別して白地） */
+      .curri-badge.request { background: #fff; color: #0f2c59; border: 1px solid rgba(15, 44, 89, 0.35); }
       .curri-sessions { font-size: 0.8rem; color: var(--subtext); font-weight: 700; }
+      /* 対象年齢・利用条件の注記（AIコースのツール年齢制限など） */
+      .curri-age {
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: #7a4e00;
+        background: rgba(255, 209, 102, 0.22);
+        padding: 6px 10px;
+        border-radius: 10px;
+      }
       .curri-detail { margin-top: 2px; }
       .curri-detail summary {
         cursor: pointer;
@@ -1582,9 +1593,12 @@
           });
           if (m.status === "coming_soon") {
             badges += '<span class="curri-badge soon">準備中</span>';
+          } else if (m.status === "on_request") {
+            badges += '<span class="curri-badge request">要相談</span>';
           }
           var sess = sessionsText(m.sessions);
           var sessHtml = sess ? '<div class="curri-sessions">' + esc(sess) + "</div>" : "";
+          var ageHtml = m.ageNote ? '<div class="curri-age">👤 ' + esc(m.ageNote) + "</div>" : "";
           var detailHtml = m.detail
             ? '<details class="curri-detail"><summary></summary><p>' + esc(m.detail) + "</p></details>"
             : "";
@@ -1596,6 +1610,7 @@
             '<div class="curri-badges">' + badges + "</div>" +
             (m.summary ? '<p class="curri-desc">' + esc(m.summary) + "</p>" : "") +
             sessHtml +
+            ageHtml +
             detailHtml +
             "</div>"
           );
@@ -1622,7 +1637,7 @@
 
         function load(data) {
           materials = (data && data.materials) || [];
-          var order = { published: 0, coming_soon: 1 };
+          var order = { published: 0, on_request: 1, coming_soon: 2 };
           materials.sort(function (a, b) {
             return (order[a.status] || 0) - (order[b.status] || 0);
           });
