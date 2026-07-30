@@ -766,6 +766,15 @@
       .curri-badge.subject { background: rgba(15, 44, 89, 0.1); color: #0f2c59; }
       .curri-badge.soon { background: rgba(255, 209, 102, 0.3); color: #7a4e00; }
       .curri-sessions { font-size: 0.8rem; color: var(--subtext); font-weight: 700; }
+      /* 対象年齢・利用条件の注記（AIコースのツール年齢制限など） */
+      .curri-age {
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: #7a4e00;
+        background: rgba(255, 209, 102, 0.22);
+        padding: 6px 10px;
+        border-radius: 10px;
+      }
       .curri-detail { margin-top: 2px; }
       .curri-detail summary {
         cursor: pointer;
@@ -1585,6 +1594,7 @@
           }
           var sess = sessionsText(m.sessions);
           var sessHtml = sess ? '<div class="curri-sessions">' + esc(sess) + "</div>" : "";
+          var ageHtml = m.ageNote ? '<div class="curri-age">👤 ' + esc(m.ageNote) + "</div>" : "";
           var detailHtml = m.detail
             ? '<details class="curri-detail"><summary></summary><p>' + esc(m.detail) + "</p></details>"
             : "";
@@ -1596,6 +1606,7 @@
             '<div class="curri-badges">' + badges + "</div>" +
             (m.summary ? '<p class="curri-desc">' + esc(m.summary) + "</p>" : "") +
             sessHtml +
+            ageHtml +
             detailHtml +
             "</div>"
           );
