@@ -80,9 +80,43 @@
 
       /* トレーナー紹介（将来の複数人対応を見込んだ構造） */
       .trainer-grid { display: grid; gap: 16px; }
-      .trainer-card { display: grid; gap: 8px; }
-      .trainer-name { font-weight: 800; font-size: 1.1rem; color: #0f2c59; }
+      .trainer-card { display: grid; gap: 16px; }
+      .trainer-photo {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 18px;
+        display: block;
+        margin: 0 auto;
+      }
+      .trainer-name { font-weight: 800; font-size: 1.15rem; color: #0f2c59; }
+      .trainer-role { font-size: 0.85rem; font-weight: 700; color: var(--subtext); margin-top: 2px; }
       .trainer-bio { margin: 0; color: var(--subtext); }
+      /* 経歴などの小見出し付きブロック */
+      .trainer-block { margin-top: 14px; }
+      .trainer-block h3 {
+        font-size: 0.95rem;
+        margin: 0 0 4px;
+        color: #0f2c59;
+      }
+      .trainer-block p { margin: 0; color: var(--subtext); }
+      .trainer-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+      .trainer-links a {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0f6e9e;
+        text-decoration: none;
+        border: 1px solid rgba(15, 110, 158, 0.35);
+        border-radius: 999px;
+        padding: 6px 14px;
+      }
+      @media (min-width: 700px) {
+        /* PCでは写真を左、プロフィールを右に */
+        .trainer-card { grid-template-columns: 220px 1fr; align-items: start; }
+        .trainer-photo { margin: 0; }
+      }
 
       /* ご利用の流れ */
       .flow-list { display: grid; gap: 4px; }
@@ -135,12 +169,39 @@
           <h1>トレーナー紹介</h1>
           <div class="trainer-grid">
             <div class="trainer-card">
-              <div class="trainer-name">星 弘高（ひった）</div>
-              <p class="trainer-bio">
-                ゲーム業界20年以上のキャリア（コンシューマー→ソーシャルゲーム→ハイパーカジュアル・企業案件）を経験。<br />
-                現在はRobloxでのUGC開発とAI活用を通じた教育事業を運営しています。<br />
-                「面白さの設計（ゲームデザイン）」を軸に、専門領域は業界クリエイターと連携しながら進めます。
-              </p>
+              <picture>
+                <source srcset="assets/teacher.webp" type="image/webp" />
+                <img class="trainer-photo" src="assets/teacher.jpg" alt="トレーナー: 星 弘高" width="800" height="800" loading="lazy" decoding="async" />
+              </picture>
+              <div>
+                <div class="trainer-name">星 弘高（ひった）</div>
+                <div class="trainer-role">ゲームプランナー / ブロマスゲームラボ主宰</div>
+
+                <div class="trainer-block">
+                  <h3>経歴</h3>
+                  <p>ゲーム業界20年以上。コンシューマー機からソーシャルゲーム、ハイパーカジュアル、企業案件まで、企画・開発・運営をひと通り経験してきました。現在はフリーランスとして活動しています。</p>
+                </div>
+
+                <div class="trainer-block">
+                  <h3>今取り組んでいること</h3>
+                  <p>RobloxでのUGC（ユーザーが作るコンテンツ）開発と、AIを活用した教育事業を運営しています。2025年からは、こども向けのゲームクリエイター教室を始めました。</p>
+                </div>
+
+                <div class="trainer-block">
+                  <h3>教えるときに大事にしていること</h3>
+                  <p>軸にしているのは「面白さの設計（ゲームデザイン）」です。プログラミングの文法を覚えることよりも、<strong>「どうすれば面白くなるか」を考えて形にする経験</strong>を大切にしています。自分の専門外の領域は、業界のクリエイターと連携しながら進めます。</p>
+                </div>
+
+                <div class="trainer-block">
+                  <h3>個別プランでできること</h3>
+                  <p>お子さんのペースや「作りたいもの」に合わせて内容を組み立てます。作りたいものが決まっていない場合も、無料相談で一緒に決めていくので大丈夫です。</p>
+                </div>
+
+                <div class="trainer-links">
+                  <a href="https://note.com/shgame/magazines" target="_blank" rel="noreferrer">活動報告（note）</a>
+                  <a href="https://www.instagram.com/block.master.game.lab/" target="_blank" rel="noreferrer">教室の様子（Instagram）</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -149,6 +210,8 @@
         <div class="card">
           <h2>共通のご案内</h2>
 
+          <!-- TODO: 「オリジナル企画・作品づくりオプション」は専用ページを作ったら、
+               この料金ブロックとご利用の流れ②に復活させる（通常プラン・個別プランどちらでも追加可） -->
           <div class="info">
             <strong>料金（個別プラン）</strong>
             <ul>
@@ -250,7 +313,16 @@
         <!-- 自宅 -->
         <section id="home" class="card">
           <h2>🏠 自宅</h2>
-          <p>講師の自宅で対面実施します。目の前で操作を見ながら進められるので、パソコンの扱いに不安がある方でも安心です。住所は非公開で、予約確定後にLINEで個別にご案内します。</p>
+          <p>講師の自宅で対面実施します。目の前で操作を見ながら進められるので、パソコンの扱いに不安がある方でも安心です。</p>
+
+          <div class="info">
+            <strong>自宅について</strong>
+            <ul>
+              <li>最寄駅: 武蔵浦和駅から徒歩8分</li>
+              <li>パソコンはこちらでご用意します（お持ちでなくても参加できます）</li>
+              <li>住所は非公開です。予約確定後にLINEで個別にご案内します</li>
+            </ul>
+          </div>
 
           <h3>ご希望の日時をお選びください</h3>
           <div class="timerex-embed">
