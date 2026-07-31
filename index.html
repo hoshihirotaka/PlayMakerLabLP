@@ -370,7 +370,7 @@
       .teacher picture {
         display: block;
         width: 100%;
-        height: 100%;
+        height: auto;
       }
       .hero-photo img { width: 100%; height: auto; display: block; }
 
@@ -598,7 +598,17 @@
 
       /* 講師 */
       .teacher { display: grid; gap: 16px; align-items: center; }
-      .teacher img { width: 100%; border-radius: 18px; object-fit: cover; height: 220px; }
+      /* 講師の顔写真。正方形で表示する（モバイルで大きくなりすぎないよう上限を設ける） */
+      .teacher img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 18px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+      }
 
       /* SNS */
       .social-row { display: flex; align-items: center; gap: 12px; margin-top: 12px; margin-bottom: 10px; flex-wrap: wrap; }
@@ -1265,8 +1275,8 @@
       <section class="section" id="teacher">
         <div class="container card teacher">
           <picture>
-            <source srcset="assets/classroom.webp" type="image/webp" />
-            <img src="assets/classroom.jpg" alt="教室の様子" width="960" height="540" loading="lazy" decoding="async" />
+            <source srcset="assets/teacher.webp" type="image/webp" />
+            <img src="assets/teacher.jpg" alt="講師: 星 弘高" width="800" height="800" loading="lazy" decoding="async" />
           </picture>
           <div>
             <h2>講師紹介</h2>
