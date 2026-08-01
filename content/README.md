@@ -30,7 +30,8 @@ content/
     ├── doorkeeper-community.md   # Doorkeeperコミュニティページ
     ├── doorkeeper-top.md         # Doorkeeperトップページ
     ├── seo.md                    # SEO関連テキスト
-    └── NOTE-GUIDE.md             # note執筆ガイド
+    ├── NOTE-GUIDE.md             # note執筆ガイド（記事の書き方）
+    └── NOTE-EDITOR-AUTOMATION.md # note入稿ガイド（ブラウザ操作でnoteに流し込む手順）
 ```
 
 ## ファイル命名規則
