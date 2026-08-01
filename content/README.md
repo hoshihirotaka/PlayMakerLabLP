@@ -22,16 +22,19 @@ content/
 │   └── dm/                # DM・参加者向け配信（募集 / 事前連絡 / 開催後フォロー）
 ├── 02_開催後作業/
 │   ├── note/              # noteセッション報告記事
-│   └── instagram/         # Instagram作品集投稿
+│   ├── instagram/         # Instagram作品集投稿
+│   └── sns/               # note記事のシェア文言（X・Threads・Facebook・Instagram）
 ├── 03_定期投稿/
 │   ├── instagram/         # フック集・短文テンプレート
-│   └── note/              # コラム記事
+│   ├── note/              # コラム記事
+│   └── sns/               # コラム記事のシェア文言
 └── 04_共通/
     ├── doorkeeper-community.md   # Doorkeeperコミュニティページ
     ├── doorkeeper-top.md         # Doorkeeperトップページ
     ├── seo.md                    # SEO関連テキスト
     ├── NOTE-GUIDE.md             # note執筆ガイド（記事の書き方）
-    └── NOTE-EDITOR-AUTOMATION.md # note入稿ガイド（ブラウザ操作でnoteに流し込む手順）
+    ├── NOTE-EDITOR-AUTOMATION.md # note入稿ガイド（ブラウザ操作でnoteに流し込む手順）
+    └── SNS-GUIDE.md              # SNSシェア文言ガイド（Xの文字数ルール・媒体別の使い分け）
 ```
 
 ## ファイル命名規則
@@ -40,6 +43,7 @@ content/
 - 月次カレンダー告知: `instagram/calendar/instagram-calendar-YYYY-MM.md`（例: `instagram-calendar-2026-07.md`）
 - カレンダー告知テンプレ: `instagram/calendar/instagram-calendar-template.md`
 - DM（用途別）: `dm-YYYY-MM-DD-事前連絡.md` / `dm-YYYY-MM-DD-開催後フォロー.md`（日付で募集DMと同日が並ぶ）
+- SNSシェア文言: `sns-{対象記事のファイル名}.md`（例: `sns-note-session-11.md`）。1記事1ファイルで、中にX/Threads/Facebook・Instagramの各セクションを持たせる
 - DMは先頭に `- タイトル:`（Doorkeeper件名）を毎回書く
 - テンプレート: `dm-template-事前連絡.md` など内容がわかる名前（例: `instagram-hooks.md`）
 - ドラフト: 末尾に `-draft`（例: `doorkeeper-unified-v2-draft.md`）
