@@ -54,6 +54,46 @@
 
 ※ Threads・Xは未定（業界ネットワーク構築向きの位置づけ）
 
+---
+
+## 情報の置き場（重要）
+
+**このリポジトリはGitHub Pagesで公開しているためPUBLIC。** 事業情報を置かないこと。
+
+| 種類 | 置き場 |
+|---|---|
+| 台本・原稿・キャプション本文・制作メモ・配布物 | **このリポジトリ** |
+| **広告のキーワード・入札・実績、SNSインサイトの数値と分析** | **Notion**（ブロマス_ドキュメントハブ） |
+| 売上・実績データ、同意書などの書面 | `~/curriculum`（PRIVATE）／`reference/` |
+
+Notionの主なドキュメント: 「中高生向けコピー案とGoogle広告グループ設計」「Instagramリールの実績と分析」
+
+## 使えるコネクタ
+
+- **Canva** … デザインの読み取りと編集（テキスト差し替え・要素の移動/リサイズ/色）。ページ複製とフォント変更は不可
+- **Notion** … ドキュメントハブへの読み書き
+- **Roblox Studio（weppy-roblox-mcp）** … 教材プロジェクトの調査・スクリプト修正・プロパティ変更
+- **Claude in Chrome** … note入稿など、ログイン済みセッションが要る作業
+- ffmpeg は `/usr/local/bin/ffmpeg`（PATHから拾えないことがある）
+
+## 制作ガイド
+
+| ガイド | 内容 |
+|---|---|
+| [NOTE-GUIDE.md](content/04_共通/NOTE-GUIDE.md) | note記事の書き方 |
+| [NOTE-EDITOR-AUTOMATION.md](content/04_共通/NOTE-EDITOR-AUTOMATION.md) | noteエディタへの入稿手順 |
+| [SNS-GUIDE.md](content/04_共通/SNS-GUIDE.md) | SNSシェア文言。Xの文字数の数え方・媒体別の使い分け |
+| [REEL-WORKFLOW.md](content/04_共通/REEL-WORKFLOW.md) | リール制作。動画解析からSRT・キャプションまで |
+| [content/README.md](content/README.md) | content配下のフォルダ定義と命名規則 |
+
+## 当日資料（Canva）
+
+講座の前後で使う「当日：ブロマス」（12ページ・Canva）がある。毎回更新するのは**スケジュールのみ**。
+
+- スケジュール … `events/YYYY-MM-DD.js` の timetable から差し替え（設営・入れ替えは参加者向けには載せない）
+- カリキュラム紹介 … `curriculum/curriculum.json` の `status: published` をタグ別に掲載
+- 趣旨 … LPの「ゲーム制作に特化した教室です」から起こしたもの。基本固定
+
 ## 教室ページ（school/）の方針
 - 入会は無料体験会参加者のみ → CTAは常に体験会へ誘導する
 - 「プログラミング教室」との差別化：特性から逆算・プロ直接指導・業界ネットワーク
