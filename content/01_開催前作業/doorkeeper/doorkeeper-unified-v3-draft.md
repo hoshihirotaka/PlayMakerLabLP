@@ -87,7 +87,7 @@
 - 持ち物: パソコン持参大歓迎（会場でも用意あり）
 
 ## 🎨 作品・その他
-- これまで生まれた作品は[公式Instagram](https://www.instagram.com/block.master.game.lab/)でご覧いただけます
+- 教室の様子は[公式Instagram](https://www.instagram.com/block.master.game.lab/)でご覧いただけます
 - 教室の詳しい紹介・カリキュラムは[公式サイト](https://hoshihirotaka.github.io/PlayMakerLabLP/?utm_source=doorkeeper&utm_medium=event)へ
 - 活動報告は[note](https://note.com/shgame/magazines)へ
 
