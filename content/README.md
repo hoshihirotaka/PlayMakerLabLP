@@ -19,7 +19,8 @@ content/
 │   ├── doorkeeper/        # Doorkeeperイベント説明文・ドラフト
 │   ├── instagram/         # Instagram告知投稿（未登録の方も見ている前提）
 │   │   └── calendar/      # 月次カレンダー告知（instagram-calendar-YYYY-MM.md）
-│   └── dm/                # DM・参加者向け配信（募集 / 事前連絡 / 開催後フォロー）
+│   ├── dm/                # DM・参加者向け配信（募集 / 事前連絡 / 開催後フォロー）
+│   └── アンケート/         # 当日配布アンケートの設問（Canva印刷・Googleフォーム共通の正本）
 ├── 02_開催後作業/
 │   ├── note/              # noteセッション報告記事
 │   ├── instagram/         # Instagram作品集投稿
@@ -47,6 +48,7 @@ content/
 - DMは先頭に `- タイトル:`（Doorkeeper件名）を毎回書く
 - テンプレート: `dm-template-事前連絡.md` など内容がわかる名前（例: `instagram-hooks.md`）
 - ドラフト: 末尾に `-draft`（例: `doorkeeper-unified-v2-draft.md`）
+- アンケート: `アンケート-{対象}.md`（例: `アンケート-大人向けAI.md`）。**日付は付けない**。回ごとに作り直すと比較できるデータが貯まらないため、対象ごとに1本を使い回す
 
 ※ `dm/` の運用詳細は [01_開催前作業/dm/README.md](01_開催前作業/dm/README.md) を参照
 
