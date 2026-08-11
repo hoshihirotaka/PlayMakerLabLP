@@ -928,17 +928,19 @@
               <img src="assets/R.png" alt="教室の様子" width="960" height="537" fetchpriority="high" decoding="async" />
             </picture>
           </div>
+          <!-- ▼ ここに置けるのも、掲載可否で許可が取れた作品だけ。
+               作品ギャラリー（#works）と同じ基準。差し替えるときは両方そろえて確認すること -->
           <div class="hero-grid" aria-label="参加者が作った作品">
             <div class="hero-tile work">
               <picture>
-                <source srcset="assets/works/cheetah.webp" type="image/webp" />
-                <img src="assets/works/cheetah.jpg" alt="参加者の作品「チーターマン28M競歩」" width="720" height="369" decoding="async" />
+                <source srcset="assets/works/diamond-defense.webp" type="image/webp" />
+                <img src="assets/works/diamond-defense.jpg" alt="参加者の作品「3Dダイヤ防衛サバイバー」" width="720" height="436" decoding="async" />
               </picture>
             </div>
             <div class="hero-tile work">
               <picture>
-                <source srcset="assets/works/horror-obby.webp" type="image/webp" />
-                <img src="assets/works/horror-obby.jpg" alt="参加者の作品「ホラーオビー」" width="720" height="400" decoding="async" />
+                <source srcset="assets/works/red-horror-obby.webp" type="image/webp" />
+                <img src="assets/works/red-horror-obby.jpg" alt="参加者の作品「まっ赤なホラーオービー」" width="720" height="374" decoding="async" />
               </picture>
             </div>
           </div>
@@ -1305,8 +1307,70 @@
       <section class="section" id="works">
         <div class="container card">
           <h2>作品ギャラリー</h2>
+
           <!--
-            ▼ 参加者の作品4点を一時的に非公開にしています（2026-08-07）
+            ▼ ここに載せてよいのは、アンケートの「作品の掲載可否」で
+              「掲載してよい」の許可が取れた作品だけ。
+              利用規約 第5条2「成果物を紹介する際は事前に保護者の方へご確認します」による。
+              作品の著作権は制作者（参加者）に帰属する（同条1）。
+              許可の記録は親御様用Googleフォームに残る。
+
+              2026-08-09の回: 参加はご兄弟2名。保護者が同じで、フォーム回答は1件のみ。
+              その1件のQ8で「掲載してよい」が取れているため、兄弟2人ぶんの作品を
+              このブロックに掲載してよい（お子様用の紙も2枚とも掲載可の記入あり）。
+              ※ 兄弟以外が同時参加した回では、どの回答がどのお子さんのものか
+                切り分けてから載せること。
+          -->
+          <h3 style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ワークショップで生まれた作品（講師コメント付き）</h3>
+          <div class="grid-2" style="margin-bottom: 24px;">
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/red-horror-obby.webp" type="image/webp" />
+                <img src="assets/works/red-horror-obby.jpg" alt="赤い照明のホラー風アスレチックのプレイ画面" width="720" height="374" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">まっ赤なホラーオービー</div>
+                <div class="work-meta">小学3年生・Robloxコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> 赤い照明でホラーの雰囲気を作り込んだアスレチック。難易度が高く、先生も何度もやられました。近道まで用意されていて、ギミックの配置が凝っています。</p>
+              </div>
+            </div>
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/duck-castle.webp" type="image/webp" />
+                <img src="assets/works/duck-castle.jpg" alt="草原にアヒルが並び、遠くに赤い滑り台が見えるワールドのプレイ画面" width="720" height="352" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">アヒルと巨人のいる城</div>
+                <div class="work-meta">小学3年生・Robloxコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> テーマもテンプレートも自由に選んでもらった一作。城の出入り口はオービーのカラフルな鉄格子、草原にはアヒルの群れ、滑り台には巨人。思いついたものを次々置いていく、サンドボックスの楽しさが出ています。</p>
+              </div>
+            </div>
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/rotating-obby.webp" type="image/webp" />
+                <img src="assets/works/rotating-obby.jpg" alt="暗い空間に浮かぶ足場と回転する床を使ったアスレチックのプレイ画面" width="720" height="460" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">回る床のオービー</div>
+                <div class="work-meta">小学5年生・Robloxコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> Scratchで培ったプログラミングの経験を活かして、回転する床に挑戦。しかもその回転を近道としても使えるように設計しているのが見事です。仕組み作りに時間をかけた分、限られた時間でよくまとめました。</p>
+              </div>
+            </div>
+            <div class="work-card">
+              <picture>
+                <source srcset="assets/works/diamond-defense.webp" type="image/webp" />
+                <img src="assets/works/diamond-defense.jpg" alt="中央の家を敵が取り囲むタワーディフェンスのプレイ画面。残り日数と体力ゲージが表示されている" width="720" height="436" loading="lazy" decoding="async" />
+              </picture>
+              <div class="work-body">
+                <div class="work-title">3Dダイヤ防衛サバイバー</div>
+                <div class="work-meta">小学5年生・AIコース</div>
+                <p class="work-comment"><strong>講師コメント:</strong> 1作目は思ったとおりに作れず、「作りたいものを作るには、思っていることをちゃんと伝えないといけない」——先生との会話からそこに行き着いて、書き直した一作。1か月生き延びるタワーディフェンスで、支援ボックスから出た武器やペットを使い、家の中心のダイヤを守ります。</p>
+              </div>
+            </div>
+          </div>
+
+          <!--
+            ▼ 過去の参加者の作品4点は非公開のままにしています（2026-08-07〜）
 
             理由: 利用規約 第5条2「成果物を紹介する際は事前に保護者の方へご確認します」に対し、
                   体験会では同意書の運用が始まっておらず、掲載の確認記録がないため。
@@ -1318,8 +1382,9 @@
             なお下の「ブラウザでそのまま遊べる作品」は非公開にしていません。
             ねこレストラン物語は身内（甥）の作品、TwinBlock 2048は講師の作品のため。
 
-            今後: 親御様用Googleフォームに「作品の掲載可否」を設問として追加し、
-                  回ごとに事前確認の記録が残るようにする
+            2026-08-11 追記: 掲載可否の設問はフォームに追加済み。8/9の回から許可を取れている。
+                  ただし下の4点は設問を作る前の回のものなので、許可が取れていない状態は変わらない。
+                  制作したご家族に個別に確認が取れたものから、1点ずつ上の公開ブロックへ移すこと。
           -->
           <!--
           <h3 style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ワークショップで生まれた作品（講師コメント付き）</h3>
