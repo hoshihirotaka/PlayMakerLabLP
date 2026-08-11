@@ -33,6 +33,7 @@ content/
     ├── doorkeeper-community.md   # Doorkeeperコミュニティページ
     ├── doorkeeper-top.md         # Doorkeeperトップページ
     ├── seo.md                    # SEO関連テキスト
+    ├── SCHEDULE-PATTERNS.md      # タイムスケジュールのパターン集（曜日・会場ごとのコマ割りの型）
     ├── NOTE-GUIDE.md             # note執筆ガイド（記事の書き方）
     ├── NOTE-EDITOR-AUTOMATION.md # note入稿ガイド（ブラウザ操作でnoteに流し込む手順）
     ├── SNS-GUIDE.md              # SNSシェア文言ガイド（Xの文字数ルール・媒体別の使い分け）
