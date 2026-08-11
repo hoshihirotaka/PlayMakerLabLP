@@ -78,6 +78,9 @@ Notionの主なドキュメント: 「中高生向けコピー案とGoogle広告
 
 ## 制作ガイド
 
+> **いまの状況と次にやることは [HANDOFF-2026-08-11.md](content/HANDOFF-2026-08-11.md) を先に読む。**
+> 開催予定・進行中の施策・ツールの制約（noteの画像挿入不可、RobloxのUDim2設定不可など）がまとまっている。
+
 | ガイド | 内容 |
 |---|---|
 | [NOTE-GUIDE.md](content/04_共通/NOTE-GUIDE.md) | note記事の書き方 |
