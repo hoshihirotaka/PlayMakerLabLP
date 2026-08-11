@@ -83,6 +83,7 @@ Notionの主なドキュメント: 「中高生向けコピー案とGoogle広告
 
 | ガイド | 内容 |
 |---|---|
+| [SCHEDULE-PATTERNS.md](content/04_共通/SCHEDULE-PATTERNS.md) | タイムスケジュールのパターン集。曜日・会場ごとのコマ割りの型。**timetableを書く前にここを見る** |
 | [NOTE-GUIDE.md](content/04_共通/NOTE-GUIDE.md) | note記事の書き方 |
 | [NOTE-EDITOR-AUTOMATION.md](content/04_共通/NOTE-EDITOR-AUTOMATION.md) | noteエディタへの入稿手順 |
 | [SNS-GUIDE.md](content/04_共通/SNS-GUIDE.md) | SNSシェア文言。Xの文字数の数え方・媒体別の使い分け |
