@@ -1,4 +1,7 @@
-// 日程・時間確定（2026-08-12）。Doorkeeper未作成のため comingSoon: true のまま
+// 日程・時間確定（2026-08-12）。Doorkeeperのイベントは作成済みだが**未公開で申し込みができない**ため
+// comingSoon: true のまま。公開されたら comingSoon を外し doorkeeperUrl とJSON-LDを埋める
+//   子ども向け: https://gameschool.doorkeeper.jp/events/198773 （第14回）
+//   大人向け:   https://gameschool.doorkeeper.jp/events/198774 （はじめてのGoogle×AI活用勉強会）
 // 日曜パターンの「派生案」で実施（大人向けAIを日中に置く形）。詳細は content/04_共通/SCHEDULE-PATTERNS.md §2
 // Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
 (window.EVENTS = window.EVENTS || []).push({
