@@ -832,6 +832,9 @@
       .flow-note { font-size: 0.9em; }
 
       footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin-bottom: 12px; }
+      .footer-links a { color: #4a5d7a; text-decoration: none; }
+      .footer-links a:hover { text-decoration: underline; }
 
       /* モバイル固定CTA */
       .fixed-cta {
@@ -1482,7 +1485,17 @@
 
     </main>
 
-    <footer>© ブロマスゲームラボ</footer>
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="legal/terms.html">利用規約</a>
+          <a href="legal/privacy.html">プライバシーポリシー</a>
+          <a href="legal/disclaimer.html">免責事項</a>
+          <a href="legal/tokushoho.html">特定商取引法に基づく表記</a>
+        </div>
+        © ブロマスゲームラボ
+      </div>
+    </footer>
 
     <div class="fixed-cta" id="fixed-cta">
       <a class="cta" id="fixed-cta-link" href="#schedule">日程・申し込みを見る</a>

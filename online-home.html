@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>オンライン・自宅で通う | ブロマスゲームラボ</title>
-    <meta name="description" content="ブロマスゲームラボのオンライン・自宅レッスン。トレーナー紹介と、オンライン／自宅それぞれの前提条件・料金体系・スケジュール・ご予約カレンダー。" />
+    <title>個別プラン（無料相談・オンライン・自宅） | ブロマスゲームラボ</title>
+    <meta name="description" content="ブロマスゲームラボの個別プラン。無料相談・オンライン・自宅の3つの入口をまとめたページ。トレーナー紹介、ご利用の流れ、料金、ご予約カレンダー。" />
     <meta name="robots" content="noindex,follow" />
 
     <!-- Google tag (gtag.js) -->
@@ -77,12 +77,49 @@
       .timerex-embed { border-radius: var(--radius-md); overflow: hidden; background: var(--surface-soft); }
       .timerex-embed iframe { display: block; }
       footer { color: #6c7f9c; text-align: center; font-size: 0.85rem; padding: 30px 0 40px; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin-bottom: 12px; }
+      .footer-links a { color: #4a5d7a; text-decoration: none; }
+      .footer-links a:hover { text-decoration: underline; }
 
       /* トレーナー紹介（将来の複数人対応を見込んだ構造） */
       .trainer-grid { display: grid; gap: 16px; }
-      .trainer-card { display: grid; gap: 8px; }
-      .trainer-name { font-weight: 800; font-size: 1.1rem; color: #0f2c59; }
+      .trainer-card { display: grid; gap: 16px; }
+      .trainer-photo {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 18px;
+        display: block;
+        margin: 0 auto;
+      }
+      .trainer-name { font-weight: 800; font-size: 1.15rem; color: #0f2c59; }
+      .trainer-role { font-size: 0.85rem; font-weight: 700; color: var(--subtext); margin-top: 2px; }
       .trainer-bio { margin: 0; color: var(--subtext); }
+      /* 経歴などの小見出し付きブロック */
+      .trainer-block { margin-top: 14px; }
+      .trainer-block h3 {
+        font-size: 0.95rem;
+        margin: 0 0 4px;
+        color: #0f2c59;
+      }
+      .trainer-block p { margin: 0; color: var(--subtext); }
+      .trainer-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+      .trainer-links a {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0f6e9e;
+        text-decoration: none;
+        border: 1px solid rgba(15, 110, 158, 0.35);
+        border-radius: 999px;
+        padding: 6px 14px;
+      }
+      @media (min-width: 700px) {
+        /* PCでは写真を左、プロフィールを右に */
+        .trainer-card { grid-template-columns: 220px 1fr; align-items: start; }
+        .trainer-photo { margin: 0; }
+      }
 
       /* ご利用の流れ */
       .flow-list { display: grid; gap: 4px; }
@@ -107,10 +144,29 @@
         background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
         box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
       }
-      .choice-link.home {
+      /* 無料相談＝最初のステップなので既定色（赤）のまま。オンライン＝青／自宅＝緑で区別 */
+      .choice-link.online {
         background: linear-gradient(180deg, #2dd6ff 0%, #1aa7d6 100%);
         box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
       }
+      .choice-link.home {
+        background: linear-gradient(180deg, #49d6a3 0%, #23a97b 100%);
+        box-shadow: 0 8px 0 rgba(19, 110, 80, 0.85);
+      }
+      /* セクション見出しの補足（そのセクション固有の条件など） */
+      .section-note { font-size: 0.9rem; color: var(--subtext); margin: 0 0 14px; }
+      /* 予約条件など、必ず読んでほしい注意書き */
+      .notice {
+        background: rgba(255, 209, 102, 0.25);
+        border-left: 4px solid #ffd166;
+        padding: 14px 16px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+        color: #6b4a00;
+      }
+      .notice strong { display: block; margin-bottom: 6px; color: #5a3e00; }
+      .notice ul { margin: 6px 0 0; padding-left: 20px; }
+      .notice p { margin: 0; }
     </style>
   </head>
   <body>
@@ -128,12 +184,39 @@
           <h1>トレーナー紹介</h1>
           <div class="trainer-grid">
             <div class="trainer-card">
-              <div class="trainer-name">星 弘高（ひった）</div>
-              <p class="trainer-bio">
-                ゲーム業界20年以上のキャリア（コンシューマー→ソーシャルゲーム→ハイパーカジュアル・企業案件）を経験。<br />
-                現在はRobloxでのUGC開発とAI活用を通じた教育事業を運営しています。<br />
-                「面白さの設計（ゲームデザイン）」を軸に、専門領域は業界クリエイターと連携しながら進めます。
-              </p>
+              <picture>
+                <source srcset="assets/teacher.webp" type="image/webp" />
+                <img class="trainer-photo" src="assets/teacher.jpg" alt="トレーナー: 星 弘高" width="800" height="800" loading="lazy" decoding="async" />
+              </picture>
+              <div>
+                <div class="trainer-name">星 弘高（ひった）</div>
+                <div class="trainer-role">ゲームプランナー / ブロマスゲームラボ主宰</div>
+
+                <div class="trainer-block">
+                  <h3>経歴</h3>
+                  <p>ゲーム業界20年以上。コンシューマー機からソーシャルゲーム、ハイパーカジュアル、企業案件まで、企画・開発・運営をひと通り経験してきました。現在はフリーランスとして活動しています。</p>
+                </div>
+
+                <div class="trainer-block">
+                  <h3>今取り組んでいること</h3>
+                  <p>RobloxでのUGC（ユーザーが作るコンテンツ）開発と、AIを活用した教育事業を運営しています。2025年からは、こども向けのゲームクリエイター教室を始めました。</p>
+                </div>
+
+                <div class="trainer-block">
+                  <h3>教えるときに大事にしていること</h3>
+                  <p>軸にしているのは「面白さの設計（ゲームデザイン）」です。プログラミングの文法を覚えることよりも、<strong>「どうすれば面白くなるか」を考えて形にする経験</strong>を大切にしています。自分の専門外の領域は、業界のクリエイターと連携しながら進めます。</p>
+                </div>
+
+                <div class="trainer-block">
+                  <h3>個別プランでできること</h3>
+                  <p>お子さんのペースや「作りたいもの」に合わせて内容を組み立てます。作りたいものが決まっていない場合も、無料相談で一緒に決めていくので大丈夫です。</p>
+                </div>
+
+                <div class="trainer-links">
+                  <a href="https://note.com/shgame/magazines" target="_blank" rel="noreferrer">活動報告（note）</a>
+                  <a href="https://www.instagram.com/block.master.game.lab/" target="_blank" rel="noreferrer">教室の様子（Instagram）</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -142,31 +225,37 @@
         <div class="card">
           <h2>共通のご案内</h2>
 
-          <div class="info">
-            <strong>ご予約前に必ずご確認ください</strong>
+          <div class="notice">
+            <strong>ご予約は無料相談を受けた方が対象です</strong>
+            <p>オンライン・自宅のレッスンは、<strong>まず無料相談にご参加いただいた方</strong>にご予約いただけます。無料相談を経ずにお申し込みいただいた場合は、キャンセル（不参加）とさせていただきます。</p>
             <ul>
-              <li>PCをお持ちの方のみご予約いただけます</li>
-              <li>必要な機材のインストール・立ち上げは事前にお願いします</li>
-              <li>小学生の方は保護者の同席をお願いします</li>
-              <li>対象は小学3年生以上です。3年生未満の方は、まず路地裏でのリアルイベントにご参加いただき、習熟度を確認させてください</li>
+              <li>ご都合が悪くなった場合は、事前にご連絡ください</li>
+              <li>ご連絡のないキャンセルが続いた場合、以降のお申し込みをお受けできないことがあります</li>
+            </ul>
+          </div>
+
+          <!-- TODO: 「オリジナル企画・作品づくりオプション」は専用ページを作ったら、
+               この料金ブロックとご利用の流れ②に復活させる（通常プラン・個別プランどちらでも追加可） -->
+          <div class="info">
+            <strong>料金（個別プラン）</strong>
+            <ul>
+              <li><strong>1回 4,000円（お一人あたり）</strong></li>
+              <li>オンライン・自宅とも同じ料金です</li>
+              <li>1組ごとのご予約です。お一人でも同じ内容で受けられます</li>
+              <li>ご家族・お友達とご一緒の参加も歓迎です（お一人ずつの料金がかかります）</li>
+              <li>出張でのレッスンをご希望の場合は、旅費・交通費を別途ご請求いたします。まずは無料相談にてご相談ください</li>
             </ul>
           </div>
 
           <div class="info">
-            <strong>料金体系</strong>
-            <ul>
-              <li>通常プラン: 3,000〜4,000円（1回）</li>
-              <li>個別プラン: 場所やペースをお子さんに合わせるスタイル（オンライン・自宅）。料金は個別にご案内します ※現在準備中</li>
-              <li>オリジナル企画・作品づくりオプション: 通常プラン・個別プランどちらでも追加可（詳細は別途ご相談）</li>
-              <li>複数回契約時の割引: 現在検討中</li>
-              <li>リリース後の伴走オプション: 別途相談（金額未定）</li>
-            </ul>
-          </div>
-
-          <div class="info" style="margin-bottom: 0;">
             <strong>スケジュール</strong>
             平日: 17:00〜18:00 / 18:30〜19:30（前後30分バッファあり）<br />
             土日: 11:00〜17:00の間で同様の枠をご用意しています
+          </div>
+
+          <div class="info" style="margin-bottom: 0;">
+            <strong>対象</strong>
+            小学3年生以上が対象です。3年生未満の方は、まず路地裏でのリアルイベントにご参加いただき、習熟度を確認させてください。
           </div>
         </div>
 
@@ -176,15 +265,14 @@
           <div class="flow-list">
             <div class="flow-step">
               <div class="flow-title">① まずは無料相談（オンライン）</div>
-              <p><a href="consultation.html">無料相談</a>で、機材の確認・カリキュラムの決定・決済方法・次の日程を決めていきます。</p>
+              <p><a href="#consultation">無料相談</a>で、機材の確認・カリキュラムの決定・決済方法・次の日程を決めていきます。</p>
             </div>
             <div class="flow-arrow">↓</div>
             <div class="flow-step">
               <div class="flow-title">② プランを選択</div>
               <ul>
                 <li>通常プラン（路地裏などの既存イベントに参加、既存カリキュラムから選ぶ）</li>
-                <li>個別プラン（オンライン・自宅、場所とペースを合わせる）※現在準備中</li>
-                <li>オリジナル企画・作品づくりは、どちらのプランでもオプションとして追加できます</li>
+                <li>個別プラン（オンライン・自宅、場所とペースを合わせる）</li>
               </ul>
             </div>
             <div class="flow-arrow">↓</div>
@@ -201,17 +289,56 @@
 
         <!-- 選択導線 -->
         <div class="card" style="text-align: center;">
-          <h2>ご希望のスタイルをお選びください</h2>
+          <h2>ご希望のメニューをお選びください</h2>
+          <p class="section-note">はじめての方は、まず無料相談からどうぞ。</p>
           <div class="choice-row">
-            <a class="choice-link" href="#online">💻 オンラインを選ぶ</a>
-            <a class="choice-link home" href="#home">🏠 自宅を選ぶ</a>
+            <a class="choice-link" href="#consultation">💬 無料相談を予約する</a>
+            <a class="choice-link online" href="#online">💻 オンラインを予約する</a>
+            <a class="choice-link home" href="#home">🏠 自宅を予約する</a>
           </div>
         </div>
+
+        <!-- 無料相談 -->
+        <section id="consultation" class="card">
+          <h2>💬 無料相談（まずはここから）</h2>
+          <p>オンラインでの無料相談を受け付けています。相談では以下を決めていきます。</p>
+          <ul>
+            <li>必要な機材の確認</li>
+            <li>今後のカリキュラムの決定（通常プラン／個別プランどちらでも相談可）</li>
+            <li>決済方法の決定</li>
+            <li>次の日程の決定</li>
+            <li>自宅レッスンをご希望の場合は、当日の場所（住所）もこちらでお伝えします</li>
+          </ul>
+
+          <div class="notice">
+            <strong>お願い</strong>
+            <p>ご都合が悪くなった場合は、事前にご連絡ください。ご連絡のないキャンセルが続いた場合、以降のお申し込みをお受けできないことがあります。</p>
+          </div>
+
+          <h3>ご希望の日時をお選びください</h3>
+          <div class="timerex-embed">
+            <iframe src="https://timerex.net/s/hitta.games_7713/8a2129d7/embed" style="width:100%; min-height:700px; border:0;" loading="lazy" title="無料相談 予約カレンダー"></iframe>
+          </div>
+        </section>
 
         <!-- オンライン -->
         <section id="online" class="card">
           <h2>💻 オンライン</h2>
-          <p>Web会議で実施します。教材は画面共有・ファイル共有で対応します。</p>
+          <p>Web会議で実施します。教材は画面共有・ファイル共有で対応します。ご自宅から参加できるので、送り迎えの必要がありません。</p>
+
+          <div class="notice">
+            <strong>ご予約は無料相談を受けた方が対象です</strong>
+            <p>無料相談を経ずにお申し込みいただいた場合は、キャンセル（不参加）とさせていただきます。<a href="#consultation">無料相談はこちら</a>からどうぞ。</p>
+          </div>
+
+          <div class="info">
+            <strong>オンラインをご予約の前に</strong>
+            <ul>
+              <li>PCをお持ちの方のみご予約いただけます</li>
+              <li>必要な機材のインストール・立ち上げは事前にお願いします</li>
+              <li>小学生の方は保護者の同席をお願いします</li>
+            </ul>
+          </div>
 
           <h3>ご希望の日時をお選びください</h3>
           <div class="timerex-embed">
@@ -222,7 +349,21 @@
         <!-- 自宅 -->
         <section id="home" class="card">
           <h2>🏠 自宅</h2>
-          <p>ひったさんのご自宅で対面実施します。住所は非公開で、予約確定後にLINEで個別にご案内します。</p>
+          <p>講師の自宅で対面実施します。目の前で操作を見ながら進められるので、パソコンの扱いに不安がある方でも安心です。</p>
+
+          <div class="notice">
+            <strong>ご予約は無料相談を受けた方が対象です</strong>
+            <p>無料相談を経ずにお申し込みいただいた場合は、キャンセル（不参加）とさせていただきます。<a href="#consultation">無料相談はこちら</a>からどうぞ。</p>
+          </div>
+
+          <div class="info">
+            <strong>自宅について</strong>
+            <ul>
+              <li>最寄駅: 武蔵浦和駅から徒歩8分</li>
+              <li>パソコンはこちらでご用意します（お持ちでなくても参加できます）</li>
+              <li>住所は非公開です。無料相談の際にお伝えします</li>
+            </ul>
+          </div>
 
           <h3>ご希望の日時をお選びください</h3>
           <div class="timerex-embed">
@@ -233,6 +374,16 @@
       </div>
     </main>
 
-    <footer>© ブロマスゲームラボ</footer>
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="legal/terms.html">利用規約</a>
+          <a href="legal/privacy.html">プライバシーポリシー</a>
+          <a href="legal/disclaimer.html">免責事項</a>
+          <a href="legal/tokushoho.html">特定商取引法に基づく表記</a>
+        </div>
+        © ブロマスゲームラボ
+      </div>
+    </footer>
   </body>
 </html>
