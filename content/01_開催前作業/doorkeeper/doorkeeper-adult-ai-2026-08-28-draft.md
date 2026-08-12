@@ -210,6 +210,13 @@ A: 差し支えのない範囲で構いません。5分ほどの内容で、お�
 Q: 子どもを連れて参加できますか？  
 A: 可能です。同日夕方のお子さま向け体験会にご参加いただき、そのまま会場でお待ちいただく形が多いです。ご相談ください。
 
+## 📄 お申し込み前にご確認ください
+ご参加にあたり、以下をご確認ください。
+
+- [利用規約](https://hoshihirotaka.github.io/PlayMakerLabLP/legal/terms.html)
+- [プライバシーポリシー](https://hoshihirotaka.github.io/PlayMakerLabLP/legal/privacy.html)
+- [免責事項](https://hoshihirotaka.github.io/PlayMakerLabLP/legal/disclaimer.html)
+
 ## 📝 お申し込み方法
 上記の「申し込む」ボタンからお申し込みください。定員になり次第締め切らせていただきます。
 
