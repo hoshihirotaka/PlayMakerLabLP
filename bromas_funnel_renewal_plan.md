@@ -97,6 +97,7 @@ Doorkeeper→LPの導線（信頼チェック動線）も自然に生まれる�
 | Doorkeeperイベント文→LP | `utm_source=doorkeeper&utm_medium=event` |
 | コミュニティページ→LP | `utm_source=doorkeeper&utm_medium=community` |
 | インスタプロフィール→LP | `utm_source=instagram&utm_medium=profile` |
+| **ストーリーズ／ハイライトのリンクステッカー** | **`utm_source=instagram&utm_medium=story`** |
 | DM→Doorkeeper | `utm_source=instagram&utm_medium=dm` |
 | 広告 | ブースト自動付与に任せる（ig/paid） |
 
