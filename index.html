@@ -104,6 +104,12 @@
       gtag("config", "G-E9YKGSCX5B");
       gtag("config", "AW-977501883");
     </script>
+    <!-- JSが無効だと「カリキュラムを読み込み中…」が永久に残るため隠す -->
+    <noscript>
+      <style>
+        .curri-loading { display: none; }
+      </style>
+    </noscript>
     <style>
       :root {
         --bg: #f7f5f0;
@@ -734,6 +740,18 @@
       .curri-detail p { margin: 8px 0 0; color: var(--subtext); line-height: 1.7; font-size: 0.88rem; }
       .curri-loading { color: var(--subtext); grid-column: 1 / -1; }
 
+      /* JSが動かない環境向けの案内 */
+      .noscript-note {
+        color: var(--subtext);
+        background: var(--surface-soft);
+        border: 1px dashed var(--line, #d9dee8);
+        border-radius: 12px;
+        padding: 16px;
+        margin: 8px 0 0;
+        line-height: 1.7;
+      }
+      .noscript-note a { color: inherit; font-weight: 700; }
+
       /* カリキュラム 科目タブ */
       .curri-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
       .curri-tab {
@@ -1117,6 +1135,14 @@
           <div class="curri-grid" id="curriGrid">
             <p class="curri-loading">カリキュラムを読み込み中…</p>
           </div>
+          <noscript>
+            <p class="noscript-note">
+              お使いの環境ではカリキュラム一覧を表示できません。<br />
+              教材の内容は
+              <a href="https://gameschool.doorkeeper.jp/?utm_source=lp&amp;utm_medium=noscript">Doorkeeperのページ</a>
+              でもご案内しています。
+            </p>
+          </noscript>
           <div class="curri-note">体験会（体験用の教材）は回によってテーマが変わります。2回目以降も新しい教材で参加できます。</div>
         </div>
       </section>
@@ -1201,6 +1227,16 @@
 
           <!-- イベントはここに自動描画されます -->
           <div id="event-list" class="event-list"></div>
+          <!-- JSが動かない環境向け。日付は書かず、常に最新が並ぶDoorkeeperのトップへ送る
+               （ここに開催日を直書きすると、イベント追加のたびに更新が必要になるため） -->
+          <noscript>
+            <p class="noscript-note">
+              お使いの環境では開催日程を表示できません。<br />
+              最新の日程とお申し込みは
+              <a href="https://gameschool.doorkeeper.jp/?utm_source=lp&amp;utm_medium=noscript">Doorkeeperのページ</a>
+              からご確認いただけます。
+            </p>
+          </noscript>
         </div>
       </section>
 
