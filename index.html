@@ -6,7 +6,16 @@
     <title>親子で体験するゲーム制作 | Roblox×AIワークショップ（ブロマス）</title>
     <meta name="description" content="ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。ゲームの習い事として、親子参加歓迎・地域密着の会場で開催。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/" />
-    <link rel="preload" as="image" href="assets/R.webp" type="image/webp" />
+    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
+         先読みしてしまい出し分けの意味がなくなる -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/R.webp"
+      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
+      imagesizes="(max-width: 767px) 77vw, 480px"
+      type="image/webp"
+    />
     <meta property="og:title" content="親子で体験するゲーム制作 | Roblox×AIワークショップ（ブロマス）" />
     <meta property="og:description" content="ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。ゲームの習い事として、親子参加歓迎・地域密着の会場で開催。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -936,9 +945,24 @@
         </div>
         <div>
           <div class="hero-photo">
+            <!-- モバイルでは287px幅で表示されるため、1080px版は解像度が約1.9倍過剰だった。
+                 600px版を用意して出し分ける（113KB→43KB）。LCPの短縮が目的。 -->
             <picture>
-              <source srcset="assets/R.webp" type="image/webp" />
-              <img src="assets/R.png" alt="教室の様子" width="960" height="537" fetchpriority="high" decoding="async" />
+              <source
+                srcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
+                sizes="(max-width: 767px) 77vw, 480px"
+                type="image/webp"
+              />
+              <img
+                src="assets/R.png"
+                srcset="assets/R-600.jpg 600w, assets/R-900.jpg 900w, assets/R.png 1080w"
+                sizes="(max-width: 767px) 77vw, 480px"
+                alt="教室の様子"
+                width="960"
+                height="537"
+                fetchpriority="high"
+                decoding="async"
+              />
             </picture>
           </div>
           <!-- ▼ ここに置けるのも、掲載可否で許可が取れた作品だけ。
