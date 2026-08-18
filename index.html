@@ -1258,16 +1258,16 @@
               <span class="social-label">SNS</span>
               <div class="social-icons">
                 <a class="social-link" href="https://www.instagram.com/hirotaka_hoshi/" target="_blank" rel="noreferrer" aria-label="Instagram">
-                  <img src="assets/icon-instagram.svg" alt="" />
+                  <img src="assets/icon-instagram.svg" alt="" width="20" height="20" />
                 </a>
                 <a class="social-link" href="https://www.threads.com/@hirotaka_hoshi" target="_blank" rel="noreferrer" aria-label="Threads">
-                  <img src="assets/icon-threads.svg" alt="" />
+                  <img src="assets/icon-threads.svg" alt="" width="20" height="20" />
                 </a>
                 <a class="social-link" href="https://www.facebook.com/hirotaka.hoshi" target="_blank" rel="noreferrer" aria-label="Facebook">
-                  <img src="assets/icon-facebook.svg" alt="" />
+                  <img src="assets/icon-facebook.svg" alt="" width="20" height="20" />
                 </a>
                 <a class="social-link" href="https://x.com/shgame" target="_blank" rel="noreferrer" aria-label="X">
-                  <img src="assets/icon-x.svg" alt="" />
+                  <img src="assets/icon-x.svg" alt="" width="20" height="20" />
                 </a>
               </div>
             </div>
@@ -1818,7 +1818,19 @@
 
         jump();                                // 同期描画（日程）の反映後
         window.addEventListener("load", jump); // 画像・iframeの高さ確定後
-        setTimeout(jump, 700);                 // fetchで遅れて描画されるカリキュラム対策
+
+        // 固定の待ち時間では取りこぼす。カリキュラムはfetchで描画され、遅い回線では
+        // 数秒かかることがある。loadイベントはfetchを待たないため、「loadも過ぎた後に
+        // 描画される」ケースが起きる。ページ全体の高さが変わるたびに追従させる。
+        if (typeof ResizeObserver === "function") {
+          var ro = new ResizeObserver(function () { jump(); });
+          ro.observe(document.body);
+          // 監視は5秒で打ち切る（それ以降のスクロールはユーザーのものとして扱う）
+          setTimeout(function () { ro.disconnect(); }, 5000);
+        } else {
+          setTimeout(jump, 700);
+          setTimeout(jump, 2500);
+        }
       })();
     </script>
   </body>
