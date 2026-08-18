@@ -163,12 +163,28 @@ events/
 });
 ```
 
-**② `index.html` の所定箇所に1行追加する**
+**② `index.html` の所定箇所に1行追加する（**2か所ある**）**
 
 ```html
 <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
 <script src="events/2026-06-26.js"></script>
 <script src="events/2026-XX-XX.js"></script>  ← 追加
+```
+
+**あわせて `<head>` の preload にも1行追加する。** これを忘れると、そのイベントだけ
+先読みされず読み込みが遅れる（表示は正しく出るので気づきにくい）。
+
+```html
+<link rel="preload" as="script" href="events/2026-XX-XX.js" />  ← 追加
+```
+
+逆に、**`<script>` から外したファイルの preload を残すと**「先読みしたのに使われていない」
+という警告がコンソールに出て、無駄な通信も発生する。**両者は必ず一致させる。**
+
+```bash
+# 一致しているかの検算（差分が出なければOK）
+diff <(grep -oE 'preload" as="script" href="[^"]*"' index.html | sed 's/.*href="//;s/"//' | sort) \
+     <(grep -oE '<script src="(events|curriculum)/[^"]*"' index.html | sed 's/.*src="//;s/"//' | sort)
 ```
 
 **③ `index.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
