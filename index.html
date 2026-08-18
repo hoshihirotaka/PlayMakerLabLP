@@ -22,6 +22,22 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- 日程とカリキュラムのデータを先読みする。
+         これらの <script> はページ下部（本文の後ろ）に置いてあり、そこまでパースが
+         進まないとダウンロードが始まらない。しかも defer/async が付いていないため
+         ダウンロード中はHTMLのパースが止まる。head で予約しておくと、パースと並行して
+         取得できるので、下部に到達した時点で待ち時間がゼロになる。
+         ※ 実行順・DOM順・表示順は一切変わらない。変わるのは取得開始のタイミングだけ。
+         イベントを追加したときは、下部の <script> と合わせてここにも1行足すこと。 -->
+    <link rel="preload" as="script" href="curriculum/curriculum.js" />
+    <link rel="preload" as="script" href="events/2026-08-28.js" />
+    <link rel="preload" as="script" href="events/2026-09-13.js" />
+    <link rel="preload" as="script" href="events/2026-09-19.js" />
+    <link rel="preload" as="script" href="events/2026-09-25.js" />
+    <link rel="preload" as="script" href="events/2026-10-11.js" />
+    <link rel="preload" as="script" href="events/2026-10-23.js" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
