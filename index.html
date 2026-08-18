@@ -92,18 +92,17 @@
         ]
       }
     </script>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — GA4 と Google広告 をまとめて即時読み込み
+         以前はGA4だけ window.load 後に読み込んでいたが、全画像の読み込み完了を待つため
+         モバイルで数秒遅れ、早期離脱がまるごと計測から漏れていた。エンゲージメント時間も
+         実態より短く出る。計測の起点を早めるため、通常のasync読み込みに戻している。 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      window.addEventListener("load", function () {
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B";
-        document.head.appendChild(script);
-        gtag("js", new Date());
-        gtag("config", "G-E9YKGSCX5B");
-      });
+      gtag("js", new Date());
+      gtag("config", "G-E9YKGSCX5B");
+      gtag("config", "AW-977501883");
     </script>
     <style>
       :root {
@@ -876,14 +875,7 @@
         50% { transform: translateY(-18px); }
       }
     </style>
-    <!-- Google tag (gtag.js) - Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-977501883"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-977501883');
-    </script>
+    <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
   </head>
   <body>
     <div class="orb one" aria-hidden="true"></div>
@@ -1752,6 +1744,45 @@
         window.addEventListener("resize", function () {
           if (window.innerWidth >= 768) setOpen(false);
         });
+      })();
+    </script>
+
+    <!-- ページ内アンカー(#schedule 等)の位置ずれ対策
+         日程とカリキュラムはJSで後から描画されるため、HTMLを読んだ時点では空の箱しかない。
+         ブラウザ既定のジャンプはその高さで位置を決めるので、描画後にセクションが伸びると
+         ユーザーの表示位置がずれる（モバイルほど顕著。広告やLINEから直接飛んだときに
+         「壊れている」と見える原因）。描画が終わったタイミングで改めて移動させる。
+         このスクリプトは各描画IIFEより後に置くこと。 -->
+    <script>
+      (function () {
+        var hash = location.hash;
+        if (!hash || hash.length < 2) return;
+
+        var target;
+        try {
+          target = document.querySelector(hash);
+        } catch (e) {
+          return; // 不正なセレクタ
+        }
+        if (!target) return;
+
+        // ユーザーが自分でスクロールを始めたら、以降は動かさない
+        var userMoved = false;
+        function markMoved() { userMoved = true; }
+        var opts = { passive: true, once: true };
+        window.addEventListener("wheel", markMoved, opts);
+        window.addEventListener("touchstart", markMoved, opts);
+        window.addEventListener("keydown", markMoved, { once: true });
+
+        function jump() {
+          if (userMoved) return;
+          var el = document.querySelector(hash);
+          if (el) el.scrollIntoView();
+        }
+
+        jump();                                // 同期描画（日程）の反映後
+        window.addEventListener("load", jump); // 画像・iframeの高さ確定後
+        setTimeout(jump, 700);                 // fetchで遅れて描画されるカリキュラム対策
       })();
     </script>
   </body>
