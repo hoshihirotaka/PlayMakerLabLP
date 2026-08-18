@@ -2,7 +2,13 @@
 // 金曜パターンの標準形で実施。詳細は content/04_共通/SCHEDULE-PATTERNS.md §3
 // 8/28にあった子ども向けAIコース（DreamCore）はなくなり、①②ともRobloxコースになる
 // ①は16:40ではなく16:50始まり。16:40だと①の設営終わりと②開始の間に10分の空白ができるため
-// Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
+// Doorkeeperの枠は作成済みだが**未公開で申し込みができない**（2026-08-18）。公開されたら
+// comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
+//   子ども向け: https://gameschool.doorkeeper.jp/events/198875 （第16回）
+//   大人向け:   https://gameschool.doorkeeper.jp/events/198876
+//
+// タイトルは当初「RobloxとAIで〜」だったが、この回にDreamCoreは入れないため
+// 2026-08-18にAIを外して修正済み。**タイトルのAIの有無は、その回のDreamCoreの有無と一致させる**
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-09-25",
   date: "2026年9月25日（金）",
