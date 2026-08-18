@@ -11,8 +11,8 @@
 >   <!-- 子ども向け: https://gameschool.doorkeeper.jp/events/198875 -->
 >   <!-- 大人向け:   https://gameschool.doorkeeper.jp/events/198876 -->
 >   **公開したら** events/2026-09-25.js の `comingSoon` を外し、`doorkeeperUrl` とJSON-LDを埋める
-> - **⚠️ Doorkeeper側のタイトルが「RobloxとAIで〜」になっている。** 9/25はDreamCore（子ども向けAI）
->   を入れない回なので、**タイトルからAIを外すか、DreamCoreを入れるかを決めること**
+> - Doorkeeperのタイトルは当初「RobloxとAIで〜」だったが、この回にDreamCoreは入れないため
+>   **2026-08-18にAIを外して修正済み**。タイトルのAIの有無は、その回のDreamCoreの有無と一致させる
 > - **⚠️ 大人向けAIの参加費が未確定。** 8/28は2,900円／レンタル付き3,200円だったが、これは
 >   「アンケートにご協力いただく回だから」の1,000円引きで、通常は3,900円。
 >   本文の `【参加費: 調整中】` を差し替えてから公開すること

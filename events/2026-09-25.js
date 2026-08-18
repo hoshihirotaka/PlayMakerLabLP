@@ -7,9 +7,8 @@
 //   子ども向け: https://gameschool.doorkeeper.jp/events/198875 （第16回）
 //   大人向け:   https://gameschool.doorkeeper.jp/events/198876
 //
-// ⚠️ Doorkeeper側のタイトルが「RobloxとAIで、自分だけのゲームを作ろう！」になっているが、
-//    この回に子ども向けAI（DreamCore）は入れない方針。タイトルからAIを外すか、
-//    DreamCoreを入れるかを決めること（content/04_共通/SCHEDULE-PATTERNS.md §4）
+// タイトルは当初「RobloxとAIで〜」だったが、この回にDreamCoreは入れないため
+// 2026-08-18にAIを外して修正済み。**タイトルのAIの有無は、その回のDreamCoreの有無と一致させる**
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-09-25",
   date: "2026年9月25日（金）",
