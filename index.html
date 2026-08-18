@@ -1831,16 +1831,7 @@
          このスクリプトは各描画IIFEより後に置くこと。 -->
     <script>
       (function () {
-        var hash = location.hash;
-        if (!hash || hash.length < 2) return;
-
-        var target;
-        try {
-          target = document.querySelector(hash);
-        } catch (e) {
-          return; // 不正なセレクタ
-        }
-        if (!target) return;
+        if (!location.hash || location.hash.length < 2) return;
 
         // ユーザーが自分でスクロールを始めたら、以降は動かさない
         var userMoved = false;
@@ -1850,18 +1841,28 @@
         window.addEventListener("touchstart", markMoved, opts);
         window.addEventListener("keydown", markMoved, { once: true });
 
+        // 追従先は「今のURLのハッシュ」を毎回読み直す。
+        // 読み込み時の値を握ったままにすると、監視中(5秒以内)にナビでほかの
+        // セクションへ移動したとき、高さの変化をきっかけに元の位置へ引き戻してしまう。
+        // （#scheduleに着地 → ハンバーガーで作品ギャラリーへ → #scheduleへ戻される）
         function jump() {
           if (userMoved) return;
-          var el = document.querySelector(hash);
+          var h = location.hash;
+          if (!h || h.length < 2) return;
+          var el;
+          try {
+            el = document.querySelector(h);
+          } catch (e) {
+            return; // 不正なセレクタ
+          }
           if (el) el.scrollIntoView();
         }
 
         jump();                                // 同期描画（日程）の反映後
         window.addEventListener("load", jump); // 画像・iframeの高さ確定後
 
-        // 固定の待ち時間では取りこぼす。カリキュラムはfetchで描画され、遅い回線では
-        // 数秒かかることがある。loadイベントはfetchを待たないため、「loadも過ぎた後に
-        // 描画される」ケースが起きる。ページ全体の高さが変わるたびに追従させる。
+        // 固定の待ち時間では取りこぼす。遅い回線ではデータの読み込みや画像の確定が
+        // loadイベントの後にずれ込むことがある。ページ全体の高さが変わるたびに追従させる。
         if (typeof ResizeObserver === "function") {
           var ro = new ResizeObserver(function () { jump(); });
           ro.observe(document.body);
