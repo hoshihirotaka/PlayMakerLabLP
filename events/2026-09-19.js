@@ -7,7 +7,7 @@
 // Doorkeeperのイベントは作成済みだが**未公開で申し込みができない**ため comingSoon: true のまま。
 // 公開されたら comingSoon を外し doorkeeperUrl とJSON-LDを埋める。
 //   子ども向け: https://gameschool.doorkeeper.jp/events/198775 （第15回）
-//   大人向け:   未作成（Doorkeeperは前のイベントが終わらないと追加できない）
+//   大人向け:   https://gameschool.doorkeeper.jp/events/198874 （昼夜2回・1本にまとめる）
 //
 // ⚠️ 未確定が2つある。Doorkeeperを作る前に確定させること（同 §4 ②）
 //   1. 大人向けAI（②⑥）の参加費
