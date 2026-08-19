@@ -1867,6 +1867,32 @@
       })();
     </script>
 
+    <!-- Doorkeeperへのクリックを計測する。
+         以前はGA4の「離脱クリック（測定機能の強化）」を条件にしたイベントで拾っていたが、
+         2026-08-18にクロスドメイン測定の設定で gameschool.doorkeeper.jp を
+         ドメインリストへ追加したため、Doorkeeper行きが「離脱」と見なされなくなり
+         発火が止まった。Google広告の入札に使っている主要コンバージョンなので、
+         GA4側の仕様に依存せずコードから明示的に送る形にする。
+
+         個々のリンクに onclick を書かず、クリックを1箇所で拾う。
+         申込ボタンは日程カードと画面下の固定CTAの2系統あり、どちらもJSで
+         動的に生成されるため、リンクが増えても取りこぼさないようにするため。 -->
+    <script>
+      document.addEventListener(
+        "click",
+        function (e) {
+          var el = e.target;
+          if (!el || typeof el.closest !== "function") return;
+          var a = el.closest('a[href*="doorkeeper.jp"]');
+          if (!a) return;
+          // フッターのコミュニティリンクは申込ではないので除外する
+          if (a.getAttribute("href").indexOf("/events/") === -1) return;
+          if (typeof gtag === "function") gtag("event", "doorkeeper_click");
+        },
+        true
+      );
+    </script>
+
     <!-- ページ内アンカー(#schedule 等)の位置ずれ対策
          日程とカリキュラムはJSで後から描画されるため、HTMLを読んだ時点では空の箱しかない。
          ブラウザ既定のジャンプはその高さで位置を決めるので、描画後にセクションが伸びると
