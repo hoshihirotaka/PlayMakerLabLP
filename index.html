@@ -1893,6 +1893,93 @@
       );
     </script>
 
+    <!-- 計測: 押されてもGA4のイベントが出ていなかった操作を送る。
+         拡張計測が自動で拾う click は「外部サイトへのリンク」だけで、
+         <button> と同一ページ内の #リンク は対象外。イベントが出ないまま
+         離脱すると、その人の滞在時間（エンゲージメント時間はイベントに
+         便乗して送られる）も記録されない。
+
+         どの項目かは click_item パラメータで区別する。イベント名を項目ごとに
+         分けるとGA4側の登録が増え、横断で見られなくなるため。
+         ※ click_item は GA4のカスタムディメンションに登録しないと値が見えない
+         ※ ここで足したイベントはキーイベントにしないこと。観測が目的で、
+            キーイベントにするとGoogle広告へ取り込まれ入札に混ざる -->
+    <script>
+      (function () {
+        function send(name, params) {
+          if (typeof gtag === "function") gtag("event", name, params);
+        }
+
+        // ① ページ内リンク（ナビ6項目・ロゴ・本文中のリンク・受付準備中の固定CTA）
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest('a[href^="#"]');
+            if (!a) return;
+            // schedule_click を onclick で送っているCTAは二重計測になるので除く
+            if (a.hasAttribute("onclick")) return;
+
+            var hash = a.getAttribute("href").slice(1);
+            if (hash === "join") {
+              send("join_click");
+              return;
+            }
+
+            var item;
+            if (a.id === "fixed-cta-link") item = "fixed_cta"; // 受付準備中のときだけ #schedule になる
+            else if (a.classList.contains("nav-logo")) item = "top";
+            else if (a.closest(".nav")) item = hash;
+            else item = hash + "_inline"; // 本文中のページ内リンク
+            send("nav_click", { click_item: item });
+          },
+          true
+        );
+
+        // ② ハンバーガー。開閉スクリプトより後にこのリスナーを登録しているので、
+        //    ここが動く時点では aria-expanded が新しい状態に更新済み。
+        //    （この2つのscriptの前後を入れ替えると open/close が逆になる）
+        var toggle = document.getElementById("nav-toggle");
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            var opened = toggle.getAttribute("aria-expanded") === "true";
+            send("nav_click", { click_item: opened ? "menu_open" : "menu_close" });
+          });
+        }
+
+        // ③ カリキュラムのタブ（すべて / Robloxコース / AIコース）。
+        //    どちらのコースが見られているかは広告クリエイティブの判断に直結する。
+        var tabs = document.getElementById("curriTabs");
+        if (tabs) {
+          tabs.addEventListener("click", function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var btn = el.closest(".curri-tab");
+            if (!btn) return;
+            send("curriculum_tab", { click_item: btn.getAttribute("data-filter") });
+          });
+        }
+
+        // ④ コミュニティ登録（Doorkeeperのトップ）。申込ではなくリード獲得なので
+        //    doorkeeper_click とは分ける。上のデリゲートは /events/ を含むものしか
+        //    拾わず、拡張計測の離脱クリックもクロスドメイン設定で止まっているため、
+        //    このボタンだけ1件も記録されていなかった。
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest('a[href*="doorkeeper.jp"]');
+            if (!a) return;
+            if (a.getAttribute("href").indexOf("/events/") !== -1) return;
+            send("community_click");
+          },
+          true
+        );
+      })();
+    </script>
+
     <!-- ページ内アンカー(#schedule 等)の位置ずれ対策
          日程とカリキュラムはJSで後から描画されるため、HTMLを読んだ時点では空の箱しかない。
          ブラウザ既定のジャンプはその高さで位置を決めるので、描画後にセクションが伸びると
