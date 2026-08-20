@@ -1977,6 +1977,29 @@
           },
           true
         );
+
+        // ⑤ サイト内の別ページ（legal/ の4書面）。同一ドメインなので拡張計測の
+        //    離脱クリックは対象外、`#` リンクでもないため④までのどれにも入らず、
+        //    イベントが1つも出ないまま別タブではなく同じタブで移動していた。
+        //    滞在時間はイベントに便乗して送られるので、押した人の時間が丸ごと
+        //    消えていた（離脱時の user_engagement は間に合わないことがある）。
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest("a[href]");
+            if (!a) return;
+            var href = a.getAttribute("href");
+            // 相対パスの .html だけを拾う。`#` リンク・外部リンク・mailto は
+            // ①〜④または拡張計測が扱うので、ここで二重に拾わない。
+            if (!href || !/^[^#/][^:]*\.html([?#]|$)/.test(href)) return;
+            send("nav_click", {
+              click_item: href.replace(/[?#].*$/, "").replace(/\.html$/, "")
+            });
+          },
+          true
+        );
       })();
     </script>
 
