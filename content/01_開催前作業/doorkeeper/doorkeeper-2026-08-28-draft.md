@@ -6,6 +6,8 @@
 > - **③大人向けAIコースは開催確定**（2026-08-07・ひったさん指示）。19:30-20:30／定員8名／**2,900円（前回3,900円から1,000円引き。理由は「アンケートにご協力いただく回だから」）**／Googleアカウント必須。内容は前回と同じ（NotebookLM＋Google連携）
 > - 大人向けの値引きは**子ども向けの「今だけお試し価格」とは別建て**。同じ理由づけで書かないこと
 > - 大人向けは**別イベントページ**。説明文は [doorkeeper-adult-ai-2026-08-28-draft.md](doorkeeper-adult-ai-2026-08-28-draft.md)。**URL確定: https://gameschool.doorkeeper.jp/events/198703**（2026-08-07）。events/2026-08-28.js・index.htmlのJSON-LD・DMにも反映済み
+> - **特商法表記へのリンクが無いのは意図的**（当日現金払いで通信販売に該当しないため）。**足さないこと。**
+>   理由と、足すべき条件は [doorkeeper-unified-v3-draft.md](doorkeeper-unified-v3-draft.md) の運用メモに記載
 
 ---
 
