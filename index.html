@@ -168,6 +168,30 @@
       gtag("config", "G-E9YKGSCX5B");
       gtag("config", "AW-977501883");
     </script>
+
+    <!-- Metaピクセル。
+         これが無いとMetaは「広告をクリックした人がLPを開いたか」を知れず、
+         ランディングページビュー（LPV）が測れない。LPV単価をクリエイティブの
+         比較基準にしているので、その土台にあたる。
+
+         ⚠️ 申込（doorkeeper_click）を最適化の目標にしないこと。
+         Metaの学習は1広告セットあたり週50件が目安で、実績は週2〜3件。
+         信号が薄いと配信が絞られる（8/18にGoogle広告で起きたのと同じ）。
+         最適化に使うならLPVまで。 -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2014627915461616');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=2014627915461616&ev=PageView&noscript=1" /></noscript>
     <!-- JSが無効だと「カリキュラムを読み込み中…」が永久に残るため隠す -->
     <noscript>
       <style>
@@ -2072,6 +2096,23 @@
             send("nav_click", {
               click_item: href.replace(/[?#].*$/, "").replace(/\.html$/, "")
             });
+          },
+          true
+        );
+
+        // ⑥ Metaへの申込クリック。Meta側の帰属（クリック・ビュースルー）で
+        //    どのクリエイティブが申込意図を生んだかを見るため。
+        //    doorkeeper_click のデリゲートには触らず、同じ条件で別に拾う。
+        //    ⚠️ これを広告の最適化目標にしないこと（件数が学習に足りない）。
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest('a[href*="doorkeeper.jp"]');
+            if (!a) return;
+            if (a.getAttribute("href").indexOf("/events/") === -1) return;
+            if (typeof fbq === "function") fbq("trackCustom", "DoorkeeperClick");
           },
           true
         );
