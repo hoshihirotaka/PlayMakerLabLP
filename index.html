@@ -469,6 +469,34 @@
       /* 日程（details/summary） */
       .event-list { display: grid; gap: 12px; }
 
+      /* 「このあとの開催」。開いているカードが2.5画面分あり、以降の日程が
+         スクロールしないと見えないため、見出しの直下に一覧を出す。
+         日程が合わなかった人に「次はいつか」を見せるのが comingSoon の目的で、
+         その人にこそ届いていなかった。 */
+      .event-more {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 6px 10px;
+        margin: 0 0 16px;
+        font-size: 0.92rem;
+        color: var(--subtext);
+      }
+      .event-more a {
+        display: inline-block;
+        padding: 4px 10px;
+        border: 1px solid #d7dcf0;
+        border-radius: 999px;
+        background: #fff;
+        color: #0f2c59;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .event-more a:hover { border-color: #0f2c59; }
+      .event-more-note { font-size: 0.85rem; }
+      .event-more a.is-soon { color: var(--subtext); border-style: dashed; font-weight: 700; }
+      .event-more-soon { margin-left: 6px; font-size: 0.75rem; font-weight: 700; opacity: 0.8; }
+
       .event-detail {
         border: 1px solid #e2e8ff;
         border-radius: var(--radius-lg);
@@ -1309,6 +1337,9 @@
           <h2>開催日程</h2>
           <p style="color:var(--subtext); margin: 0 0 16px;">各イベントをタップすると詳細とタイムテーブルを確認できます。</p>
 
+          <!-- 「このあとの開催」。JSで自動生成（2件以上あるときだけ出る） -->
+          <div id="event-more" class="event-more"></div>
+
           <!-- イベントはここに自動描画されます -->
           <div id="event-list" class="event-list"></div>
           <!-- JSが動かない環境向け。日付は書かず、常に最新が並ぶDoorkeeperのトップへ送る
@@ -1667,7 +1698,7 @@
           var noteBlock = ev.note ? '<div class="event-note">' + ev.note + "</div>" : "";
 
           return (
-            '<details class="event-detail"' + (i === openIndex ? " open" : "") + ">" +
+            '<details class="event-detail" id="event-' + ev.id + '"' + (i === openIndex ? " open" : "") + ">" +
               '<summary class="event-summary">' +
                 '<span class="event-date-badge">' + ev.date + "</span>" +
                 '<span class="event-location-label">' + locationText + "（" + areaText + "）</span>" +
@@ -1692,6 +1723,49 @@
             "</details>"
           );
         }).join("");
+
+        // 「このあとの開催」。開いているカードはモバイルで約2.5画面あり、
+        // 以降の日程は畳まれていても画面外に押し出される（実測 375px 幅で
+        // 次の日付まで約1,500px下）。日程が合わなかった人に次を見せるのが
+        // comingSoon の目的なので、見出しの直下に一覧を出しておく。
+        // アンカー(#event-YYYY-MM-DD)にしているので、クリックの計測は
+        // 既存の nav_click デリゲートがそのまま拾う。
+        var more = document.getElementById("event-more");
+        if (more) {
+          var rest = events.slice(openIndex + 1);
+          if (rest.length) {
+            var isSoon = function (ev) { return !!ev.comingSoon || !ev.doorkeeperUrl; };
+            // 全部が調整中なら末尾に1行添えるだけで足りる。混在しているときは
+            // どれが申し込めるのか分からないと意味がないので、個別に印を付ける。
+            var allSoon = rest.every(isSoon);
+            var links = rest.map(function (ev) {
+              var md = ev.id.split("-");
+              var dayMatch = ev.date.match(/（(.+?)）/);
+              var label =
+                parseInt(md[1], 10) + "/" + parseInt(md[2], 10) +
+                (dayMatch ? "（" + dayMatch[1] + "）" : "");
+              var soon = !allSoon && isSoon(ev);
+              return (
+                '<a href="#event-' + ev.id + '"' + (soon ? ' class="is-soon"' : "") + ">" +
+                  label +
+                  (soon ? '<span class="event-more-soon">調整中</span>' : "") +
+                "</a>"
+              );
+            }).join("");
+            more.innerHTML =
+              "<span>このあとの開催:</span>" + links +
+              (allSoon ? '<span class="event-more-note">日時・参加費は調整中です。</span>' : "");
+
+            // 飛んだ先が畳まれていると中身が見えないので開いておく。
+            // 高さが変わるぶんは末尾のアンカー追従スクリプトが吸収する。
+            more.addEventListener("click", function (e) {
+              var a = e.target.closest && e.target.closest("a[href^='#event-']");
+              if (!a) return;
+              var target = document.getElementById(a.getAttribute("href").slice(1));
+              if (target) target.open = true;
+            });
+          }
+        }
 
         if (nextEvent) {
           var heroNext = document.getElementById("hero-next");
@@ -1931,6 +2005,7 @@
             if (a.id === "fixed-cta-link") item = "fixed_cta"; // 受付準備中のときだけ #schedule になる
             else if (a.classList.contains("nav-logo")) item = "top";
             else if (a.closest(".nav")) item = hash;
+            else if (a.closest("#event-more")) item = hash; // 「このあとの開催」の日付
             else item = hash + "_inline"; // 本文中のページ内リンク
             send("nav_click", { click_item: item });
           },

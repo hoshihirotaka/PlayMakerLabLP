@@ -66,7 +66,7 @@ LPの操作は `index.html` 末尾の**デリゲート（1箇所でクリック�
 | `doorkeeper_click` | Doorkeeperの申込リンク（`/events/` を含むもの） | **Google広告の主要コンバージョン** |
 | `schedule_click` | 「日程を確認する」CTA 2箇所（`onclick` で送っている） | **同上** |
 | `community_click` | Doorkeeperトップ（コミュニティ登録） | 観測のみ |
-| `nav_click` | ナビ・ロゴ・ハンバーガー・本文中のページ内リンク・受付準備中の固定CTA・`legal/` の4書面 | 観測のみ |
+| `nav_click` | ナビ・ロゴ・ハンバーガー・本文中のページ内リンク・受付準備中の固定CTA・`legal/` の4書面・「このあとの開催」の日付 | 観測のみ |
 | `join_click` | 「今後の日程を受け取る」（`#join`） | 観測のみ |
 | `curriculum_tab` | カリキュラムのタブ（すべて／Roblox／AI） | 観測のみ |
 
