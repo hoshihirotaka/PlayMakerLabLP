@@ -1622,17 +1622,27 @@
           </div>
           -->
           <!--
-            id="play" は SNS から「遊べるゲーム」へ直接飛ばすためのアンカー。
+            SNS から「遊べるゲーム」へ直接飛ばすためのアンカー。消さないこと。
             #works だと作品ギャラリーの先頭に着地して、ここまでスクロールが要る。
-            インスタのプロフィールリンクやリールのCTAから .../#play で使う。消さないこと。
+
+              .../#play            … このセクション全体（作品が増えたときの入口）
+              .../#play-neko       … ねこレストラン物語だけを開かせたいとき
+              .../#play-twinblock  … TwinBlock 2048 だけを開かせたいとき
+
+            着地位置のオフセットは、このページ共通の `[id] { scroll-margin-top: 96px; }`（<style>内）に任せる。
+            sticky な nav（高さ69px）の裏に隠れないための余白なので、ここで個別に上書きしないこと。
+
+            リールごとに「その回で紹介した作品」へ直接飛ばすために、カード単位でも id を振ってある。
+            番号（play1 / play2）にしないのは、並び順を変えたり作品を足したときに
+            リンクの指す先がズレるため。作品を追加するときは id も作品名で付ける。
           -->
-          <h3 id="play" style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59; scroll-margin-top: 24px;">ブラウザでそのまま遊べる作品</h3>
+          <h3 id="play" style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ブラウザでそのまま遊べる作品</h3>
           <div class="game-grid">
-            <div class="game-card">
+            <div class="game-card" id="play-neko">
               <div class="game-title">小学3年生の作品: ねこレストラン物語</div>
               <iframe class="game-frame" src="game/NekoRestaurant.html" title="Neko Restaurant" loading="lazy"></iframe>
             </div>
-            <div class="game-card">
+            <div class="game-card" id="play-twinblock">
               <div class="game-title">先生の作品: TwinBlock 2048</div>
               <iframe class="game-frame" src="game/TwinBlock%202048.html" title="TwinBlock 2048" loading="lazy"></iframe>
             </div>
