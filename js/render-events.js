@@ -70,7 +70,7 @@
       return (
         '<div class="timeline-item">' +
           '<div class="timeline-time">' + t.time + "</div>" +
-          "<div>" + t.label + price + "</div>" +
+          '<div class="timeline-body">' + t.label + price + "</div>" +
         "</div>"
       );
     }).join("");
@@ -112,7 +112,7 @@
             '<div class="info"><strong>持ち物</strong>' + ev.equipment + "</div>" +
           "</div>" +
           "<div>" +
-            '<h3 style="margin: 0 0 10px; font-size: 1rem; font-weight: 800; color: #0f2c59;">タイムテーブル</h3>' +
+            '<h3 class="timeline-heading">タイムテーブル</h3>' +
             '<div class="timeline">' + timetableRows + "</div>" +
           "</div>" +
           noteBlock +
