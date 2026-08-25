@@ -89,8 +89,11 @@
     // このカードのタイムテーブルには大人向けの枠も出るため、ここで
     // お子様向けの申込へ直結させると、大人の方が別のイベントに申し込んでしまう。
     // 直結させるのは、どちらか選んだあとのページ（schedule.html / adults.html）だけ。
+    // トップ（data-limit）ではカード内のボタンを出さない。
+    // すぐ下に「ほかの日程・よくある質問を見る」があり、固定CTAも出ているため、
+    // 同じ行き先のボタンが3つ並んでしまう。
     var applyBlock = limit
-      ? '<a class="event-apply" href="schedule.html">この回の詳細・申し込み</a>'
+      ? ''
       : (applyUrl
         ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a>'
         : '<span class="event-apply event-apply--soon">申込受付準備中</span>');
