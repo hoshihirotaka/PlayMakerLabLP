@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>通い方（プラン） | ブロマスゲームラボ</title>
-    <meta name="description" content="体験会のあとの続け方をご案内します。会場で一緒に学ぶ通常プランと、ペースを合わせられる個別プラン。オリジナルの企画・作品づくりはどちらにも追加できます。" />
-    <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/plans.html" />
+    <title>大人向けAI講座 | ブロマスゲームラボ</title>
+    <meta name="description" content="はじめてのGoogle×AI活用勉強会。仕事でAIを使ってみたい初心者の方向けに、埼玉・南与野で開催しています。パソコンのレンタルもあります。" />
+    <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/adults.html" />
     <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
          先読みしてしまい出し分けの意味がなくなる -->
     <link
@@ -16,14 +16,26 @@
       imagesizes="(max-width: 767px) 77vw, 480px"
       type="image/webp"
     />
-    <meta property="og:title" content="通い方（プラン） | ブロマスゲームラボ" />
-    <meta property="og:description" content="体験会のあとの続け方。会場で一緒に学ぶ通常プランと、ペースを合わせられる個別プランから選べます。" />
+    <meta property="og:title" content="大人向けAI講座 | ブロマスゲームラボ" />
+    <meta property="og:description" content="はじめてのGoogle×AI活用勉強会。仕事でAIを使ってみたい初心者の方向け。埼玉・南与野で開催。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/plans.html" />
+    <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/adults.html" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- 日程のデータを先読みする。理由は index.html と同じ。
+         ▼ イベントを追加したときは、下部の <script> と合わせてここにも1行足すこと。
+            日程を出すページは index.html / schedule.html / adults.html の3つ（AGENTS.md 参照）。 -->
+    <link rel="preload" as="script" href="events/2026-08-28.js" />
+    <link rel="preload" as="script" href="events/2026-09-13.js" />
+    <link rel="preload" as="script" href="events/2026-09-19.js" />
+    <link rel="preload" as="script" href="events/2026-09-25.js" />
+    <link rel="preload" as="script" href="events/2026-10-11.js" />
+    <link rel="preload" as="script" href="events/2026-10-23.js" />
 
+    <!-- JSON-LD（Event / Organization）は schedule.html に移した（2026-08-25）。
+         構造化データは、日程が実際に載っているページと一致させる必要があるため。
+         このページは直近1件だけを出すので、全開催の Event を持たない。 -->
     <!-- Google tag (gtag.js) — GA4 と Google広告 をまとめて即時読み込み
          以前はGA4だけ window.load 後に読み込んでいたが、全画像の読み込み完了を待つため
          モバイルで数秒遅れ、早期離脱がまるごと計測から漏れていた。エンゲージメント時間も
@@ -68,12 +80,10 @@
     </noscript>
     <link rel="stylesheet" href="style.css">
     <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
-    <!-- JSON-LD（Event / Organization）は index.html にのみ置く。
-         開催情報の構造化データを複数ページへ重複させないため。 -->
-    <!-- events/*.js と curriculum/curriculum.js は読み込まない。
-         このページは日程も教材一覧も扱わないため、preload も外してある。 -->
+    <!-- JSON-LD は schedule.html にある。子ども向け体験会のEventを載せているため、
+         このページ（大人向け）には置かない。 -->
+    <!-- curriculum/curriculum.js は読み込まない。教材一覧を扱わないため。 -->
   </head>
-
   <body>
     <div class="orb one" aria-hidden="true"></div>
     <div class="orb two" aria-hidden="true"></div>
@@ -85,55 +95,38 @@
         <div class="nav-links" id="nav-links">
           <a href="curriculum.html">カリキュラム</a>
           <a href="works.html">作品ギャラリー</a>
-          <a href="plans.html" aria-current="page">プラン</a>
+          <a href="plans.html">プラン</a>
           <a href="schedule.html">日程</a>
-          <a href="adults.html">大人向け</a>
+          <a href="adults.html" aria-current="page">大人向け</a>
           <a href="index.html#teacher">講師</a>
         </div>
       </div>
     </nav>
 
     <main>
-      <section class="section">
+      <section class="section" id="adults">
         <div class="container card">
-          <h2>体験会のあとの続け方</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;">体験会のあとに、続け方を選べます。オリジナルの企画・作品づくりは、どちらのプランにも追加できるオプションです。途中での切り替えも相談しながら調整できます。</p>
+          <h2>大人向けAI講座</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;"><strong>「はじめてのGoogle×AI活用勉強会」</strong>は、保護者様ご自身をはじめとした大人の方向けの講座です。<strong>お子様向けの体験会とは別のイベント</strong>として開催しています。</p>
 
-          <div class="flow-list" aria-label="体験から継続・オプションまでの流れ">
-            <div class="flow-step">
-              <div class="flow-title">① 体験</div>
-              <p>イベントページからお申し込み。特定の会場（路地裏など）で開催します。</p>
-            </div>
-            <div class="flow-arrow">↓<span class="flow-note">（参加後にお知らせ）</span></div>
-            <div class="flow-step">
-              <div class="flow-title">② 継続を選ぶ</div>
-              <ul>
-                <li>通常プラン継続（同じ会場、既存カリキュラム）</li>
-                <li>個別プラン（オンライン・自宅、場所とペースを合わせる）<span class="flow-note">※現在準備中</span></li>
-              </ul>
-            </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-step">
-              <div class="flow-title">③ オプション：オリジナル企画・作品づくり</div>
-              <p>通常プラン・個別プランどちらでも追加できます。</p>
-            </div>
+          <div class="grid-2" style="margin-bottom: 20px;">
+            <div class="info"><strong>対象</strong>仕事でAIを使ってみたい初心者の方。ふだんAIを使っていない方を想定しています。</div>
+            <div class="info"><strong>参加条件</strong>Googleアカウントをお持ちの方（個人の @gmail.com を推奨）</div>
+            <div class="info"><strong>持ち物</strong>ノートパソコン（Chrome推奨）。お持ちでない方はレンタル付きをお選びください（4台限定・アカウントはご自身のものをご用意ください）</div>
+            <div class="info"><strong>お子様の同席</strong>できます。空いているパソコンでご自身の続きを進めていただいても問題ありません。</div>
           </div>
 
-          <div class="grid-2 course-item-grid">
-            <div class="course-item">
-              <div class="course-item-title">通常プラン（グループ学習・制作）</div>
-              <p>みんなで一緒に学び・制作するスタイルです。同じ会場で、既存カリキュラムから日程とコースを選んでお申し込みください。</p>
-            </div>
-            <div class="course-item">
-              <div class="course-item-title">個別プラン（オンライン・自宅）</div>
-              <p>場所や時間を、お子さんのペースに合わせて選べるスタイルです。学ぶ内容は通常プランと同じカリキュラムから選べます。担当講師から専用ページをご案内し、日程などを選んでいただきます。（現在準備中）</p>
-              <p><strong>ご希望の方は、体験会当日にスタッフへお申し付けください。公式LINEにご招待いたします。</strong></p>
-              <p>オリジナルの企画・作品づくりに挑戦したい方は、通常プラン・個別プランどちらでもオプションとしてご相談いただけます。</p>
-            </div>
-          </div>
-          <div class="info" style="margin-top: 16px;">
-            取り組める教材は<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。
-          </div>
+          <div class="curri-note">終了後にアンケートへのご協力をお願いする回のため、<strong>通常より1,000円お安く</strong>ご案内しています。</div>
+
+          <h3 style="margin: 24px 0 12px; font-size: 1.05rem; color: #0f2c59;">開催予定</h3>
+
+          <!-- ▼ ここは events/*.js から自動で組み立てている。日付を手で書かないこと。
+               timetable の中で audience:"adult" が付いた枠だけを拾う。
+               ラベルの文言では判定していない（文言を変えても壊れないようにするため）。
+               doorkeeperUrl が付いている回だけ申込ボタンを出す。 -->
+          <div id="adult-list"></div>
+
+          <p style="margin: 20px 0 0; color: var(--subtext); font-size: 0.9rem;">お子様向けの体験会の日程は<a href="schedule.html" style="color: #0f6e9e;">開催日程</a>をご覧ください。</p>
         </div>
       </section>
     </main>
@@ -150,12 +143,68 @@
       </div>
     </footer>
 
-    <!-- 固定CTA。日程は index.html にあるためそちらへ送る。 -->
     <div class="fixed-cta" id="fixed-cta">
-      <a class="cta" id="fixed-cta-link" href="index.html#schedule">日程・申し込みを見る</a>
+      <a class="cta" id="fixed-cta-link" href="#adults">開催予定を見る</a>
     </div>
 
-    <!-- index.html と共通のスクリプト。日程・カリキュラムの描画は入れていない。 -->
+    <!-- ▼ イベント追加時はここに1行追加する。head の preload にも同じ行を足すこと。
+         日程を出すページは index.html / schedule.html / adults.html の3つ。 -->
+    <script src="events/2026-08-28.js"></script>
+    <script src="events/2026-09-13.js"></script>
+    <script src="events/2026-09-19.js"></script>
+    <script src="events/2026-09-25.js"></script>
+    <script src="events/2026-10-11.js"></script>
+    <script src="events/2026-10-23.js"></script>
+
+    <script>
+      // 大人向けの回だけを events/*.js から拾って並べる。
+      // 判定は timetable の audience:"adult"。ラベルの文言では判定しない。
+      (function () {
+        var list = document.getElementById("adult-list");
+        if (!list || !window.EVENTS || !window.EVENTS.length) return;
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        var rows = [];
+        window.EVENTS.slice()
+          .sort(function (a, b) { return a.id.localeCompare(b.id); })
+          .forEach(function (ev) {
+            var d = new Date(ev.id + "T00:00:00+09:00");
+            if (isNaN(d.getTime()) || d < today) return;          // 終わった回は出さない
+            (ev.timetable || []).forEach(function (t) {
+              if (t.audience !== "adult") return;
+              rows.push({ ev: ev, t: t });
+            });
+          });
+
+        if (!rows.length) {
+          list.innerHTML = '<p class="curri-loading">次回の開催が決まりましたら、こちらでお知らせします。</p>';
+          return;
+        }
+
+        list.innerHTML = rows.map(function (r) {
+          var price = r.t.adultPrice ? r.t.adultPrice : "調整中（決まり次第お知らせします）";
+          var cta = r.t.doorkeeperUrl
+            ? '<p style="margin: 12px 0 0;"><a class="cta" href="' + r.t.doorkeeperUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a></p>'
+            : '<p style="margin: 12px 0 0; color: var(--subtext); font-size: 0.9rem;">お申し込みの受付は準備中です。決まり次第このページでお知らせします。</p>';
+          return (
+            '<div class="card" style="margin-bottom: 14px;">' +
+              '<div class="event-date-badge">' + r.ev.date + "</div>" +
+              '<div class="grid-2" style="margin-top: 12px;">' +
+                '<div class="info"><strong>時間</strong>' + r.t.time + "</div>" +
+                '<div class="info"><strong>参加費</strong>' + price + "</div>" +
+                '<div class="info"><strong>会場</strong>' + r.ev.location + "<br />" + r.ev.address + "</div>" +
+                '<div class="info"><strong>定員</strong>' + r.ev.capacity + "</div>" +
+              "</div>" +
+              cta +
+            "</div>"
+          );
+        }).join("");
+      })();
+    </script>
+
+    <!-- index.html と共通のスクリプト -->
     <script>
       (function () {
         var toggle = document.getElementById("nav-toggle");
