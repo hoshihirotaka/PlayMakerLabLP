@@ -124,8 +124,9 @@
                   日付から自動生成する版は、日程セクションの「このあとの開催」にある。 -->
           <p class="hero-news">9月の日程決まりました！</p>
           <div class="cta-row">
-            <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">日程を確認する</a>
-            <a class="cta outline" href="#join">今後の日程を受け取る</a>
+            <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">直近の予定を確認する</a>
+            <!-- 「雰囲気を確認する」なので、行き先も #join（参加登録）ではなく作品ギャラリーにしている -->
+            <a class="cta outline" href="works.html">教室の雰囲気を確認する</a>
           </div>
           <div class="hero-note">小学生は保護者の同伴を推奨。中高生は単独参加もOK。家族でのゲーム開発も応援します。</div>
         </div>
@@ -449,7 +450,7 @@
           <h2>「作る楽しさ」を、今日から体感しよう。</h2>
           <p>定員になり次第締め切ります。予約優先です。</p>
           <div class="cta-row" style="justify-content: center;">
-            <a class="cta" href="schedule.html" onclick="gtag('event', 'schedule_click');">日程・申し込みを見る</a>
+            <a class="cta" href="schedule.html" onclick="gtag('event', 'schedule_click');">今後の日程を確認する</a>
           </div>
           <p style="margin-top: 14px; color: #2a3c56;">お問い合わせ: hitta.games@gmail.com</p>
         </div>
@@ -469,11 +470,11 @@
       </div>
     </footer>
 
-    <!-- data-cta="list" を付けると、固定CTAが申込ページへ直結せず日程一覧へ送る。
-         トップは大人向け・お子様向けの両方の入口なので、ここで片方の申込に
-         直結させると、もう片方の人が別のイベントに申し込んでしまう。
-         直結させるのは、どちらか選んだあとのページ（schedule.html / adults.html）だけ。 -->
-    <div class="fixed-cta" id="fixed-cta" data-cta="list">
+    <!-- 固定CTAは直近回のDoorkeeperへ直行する（2026-08-25 本人の判断）。
+         一度「日程一覧へ送る」形にしたが、申込までの手数を増やさない方針に戻した。
+         大人向けと取り違えないよう、文言に「体験会」を入れ、
+         日程セクションの下に大人向けAI講座への案内（.notice）を置いている。 -->
+    <div class="fixed-cta" id="fixed-cta">
       <a class="cta" id="fixed-cta-link" href="schedule.html">日程・申し込みを見る</a>
     </div>
 
