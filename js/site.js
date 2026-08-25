@@ -152,7 +152,10 @@ document.addEventListener(
       // ①〜④または拡張計測が扱うので、ここで二重に拾わない。
       if (!href || !/^[^#/][^:]*\.html([?#]|$)/.test(href)) return;
       send("nav_click", {
-        click_item: href.replace(/[?#].*$/, "").replace(/\.html$/, "")
+        // ハッシュは残す。分割後は index.html#teacher と index.html#schedule の
+        // どちらへ行ったのかが区別できないと、何を見たかったのかが分からない。
+        // 例: "curriculum" / "index#teacher" / "legal/terms"
+        click_item: href.replace(/\?[^#]*/, "").replace(/\.html/, "")
       });
     },
     true

@@ -167,16 +167,24 @@
       var md = nextEvent.id.split("-");
       var dayMatch = nextEvent.date.match(/（(.+?)）/);
       var shortDate = parseInt(md[1], 10) + "/" + parseInt(md[2], 10) + (dayMatch ? "（" + dayMatch[1] + "）" : "");
-      // comingSoon（日程のみ確定）はDoorkeeperのURLがないため、
-      // 外部リンクにせず日程セクションへスクロールさせる
-      if (nextEvent.comingSoon || !nextEvent.doorkeeperUrl) {
+
+      // 申込先は audience に合わせる。
+      // ⚠️ ここでイベント側の doorkeeperUrl をそのまま使うと、大人向けページの
+      //    固定CTAが子ども向けイベントへ送ってしまう。
+      //    2026-08-25 に本番で発生（198459＝子ども向けを指し、文言も「体験会に申し込む」だった）。
+      //    アコーディオン内の申込ボタンは直したのに、ここを直し忘れていた。
+      var nextSlot = slotsFor(nextEvent)[0] || {};
+      var ctaUrl = audience ? nextSlot.doorkeeperUrl : (nextEvent.comingSoon ? null : nextEvent.doorkeeperUrl);
+
+      if (!ctaUrl) {
+        // 受付前。外部リンクにせず、そのページの日程セクションへスクロールさせる。
         fixedCtaLink.textContent = shortDate + " 開催予定・受付準備中";
-        fixedCtaLink.href = "#schedule";
+        fixedCtaLink.href = "#" + ((list.closest("section") || {}).id || "schedule");
         fixedCtaLink.removeAttribute("target");
         fixedCtaLink.removeAttribute("rel");
       } else {
-        fixedCtaLink.textContent = shortDate + " 体験会に申し込む";
-        fixedCtaLink.href = nextEvent.doorkeeperUrl;
+        fixedCtaLink.textContent = shortDate + (audience ? " 講座に申し込む" : " 体験会に申し込む");
+        fixedCtaLink.href = ctaUrl;
         fixedCtaLink.target = "_blank";
         fixedCtaLink.rel = "noreferrer";
       }
