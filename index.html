@@ -670,9 +670,16 @@
 
           <!-- ここは要約。作品の全件と「ブラウザでそのまま遊べる作品」は works.html にある。
 
-               ▼ 作品を足すときは works.html を編集すること。ここは代表3件だけ。
+               ▼ この2件は自動では選ばれない。works.html から手で選んで貼っている。
+
+                 作品を足すとき   → works.html を編集する。ここは触らなくてよい
+                 顔ぶれを変えるとき → works.html の該当カードをここへ貼り替える
+
                  掲載してよいのはアンケートの「作品の掲載可否」で許可が取れた作品のみ。
-                 判断の根拠と保留中の作品は works.html のコメントにまとめてある。 -->
+                 判断の根拠と保留中の作品は works.html のコメントにまとめてある。
+
+                 ※ 将来 works をデータ化（events/*.js や curriculum.js と同じ形）すれば
+                   ここは自動で先頭2件を出せるようになる。いまは手動。 -->
 
           <p style="color: var(--subtext); margin: 0 0 16px;">ワークショップで生まれた作品を、講師コメント付きで紹介しています。</p>
           <div class="grid-2" style="margin-bottom: 20px;">
@@ -696,17 +703,6 @@
                 <div class="work-title">アヒルと巨人のいる城</div>
                 <div class="work-meta">小学3年生・Robloxコース</div>
                 <p class="work-comment"><strong>講師コメント:</strong> テーマもテンプレートも自由に選んでもらった一作。城の出入り口はオービーのカラフルな鉄格子、草原にはアヒルの群れ、滑り台には巨人。思いついたものを次々置いていく、サンドボックスの楽しさが出ています。</p>
-              </div>
-            </div>
-            <div class="work-card">
-              <picture>
-                <source srcset="assets/works/rotating-obby.webp" type="image/webp" />
-                <img src="assets/works/rotating-obby.jpg" alt="暗い空間に浮かぶ足場と回転する床を使ったアスレチックのプレイ画面" width="720" height="460" loading="lazy" decoding="async" />
-              </picture>
-              <div class="work-body">
-                <div class="work-title">回る床のオービー</div>
-                <div class="work-meta">小学5年生・Robloxコース</div>
-                <p class="work-comment"><strong>講師コメント:</strong> Scratchで培ったプログラミングの経験を活かして、回転する床に挑戦。しかもその回転を近道としても使えるように設計しているのが見事です。仕組み作りに時間をかけた分、限られた時間でよくまとめました。</p>
               </div>
             </div>
           </div>
