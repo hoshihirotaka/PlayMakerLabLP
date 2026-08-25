@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>通い方（プラン） | ブロマスゲームラボ</title>
+    <meta name="description" content="体験会のあとの続け方をご案内します。会場で一緒に学ぶ通常プランと、ペースを合わせられる個別プラン。オリジナルの企画・作品づくりはどちらにも追加できます。" />
+    <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/plans.html" />
+    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
+         先読みしてしまい出し分けの意味がなくなる -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/R.webp"
+      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
+      imagesizes="(max-width: 767px) 77vw, 480px"
+      type="image/webp"
+    />
+    <meta property="og:title" content="通い方（プラン） | ブロマスゲームラボ" />
+    <meta property="og:description" content="体験会のあとの続け方。会場で一緒に学ぶ通常プランと、ペースを合わせられる個別プランから選べます。" />
+    <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/plans.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+
+    <!-- Google tag (gtag.js) — GA4 と Google広告 をまとめて即時読み込み
+         以前はGA4だけ window.load 後に読み込んでいたが、全画像の読み込み完了を待つため
+         モバイルで数秒遅れ、早期離脱がまるごと計測から漏れていた。エンゲージメント時間も
+         実態より短く出る。計測の起点を早めるため、通常のasync読み込みに戻している。 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-E9YKGSCX5B");
+      gtag("config", "AW-977501883");
+    </script>
+
+    <!-- Metaピクセル。
+         これが無いとMetaは「広告をクリックした人がLPを開いたか」を知れず、
+         ランディングページビュー（LPV）が測れない。LPV単価をクリエイティブの
+         比較基準にしているので、その土台にあたる。
+
+         ⚠️ 申込（doorkeeper_click）を最適化の目標にしないこと。
+         Metaの学習は1広告セットあたり週50件が目安で、実績は週2〜3件。
+         信号が薄いと配信が絞られる（8/18にGoogle広告で起きたのと同じ）。
+         最適化に使うならLPVまで。 -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2014627915461616');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=2014627915461616&ev=PageView&noscript=1" /></noscript>
+    <!-- JSが無効だと「カリキュラムを読み込み中…」が永久に残るため隠す -->
+    <noscript>
+      <style>
+        .curri-loading { display: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
+    <!-- JSON-LD（Event / Organization）は index.html にのみ置く。
+         開催情報の構造化データを複数ページへ重複させないため。 -->
+    <!-- events/*.js と curriculum/curriculum.js は読み込まない。
+         このページは日程も教材一覧も扱わないため、preload も外してある。 -->
+  </head>
+
+  <body>
+    <div class="orb one" aria-hidden="true"></div>
+    <div class="orb two" aria-hidden="true"></div>
+
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="nav-logo" href="index.html" aria-label="トップページへ">ブロマスゲームラボ</a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <div class="nav-links" id="nav-links">
+          <a href="curriculum.html">カリキュラム</a>
+          <a href="works.html">作品ギャラリー</a>
+          <a href="plans.html" aria-current="page">プラン</a>
+          <a href="index.html#voices">参加者の声</a>
+          <a href="index.html#schedule">日程</a>
+          <a href="index.html#teacher">講師</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="section">
+        <div class="container card">
+          <h2>体験会のあとの続け方</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;">体験会のあとに、続け方を選べます。オリジナルの企画・作品づくりは、どちらのプランにも追加できるオプションです。途中での切り替えも相談しながら調整できます。</p>
+
+          <div class="flow-list" aria-label="体験から継続・オプションまでの流れ">
+            <div class="flow-step">
+              <div class="flow-title">① 体験</div>
+              <p>イベントページからお申し込み。特定の会場（路地裏など）で開催します。</p>
+            </div>
+            <div class="flow-arrow">↓<span class="flow-note">（参加後にお知らせ）</span></div>
+            <div class="flow-step">
+              <div class="flow-title">② 継続を選ぶ</div>
+              <ul>
+                <li>通常プラン継続（同じ会場、既存カリキュラム）</li>
+                <li>個別プラン（オンライン・自宅、場所とペースを合わせる）<span class="flow-note">※現在準備中</span></li>
+              </ul>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-title">③ オプション：オリジナル企画・作品づくり</div>
+              <p>通常プラン・個別プランどちらでも追加できます。</p>
+            </div>
+          </div>
+
+          <div class="grid-2 course-item-grid">
+            <div class="course-item">
+              <div class="course-item-title">通常プラン（グループ学習・制作）</div>
+              <p>みんなで一緒に学び・制作するスタイルです。同じ会場で、既存カリキュラムから日程とコースを選んでお申し込みください。</p>
+            </div>
+            <div class="course-item">
+              <div class="course-item-title">個別プラン（オンライン・自宅）</div>
+              <p>場所や時間を、お子さんのペースに合わせて選べるスタイルです。学ぶ内容は通常プランと同じカリキュラムから選べます。担当講師から専用ページをご案内し、日程などを選んでいただきます。（現在準備中）</p>
+              <p><strong>ご希望の方は、体験会当日にスタッフへお申し付けください。公式LINEにご招待いたします。</strong></p>
+              <p>オリジナルの企画・作品づくりに挑戦したい方は、通常プラン・個別プランどちらでもオプションとしてご相談いただけます。</p>
+            </div>
+          </div>
+          <div class="info" style="margin-top: 16px;">
+            取り組める教材は<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="legal/terms.html">利用規約</a>
+          <a href="legal/privacy.html">プライバシーポリシー</a>
+          <a href="legal/disclaimer.html">免責事項</a>
+          <a href="legal/tokushoho.html">特定商取引法に基づく表記</a>
+        </div>
+        © ブロマスゲームラボ
+      </div>
+    </footer>
+
+    <!-- 固定CTA。日程は index.html にあるためそちらへ送る。 -->
+    <div class="fixed-cta" id="fixed-cta">
+      <a class="cta" id="fixed-cta-link" href="index.html#schedule">日程・申し込みを見る</a>
+    </div>
+
+    <!-- index.html と共通のスクリプト。日程・カリキュラムの描画は入れていない。 -->
+    <script>
+      (function () {
+        var toggle = document.getElementById("nav-toggle");
+        var links = document.getElementById("nav-links");
+        if (!toggle || !links) return;
+
+        function setOpen(open) {
+          links.classList.toggle("open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+          toggle.textContent = open ? "✕" : "☰";
+        }
+
+        toggle.addEventListener("click", function () {
+          setOpen(!links.classList.contains("open"));
+        });
+
+        // リンクを選んだら閉じる
+        links.addEventListener("click", function (e) {
+          if (e.target.tagName === "A") setOpen(false);
+        });
+
+        // メニュー外をタップしたら閉じる
+        document.addEventListener("click", function (e) {
+          if (!links.classList.contains("open")) return;
+          if (!links.contains(e.target) && e.target !== toggle) setOpen(false);
+        });
+
+        // PC幅に戻ったら開閉状態をリセット
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 768) setOpen(false);
+        });
+      })();
+    </script>
+
+    <script>
+      document.addEventListener(
+        "click",
+        function (e) {
+          var el = e.target;
+          if (!el || typeof el.closest !== "function") return;
+          var a = el.closest('a[href*="doorkeeper.jp"]');
+          if (!a) return;
+          // フッターのコミュニティリンクは申込ではないので除外する
+          if (a.getAttribute("href").indexOf("/events/") === -1) return;
+          if (typeof gtag === "function") gtag("event", "doorkeeper_click");
+        },
+        true
+      );
+    </script>
+
+    <script>
+      (function () {
+        function send(name, params) {
+          if (typeof gtag === "function") gtag("event", name, params);
+        }
+
+        // ① ページ内リンク（ナビ6項目・ロゴ・本文中のリンク・受付準備中の固定CTA）
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest('a[href^="#"]');
+            if (!a) return;
+            // schedule_click を onclick で送っているCTAは二重計測になるので除く
+            if (a.hasAttribute("onclick")) return;
+
+            var hash = a.getAttribute("href").slice(1);
+            if (hash === "join") {
+              send("join_click");
+              return;
+            }
+
+            var item;
+            if (a.id === "fixed-cta-link") item = "fixed_cta"; // 受付準備中のときだけ #schedule になる
+            else if (a.classList.contains("nav-logo")) item = "top";
+            else if (a.closest(".nav")) item = hash;
+            else if (a.closest("#event-more")) item = hash; // 「このあとの開催」の日付
+            else item = hash + "_inline"; // 本文中のページ内リンク
+            send("nav_click", { click_item: item });
+          },
+          true
+        );
+
+        // ② ハンバーガー。開閉スクリプトより後にこのリスナーを登録しているので、
+        //    ここが動く時点では aria-expanded が新しい状態に更新済み。
+        //    （この2つのscriptの前後を入れ替えると open/close が逆になる）
+        var toggle = document.getElementById("nav-toggle");
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            var opened = toggle.getAttribute("aria-expanded") === "true";
+            send("nav_click", { click_item: opened ? "menu_open" : "menu_close" });
+          });
+        }
+
+        // ③ カリキュラムのタブ（すべて / Robloxコース / AIコース）。
+        //    どちらのコースが見られているかは広告クリエイティブの判断に直結する。
+        var tabs = document.getElementById("curriTabs");
+        if (tabs) {
+          tabs.addEventListener("click", function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var btn = el.closest(".curri-tab");
+            if (!btn) return;
+            send("curriculum_tab", { click_item: btn.getAttribute("data-filter") });
+          });
+        }
+
+        // ④ コミュニティ登録（Doorkeeperのトップ）。申込ではなくリード獲得なので
+        //    doorkeeper_click とは分ける。上のデリゲートは /events/ を含むものしか
+        //    拾わず、拡張計測の離脱クリックもクロスドメイン設定で止まっているため、
+        //    このボタンだけ1件も記録されていなかった。
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest('a[href*="doorkeeper.jp"]');
+            if (!a) return;
+            if (a.getAttribute("href").indexOf("/events/") !== -1) return;
+            send("community_click");
+          },
+          true
+        );
+
+        // ⑤ サイト内の別ページ（legal/ の4書面）。同一ドメインなので拡張計測の
+        //    離脱クリックは対象外、`#` リンクでもないため④までのどれにも入らず、
+        //    イベントが1つも出ないまま別タブではなく同じタブで移動していた。
+        //    滞在時間はイベントに便乗して送られるので、押した人の時間が丸ごと
+        //    消えていた（離脱時の user_engagement は間に合わないことがある）。
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest("a[href]");
+            if (!a) return;
+            var href = a.getAttribute("href");
+            // 相対パスの .html だけを拾う。`#` リンク・外部リンク・mailto は
+            // ①〜④または拡張計測が扱うので、ここで二重に拾わない。
+            if (!href || !/^[^#/][^:]*\.html([?#]|$)/.test(href)) return;
+            send("nav_click", {
+              click_item: href.replace(/[?#].*$/, "").replace(/\.html$/, "")
+            });
+          },
+          true
+        );
+
+        // ⑥ Metaへの申込クリック。Meta側の帰属（クリック・ビュースルー）で
+        //    どのクリエイティブが申込意図を生んだかを見るため。
+        //    doorkeeper_click のデリゲートには触らず、同じ条件で別に拾う。
+        //    ⚠️ これを広告の最適化目標にしないこと（件数が学習に足りない）。
+        document.addEventListener(
+          "click",
+          function (e) {
+            var el = e.target;
+            if (!el || typeof el.closest !== "function") return;
+            var a = el.closest('a[href*="doorkeeper.jp"]');
+            if (!a) return;
+            if (a.getAttribute("href").indexOf("/events/") === -1) return;
+            if (typeof fbq === "function") fbq("trackCustom", "DoorkeeperClick");
+          },
+          true
+        );
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var userMoved = false;
+        var ro = null;
+        var timer = null;
+
+        function markMoved() { userMoved = true; }
+
+        // 「指が触れた」ではなく「実際にスクロールした」ときだけ追従を止める。
+        // touchstart だと、ハンバーガーやリンクをタップしただけで補正が無効になり、
+        // モバイル（流入の9割以上）でこの仕組みが働かなくなる。
+        var opts = { passive: true };
+        window.addEventListener("wheel", markMoved, opts);
+        window.addEventListener("touchmove", markMoved, opts);
+        window.addEventListener("keydown", markMoved);
+
+        // 追従先は「今のURLのハッシュ」を毎回読み直す。読み込み時の値を握ったままだと、
+        // 監視中にナビで移動したとき元の位置へ引き戻してしまう。
+        function jump() {
+          if (userMoved) return;
+          var h = location.hash;
+          if (!h || h.length < 2) return;
+          var el;
+          try {
+            el = document.querySelector(h);
+          } catch (e) {
+            return; // 不正なセレクタ
+          }
+          if (el) el.scrollIntoView();
+        }
+
+        // 指定時間だけ、高さの変化に追従する
+        function follow(ms) {
+          userMoved = false;
+          if (ro) { ro.disconnect(); ro = null; }
+          if (timer) clearTimeout(timer);
+
+          jump();
+
+          if (typeof ResizeObserver === "function") {
+            ro = new ResizeObserver(function () { jump(); });
+            ro.observe(document.body);
+            timer = setTimeout(function () {
+              if (ro) { ro.disconnect(); ro = null; }
+            }, ms);
+          } else {
+            setTimeout(jump, 700);
+            setTimeout(jump, 2500);
+          }
+        }
+
+        // ① ハッシュ付きで開いたとき（広告・LINEからの流入）
+        if (location.hash && location.hash.length > 1) {
+          follow(5000);
+          window.addEventListener("load", jump);
+        }
+
+        // ② ページ内リンクを押したとき／ブラウザの戻る・進む。
+        //    以前は①だけだったため、ハッシュなしで開いてナビをタップした場合は
+        //    補正が一切かからなかった（報告のあった症状の条件そのもの）。
+        window.addEventListener("hashchange", function () { follow(3000); });
+      })();
+    </script>
+  </body>
+</html>
