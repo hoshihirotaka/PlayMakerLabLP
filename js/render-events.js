@@ -75,7 +75,10 @@
       );
     }).join("");
     // note はお子様向けページの文脈で書かれているため、audience 指定時は出さない。
-    var noteBlock = (!audience && ev.note) ? '<div class="event-note">' + ev.note + "</div>" : "";
+    // data-limit のページ（トップの直近1件）でも出さない。
+    // note の中身は大人向けの案内・参加条件が中心で、いまは adults.html にある。
+    // トップに置くと342px使ううえ、お子様向けの回の説明として読まれてしまう。
+    var noteBlock = (!audience && !limit && ev.note) ? '<div class="event-note">' + ev.note + "</div>" : "";
 
     // 申込先。audience 指定時はその枠の doorkeeperUrl を使う。
     // イベント側の doorkeeperUrl はお子様向けの申込先なので、
@@ -176,7 +179,15 @@
       var nextSlot = slotsFor(nextEvent)[0] || {};
       var ctaUrl = audience ? nextSlot.doorkeeperUrl : (nextEvent.comingSoon ? null : nextEvent.doorkeeperUrl);
 
-      if (!ctaUrl) {
+      // data-cta="list" のページは、申込ページへ直結させず日程一覧へ送る。
+      // 大人向けとお子様向けの両方の入口になるページで片方に直結すると、
+      // もう片方の人が別のイベントに申し込んでしまう（2026-08-25 の判断）。
+      if (fixedCta.getAttribute("data-cta") === "list") {
+        fixedCtaLink.textContent = shortDate + " 開催・日程を見る";
+        fixedCtaLink.removeAttribute("target");
+        fixedCtaLink.removeAttribute("rel");
+        // href はHTMLに書かれたまま（schedule.html）にする
+      } else if (!ctaUrl) {
         // 受付前。外部リンクにせず、そのページの日程セクションへスクロールさせる。
         fixedCtaLink.textContent = shortDate + " 開催予定・受付準備中";
         fixedCtaLink.href = "#" + ((list.closest("section") || {}).id || "schedule");

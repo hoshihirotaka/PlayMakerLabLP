@@ -346,7 +346,7 @@
 
       <section class="section" id="schedule">
         <div class="container card">
-          <h2>次回の開催</h2>
+          <h2>直近の開催</h2>
 
           <!-- ここは直近1件だけ。全日程・FAQ・参加者の声は schedule.html にある。
 
@@ -360,6 +360,7 @@
 
           <div id="event-list" data-limit="1"></div>
           <p style="margin: 16px 0 0;"><a class="cta cta-ghost" href="schedule.html">ほかの日程・よくある質問を見る</a></p>
+          <div class="info" style="margin-top: 14px;">保護者様ご自身が学ぶ<strong>大人向けAI講座</strong>は<strong>別のイベント</strong>です。参加条件や持ち物が異なるので、<a href="adults.html" style="color: #0f6e9e;">大人向け日程</a>をご覧ください。</div>
         </div>
       </section>
 
@@ -466,8 +467,12 @@
       </div>
     </footer>
 
-    <div class="fixed-cta" id="fixed-cta">
-      <a class="cta" id="fixed-cta-link" href="#schedule">日程・申し込みを見る</a>
+    <!-- data-cta="list" を付けると、固定CTAが申込ページへ直結せず日程一覧へ送る。
+         トップは大人向け・お子様向けの両方の入口なので、ここで片方の申込に
+         直結させると、もう片方の人が別のイベントに申し込んでしまう。
+         直結させるのは、どちらか選んだあとのページ（schedule.html / adults.html）だけ。 -->
+    <div class="fixed-cta" id="fixed-cta" data-cta="list">
+      <a class="cta" id="fixed-cta-link" href="schedule.html">日程・申し込みを見る</a>
     </div>
 
       <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます）
