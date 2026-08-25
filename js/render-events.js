@@ -70,7 +70,7 @@
       return (
         '<div class="timeline-item">' +
           '<div class="timeline-time">' + t.time + "</div>" +
-          "<div>" + t.label + price + "</div>" +
+          '<div class="timeline-body">' + t.label + price + "</div>" +
         "</div>"
       );
     }).join("");
@@ -94,7 +94,7 @@
     // （2026-08-25 本人の判断）。取り違え対策は文言（体験会／講座）と、
     // 日程セクション下の大人向け案内（.notice）で行う。
     var applyBlock = applyUrl
-      ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a>'
+      ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>'
       : '<span class="event-apply event-apply--soon">申込受付準備中</span>';
 
     return (
@@ -112,7 +112,7 @@
             '<div class="info"><strong>持ち物</strong>' + ev.equipment + "</div>" +
           "</div>" +
           "<div>" +
-            '<h3 style="margin: 0 0 10px; font-size: 1rem; font-weight: 800; color: #0f2c59;">タイムテーブル</h3>' +
+            '<h3 class="timeline-heading">タイムテーブル</h3>' +
             '<div class="timeline">' + timetableRows + "</div>" +
           "</div>" +
           noteBlock +
@@ -194,7 +194,7 @@
         fixedCtaLink.removeAttribute("target");
         fixedCtaLink.removeAttribute("rel");
       } else {
-        fixedCtaLink.textContent = shortDate + (audience ? " 講座に申し込む" : " 体験会に申し込む");
+        fixedCtaLink.textContent = shortDate + (audience ? " 講座に申し込む" : " イベントに申し込む");
         fixedCtaLink.href = ctaUrl;
         fixedCtaLink.target = "_blank";
         fixedCtaLink.rel = "noreferrer";

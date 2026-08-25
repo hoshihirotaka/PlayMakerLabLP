@@ -248,8 +248,28 @@
 
       .grid-2, .grid-3 { display: grid; gap: 14px; }
 
-      .info { background: var(--surface-soft); padding: 16px; border-radius: var(--radius-md); }
-      .info strong { display: block; margin-bottom: 6px; }
+      /* 日程まわりの文字にメリハリをつける（2026-08-25）
+         それまでは .info も timeline も font-size の指定が無く、body の16pxを
+         そのまま継いでいた。ラベルも値も同じ大きさで、weight も 700〜800 ばかり。
+         結果「全部太字で同じ大きさ」に見えていた。
+         他のセクション（作品コメントなど）は 0.9rem に落としているので、そちらに寄せる。
+         全部小さくするのではなく、ラベルを控えめにして内容を主役にするのが狙い。 */
+      .info {
+        background: var(--surface-soft);
+        padding: 16px;
+        border-radius: var(--radius-md);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      /* 「日時」「場所」などのラベル。小さく淡くして、値を引き立てる */
+      .info strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--subtext);
+        letter-spacing: 0.04em;
+      }
 
       /* 文中で強調を使うお知らせ。.info は中の <strong> がブロック表示になるため
          （「日時」などのラベル用）、文章には使えない。 */
@@ -306,11 +326,25 @@
         border-radius: 14px;
         background: #f7f9ff;
       }
+      /* 「タイムテーブル」の小見出し。以前はJS側のインラインstyleで
+         1rem/800 だったため、すぐ下の時刻と同じ見た目になっていた */
+      .timeline-heading {
+        margin: 0 0 10px;
+        font-size: 0.85rem;
+        font-weight: 800;
+        color: var(--subtext);
+        letter-spacing: 0.06em;
+      }
+      /* 時刻は添え物。内容より一段小さくする */
       .timeline-time {
+        font-size: 0.82rem;
         font-weight: 800;
         color: #0f2c59;
         white-space: nowrap;
       }
+      /* タイムテーブルの内容。ここが主役 */
+      .timeline-body { font-size: 0.95rem; line-height: 1.7; }
+
       .timeline-price {
         margin-left: 8px;
         color: var(--subtext);
@@ -851,13 +885,18 @@
         /* セクション下の「もっと見る」系と申込ボタンを左右いっぱいに広げる。
            ヒーローのボタンは .hero .cta-row が grid 1fr なので元から全幅だが、
            セクションのボタンは inline-flex で文字数ぶんの幅しかなく、
-           長さがバラバラで端が揃っていなかった。
-           タップ範囲も広がる。デスクトップ（768px以上）は従来どおり内容幅。 */
-        .card > p > .cta { width: 100%; }
+           長さがバラバラで端が揃っていなかった。タップ範囲も広がる。 */
+        .cta-block > .cta { width: 100%; }
         .event-apply { width: 100%; }
       }
 
       @media (min-width: 768px) {
+        /* セクション下のボタンは中央に置く。カードが1120pxまで広がるため、
+           左端に小さなボタンが1つ残ると迷子に見える。
+           モバイルでは全幅にしているので、どちらの幅でも端が揃う。 */
+        .cta-block { text-align: center; }
+        .event-body > .event-apply { justify-self: center; }
+
         .hero-inner { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 36px; }
         .split { grid-template-columns: 1fr 1fr; align-items: start; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
