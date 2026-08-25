@@ -15,6 +15,11 @@
       - 手札が置けなくなったらゲームオーバー
     -->
     <meta charset="UTF-8">
+  <!-- このファイルは index.html の #play に iframe で埋め込んで使う部品。
+       単独URLでクロールされると、本体と重複した薄いページになるため検索対象から外す。
+       sitemap.xml にも意図的に載せていない（同ファイル冒頭のコメント参照）。
+       follow は残してあるので、中のリンクは通常どおり辿られる。 -->
+  <meta name="robots" content="noindex,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>TwinBlock 2048</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
