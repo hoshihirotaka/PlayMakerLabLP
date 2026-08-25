@@ -96,8 +96,8 @@
           <a href="curriculum.html">カリキュラム</a>
           <a href="works.html">作品ギャラリー</a>
           <a href="plans.html">プラン</a>
-          <a href="schedule.html">日程</a>
-          <a href="adults.html" aria-current="page">大人向け</a>
+          <a href="schedule.html">お子様向け日程</a>
+          <a href="adults.html" aria-current="page">大人向け日程</a>
           <a href="index.html#teacher">講師</a>
         </div>
       </div>
@@ -120,11 +120,12 @@
 
           <h3 style="margin: 24px 0 12px; font-size: 1.05rem; color: #0f2c59;">開催予定</h3>
 
-          <!-- ▼ ここは events/*.js から自動で組み立てている。日付を手で書かないこと。
-               timetable の中で audience:"adult" が付いた枠だけを拾う。
-               ラベルの文言では判定していない（文言を変えても壊れないようにするため）。
-               doorkeeperUrl が付いている回だけ申込ボタンを出す。 -->
-          <div id="adult-list"></div>
+          <!-- ▼ お子様向け日程と同じ仕組みを使う。
+               描画は js/render-events.js（3ページ共有）。データは events/*.js。
+               data-audience="adult" を付けると、大人向けの枠がある回だけ、
+               大人向けの行だけが出る。日付も参加費も手で書かない。
+               判定は timetable の audience プロパティで、ラベルの文言では判定していない。 -->
+          <div id="event-list" class="event-list" data-audience="adult"></div>
 
           <p style="margin: 20px 0 0; color: var(--subtext); font-size: 0.9rem;">お子様向けの体験会の日程は<a href="schedule.html" style="color: #0f6e9e;">開催日程</a>をご覧ください。</p>
         </div>
@@ -156,285 +157,12 @@
     <script src="events/2026-10-11.js"></script>
     <script src="events/2026-10-23.js"></script>
 
-    <script>
-      // 大人向けの回だけを events/*.js から拾って並べる。
-      // 判定は timetable の audience:"adult"。ラベルの文言では判定しない。
-      (function () {
-        var list = document.getElementById("adult-list");
-        if (!list || !window.EVENTS || !window.EVENTS.length) return;
-
-        var today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        var rows = [];
-        window.EVENTS.slice()
-          .sort(function (a, b) { return a.id.localeCompare(b.id); })
-          .forEach(function (ev) {
-            var d = new Date(ev.id + "T00:00:00+09:00");
-            if (isNaN(d.getTime()) || d < today) return;          // 終わった回は出さない
-            (ev.timetable || []).forEach(function (t) {
-              if (t.audience !== "adult") return;
-              rows.push({ ev: ev, t: t });
-            });
-          });
-
-        if (!rows.length) {
-          list.innerHTML = '<p class="curri-loading">次回の開催が決まりましたら、こちらでお知らせします。</p>';
-          return;
-        }
-
-        list.innerHTML = rows.map(function (r) {
-          var price = r.t.adultPrice ? r.t.adultPrice : "調整中（決まり次第お知らせします）";
-          var cta = r.t.doorkeeperUrl
-            ? '<p style="margin: 12px 0 0;"><a class="cta" href="' + r.t.doorkeeperUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a></p>'
-            : '<p style="margin: 12px 0 0; color: var(--subtext); font-size: 0.9rem;">お申し込みの受付は準備中です。決まり次第このページでお知らせします。</p>';
-          return (
-            '<div class="card" style="margin-bottom: 14px;">' +
-              '<div class="event-date-badge">' + r.ev.date + "</div>" +
-              '<div class="grid-2" style="margin-top: 12px;">' +
-                '<div class="info"><strong>時間</strong>' + r.t.time + "</div>" +
-                '<div class="info"><strong>参加費</strong>' + price + "</div>" +
-                '<div class="info"><strong>会場</strong>' + r.ev.location + "<br />" + r.ev.address + "</div>" +
-                '<div class="info"><strong>定員</strong>' + r.ev.capacity + "</div>" +
-              "</div>" +
-              cta +
-            "</div>"
-          );
-        }).join("");
-      })();
-    </script>
 
     <!-- index.html と共通のスクリプト -->
-    <script>
-      (function () {
-        var toggle = document.getElementById("nav-toggle");
-        var links = document.getElementById("nav-links");
-        if (!toggle || !links) return;
 
-        function setOpen(open) {
-          links.classList.toggle("open", open);
-          toggle.setAttribute("aria-expanded", open ? "true" : "false");
-          toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
-          toggle.textContent = open ? "✕" : "☰";
-        }
-
-        toggle.addEventListener("click", function () {
-          setOpen(!links.classList.contains("open"));
-        });
-
-        // リンクを選んだら閉じる
-        links.addEventListener("click", function (e) {
-          if (e.target.tagName === "A") setOpen(false);
-        });
-
-        // メニュー外をタップしたら閉じる
-        document.addEventListener("click", function (e) {
-          if (!links.classList.contains("open")) return;
-          if (!links.contains(e.target) && e.target !== toggle) setOpen(false);
-        });
-
-        // PC幅に戻ったら開閉状態をリセット
-        window.addEventListener("resize", function () {
-          if (window.innerWidth >= 768) setOpen(false);
-        });
-      })();
-    </script>
-
-    <script>
-      document.addEventListener(
-        "click",
-        function (e) {
-          var el = e.target;
-          if (!el || typeof el.closest !== "function") return;
-          var a = el.closest('a[href*="doorkeeper.jp"]');
-          if (!a) return;
-          // フッターのコミュニティリンクは申込ではないので除外する
-          if (a.getAttribute("href").indexOf("/events/") === -1) return;
-          if (typeof gtag === "function") gtag("event", "doorkeeper_click");
-        },
-        true
-      );
-    </script>
-
-    <script>
-      (function () {
-        function send(name, params) {
-          if (typeof gtag === "function") gtag("event", name, params);
-        }
-
-        // ① ページ内リンク（ナビ6項目・ロゴ・本文中のリンク・受付準備中の固定CTA）
-        document.addEventListener(
-          "click",
-          function (e) {
-            var el = e.target;
-            if (!el || typeof el.closest !== "function") return;
-            var a = el.closest('a[href^="#"]');
-            if (!a) return;
-            // schedule_click を onclick で送っているCTAは二重計測になるので除く
-            if (a.hasAttribute("onclick")) return;
-
-            var hash = a.getAttribute("href").slice(1);
-            if (hash === "join") {
-              send("join_click");
-              return;
-            }
-
-            var item;
-            if (a.id === "fixed-cta-link") item = "fixed_cta"; // 受付準備中のときだけ #schedule になる
-            else if (a.classList.contains("nav-logo")) item = "top";
-            else if (a.closest(".nav")) item = hash;
-            else if (a.closest("#event-more")) item = hash; // 「このあとの開催」の日付
-            else item = hash + "_inline"; // 本文中のページ内リンク
-            send("nav_click", { click_item: item });
-          },
-          true
-        );
-
-        // ② ハンバーガー。開閉スクリプトより後にこのリスナーを登録しているので、
-        //    ここが動く時点では aria-expanded が新しい状態に更新済み。
-        //    （この2つのscriptの前後を入れ替えると open/close が逆になる）
-        var toggle = document.getElementById("nav-toggle");
-        if (toggle) {
-          toggle.addEventListener("click", function () {
-            var opened = toggle.getAttribute("aria-expanded") === "true";
-            send("nav_click", { click_item: opened ? "menu_open" : "menu_close" });
-          });
-        }
-
-        // ③ カリキュラムのタブ（すべて / Robloxコース / AIコース）。
-        //    どちらのコースが見られているかは広告クリエイティブの判断に直結する。
-        var tabs = document.getElementById("curriTabs");
-        if (tabs) {
-          tabs.addEventListener("click", function (e) {
-            var el = e.target;
-            if (!el || typeof el.closest !== "function") return;
-            var btn = el.closest(".curri-tab");
-            if (!btn) return;
-            send("curriculum_tab", { click_item: btn.getAttribute("data-filter") });
-          });
-        }
-
-        // ④ コミュニティ登録（Doorkeeperのトップ）。申込ではなくリード獲得なので
-        //    doorkeeper_click とは分ける。上のデリゲートは /events/ を含むものしか
-        //    拾わず、拡張計測の離脱クリックもクロスドメイン設定で止まっているため、
-        //    このボタンだけ1件も記録されていなかった。
-        document.addEventListener(
-          "click",
-          function (e) {
-            var el = e.target;
-            if (!el || typeof el.closest !== "function") return;
-            var a = el.closest('a[href*="doorkeeper.jp"]');
-            if (!a) return;
-            if (a.getAttribute("href").indexOf("/events/") !== -1) return;
-            send("community_click");
-          },
-          true
-        );
-
-        // ⑤ サイト内の別ページ（legal/ の4書面）。同一ドメインなので拡張計測の
-        //    離脱クリックは対象外、`#` リンクでもないため④までのどれにも入らず、
-        //    イベントが1つも出ないまま別タブではなく同じタブで移動していた。
-        //    滞在時間はイベントに便乗して送られるので、押した人の時間が丸ごと
-        //    消えていた（離脱時の user_engagement は間に合わないことがある）。
-        document.addEventListener(
-          "click",
-          function (e) {
-            var el = e.target;
-            if (!el || typeof el.closest !== "function") return;
-            var a = el.closest("a[href]");
-            if (!a) return;
-            var href = a.getAttribute("href");
-            // 相対パスの .html だけを拾う。`#` リンク・外部リンク・mailto は
-            // ①〜④または拡張計測が扱うので、ここで二重に拾わない。
-            if (!href || !/^[^#/][^:]*\.html([?#]|$)/.test(href)) return;
-            send("nav_click", {
-              click_item: href.replace(/[?#].*$/, "").replace(/\.html$/, "")
-            });
-          },
-          true
-        );
-
-        // ⑥ Metaへの申込クリック。Meta側の帰属（クリック・ビュースルー）で
-        //    どのクリエイティブが申込意図を生んだかを見るため。
-        //    doorkeeper_click のデリゲートには触らず、同じ条件で別に拾う。
-        //    ⚠️ これを広告の最適化目標にしないこと（件数が学習に足りない）。
-        document.addEventListener(
-          "click",
-          function (e) {
-            var el = e.target;
-            if (!el || typeof el.closest !== "function") return;
-            var a = el.closest('a[href*="doorkeeper.jp"]');
-            if (!a) return;
-            if (a.getAttribute("href").indexOf("/events/") === -1) return;
-            if (typeof fbq === "function") fbq("trackCustom", "DoorkeeperClick");
-          },
-          true
-        );
-      })();
-    </script>
-
-    <script>
-      (function () {
-        var userMoved = false;
-        var ro = null;
-        var timer = null;
-
-        function markMoved() { userMoved = true; }
-
-        // 「指が触れた」ではなく「実際にスクロールした」ときだけ追従を止める。
-        // touchstart だと、ハンバーガーやリンクをタップしただけで補正が無効になり、
-        // モバイル（流入の9割以上）でこの仕組みが働かなくなる。
-        var opts = { passive: true };
-        window.addEventListener("wheel", markMoved, opts);
-        window.addEventListener("touchmove", markMoved, opts);
-        window.addEventListener("keydown", markMoved);
-
-        // 追従先は「今のURLのハッシュ」を毎回読み直す。読み込み時の値を握ったままだと、
-        // 監視中にナビで移動したとき元の位置へ引き戻してしまう。
-        function jump() {
-          if (userMoved) return;
-          var h = location.hash;
-          if (!h || h.length < 2) return;
-          var el;
-          try {
-            el = document.querySelector(h);
-          } catch (e) {
-            return; // 不正なセレクタ
-          }
-          if (el) el.scrollIntoView();
-        }
-
-        // 指定時間だけ、高さの変化に追従する
-        function follow(ms) {
-          userMoved = false;
-          if (ro) { ro.disconnect(); ro = null; }
-          if (timer) clearTimeout(timer);
-
-          jump();
-
-          if (typeof ResizeObserver === "function") {
-            ro = new ResizeObserver(function () { jump(); });
-            ro.observe(document.body);
-            timer = setTimeout(function () {
-              if (ro) { ro.disconnect(); ro = null; }
-            }, ms);
-          } else {
-            setTimeout(jump, 700);
-            setTimeout(jump, 2500);
-          }
-        }
-
-        // ① ハッシュ付きで開いたとき（広告・LINEからの流入）
-        if (location.hash && location.hash.length > 1) {
-          follow(5000);
-          window.addEventListener("load", jump);
-        }
-
-        // ② ページ内リンクを押したとき／ブラウザの戻る・進む。
-        //    以前は①だけだったため、ハッシュなしで開いてナビをタップした場合は
-        //    補正が一切かからなかった（報告のあった症状の条件そのもの）。
-        window.addEventListener("hashchange", function () { follow(3000); });
-      })();
-    </script>
+    <!-- 共通スクリプト。中身は js/ にある（以前は各ページに同じものを貼っていた）。
+         events/*.js と curriculum/curriculum.js より後に読むこと。 -->
+    <script src="js/render-events.js"></script>
+    <script src="js/site.js"></script>
   </body>
 </html>
