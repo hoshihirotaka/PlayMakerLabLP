@@ -271,8 +271,9 @@ for f in index.html schedule.html; do
        <(grep -oE '<script src="events/[^"]*"' "$f" | sed 's/.*src="//;s/"//' | sort)
 done
 # 2ページで読み込むイベントが一致しているか
-diff <(grep -oE 'events/[0-9-]+\.js' index.html | sort -u) \
-     <(grep -oE 'events/[0-9-]+\.js' schedule.html | sort -u)
+# ※ コメント内の「過去開催: events/…」を拾わないよう <script src= に限定する
+diff <(grep -oE '<script src="events/[^"]*"' index.html    | sed 's/.*src="//;s/"//' | sort) \
+     <(grep -oE '<script src="events/[^"]*"' schedule.html | sed 's/.*src="//;s/"//' | sort)
 ```
 
 **③ `schedule.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
