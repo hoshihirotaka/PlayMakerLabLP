@@ -85,9 +85,15 @@
     // 大人向けページでそれを出すと別のイベントへ送ってしまう。
     var slot = slotsFor(ev)[0] || {};
     var applyUrl = audience ? slot.doorkeeperUrl : (ev.comingSoon ? null : ev.doorkeeperUrl);
-    var applyBlock = applyUrl
-      ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a>'
-      : '<span class="event-apply event-apply--soon">申込受付準備中</span>';
+    // トップ（data-limit のページ）は、お子様向けと大人向けの両方の入口。
+    // このカードのタイムテーブルには大人向けの枠も出るため、ここで
+    // お子様向けの申込へ直結させると、大人の方が別のイベントに申し込んでしまう。
+    // 直結させるのは、どちらか選んだあとのページ（schedule.html / adults.html）だけ。
+    var applyBlock = limit
+      ? '<a class="event-apply" href="schedule.html">この回の詳細・申し込み</a>'
+      : (applyUrl
+        ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a>'
+        : '<span class="event-apply event-apply--soon">申込受付準備中</span>');
 
     return (
       '<details class="event-detail" id="event-' + ev.id + '"' + (i === openIndex ? " open" : "") + ">" +
