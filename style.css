@@ -822,6 +822,31 @@
       @media (max-width: 767px) {
         .fixed-cta.show { display: block; }
         body.has-fixed-cta { padding-bottom: 84px; }
+
+        /* ── モバイルの横幅を取り戻す（2026-08-25）──────────────────
+           角丸の枠が4段入れ子になっていて、375pxの画面で本文に使える幅が
+           112pxしか残っていなかった（画面の70%が余白と枠）。
+
+             375  画面
+             345  .container 92%           -30
+             297  .card padding 24         -48
+             255  .event-body padding 20   -40
+             236  .timeline-item padding   -28
+             112  時刻112px固定の2カラム   -124
+
+           入れ子の各段を少しずつ詰め、いちばん効く時刻列は縦積みにする。
+           デスクトップ（768px以上）は変えない。 */
+        .container { width: 94%; }
+        .card { padding: 18px; }
+        .event-body { padding: 14px; }
+        .info { padding: 12px; }
+
+        /* 時刻を上、内容を下に積む。112px固定の列をやめると本文が2倍以上使える */
+        .timeline-item {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          padding: 10px 12px;
+        }
       }
 
       @media (min-width: 768px) {
