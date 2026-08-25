@@ -128,7 +128,7 @@ Instagramのキャプションは「…もっと見る」で折りたたまれ�
 - 8/28の告知は**別途、告知型の投稿で厚く取る**（[REEL-WORKFLOW.md](../../../../04_共通/REEL-WORKFLOW.md) の
   「短期の集客を取りにいくなら告知型を厚くする」）。この回は**engagement寄り**と割り切る
 - ハイライト側に**体験会の日程への導線も置いておく**と、遊びに来た人がそのまま日程を見られる。
-  LPへ送るリンクには `utm_source=instagram&utm_medium=story` を付ける（[bromas_funnel_renewal_plan.md](../../../../../bromas_funnel_renewal_plan.md)）
+  LPへ送るリンクには `utm_source=instagram&utm_medium=story` を付ける（「集客導線 統合改修プラン」（curriculum側・PRIVATE））
 
 ### 投稿の順番（2026-08-21 ひったさん判断）
 
