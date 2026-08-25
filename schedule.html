@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>開催日程・よくある質問 | ブロマスゲームラボ</title>
+    <meta name="description" content="Roblox×AIワークショップの開催日程です。日時・会場・料金・タイムテーブルと、よくある質問、参加されたご家族の声をまとめています。埼玉・南与野で開催中。" />
+    <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/schedule.html" />
+    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
+         先読みしてしまい出し分けの意味がなくなる -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/R.webp"
+      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
+      imagesizes="(max-width: 767px) 77vw, 480px"
+      type="image/webp"
+    />
+    <meta property="og:title" content="開催日程・よくある質問 | ブロマスゲームラボ" />
+    <meta property="og:description" content="開催日程・料金・会場と、よくある質問、参加者の声をまとめています。" />
+    <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/schedule.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+
+    <!-- Google tag (gtag.js) — GA4 と Google広告 をまとめて即時読み込み
+         以前はGA4だけ window.load 後に読み込んでいたが、全画像の読み込み完了を待つため
+         モバイルで数秒遅れ、早期離脱がまるごと計測から漏れていた。エンゲージメント時間も
+         実態より短く出る。計測の起点を早めるため、通常のasync読み込みに戻している。 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-E9YKGSCX5B");
+      gtag("config", "AW-977501883");
+    </script>
+
+    <!-- Metaピクセル。
+         これが無いとMetaは「広告をクリックした人がLPを開いたか」を知れず、
+         ランディングページビュー（LPV）が測れない。LPV単価をクリエイティブの
+         比較基準にしているので、その土台にあたる。
+
+         ⚠️ 申込（doorkeeper_click）を最適化の目標にしないこと。
+         Metaの学習は1広告セットあたり週50件が目安で、実績は週2〜3件。
+         信号が薄いと配信が絞られる（8/18にGoogle広告で起きたのと同じ）。
+         最適化に使うならLPVまで。 -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2014627915461616');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=2014627915461616&ev=PageView&noscript=1" /></noscript>
+    <!-- JSが無効だと「カリキュラムを読み込み中…」が永久に残るため隠す -->
+    <noscript>
+      <style>
+        .curri-loading { display: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="style.css">
+    <!-- 日程のデータを先読みする。理由は index.html と同じ。
+         ▼ イベントを追加したときは、下部の <script> と合わせてここにも1行足すこと。
+            index.html にも同じ2か所がある（AGENTS.md 参照）。 -->
+    <link rel="preload" as="script" href="events/2026-08-28.js" />
+    <link rel="preload" as="script" href="events/2026-09-13.js" />
+    <link rel="preload" as="script" href="events/2026-09-19.js" />
+    <link rel="preload" as="script" href="events/2026-09-25.js" />
+    <link rel="preload" as="script" href="events/2026-10-11.js" />
+    <link rel="preload" as="script" href="events/2026-10-23.js" />
+    <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
+    <!-- JSON-LD（Event / Organization）はこのページに置く。
+         開催情報の構造化データは、日程が載っているページと一致させる必要があるため、
+         2026-08-25 に index.html から移した。イベントを足したらここも更新すること。 -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization",
+            "name": "ブロマスゲームラボ",
+            "url": "https://hoshihirotaka.github.io/PlayMakerLabLP/",
+            "sameAs": [
+              "https://www.instagram.com/hirotaka_hoshi/",
+              "https://www.threads.com/@hirotaka_hoshi",
+              "https://www.facebook.com/hirotaka.hoshi",
+              "https://x.com/shgame"
+            ]
+          },
+          {
+            "@type": "Event",
+            "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#event-2026-08-28",
+            "name": "Roblox×AIで、自分だけのゲームを作ろう！／大人向けAI講座（2026年8月28日）",
+            "startDate": "2026-08-28T17:00:00+09:00",
+            "endDate": "2026-08-28T20:30:00+09:00",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "url": "https://gameschool.doorkeeper.jp/events/198459",
+            "description": "ただ遊ぶだけで終わらせない。Roblox×AIで「面白さの企画」を体験する子ども向けワークショップ。同日夜は大人向けAI講座も開催。親子参加歓迎、地域密着の会場で開催。",
+            "image": "https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png",
+            "location": {
+              "@type": "Place",
+              "name": "路地裏GarageMarket",
+              "address": "〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3"
+            },
+            "organizer": { "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization" },
+            "performer": { "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization" },
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "AIコース",
+                "price": "900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-07-24T00:00:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/198459?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "Robloxコース",
+                "price": "1900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-07-24T00:00:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/198459?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "大人向けAIコース",
+                "price": "2900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-08-07T00:00:00+09:00",
+                "availabilityEnds": "2026-08-28T19:30:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/198703?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "大人向けAIコース（PCレンタル付き）",
+                "price": "3200",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-08-07T00:00:00+09:00",
+                "availabilityEnds": "2026-08-28T19:30:00+09:00",
+                "inventoryLevel": { "@type": "QuantitativeValue", "value": 4 },
+                "url": "https://gameschool.doorkeeper.jp/events/198703?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+                "availability": "https://schema.org/InStock"
+              }
+            ]
+          },
+          {
+            "@type": "Event",
+            "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#event-2026-09-13",
+            "name": "Robloxで、自分だけのゲームを作ろう！（2026年9月13日）",
+            "startDate": "2026-09-13T11:00:00+09:00",
+            "endDate": "2026-09-13T17:00:00+09:00",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "url": "https://gameschool.doorkeeper.jp/events/198773",
+            "description": "ただ遊ぶだけで終わらせない。Robloxで「面白さの企画」を体験する子ども向けワークショップ。日曜の日中開催で、はじめての方向けの回を11:00と14:30の2回。16:00からはプログラミングありの回も。親子参加歓迎、地域密着の会場で開催。",
+            "image": "https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png",
+            "location": {
+              "@type": "Place",
+              "name": "路地裏GarageMarket",
+              "address": "〒338-0013 埼玉県さいたま市中央区鈴谷7丁目7-3"
+            },
+            "organizer": { "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization" },
+            "performer": { "@id": "https://hoshihirotaka.github.io/PlayMakerLabLP/#organization" },
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "Robloxコース",
+                "price": "1900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-08-18T00:00:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/198773?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "Robloxコース（プログラミングあり）",
+                "price": "1900",
+                "priceCurrency": "JPY",
+                "validFrom": "2026-08-18T00:00:00+09:00",
+                "url": "https://gameschool.doorkeeper.jp/events/198773?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+                "availability": "https://schema.org/InStock"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="orb one" aria-hidden="true"></div>
+    <div class="orb two" aria-hidden="true"></div>
+
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="nav-logo" href="index.html" aria-label="トップページへ">ブロマスゲームラボ</a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <div class="nav-links" id="nav-links">
+          <a href="curriculum.html">カリキュラム</a>
+          <a href="works.html">作品ギャラリー</a>
+          <a href="plans.html">プラン</a>
+          <a href="schedule.html" aria-current="page">お子様向け日程</a>
+          <a href="adults.html">大人向け日程</a>
+          <a href="index.html#teacher">講師</a>
+                  </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="section" id="schedule">
+        <div class="container card">
+          <h2>開催日程</h2>
+          <p style="color:var(--subtext); margin: 0 0 16px;">各イベントをタップすると詳細とタイムテーブルを確認できます。</p>
+
+          <!-- 「このあとの開催」。JSで自動生成（2件以上あるときだけ出る） -->
+          <div id="event-more" class="event-more"></div>
+
+          <!-- イベントはここに自動描画されます -->
+          <div id="event-list" class="event-list"></div>
+          <!-- JSが動かない環境向け。日付は書かず、常に最新が並ぶDoorkeeperのトップへ送る
+               （ここに開催日を直書きすると、イベント追加のたびに更新が必要になるため） -->
+          <noscript>
+            <p class="noscript-note">
+              お使いの環境では開催日程を表示できません。<br />
+              最新の日程とお申し込みは
+              <a href="https://gameschool.doorkeeper.jp/?utm_source=lp&amp;utm_medium=noscript">Doorkeeperのページ</a>
+              からご確認いただけます。
+            </p>
+          </noscript>
+        </div>
+      </section>
+
+      <section class="section" id="voices">
+        <div class="container card">
+          <h2>参加したご家族の声</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;">アンケートにいただいた声を、原文のまま掲載しています（氏名は伏せています）。掲載の許可をいただいたもののみ載せています。</p>
+          <!--
+            掲載しているのは、アンケートで「掲載してよい」の許可が取れた回答のみ。
+            許可の記録は親御様用Googleフォームの掲載可否設問に残る。
+            許可のない声は載せないこと（利用規約・同意書の趣旨に沿うため）。
+            許可が取れた声が増えたら、ここに追加していく。
+          -->
+          <div class="grid-2">
+            <div class="voice-card">
+              <p class="voice-text">「子供達が楽しそうにゲームを作成していて参加してよかったです」</p>
+              <div class="voice-meta">保護者アンケートより</div>
+            </div>
+            <div class="voice-card">
+              <p class="voice-text">「あい手の作ったゲームをプレイしたこと」</p>
+              <div class="voice-meta">参加者アンケートより（小3・一番楽しかったこと）</div>
+            </div>
+            <div class="voice-card">
+              <p class="voice-text">「友だちのゲーム」</p>
+              <div class="voice-meta">参加者アンケートより（小5・一番楽しかったこと）</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container card">
+          <h2>よくある質問</h2>
+          <div class="faq">
+            <div class="faq-item">
+              Q: プログラミング経験がなくても参加できますか？<br />
+              A: はい、まったく経験がなくても大丈夫です。マウス操作ができると良いですが、その場でも使い方を教えることもできます。
+            </div>
+            <div class="faq-item">
+              Q: パソコンは持参する必要がありますか？<br />
+              A: 会場でご用意しています。持参しても構いません。
+            </div>
+            <div class="faq-item">
+              Q: 保護者の同伴は必要ですか？親も一緒に参加できますか？<br />
+              A: 小学生のお子さまは保護者の同伴を推奨しています。中学生以上は単独参加も可能です。保護者の方のご参加・見学も大歓迎です（お申し込みください）。
+            </div>
+            <div class="faq-item">
+              Q: 作りたいものが思いつかなくても参加できますか？<br />
+              A: はい。決められたテーマに沿って作ることもできます。
+            </div>
+            <div class="faq-item">
+              Q: 2回目の参加でも楽しめますか？<br />
+              A: はい。教材を回ごとに切り替えているので、毎回違うゲーム作りを体験できます。前回の続きを作り込むこともできます。
+            </div>
+            <div class="faq-item">
+              Q: 継続的な教室はありますか？<br />
+              A: あります。日程とカリキュラムを選んで通う「通常プラン」と、場所やペースをお子さんに合わせて選べる「個別プラン」（オンライン・自宅、詳細は別途ご相談ください）があります。オリジナルの企画・作品づくりに挑戦したい場合は、どちらのプランでもオプションとしてご相談いただけます。体験会と教材が共通なので、続きからスムーズに始められます。個別プランをご希望の方は、体験会当日にスタッフへお申し付けください。公式LINEにご招待いたします。
+            </div>
+            <div class="faq-item">
+              Q: 料金はいくらですか？<br />
+              A: 体験会はRobloxコース 1,900円／AIコース 900円（当日現金払い・今だけのお試し価格）です。通常プランの料金は体験会と同じ金額で個別プランの料金は、個別にご案内しています。
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="legal/terms.html">利用規約</a>
+          <a href="legal/privacy.html">プライバシーポリシー</a>
+          <a href="legal/disclaimer.html">免責事項</a>
+          <a href="legal/tokushoho.html">特定商取引法に基づく表記</a>
+        </div>
+        © ブロマスゲームラボ
+      </div>
+    </footer>
+
+    <div class="fixed-cta" id="fixed-cta">
+      <a class="cta" id="fixed-cta-link" href="#schedule">日程・申し込みを見る</a>
+    </div>
+
+    <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます）。
+         head の preload にも同じ行を足すこと。index.html にも同じ2か所がある。 -->
+    <script src="events/2026-08-28.js"></script>
+    <script src="events/2026-09-13.js"></script>
+    <script src="events/2026-09-19.js"></script>
+    <script src="events/2026-09-25.js"></script>
+    <script src="events/2026-10-11.js"></script>
+    <script src="events/2026-10-23.js"></script>
+
+
+    <!-- index.html と共通のスクリプト -->
+
+    <!-- 共通スクリプト。中身は js/ にある（以前は各ページに同じものを貼っていた）。
+         events/*.js と curriculum/curriculum.js より後に読むこと。 -->
+    <script src="js/render-events.js"></script>
+    <script src="js/site.js"></script>
+  </body>
+</html>

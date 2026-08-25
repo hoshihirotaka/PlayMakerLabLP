@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大人向けAI講座 | ブロマスゲームラボ</title>
+    <meta name="description" content="はじめてのGoogle×AI活用勉強会。仕事でAIを使ってみたい初心者の方向けに、埼玉・南与野で開催しています。パソコンのレンタルもあります。" />
+    <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/adults.html" />
+    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
+         先読みしてしまい出し分けの意味がなくなる -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/R.webp"
+      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
+      imagesizes="(max-width: 767px) 77vw, 480px"
+      type="image/webp"
+    />
+    <meta property="og:title" content="大人向けAI講座 | ブロマスゲームラボ" />
+    <meta property="og:description" content="はじめてのGoogle×AI活用勉強会。仕事でAIを使ってみたい初心者の方向け。埼玉・南与野で開催。" />
+    <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/adults.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- 日程のデータを先読みする。理由は index.html と同じ。
+         ▼ イベントを追加したときは、下部の <script> と合わせてここにも1行足すこと。
+            日程を出すページは index.html / schedule.html / adults.html の3つ（AGENTS.md 参照）。 -->
+    <link rel="preload" as="script" href="events/2026-08-28.js" />
+    <link rel="preload" as="script" href="events/2026-09-13.js" />
+    <link rel="preload" as="script" href="events/2026-09-19.js" />
+    <link rel="preload" as="script" href="events/2026-09-25.js" />
+    <link rel="preload" as="script" href="events/2026-10-11.js" />
+    <link rel="preload" as="script" href="events/2026-10-23.js" />
+
+    <!-- JSON-LD（Event / Organization）は schedule.html に移した（2026-08-25）。
+         構造化データは、日程が実際に載っているページと一致させる必要があるため。
+         このページは直近1件だけを出すので、全開催の Event を持たない。 -->
+    <!-- Google tag (gtag.js) — GA4 と Google広告 をまとめて即時読み込み
+         以前はGA4だけ window.load 後に読み込んでいたが、全画像の読み込み完了を待つため
+         モバイルで数秒遅れ、早期離脱がまるごと計測から漏れていた。エンゲージメント時間も
+         実態より短く出る。計測の起点を早めるため、通常のasync読み込みに戻している。 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9YKGSCX5B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-E9YKGSCX5B");
+      gtag("config", "AW-977501883");
+    </script>
+
+    <!-- Metaピクセル。
+         これが無いとMetaは「広告をクリックした人がLPを開いたか」を知れず、
+         ランディングページビュー（LPV）が測れない。LPV単価をクリエイティブの
+         比較基準にしているので、その土台にあたる。
+
+         ⚠️ 申込（doorkeeper_click）を最適化の目標にしないこと。
+         Metaの学習は1広告セットあたり週50件が目安で、実績は週2〜3件。
+         信号が薄いと配信が絞られる（8/18にGoogle広告で起きたのと同じ）。
+         最適化に使うならLPVまで。 -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2014627915461616');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=2014627915461616&ev=PageView&noscript=1" /></noscript>
+    <!-- JSが無効だと「カリキュラムを読み込み中…」が永久に残るため隠す -->
+    <noscript>
+      <style>
+        .curri-loading { display: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
+    <!-- JSON-LD は schedule.html にある。子ども向け体験会のEventを載せているため、
+         このページ（大人向け）には置かない。 -->
+    <!-- curriculum/curriculum.js は読み込まない。教材一覧を扱わないため。 -->
+  </head>
+  <body>
+    <div class="orb one" aria-hidden="true"></div>
+    <div class="orb two" aria-hidden="true"></div>
+
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="nav-logo" href="index.html" aria-label="トップページへ">ブロマスゲームラボ</a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <div class="nav-links" id="nav-links">
+          <a href="curriculum.html">カリキュラム</a>
+          <a href="works.html">作品ギャラリー</a>
+          <a href="plans.html">プラン</a>
+          <a href="schedule.html">お子様向け日程</a>
+          <a href="adults.html" aria-current="page">大人向け日程</a>
+          <a href="index.html#teacher">講師</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="section" id="adults">
+        <div class="container card">
+          <h2>大人向けAI講座</h2>
+          <p style="color: var(--subtext); margin: 0 0 16px;"><strong>「はじめてのGoogle×AI活用勉強会」</strong>は、保護者様ご自身をはじめとした大人の方向けの講座です。<strong>お子様向けの体験会とは別のイベント</strong>として開催しています。</p>
+
+          <div class="grid-2" style="margin-bottom: 20px;">
+            <div class="info"><strong>対象</strong>仕事でAIを使ってみたい初心者の方。ふだんAIを使っていない方を想定しています。</div>
+            <div class="info"><strong>参加条件</strong>Googleアカウントをお持ちの方（個人の @gmail.com を推奨）</div>
+            <div class="info"><strong>持ち物</strong>ノートパソコン（Chrome推奨）。お持ちでない方はレンタル付きをお選びください（4台限定・アカウントはご自身のものをご用意ください）</div>
+            <div class="info"><strong>お子様の同席</strong>できます。空いているパソコンでご自身の続きを進めていただいても問題ありません。</div>
+          </div>
+
+          <div class="curri-note">終了後にアンケートへのご協力をお願いする回のため、<strong>通常より1,000円お安く</strong>ご案内しています。</div>
+
+          <h3 style="margin: 24px 0 12px; font-size: 1.05rem; color: #0f2c59;">開催予定</h3>
+
+          <!-- ▼ お子様向け日程と同じ仕組みを使う。
+               描画は js/render-events.js（3ページ共有）。データは events/*.js。
+               data-audience="adult" を付けると、大人向けの枠がある回だけ、
+               大人向けの行だけが出る。日付も参加費も手で書かない。
+               判定は timetable の audience プロパティで、ラベルの文言では判定していない。 -->
+          <div id="event-list" class="event-list" data-audience="adult"></div>
+
+          <p style="margin: 20px 0 0; color: var(--subtext); font-size: 0.9rem;">お子様向けの体験会の日程は<a href="schedule.html" style="color: #0f6e9e;">開催日程</a>をご覧ください。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="legal/terms.html">利用規約</a>
+          <a href="legal/privacy.html">プライバシーポリシー</a>
+          <a href="legal/disclaimer.html">免責事項</a>
+          <a href="legal/tokushoho.html">特定商取引法に基づく表記</a>
+        </div>
+        © ブロマスゲームラボ
+      </div>
+    </footer>
+
+    <div class="fixed-cta" id="fixed-cta">
+      <a class="cta" id="fixed-cta-link" href="#adults">開催予定を見る</a>
+    </div>
+
+    <!-- ▼ イベント追加時はここに1行追加する。head の preload にも同じ行を足すこと。
+         日程を出すページは index.html / schedule.html / adults.html の3つ。 -->
+    <script src="events/2026-08-28.js"></script>
+    <script src="events/2026-09-13.js"></script>
+    <script src="events/2026-09-19.js"></script>
+    <script src="events/2026-09-25.js"></script>
+    <script src="events/2026-10-11.js"></script>
+    <script src="events/2026-10-23.js"></script>
+
+
+    <!-- index.html と共通のスクリプト -->
+
+    <!-- 共通スクリプト。中身は js/ にある（以前は各ページに同じものを貼っていた）。
+         events/*.js と curriculum/curriculum.js より後に読むこと。 -->
+    <script src="js/render-events.js"></script>
+    <script src="js/site.js"></script>
+  </body>
+</html>

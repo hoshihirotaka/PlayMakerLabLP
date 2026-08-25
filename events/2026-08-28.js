@@ -22,6 +22,15 @@
     // price に入れると「今だけお試し価格」バッジが自動で付くが、大人向けの値引き理由は
     // 「アンケートにご協力いただく回だから」で子ども向けとは別建てのため、バッジを付けない。
     // チケットが2種類あることも price フィールドでは表現できない
-    { time: "19:30-20:30", label: "③大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,200円" }
+    // audience:"adult" は adults.html が大人向けの回を拾うための印。
+    // ラベルの文言で判定すると、書き換えたときに黙って壊れるため明示する。
+    // doorkeeperUrl は「申込を受付中の回」にだけ付ける（未公開の回には付けない）。
+    {
+      time: "19:30-20:30",
+      label: "③大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,200円",
+      audience: "adult",
+      adultPrice: "2,900円 ／ PCレンタル付き 3,200円",
+      doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198703?utm_source=lp&utm_medium=referral&utm_campaign=bromas"
+    }
   ]
 });

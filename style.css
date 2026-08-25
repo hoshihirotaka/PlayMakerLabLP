@@ -761,17 +761,9 @@
       .feature-card p { margin: 0; color: var(--subtext); line-height: 1.7; }
 
       /* ステップバッジ */
-      .step-badge {
-        display: inline-block;
-        background: #0f2c59;
-        color: #fff;
-        font-size: 0.75rem;
-        font-weight: 800;
-        padding: 4px 12px;
-        border-radius: 999px;
-        margin-bottom: 10px;
-        letter-spacing: 0.08em;
-      }
+      /* .step-badge は 2026-08-25 に削除した。
+         トップを STEP 1/2/3 の順路で見せる作りをやめたため（LPからホームページへ）。
+         復活させるなら、入口が複数あるサイトで通し番号が成立するか先に検討すること。 */
 
       /* コースアイテム */
       .course-item {
