@@ -251,6 +251,20 @@
       .info { background: var(--surface-soft); padding: 16px; border-radius: var(--radius-md); }
       .info strong { display: block; margin-bottom: 6px; }
 
+      /* 文中で強調を使うお知らせ。.info は中の <strong> がブロック表示になるため
+         （「日時」などのラベル用）、文章には使えない。 */
+      .notice {
+        margin: 14px 0 0;
+        padding: 14px 16px;
+        background: rgba(178, 138, 255, 0.12);
+        border-radius: var(--radius);
+        color: var(--subtext);
+        line-height: 1.8;
+        font-size: 0.92rem;
+      }
+      .notice strong { color: #0f2c59; }
+      .notice a { color: #0f6e9e; }
+
       /* コースカード */
       .course-card {
         padding: 18px;
@@ -808,6 +822,39 @@
       @media (max-width: 767px) {
         .fixed-cta.show { display: block; }
         body.has-fixed-cta { padding-bottom: 84px; }
+
+        /* ── モバイルの横幅を取り戻す（2026-08-25）──────────────────
+           角丸の枠が4段入れ子になっていて、375pxの画面で本文に使える幅が
+           112pxしか残っていなかった（画面の70%が余白と枠）。
+
+             375  画面
+             345  .container 92%           -30
+             297  .card padding 24         -48
+             255  .event-body padding 20   -40
+             236  .timeline-item padding   -28
+             112  時刻112px固定の2カラム   -124
+
+           入れ子の各段を少しずつ詰め、いちばん効く時刻列は縦積みにする。
+           デスクトップ（768px以上）は変えない。 */
+        .container { width: 94%; }
+        .card { padding: 18px; }
+        .event-body { padding: 14px; }
+        .info { padding: 12px; }
+
+        /* 時刻を上、内容を下に積む。112px固定の列をやめると本文が2倍以上使える */
+        .timeline-item {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          padding: 10px 12px;
+        }
+
+        /* セクション下の「もっと見る」系と申込ボタンを左右いっぱいに広げる。
+           ヒーローのボタンは .hero .cta-row が grid 1fr なので元から全幅だが、
+           セクションのボタンは inline-flex で文字数ぶんの幅しかなく、
+           長さがバラバラで端が揃っていなかった。
+           タップ範囲も広がる。デスクトップ（768px以上）は従来どおり内容幅。 */
+        .card > p > .cta { width: 100%; }
+        .event-apply { width: 100%; }
       }
 
       @media (min-width: 768px) {

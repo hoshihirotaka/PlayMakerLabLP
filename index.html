@@ -124,8 +124,9 @@
                   日付から自動生成する版は、日程セクションの「このあとの開催」にある。 -->
           <p class="hero-news">9月の日程決まりました！</p>
           <div class="cta-row">
-            <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">日程を確認する</a>
-            <a class="cta outline" href="#join">今後の日程を受け取る</a>
+            <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">直近の予定を確認する</a>
+            <!-- 「雰囲気を確認する」なので、行き先も #join（参加登録）ではなく作品ギャラリーにしている -->
+            <a class="cta outline" href="works.html">教室の雰囲気を確認する</a>
           </div>
           <div class="hero-note">小学生は保護者の同伴を推奨。中高生は単独参加もOK。家族でのゲーム開発も応援します。</div>
         </div>
@@ -264,7 +265,7 @@
               </div>
             </div>
           </div>
-          <p style="margin: 0;"><a class="cta cta-ghost" href="works.html">作品をもっと見る（遊べる作品もあります）</a></p>
+          <p style="margin: 0;"><a class="cta outline" href="works.html">作品をもっと見る（遊べる作品もあります）</a></p>
         </div>
       </section>
       <section class="section">
@@ -359,8 +360,10 @@
                  合計4か所。詳しくは AGENTS.md を参照。 -->
 
           <div id="event-list" data-limit="1"></div>
-          <p style="margin: 16px 0 0;"><a class="cta cta-ghost" href="schedule.html">ほかの日程・よくある質問を見る</a></p>
-          <div class="info" style="margin-top: 14px;">保護者様ご自身が学ぶ<strong>大人向けAI講座</strong>は<strong>別のイベント</strong>です。参加条件や持ち物が異なるので、<a href="adults.html" style="color: #0f6e9e;">大人向け日程</a>をご覧ください。</div>
+          <p style="margin: 16px 0 0;"><a class="cta outline" href="schedule.html">ほかの日程・よくある質問を見る</a></p>
+          <!-- .info は中の <strong> が display:block（「日時」などのラベル用）なので
+               文中の強調には使えない。専用の .notice を使う。 -->
+          <p class="notice">保護者様ご自身が学ぶ<strong>大人向けAI講座</strong>は<strong>別のイベント</strong>です。参加条件や持ち物が異なるので、<a href="adults.html">大人向け日程</a>をご覧ください。</p>
         </div>
       </section>
 
@@ -377,7 +380,7 @@
 
           <p id="curriSummary" class="curri-summary">Robloxコースと大人向けAIコースの教材をご用意しています。</p>
           <p style="color: var(--subtext); margin: 0 0 16px;"><strong>体験用</strong>はプログラミングなしで初めての方向け、<strong>プログラミング</strong>は仕組みや動きをコードで作る教材、<strong>クリエイティブ</strong>はデザインや演出など「表現」を楽しむ教材です。</p>
-          <p style="margin: 0 0 12px;"><a class="cta cta-ghost" href="curriculum.html">カリキュラム一覧を見る</a></p>
+          <p style="margin: 0 0 12px;"><a class="cta outline" href="curriculum.html">カリキュラム一覧を見る</a></p>
           <div class="curri-note">体験会（体験用の教材）は回によってテーマが変わります。2回目以降も新しい教材で参加できます。</div>
         </div>
       </section>
@@ -393,7 +396,7 @@
                  案内は「体験会当日にスタッフへお申し付けください」のままにする。 -->
 
           <p style="color: var(--subtext); margin: 0 0 16px;">体験会のあとは、会場でみんなと学ぶ<strong>通常プラン</strong>と、場所とペースを合わせられる<strong>個別プラン</strong>から続け方を選べます。オリジナルの企画・作品づくりは、どちらにも追加できるオプションです。</p>
-          <p style="margin: 0 0 12px;"><a class="cta cta-ghost" href="plans.html">続け方をくわしく見る</a></p>
+          <p style="margin: 0 0 12px;"><a class="cta outline" href="plans.html">続け方をくわしく見る</a></p>
           <div class="info">取り組める教材は<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。</div>
         </div>
       </section>
@@ -406,7 +409,7 @@
                書き足すときは about.html を編集すること。 -->
 
           <p style="color: var(--subtext); margin: 0 0 16px;">「必要そうだからプログラミングを教える」のではなく、<strong>興味のあるゲーム制作を通して形にしていくプロセス</strong>を大切にしています。講師はゲーム業界歴20年以上のゲーム企画職です。</p>
-          <p style="margin: 0;"><a class="cta cta-ghost" href="about.html">大切にしていること・講師紹介を見る</a></p>
+          <p style="margin: 0;"><a class="cta outline" href="about.html">大切にしていること・講師紹介を見る</a></p>
         </div>
       </section>
 
@@ -447,7 +450,7 @@
           <h2>「作る楽しさ」を、今日から体感しよう。</h2>
           <p>定員になり次第締め切ります。予約優先です。</p>
           <div class="cta-row" style="justify-content: center;">
-            <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">日程・申し込みを見る</a>
+            <a class="cta" href="schedule.html" onclick="gtag('event', 'schedule_click');">今後の日程を確認する</a>
           </div>
           <p style="margin-top: 14px; color: #2a3c56;">お問い合わせ: hitta.games@gmail.com</p>
         </div>
@@ -467,11 +470,11 @@
       </div>
     </footer>
 
-    <!-- data-cta="list" を付けると、固定CTAが申込ページへ直結せず日程一覧へ送る。
-         トップは大人向け・お子様向けの両方の入口なので、ここで片方の申込に
-         直結させると、もう片方の人が別のイベントに申し込んでしまう。
-         直結させるのは、どちらか選んだあとのページ（schedule.html / adults.html）だけ。 -->
-    <div class="fixed-cta" id="fixed-cta" data-cta="list">
+    <!-- 固定CTAは直近回のDoorkeeperへ直行する（2026-08-25 本人の判断）。
+         一度「日程一覧へ送る」形にしたが、申込までの手数を増やさない方針に戻した。
+         大人向けと取り違えないよう、文言に「体験会」を入れ、
+         日程セクションの下に大人向けAI講座への案内（.notice）を置いている。 -->
+    <div class="fixed-cta" id="fixed-cta">
       <a class="cta" id="fixed-cta-link" href="schedule.html">日程・申し込みを見る</a>
     </div>
 

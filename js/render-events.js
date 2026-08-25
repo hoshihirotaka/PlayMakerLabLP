@@ -85,6 +85,14 @@
     // 大人向けページでそれを出すと別のイベントへ送ってしまう。
     var slot = slotsFor(ev)[0] || {};
     var applyUrl = audience ? slot.doorkeeperUrl : (ev.comingSoon ? null : ev.doorkeeperUrl);
+    // トップ（data-limit のページ）は、お子様向けと大人向けの両方の入口。
+    // このカードのタイムテーブルには大人向けの枠も出るため、ここで
+    // お子様向けの申込へ直結させると、大人の方が別のイベントに申し込んでしまう。
+    // 直結させるのは、どちらか選んだあとのページ（schedule.html / adults.html）だけ。
+    // 申込ボタン。トップ（data-limit）でも直近回のDoorkeeperへ直行する。
+    // 一度「日程一覧へ送る」形にしたが、申込までの手数を増やさない方針に戻した
+    // （2026-08-25 本人の判断）。取り違え対策は文言（体験会／講座）と、
+    // 日程セクション下の大人向け案内（.notice）で行う。
     var applyBlock = applyUrl
       ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a>'
       : '<span class="event-apply event-apply--soon">申込受付準備中</span>';
@@ -179,15 +187,7 @@
       var nextSlot = slotsFor(nextEvent)[0] || {};
       var ctaUrl = audience ? nextSlot.doorkeeperUrl : (nextEvent.comingSoon ? null : nextEvent.doorkeeperUrl);
 
-      // data-cta="list" のページは、申込ページへ直結させず日程一覧へ送る。
-      // 大人向けとお子様向けの両方の入口になるページで片方に直結すると、
-      // もう片方の人が別のイベントに申し込んでしまう（2026-08-25 の判断）。
-      if (fixedCta.getAttribute("data-cta") === "list") {
-        fixedCtaLink.textContent = shortDate + " 開催・日程を見る";
-        fixedCtaLink.removeAttribute("target");
-        fixedCtaLink.removeAttribute("rel");
-        // href はHTMLに書かれたまま（schedule.html）にする
-      } else if (!ctaUrl) {
+      if (!ctaUrl) {
         // 受付前。外部リンクにせず、そのページの日程セクションへスクロールさせる。
         fixedCtaLink.textContent = shortDate + " 開催予定・受付準備中";
         fixedCtaLink.href = "#" + ((list.closest("section") || {}).id || "schedule");
