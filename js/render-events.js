@@ -94,7 +94,7 @@
     // （2026-08-25 本人の判断）。取り違え対策は文言（体験会／講座）と、
     // 日程セクション下の大人向け案内（.notice）で行う。
     var applyBlock = applyUrl
-      ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">この回に申し込む</a>'
+      ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>'
       : '<span class="event-apply event-apply--soon">申込受付準備中</span>';
 
     return (
@@ -194,7 +194,7 @@
         fixedCtaLink.removeAttribute("target");
         fixedCtaLink.removeAttribute("rel");
       } else {
-        fixedCtaLink.textContent = shortDate + (audience ? " 講座に申し込む" : " 体験会に申し込む");
+        fixedCtaLink.textContent = shortDate + (audience ? " 講座に申し込む" : " イベントに申し込む");
         fixedCtaLink.href = ctaUrl;
         fixedCtaLink.target = "_blank";
         fixedCtaLink.rel = "noreferrer";
