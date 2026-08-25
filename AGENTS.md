@@ -231,33 +231,57 @@ events/
 });
 ```
 
-**② `index.html` の所定箇所に1行追加する（**2か所ある**）**
+**② 読み込む行を追加する（**合計4か所**）**
+
+> ⚠️ **2026-08-25 に `schedule.html` を分けたため、2か所 → 4か所に増えた。**
+> 日程を出すページが index.html と schedule.html の2つあり、それぞれに
+> 「head の preload」と「body 下部の `<script>`」がある。
+
+| ファイル | 場所 | 役割 |
+|---|---|---|
+| `index.html` | `<head>` の preload | 先読み |
+| `index.html` | body下部の `<script>` | **直近1件**を出す（`data-limit="1"`） |
+| `schedule.html` | `<head>` の preload | 先読み |
+| `schedule.html` | body下部の `<script>` | **全件**を出す |
 
 ```html
 <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->
-<script src="events/2026-06-26.js"></script>
 <script src="events/2026-XX-XX.js"></script>  ← 追加
 ```
-
-**あわせて `<head>` の preload にも1行追加する。** これを忘れると、そのイベントだけ
-先読みされず読み込みが遅れる（表示は正しく出るので気づきにくい）。
 
 ```html
 <link rel="preload" as="script" href="events/2026-XX-XX.js" />  ← 追加
 ```
 
-逆に、**`<script>` から外したファイルの preload を残すと**「先読みしたのに使われていない」
-という警告がコンソールに出て、無駄な通信も発生する。**両者は必ず一致させる。**
+**index.html も全件を読み込む。** 直近1件しか表示しないが、
+「次回がどれになっても描ける」ようにするため。表示件数の出し分けは
+`#event-list` の `data-limit` 属性だけで行っており、**描画スクリプトは
+2ページで同じものを共有している**（片方だけ直すことはできない）。
+
+preload を忘れると、そのイベントだけ先読みされず読み込みが遅れる
+（表示は正しく出るので気づきにくい）。逆に **`<script>` から外したファイルの
+preload を残すと**「先読みしたのに使われていない」という警告がコンソールに出る。
+**両者は必ず一致させる。**
 
 ```bash
-# 一致しているかの検算（差分が出なければOK）
-diff <(grep -oE 'preload" as="script" href="[^"]*"' index.html | sed 's/.*href="//;s/"//' | sort) \
-     <(grep -oE '<script src="(events|curriculum)/[^"]*"' index.html | sed 's/.*src="//;s/"//' | sort)
+# 4か所すべての整合を検算する（何も出なければOK）
+for f in index.html schedule.html; do
+  echo "--- $f ---"
+  diff <(grep -oE 'preload" as="script" href="events/[^"]*"' "$f" | sed 's/.*href="//;s/"//' | sort) \
+       <(grep -oE '<script src="events/[^"]*"' "$f" | sed 's/.*src="//;s/"//' | sort)
+done
+# 2ページで読み込むイベントが一致しているか
+diff <(grep -oE 'events/[0-9-]+\.js' index.html | sort -u) \
+     <(grep -oE 'events/[0-9-]+\.js' schedule.html | sort -u)
 ```
 
-**③ `index.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
+**③ `schedule.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
+
+> ⚠️ **JSON-LD は index.html ではなく `schedule.html` にある**（2026-08-25 に移動）。
+> 構造化データは、日程が実際に載っているページと一致させる必要があるため。
 
 `@id` と各日時・URLをイベントに合わせて追記する。
+**開催が終わった回は削除する**（終了した回が検索結果に出るため）。
 
 ### 日程だけ先に押さえた場合（comingSoon）
 
