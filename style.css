@@ -648,6 +648,17 @@
       .curri-badge.tag-program { background: rgba(73, 214, 163, 0.18); color: #1d7a55; }
       .curri-badge.tag-creative { background: rgba(178, 138, 255, 0.2); color: #6b3fb0; }
       .curri-badge.subject { background: rgba(15, 44, 89, 0.1); color: #0f2c59; }
+
+      /* トップページのカリキュラム要約。件数は curriculum/curriculum.js から
+         数えて出しているため、ここに数字は書かない（index.html のコメント参照）。 */
+      .curri-summary { margin: 0 0 12px; font-size: 1.05rem; line-height: 1.8; color: #0f2c59; }
+      .curri-summary-tags {
+        display: inline-block;
+        margin-top: 6px;
+        color: var(--subtext);
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+      }
       .curri-badge.soon { background: rgba(255, 209, 102, 0.3); color: #7a4e00; }
       /* 要相談＝実施はできるが個別に相談が必要（準備中とは区別して白地） */
       .curri-badge.request { background: #fff; color: #0f2c59; border: 1px solid rgba(15, 44, 89, 0.35); }

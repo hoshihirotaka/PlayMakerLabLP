@@ -210,7 +210,7 @@
         <a class="nav-logo" href="#" aria-label="ページの先頭に戻る">ブロマスゲームラボ</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">☰</button>
         <div class="nav-links" id="nav-links">
-          <a href="#curriculum">カリキュラム</a>
+          <a href="curriculum.html">カリキュラム</a>
           <a href="works.html">作品ギャラリー</a>
           <a href="#voices">参加者の声</a>
           <a href="#schedule">日程</a>
@@ -399,7 +399,7 @@
                   <div class="course-meta">対象: 小1〜高校生 / 参加費 1,900円 <span class="price-badge">今だけお試し価格</span><br /><!-- （友達と一緒に参加で両方300円引き） --></div>
                 </div>
               </div>
-              <div>自分だけのミニゲームを作って、遊んで、改善まで体験。教材（テーマ）は回ごとに変わります（<a href="#curriculum" style="color: #0f6e9e;">カリキュラム一覧</a>）。世界では中高生クリエイターが活躍するRoblox——その第一歩を、ここで。</div>
+              <div>自分だけのミニゲームを作って、遊んで、改善まで体験。教材（テーマ）は回ごとに変わります（<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>）。世界では中高生クリエイターが活躍するRoblox——その第一歩を、ここで。</div>
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="timeline-time">前半</div>
@@ -450,24 +450,17 @@
       <section class="section" id="curriculum">
         <div class="container card">
           <div class="step-badge">STEP 2</div>
-          <h2>カリキュラム一覧</h2>
+          <h2>カリキュラム</h2>
+
+          <!-- ここは要約。教材カードとタブ（すべて／Roblox／AI）は curriculum.html にある。
+
+               ▼ 下の件数は curriculum/curriculum.js から数えて出している。手で書かないこと。
+                 教材を足すときは curriculum/curriculum.js を編集すれば、ここも自動で追従する。
+                 JSが読めなかった場合は、次の <p> の文章（数字なし）がそのまま残る。 -->
+
+          <p id="curriSummary" class="curri-summary">Robloxコースと大人向けAIコースの教材をご用意しています。</p>
           <p style="color: var(--subtext); margin: 0 0 16px;"><strong>体験用</strong>はプログラミングなしで初めての方向け、<strong>プログラミング</strong>は仕組みや動きをコードで作る教材、<strong>クリエイティブ</strong>はデザインや演出など「表現」を楽しむ教材です。</p>
-          <div class="curri-tabs" id="curriTabs">
-            <button class="curri-tab is-active" type="button" data-filter="all">すべて</button>
-            <button class="curri-tab" type="button" data-filter="Roblox">Robloxコース</button>
-            <button class="curri-tab" type="button" data-filter="AI">AIコース</button>
-          </div>
-          <div class="curri-grid" id="curriGrid">
-            <p class="curri-loading">カリキュラムを読み込み中…</p>
-          </div>
-          <noscript>
-            <p class="noscript-note">
-              お使いの環境ではカリキュラム一覧を表示できません。<br />
-              教材の内容は
-              <a href="https://gameschool.doorkeeper.jp/?utm_source=lp&amp;utm_medium=noscript">Doorkeeperのページ</a>
-              でもご案内しています。
-            </p>
-          </noscript>
+          <p style="margin: 0 0 12px;"><a class="cta cta-ghost" href="curriculum.html">カリキュラム一覧を見る</a></p>
           <div class="curri-note">体験会（体験用の教材）は回によってテーマが変わります。2回目以降も新しい教材で参加できます。</div>
         </div>
       </section>
@@ -512,7 +505,7 @@
             </div>
           </div>
           <div class="info" style="margin-top: 16px;">
-            取り組める教材は<a href="#curriculum" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。
+            取り組める教材は<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。
           </div>
         </div>
       </section>
@@ -917,106 +910,38 @@
 
     <!-- カリキュラム一覧の描画 -->
     <script>
+      // カリキュラムの件数だけをここで数えて出す。カード一覧は curriculum.html にある。
+      //
+      // 数字を手で書かないのは、教材を足したときに必ずズレるため。
+      // curriculum/curriculum.js が唯一の出どころ（source of truth）。
+      // 読み込みに失敗した場合はHTML側の文章（数字なし）がそのまま残るので、
+      // 古い数字が表示されることはない。
       (function () {
-        var grid = document.getElementById("curriGrid");
-        var tabs = document.getElementById("curriTabs");
-        if (!grid || !tabs) return;
+        var el = document.getElementById("curriSummary");
+        var data = window.CURRICULUM && window.CURRICULUM.materials;
+        if (!el || !data || !data.length) return;
 
-        var TAG_CLASS = {
-          "体験用": "tag-taiken",
-          "プログラミング": "tag-program",
-          "クリエイティブ": "tag-creative"
-        };
-        var materials = [];
-        var currentFilter = "all";
-
-        function esc(s) {
-          return String(s == null ? "" : s)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
-        }
-
-        function sessionsText(v) {
-          if (typeof v === "number") return "📚 全" + v + "回";
-          if (v == null || v === "") return "";
-          if (v === "未定") return "📚 コマ数未定";
-          return "📚 " + v;
-        }
-
-        function cardHtml(m) {
-          var badges = '<span class="curri-badge subject">' + esc(m.subject) + "コース</span>";
-          (m.tags || []).forEach(function (t) {
-            badges += '<span class="curri-badge ' + (TAG_CLASS[t] || "") + '">' + esc(t) + "</span>";
+        function countBy(pick) {
+          var o = {};
+          data.forEach(function (m) {
+            [].concat(pick(m)).filter(Boolean).forEach(function (v) { o[v] = (o[v] || 0) + 1; });
           });
-          if (m.status === "coming_soon") {
-            badges += '<span class="curri-badge soon">準備中</span>';
-          } else if (m.status === "on_request") {
-            badges += '<span class="curri-badge request">要相談</span>';
-          }
-          var sess = sessionsText(m.sessions);
-          var sessHtml = sess ? '<div class="curri-sessions">' + esc(sess) + "</div>" : "";
-          var ageHtml = m.ageNote ? '<div class="curri-age">👤 ' + esc(m.ageNote) + "</div>" : "";
-          var detailHtml = m.detail
-            ? '<details class="curri-detail"><summary></summary><p>' + esc(m.detail) + "</p></details>"
-            : "";
-          var icon = m.icon ? '<div class="curri-icon">' + esc(m.icon) + "</div>" : "";
-          return (
-            '<div class="curri-card' + (m.status === "coming_soon" ? " soon" : "") + '">' +
-            icon +
-            '<div class="curri-title">' + esc(m.name) + "</div>" +
-            '<div class="curri-badges">' + badges + "</div>" +
-            (m.summary ? '<p class="curri-desc">' + esc(m.summary) + "</p>" : "") +
-            sessHtml +
-            ageHtml +
-            detailHtml +
-            "</div>"
-          );
+          return o;
         }
+        var bySubject = countBy(function (m) { return m.subject; });
+        var byTag = countBy(function (m) { return m.tags; });
 
-        function render() {
-          var list = materials.filter(function (m) {
-            return currentFilter === "all" || m.subject === currentFilter;
-          });
-          grid.innerHTML = list.length
-            ? list.map(cardHtml).join("")
-            : '<p class="curri-loading">該当する教材がありません。</p>';
-        }
+        var courses = Object.keys(bySubject)
+          .map(function (k) { return k + "コース " + bySubject[k] + "種"; })
+          .join("・");
+        var tags = ["体験用", "プログラミング", "クリエイティブ"]
+          .filter(function (t) { return byTag[t]; })
+          .map(function (t) { return t + " " + byTag[t]; })
+          .join(" ｜ ");
 
-        tabs.addEventListener("click", function (e) {
-          var btn = e.target.closest(".curri-tab");
-          if (!btn) return;
-          currentFilter = btn.getAttribute("data-filter");
-          Array.prototype.forEach.call(tabs.querySelectorAll(".curri-tab"), function (b) {
-            b.classList.toggle("is-active", b === btn);
-          });
-          render();
-        });
-
-        function load(data) {
-          materials = (data && data.materials) || [];
-          var order = { published: 0, on_request: 1, coming_soon: 2 };
-          materials.sort(function (a, b) {
-            return (order[a.status] || 0) - (order[b.status] || 0);
-          });
-          render();
-        }
-
-        // curriculum/curriculum.js が window.CURRICULUM を定義（file://でも動く）。
-        // 万一未読み込みなら http 経由で JSON を fetch する。
-        if (window.CURRICULUM) {
-          load(window.CURRICULUM);
-        } else {
-          fetch("curriculum/curriculum.json")
-            .then(function (res) {
-              if (!res.ok) throw new Error("HTTP " + res.status);
-              return res.json();
-            })
-            .then(load)
-            .catch(function () {
-              grid.innerHTML = '<p class="curri-loading">カリキュラムを読み込めませんでした。</p>';
-            });
-        }
+        el.innerHTML =
+          "<strong>" + courses + "</strong>、合わせて <strong>" + data.length + "</strong> の教材があります。" +
+          (tags ? '<br /><span class="curri-summary-tags">' + tags + "</span>" : "");
       })();
     </script>
 
