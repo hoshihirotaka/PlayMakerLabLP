@@ -1,0 +1,26 @@
+# GitHub Pages（Jekyll）の設定
+#
+# ここに書いたものは「公開サイトに載らなくなる」だけで、
+# リポジトリからは消えません。ローカルのファイルはそのまま読めます。
+#
+# ⚠️ GitHubリポジトリ自体は PUBLIC なので、github.com 上では引き続き見えます。
+#    そこまで隠したい場合はリポジトリを PRIVATE にする必要があります。
+
+exclude:
+  # ── 原稿・内部資料（公開する必要がない）
+  - content            # DM・Doorkeeper原稿・アンケート・告知原稿・引き継ぎ
+  - reference          # プライバシーポリシー等の原稿（公開版は legal/*.html）
+  - AGENTS.md          # エージェント向けの作業手順
+  - CLAUDE.md          # 同上
+  - downloads/README.md          # 配布物の管理メモ（PDF自体は公開する）
+  - curriculum/curriculum-agent-prompt.md
+  - curriculum/curriculum-feedback.md
+
+  # ── Jekyll の既定値（exclude を書くと上書きされるので明示しておく）
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
