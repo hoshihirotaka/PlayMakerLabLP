@@ -19,20 +19,20 @@
   capacity: "①③④各回4名 / ②大人向けAIコース 8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198773?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
-  note: "②大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠・お申し込みページは準備中）。お子様の①が終わったあとの時間帯なので、そのままご受講いただけます。<strong>②の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />④Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①③をお選びください。",
+  note: "②大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の①が終わったあとの時間帯なので、そのままご受講いただけます。<strong>②の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />④Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①③をお選びください。",
   timetable: [
     { time: "11:00-12:00", label: "①Robloxコース", price: "1,900円" },
     { time: "12:00-12:20", label: "延長タイム・親御様個別相談" },
     { time: "12:20-12:30", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。参加費が決まったら label に追記する
     // audience:"adult" は adults.html が拾うための印（AGENTS.md 参照）。
-    // Doorkeeperのイベント(198774)は作成済みだが参加費未確定で未公開のため、
-    // doorkeeperUrl はまだ付けない。公開したら付ける。
+    // 大人向け(198774)は 2026-08-27 に公開。doorkeeperUrl を付けてある
     {
       time: "12:30-13:30",
       label: "②大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
-      adultPrice: "2,900円 ／ PCレンタル付き 3,500円"
+      adultPrice: "2,900円 ／ PCレンタル付き 3,500円",
+      doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198774?utm_source=lp&utm_medium=referral&utm_campaign=bromas"
     },
     { time: "13:30-14:30", label: "休憩" },
     { time: "14:30-15:30", label: "③Robloxコース", price: "1,900円" },
