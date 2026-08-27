@@ -47,7 +47,9 @@
 
       .container { width: min(1120px, 92%); margin: 0 auto; }
       .section {
-        padding: 44px 0;
+        /* 上下44pxだと、カード内padding(20px)と合わせて隣のカードとの間に
+           136pxの余白ができ、間延びして見えた（2026-08-27 指摘）。30pxに詰めた。 */
+        padding: 30px 0;
         /* content-visibility: auto は使わない（2026-08-22 に削除）。
            画面外のセクションは描画が省略され、高さが contain-intrinsic-size の
            仮の値で代用される。スクロールして描画された瞬間に本当の高さへ
@@ -63,7 +65,8 @@
       .card {
         background: var(--surface);
         border-radius: var(--radius-lg);
-        padding: 24px;
+        /* 上下だけ詰める。左右24pxは読みやすさのため維持 */
+        padding: 20px 24px;
         box-shadow: var(--shadow);
       }
 
@@ -91,7 +94,9 @@
 
       .hero h1 {
         font-family: "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif;
-        font-size: clamp(1.8rem, 6.2vw, 2.9rem);
+        /* 2026-08-27: 少し小さくした（1.8/6.2vw/2.9rem → 1.65/5.6vw/2.6rem）。
+           2行組みなので、大きすぎると1行目が画面幅いっぱいで詰まって見える。 */
+        font-size: clamp(1.65rem, 5.6vw, 2.6rem);
         line-height: 1.2;
         margin: 0 0 12px;
       }
@@ -169,6 +174,18 @@
         box-shadow: 0 8px 0 rgba(16, 95, 126, 0.85);
       }
       /* 副ボタン。主ボタンと同じ「浮いている」影を持たせて押せると分かるようにする（色だけ控えめ） */
+      /* ボタン内の補足。括弧の前で必ず改行させ、本文より一段小さくする。
+         .cta は inline-flex なので、子を block にしないと改行できない。 */
+      .cta .cta-sub {
+        display: block;
+        width: 100%;
+        font-size: 0.8em;
+        font-weight: 700;
+        opacity: 0.85;
+        margin-top: 2px;
+      }
+      .cta:has(.cta-sub) { flex-direction: column; line-height: 1.35; }
+
       .cta.outline {
         background: #fff;
         color: #2a3c56;
@@ -438,6 +455,18 @@
         background: linear-gradient(180deg, var(--accent) 0%, #e6453b 100%);
         box-shadow: 0 8px 0 rgba(171, 39, 31, 0.9);
         width: fit-content;
+      }
+
+      /* 申込ボタンの「誰向けか」ラベル（2026-08-25）
+         トップは大人向け・お子様向けの両方の入口なので、ボタンだけ見て
+         別のイベントに申し込んでしまうのを防ぐ。手数を増やさずに区別できる。 */
+      .apply-block { display: grid; gap: 6px; justify-items: start; }
+      .apply-label {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--subtext);
+        letter-spacing: 0.08em;
+        padding-left: 2px;
       }
 
       .event-apply--soon {
@@ -853,9 +882,21 @@
         box-shadow: 0 -8px 24px rgba(33, 52, 92, 0.15);
       }
       .fixed-cta .cta { width: 100%; }
+      /* 固定CTAのラベル。申込へ直行するときだけJSが差し込む。
+         バーが高くなるぶん body の padding-bottom も増やしている（下の媒体クエリ） */
+      .fixed-cta-label {
+        display: block;
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--subtext);
+        letter-spacing: 0.08em;
+        margin-bottom: 4px;
+      }
       @media (max-width: 767px) {
         .fixed-cta.show { display: block; }
-        body.has-fixed-cta { padding-bottom: 84px; }
+        /* 固定CTAにラベル行が入ったぶん増やしてある（84 → 102） */
+        body.has-fixed-cta { padding-bottom: 102px; }
 
         /* ── モバイルの横幅を取り戻す（2026-08-25）──────────────────
            角丸の枠が4段入れ子になっていて、375pxの画面で本文に使える幅が
@@ -871,7 +912,7 @@
            入れ子の各段を少しずつ詰め、いちばん効く時刻列は縦積みにする。
            デスクトップ（768px以上）は変えない。 */
         .container { width: 94%; }
-        .card { padding: 18px; }
+        .card { padding: 16px 18px; }
         .event-body { padding: 14px; }
         .info { padding: 12px; }
 
@@ -888,6 +929,7 @@
            長さがバラバラで端が揃っていなかった。タップ範囲も広がる。 */
         .cta-block > .cta { width: 100%; }
         .event-apply { width: 100%; }
+        .apply-block { justify-items: stretch; }
       }
 
       @media (min-width: 768px) {
@@ -895,7 +937,9 @@
            左端に小さなボタンが1つ残ると迷子に見える。
            モバイルでは全幅にしているので、どちらの幅でも端が揃う。 */
         .cta-block { text-align: center; }
-        .event-body > .event-apply { justify-self: center; }
+        .event-body > .event-apply,
+        .event-body > .apply-block { justify-self: center; }
+        .apply-block { justify-items: center; }
 
         .hero-inner { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 36px; }
         .split { grid-template-columns: 1fr 1fr; align-items: start; }
