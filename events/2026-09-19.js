@@ -24,8 +24,8 @@
   target: "①③④⑤: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ②⑥: 大人の方向け（保護者参加OK）",
   capacity: "①③④⑤各回4名 / ②⑥大人向けAIコース 2回合わせて8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  comingSoon: true,
-  note: "<strong>路地裏GarageMarketでは土曜はじめての開催です。</strong>時間が決まりました。お申し込み方法は準備でき次第このページでお知らせします。<br />②⑥大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠・お申し込みページは準備中）。<strong>昼（その1・Googleコネクト）と夜（その2・NotebookLM）で内容が違います。</strong>お子様にも同席いただけます。空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />⑤Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①④をお選びください。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198775?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+  note: "<strong>路地裏GarageMarketでは土曜はじめての開催です。</strong>13:00〜20:30の通し開催ですが、<strong>受けたい回だけのお申し込みで大丈夫です。</strong><br />②⑥大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠・お申し込みページは準備中）。<strong>昼（その1・Googleコネクト）と夜（その2・NotebookLM）で内容が違います。</strong>お子様にも同席いただけます。空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />⑤Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①④をお選びください。",
   timetable: [
     { time: "13:00-14:00", label: "①Robloxコース", price: "1,900円" },
     { time: "14:00-14:20", label: "延長タイム・親御様個別相談" },

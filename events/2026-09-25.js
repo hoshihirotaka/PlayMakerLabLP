@@ -20,8 +20,8 @@
   target: "①②: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ③: 大人の方向け（保護者参加OK）",
   capacity: "①②各回4名 / ③大人向けAIコース 8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  comingSoon: true,
-  note: "時間が決まりました。参加費・お申し込み方法は準備でき次第このページでお知らせします。<br />③大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠・お申し込みページは準備中）。<strong>③の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません（<strong>20:30には終了します</strong>。延長はありません）。<br />②Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198875?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
+  note: "③大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠・お申し込みページは準備中）。<strong>③の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません（<strong>20:30には終了します</strong>。延長はありません）。<br />②Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。",
   timetable: [
     { time: "16:50-17:50", label: "①Robloxコース", price: "1,900円" },
     { time: "17:50-18:10", label: "延長タイム・親御様個別相談" },
