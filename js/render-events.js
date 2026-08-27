@@ -23,6 +23,14 @@
   // 判定は timetable の audience プロパティ。ラベルの文言では判定しない
   // （文言を書き換えたときに黙って壊れるため）。
   var audience = list.getAttribute("data-audience") || "";
+
+  // 申込ボタンの上に出す「誰向けか」のラベル。
+  // トップは大人向け・お子様向けの両方の入口なので、
+  // ボタンだけ見て別のイベントに申し込んでしまうのを防ぐ。
+  // Doorkeeperが説明を引き受けている今は、これで足りる。
+  // Stripeへ移行したら決済画面は何も説明しないので、
+  // そのときは schedule.html 側で読ませる設計に変える（申込導線の移行方針）。
+  var audienceLabel = audience === "adult" ? "大人向け" : "お子様向け";
   function slotsFor(e) {
     if (!audience) return e.timetable || [];
     return (e.timetable || []).filter(function (t) { return t.audience === audience; });
@@ -94,7 +102,10 @@
     // （2026-08-25 本人の判断）。取り違え対策は文言（体験会／講座）と、
     // 日程セクション下の大人向け案内（.notice）で行う。
     var applyBlock = applyUrl
-      ? '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>'
+      ? '<div class="apply-block">' +
+          '<span class="apply-label">' + audienceLabel + '</span>' +
+          '<a class="event-apply" href="' + applyUrl + '" target="_blank" rel="noreferrer">このイベントに申し込む</a>' +
+        '</div>'
       : '<span class="event-apply event-apply--soon">申込受付準備中</span>';
 
     return (
@@ -198,6 +209,15 @@
         fixedCtaLink.href = ctaUrl;
         fixedCtaLink.target = "_blank";
         fixedCtaLink.rel = "noreferrer";
+
+        // 申込へ直行するときだけ、誰向けかを添える。
+        // 「日程を見る」だけのときは不要（次の画面で分かるため）。
+        if (!fixedCta.querySelector(".fixed-cta-label")) {
+          var lab = document.createElement("span");
+          lab.className = "fixed-cta-label";
+          lab.textContent = audienceLabel;
+          fixedCta.insertBefore(lab, fixedCtaLink);
+        }
       }
       fixedCta.classList.add("show");
       document.body.classList.add("has-fixed-cta");
