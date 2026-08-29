@@ -320,11 +320,12 @@ events/
 });
 ```
 
-**② 読み込む行を追加する（**合計4か所**）**
+**② 読み込む行を追加する（**合計6か所**）**
 
-> ⚠️ **2026-08-25 に `schedule.html` を分けたため、2か所 → 4か所に増えた。**
-> 日程を出すページが index.html と schedule.html の2つあり、それぞれに
-> 「head の preload」と「body 下部の `<script>`」がある。
+> ⚠️ **2026-08-29 訂正: 4か所ではなく6か所。** `adults.html` が抜けていた。
+> 日程を出すページは **index.html / schedule.html / adults.html の3つ**で、
+> それぞれに「head の preload」と「body 下部の `<script>`」がある。
+> **この漏れが原因で、終わった 2026-08-28 が adults.html だけに残っていた。**
 
 | ファイル | 場所 | 役割 |
 |---|---|---|
@@ -353,16 +354,19 @@ preload を残すと**「先読みしたのに使われていない」という�
 **両者は必ず一致させる。**
 
 ```bash
-# 4か所すべての整合を検算する（何も出なければOK）
-for f in index.html schedule.html; do
+# 6か所すべての整合を検算する（何も出なければOK）
+for f in index.html schedule.html adults.html; do
   echo "--- $f ---"
   diff <(grep -oE 'preload" as="script" href="events/[^"]*"' "$f" | sed 's/.*href="//;s/"//' | sort) \
        <(grep -oE '<script src="events/[^"]*"' "$f" | sed 's/.*src="//;s/"//' | sort)
 done
-# 2ページで読み込むイベントが一致しているか
+# 3ページで読み込むイベントが一致しているか
 # ※ コメント内の「過去開催: events/…」を拾わないよう <script src= に限定する
-diff <(grep -oE '<script src="events/[^"]*"' index.html    | sed 's/.*src="//;s/"//' | sort) \
-     <(grep -oE '<script src="events/[^"]*"' schedule.html | sed 's/.*src="//;s/"//' | sort)
+for f in schedule.html adults.html; do
+  echo "--- index.html vs $f ---"
+  diff <(grep -oE '<script src="events/[^"]*"' index.html | sed 's/.*src="//;s/"//' | sort) \
+       <(grep -oE '<script src="events/[^"]*"' "$f"       | sed 's/.*src="//;s/"//' | sort)
+done
 ```
 
 **③ `schedule.html` の `<head>` 内 JSON-LD を更新する**（構造化データ・SEO用）
