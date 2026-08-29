@@ -6,7 +6,7 @@
 
   中身:
     ① ハンバーガーメニューの開閉
-    ② doorkeeper_click（GA4）
+    ② doorkeeper_click（GA4）と Google広告のコンバージョン（AWタグ直送）
     ③ 計測イベントの送信（nav_click / join_click ほか）
     ④ アンカー追従
 */
@@ -45,20 +45,43 @@
   });
 })();
 
-/* ② doorkeeper_click */
-document.addEventListener(
-  "click",
-  function (e) {
-    var el = e.target;
-    if (!el || typeof el.closest !== "function") return;
-    var a = el.closest('a[href*="doorkeeper.jp"]');
-    if (!a) return;
-    // フッターのコミュニティリンクは申込ではないので除外する
-    if (a.getAttribute("href").indexOf("/events/") === -1) return;
-    if (typeof gtag === "function") gtag("event", "doorkeeper_click");
-  },
-  true
-);
+/* ② doorkeeper_click と Google広告のコンバージョン */
+(function () {
+  // Google広告のコンバージョンは、以前はGA4のキーイベントをインポートして
+  // 受け取っていた。そのため GA4 側の設定を変えるだけで計測が止まり、
+  // 2026-08-18 に実際に止まった。AWタグへ直接送れば GA4 の設定に依存しない。
+  //
+  // ⚠️ これは「追加」ではなく「置き換え」。GA4インポート分を残したまま
+  //    動かすと1クリックで2件計上される。Google広告側で旧アクションを
+  //    「コンバージョンに含める＝いいえ」にするか削除してから有効にすること。
+  //
+  // ラベルは Google広告 → 目標 → コンバージョン → 該当アクション →
+  // 「タグを設定する」に出る send_to の、スラッシュより後ろの値。
+  // 空のあいだは送らない（未設定のまま誤った値を送らないため）。
+  var AW_CONVERSION_LABEL = "";
+
+  document.addEventListener(
+    "click",
+    function (e) {
+      var el = e.target;
+      if (!el || typeof el.closest !== "function") return;
+      var a = el.closest('a[href*="doorkeeper.jp"]');
+      if (!a) return;
+      // フッターのコミュニティリンクは申込ではないので除外する
+      if (a.getAttribute("href").indexOf("/events/") === -1) return;
+      if (typeof gtag !== "function") return;
+
+      gtag("event", "doorkeeper_click");
+
+      if (AW_CONVERSION_LABEL) {
+        gtag("event", "conversion", {
+          send_to: "AW-977501883/" + AW_CONVERSION_LABEL
+        });
+      }
+    },
+    true
+  );
+})();
 
 /* ③ 計測イベント */
 (function () {
