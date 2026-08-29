@@ -9,8 +9,8 @@
   target: "①②: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ③: 大人の方向け（保護者参加OK）",
   capacity: "①②各回4名 / ③大人向けAIコース 8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198459?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
-  note: "③大人向けAIコース「はじめてのGoogle×AI活用勉強会」は保護者様ご自身向けの別イベントです。お申し込みは <a href=\"https://gameschool.doorkeeper.jp/events/198703?utm_source=lp&utm_medium=referral&utm_campaign=bromas\" target=\"_blank\" rel=\"noreferrer\">こちら</a>。参加条件: Googleアカウントをお持ちの方（個人の @gmail.com を推奨／ノートPCはChrome推奨）。パソコンをお持ちでない方はレンタル付き3,200円をお選びください（4台限定・アカウントはご自身のものをご用意ください）。終了後にアンケートへのご協力をお願いする回のため、通常より1,000円お安くご案内しています。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198459",
+  note: "③大人向けAIコース「はじめてのGoogle×AI活用勉強会」は保護者様ご自身向けの別イベントです。お申し込みは <a href=\"https://gameschool.doorkeeper.jp/events/198703\" target=\"_blank\" rel=\"noreferrer\">こちら</a>。参加条件: Googleアカウントをお持ちの方（個人の @gmail.com を推奨／ノートPCはChrome推奨）。パソコンをお持ちでない方はレンタル付き3,200円をお選びください（4台限定・アカウントはご自身のものをご用意ください）。終了後にアンケートへのご協力をお願いする回のため、通常より1,000円お安くご案内しています。",
   timetable: [
     { time: "17:00-17:30", label: "①AIコース（ゲーム制作）", price: "900円" },
     { time: "17:30-17:50", label: "延長タイム・親御様個別相談" },
@@ -30,7 +30,7 @@
       label: "③大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,200円",
       audience: "adult",
       adultPrice: "2,900円 ／ PCレンタル付き 3,200円",
-      doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198703?utm_source=lp&utm_medium=referral&utm_campaign=bromas"
+      doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198703"
     }
   ]
 });
