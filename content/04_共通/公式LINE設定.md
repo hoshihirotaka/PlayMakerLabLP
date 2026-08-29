@@ -163,6 +163,12 @@ https://hoshihirotaka.github.io/PlayMakerLabLP/
 
 ## 6. 友だち追加の導線
 
+**友だち追加URL: `https://lin.ee/wfkk7Ik`**（転送先 `https://line.me/R/ti/p/@361prjng`／LINE ID `@361prjng`）
+
+2026-08-30に控えた。**それまでどこにも記録がなく、DMに入れるとき探すことになった。**
+URLが変わったらここを直すこと。
+
+
 | 場所 | 方法 | 状態 |
 |---|---|---|
 | 会場 | QRコードを印刷して掲示・配布 | 管理画面でQR発行 |
