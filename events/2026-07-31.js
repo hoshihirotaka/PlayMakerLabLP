@@ -9,8 +9,8 @@
   target: "①②: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ③: 大人の方向け（保護者参加OK）",
   capacity: "①②各回4名 / ③大人向けAIコース 6名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197911?utm_source=lp&utm_medium=referral&utm_campaign=bromas",
-  note: "③大人向けAIコースは保護者様ご自身向けの別イベントです。お申し込みは <a href=\"https://gameschool.doorkeeper.jp/events/198157?utm_source=lp&utm_medium=referral&utm_campaign=bromas\" target=\"_blank\" rel=\"noreferrer\">こちら</a>。参加条件: Googleアカウントをお持ちの方。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/197911",
+  note: "③大人向けAIコースは保護者様ご自身向けの別イベントです。お申し込みは <a href=\"https://gameschool.doorkeeper.jp/events/198157\" target=\"_blank\" rel=\"noreferrer\">こちら</a>。参加条件: Googleアカウントをお持ちの方。",
   timetable: [
     { time: "17:00-17:30", label: "①AIコース（ゲーム制作）", price: "900円" },
     { time: "17:30-17:50", label: "延長タイム・親御様個別相談" },
