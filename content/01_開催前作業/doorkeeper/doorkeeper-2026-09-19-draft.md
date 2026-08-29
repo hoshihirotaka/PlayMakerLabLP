@@ -1,5 +1,10 @@
 # Doorkeeper説明文 2026-09-19ドラフト（南与野・子ども向け）
 
+> ## ⛔ この版は使いません（2026-08-29）
+>
+> 9/19は **[doorkeeper-2026-09-19-v2-draft.md](doorkeeper-2026-09-19-v2-draft.md) を採用**しました。
+> このファイルは経緯を追うために残してあります。**貼り付け元にしないこと。**
+
 > **運用メモ（Doorkeeperには貼らない）**
 > - ベース: [doorkeeper-2026-09-13-draft.md](doorkeeper-2026-09-13-draft.md)
 > - **土曜パターンの初回**（[SCHEDULE-PATTERNS.md](../../04_共通/SCHEDULE-PATTERNS.md) §4）。13:00-20:30・450分
