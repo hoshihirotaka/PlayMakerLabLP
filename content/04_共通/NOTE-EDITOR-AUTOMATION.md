@@ -24,7 +24,9 @@ noteの編集画面はログインが必要。**ユーザーのログイン済�
 2. 「Claude in Chrome is not connected」が出たら、ユーザーに以下を案内
    - 拡張のインストール: https://chromewebstore.google.com/detail/fcoeoabgfenejglbffodgkkbkcdhcgfn
    - Chromeでサイドパネルを開き、このアプリと同じアカウントでサインイン
-3. `navigate` で `https://editor.note.com/notes/{記事ID}/edit/` を開く
+3. **新規記事なら `https://note.com/notes/new` を開く。** 自動で下書きが作られ、
+   `https://editor.note.com/notes/{記事ID}/edit/` に飛ぶ（IDは事前に分からない）
+4. 既存の記事なら `navigate` で `https://editor.note.com/notes/{記事ID}/edit/` を開く
 
 ---
 
@@ -33,7 +35,19 @@ noteの編集画面はログインが必要。**ユーザーのログイン済�
 noteの本文エディタは **ProseMirror**。
 
 - 本文: `document.querySelector('.ProseMirror')`（class: `ProseMirror note-common-styles__textnote-body`）
-- タイトル: 本文とは別の contenteditable。クリックして `type` で入力し、`Return` で本文へ移動できる
+- タイトル: **`<textarea placeholder="記事タイトル">`**（2026-08-30 訂正。以前は contenteditable と書いていたが誤り）
+  **Reactが管理しているので `.value` への直接代入では反映されない。** ネイティブのsetterを使う:
+
+  ```js
+  const ta = document.querySelector('textarea[placeholder="記事タイトル"]');
+  const setter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value").set;
+  ta.focus();
+  setter.call(ta, "記事タイトル");
+  ta.dispatchEvent(new Event("input", { bubbles: true }));
+  ta.dispatchEvent(new Event("change", { bubbles: true }));
+  ```
+
+  **成功の判定**: ブラウザのタブ名にも反映される
 - 本文のブロックは `H2` / `H3` / `P` / `HR` / `FIGURE`（埋め込み・画像）などの直下要素として並ぶ
 
 ---
@@ -79,6 +93,7 @@ ProseMirrorは `paste` イベントの `text/html` を解釈してリッチテ�
 | `<strong>` | ✅ 太字 |
 | `<hr>` | ✅ 区切り線 |
 | `<br>` | ✅ 段落内の改行 |
+| `<ul><li>` | ✅ 箇条書き（2026-08-30 検証。潰れずに入る） |
 | `<p>URL</p>` | プレーンテキストのリンクとして入る（埋め込みカードにはならない） |
 
 ### 注意点
