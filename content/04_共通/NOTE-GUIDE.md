@@ -81,9 +81,12 @@ XX回目の開催にあたっての活動報告をさせていただきます。
 
 ## 月次振り返りのテンプレート
 
-構成・テーマの選び方・除外する情報・公開前チェックは、専用の雛形にまとめてある。
+構成・テーマの選び方・除外する情報・事実の厳密性・SNS文言・公開前チェックは、専用の雛形にまとめてある。
 
-→ [content/02_開催後作業/note/note-monthly-template.md](../02_開催後作業/note/note-monthly-template.md)
+→ [content/03_定期投稿/note/note-monthly-template.md](../03_定期投稿/note/note-monthly-template.md)
+
+**開催回に紐づかない定期投稿なので、置き場所は `03_定期投稿/` 側。**
+note記事と、SNSシェア文言（`03_定期投稿/sns/sns-note-monthly-YYYY-MM.md`）の2本セットで作る。
 
 元ネタは月次振り返りマークダウン（`{英語月名}_2026_review.md`）、
 または期間区切りの日報まとめ（`chat_summary_*.md`）。
