@@ -1,9 +1,8 @@
-// 日程・時間確定（2026-08-12）。Doorkeeper未作成のため comingSoon: true のまま
+// 日程・時間確定（2026-08-12）。Doorkeeperは公開済みで受付中（comingSoon は付けていない）
 // 金曜パターンの標準形で実施。詳細は content/04_共通/SCHEDULE-PATTERNS.md §3
 // 8/28にあった子ども向けAIコース（DreamCore）はなくなり、①②ともRobloxコースになる
 // ①は16:40ではなく16:50始まり。16:40だと①の設営終わりと②開始の間に10分の空白ができるため
-// Doorkeeperの枠は作成済みだが**未公開で申し込みができない**（2026-08-18）。公開されたら
-// comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
+// 2026-08-27に公開。doorkeeperUrl・JSON-LDとも反映済み
 //   子ども向け: https://gameschool.doorkeeper.jp/events/198875 （第16回）
 //   大人向け:   https://gameschool.doorkeeper.jp/events/198876
 //
