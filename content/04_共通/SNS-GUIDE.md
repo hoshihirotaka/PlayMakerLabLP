@@ -19,6 +19,7 @@ sns-{対象記事のファイル名}.md
 |---|---|
 | `02_開催後作業/note/note-session-11.md` | `02_開催後作業/sns/sns-note-session-11.md` |
 | `03_定期投稿/note/note-column-01-*.md` | `03_定期投稿/sns/sns-note-column-01.md` |
+| `03_定期投稿/note/note-monthly-2026-08.md` | `03_定期投稿/sns/sns-note-monthly-2026-08.md` |
 
 1ファイルの中に「X / Threads / Facebook」「Instagram」の各セクションを持たせる。
 1記事の告知作業が1ファイルで完結する形にする。
