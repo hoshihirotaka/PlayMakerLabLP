@@ -47,6 +47,11 @@
     var seen = {};
     var out = [];
     slotsFor(e).forEach(function (t) {
+      // そのページの申込ボタンで申し込めるものだけを並べる。
+      // お子様向けページに大人向けの金額を出すと、申し込めないものの金額が
+      // ボタンの隣に並ぶ（2026-08-25の取り違えと同じ形）。大人向けの案内は
+      // 金額ではなく、日程セクション下の .notice で文章として出す。
+      if (!audience && t.audience) return;
       var yen = (t.label || "").match(/[0-9,]+円/g) || [];
       var price = t.price || yen[0];
       if (!price) return;                      // 休憩・設営・延長タイムなど
