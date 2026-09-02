@@ -89,13 +89,24 @@
 **日程の出し分けは `#event-list` の属性だけで行う**（スクリプトは1本を共有）。
 
 ```html
-<div id="event-list" data-limit="1"></div>                 <!-- index：直近1件 -->
-<div id="event-list"></div>                                 <!-- schedule：全件 -->
-<div id="event-list" data-audience="adult"></div>           <!-- adults：大人向けの枠だけ -->
+<div id="event-list" data-limit="1" data-compact></div>          <!-- index：直近1件 -->
+<div id="event-list" data-compact></div>                          <!-- schedule：全件 -->
+<div id="event-list" data-audience="adult" data-compact></div>    <!-- adults：大人向けの枠だけ -->
 ```
 
 **判定はデータのプロパティで行い、ラベルの文言では判定しない。**
 文言を書き換えたときに黙って壊れるため。
+
+`data-compact` は **開催日・会場・参加費と申込ボタンだけ**を出す（2026-09-02・3ページとも）。
+時間割・対象・定員・持ち物はDoorkeeper側に同じものがあり、日程ページに来るのは
+「調べている人」なので、申込の詳細は次の画面で足りるという判断。
+**参加費の1行は `events/*.js` から自動で組み立てる**ので、
+ここに金額を書かないこと（10月の改定は `events/*.js` を直せば追従する）。
+
+**簡素表示でも audience の出し分けは効かせること。** 大人向けページでは
+**申込先・時間・金額の3つとも**その枠のものに差し替わる。
+`ev.doorkeeperUrl` `ev.datetime` をそのまま使うと
+**子ども向けの申込先・開催全体の時間帯**になる（前者は2026-08-25に本番で発生）。
 
 ## ツールの役割と購買ファネル
 
@@ -333,6 +344,7 @@ events/
 | `index.html` | body下部の `<script>` | **直近1件**を出す（`data-limit="1"`） |
 | `schedule.html` | `<head>` の preload | 先読み |
 | `schedule.html` | body下部の `<script>` | **全件**を出す |
+| 3ページ共通 | `#event-list` | `data-compact`＝1回1行の簡素表示 |
 
 ```html
 <!-- ▼ イベント追加時はここに1行追加する（id昇順で並びます） -->

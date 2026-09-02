@@ -124,9 +124,45 @@
                data-audience="adult" を付けると、大人向けの枠がある回だけ、
                大人向けの行だけが出る。日付も参加費も手で書かない。
                判定は timetable の audience プロパティで、ラベルの文言では判定していない。 -->
-          <div id="event-list" class="event-list" data-audience="adult"></div>
+          <div id="event-list" class="event-list" data-audience="adult" data-compact></div>
 
           <p style="margin: 20px 0 0; color: var(--subtext); font-size: 0.9rem;">お子様向けの体験会の日程は<a href="schedule.html" style="color: #0f6e9e;">開催日程</a>をご覧ください。</p>
+        </div>
+      </section>
+
+      <!-- よくある質問。回ごとに変わる答え（その日に扱う題材・お子様の回の時間・
+           過去回の日付）はここに置かない。古くなって嘘になるため、Doorkeeper側に残す。
+           ここに置くのは「申し込む前に決められない問い」だけ。 -->
+      <section class="section" id="faq">
+        <div class="container card">
+          <h2>よくある質問</h2>
+          <div class="faq">
+            <details class="faq-item">
+              <summary>Q: プログラミングは必要ですか？</summary>
+              <p>A: 不要です。Googleの基本操作ができれば大丈夫です。</p>
+            </details>
+            <details class="faq-item">
+              <summary>Q: 費用は参加費のほかにかかりますか？（有料プランは必要ですか）</summary>
+              <p>A: 不要です。内容は<strong>すべて無料の範囲</strong>で実施できます（無料版には1日の生成回数の上限がありますが、60分で使い切ることはありません）。</p>
+            </details>
+            <details class="faq-item">
+              <summary>Q: 会社・学校のGoogleアカウントでも参加できますか？</summary>
+              <p>A: 組織の権限設定によっては、AI連携そのものが使えない場合があります。その場合は当日の実践が動かないため、<strong>個人の @gmail.com でのご参加を強く推奨</strong>します。両方お持ちの方は個人アカウントでお越しください。</p>
+            </details>
+            <details class="faq-item">
+              <summary>Q: Googleアカウントを持っていないのですが参加できますか？</summary>
+              <p>A: ご自身のGoogleアカウントで実際に操作するため、<strong>すでにお持ちの方</strong>を対象としています。未作成の方は、事前に無料で作成しておいてください。</p>
+            </details>
+            <details class="faq-item">
+              <summary>Q: 借りたパソコンに自分のGoogleアカウントでログインするのは不安です</summary>
+              <p>A: ごもっともです。<strong>講座終了後、こちらでログアウトと閲覧履歴の削除を行います</strong>。ご希望であれば、お帰りの前にご自身の目で確認していただいて構いません。</p>
+            </details>
+            <details class="faq-item">
+              <summary>Q: 当日中に全部できるようになりますか？</summary>
+              <p>A: 約60分なので「全部の自動化マスター」まではいきません。代わりに、カレンダー連携・Gmail連携の<strong>型</strong>を持ち帰れる内容にしています。帰宅後にご自身で再現できることを優先します。</p>
+            </details>
+          </div>
+          <p style="margin: 16px 0 0; color: var(--subtext); font-size: 0.9rem;">その回ごとの内容・持ち物の詳細は、各回のお申し込みページに記載しています。</p>
         </div>
       </section>
     </main>
