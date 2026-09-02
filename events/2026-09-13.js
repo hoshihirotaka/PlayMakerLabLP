@@ -1,6 +1,6 @@
 // 子ども向けは 2026-08-18 にDoorkeeperを公開し、受付開始。comingSoon を外しJSON-LDにも追加済み。
 //   子ども向け: https://gameschool.doorkeeper.jp/events/198773 （第14回）★公開済み
-//   大人向け:   https://gameschool.doorkeeper.jp/events/198774 ★**未公開**（参加費が未確定のため）
+//   大人向け:   https://gameschool.doorkeeper.jp/events/198774 （2026-08-27に公開・参加費2,900円で確定）
 //
 // ④は「基本はプログラミングあり／募集開始までに相談があれば個別プランに差し替え」の枠だったが、
 // 募集を開始したので**プログラミングありで確定**。個別プランの行はDoorkeeperの公開ページにも
