@@ -4,7 +4,8 @@
 
   出し分けは #event-list の属性だけで行う（スクリプトは1本）:
     data-limit="1"          直近1件だけ出す（index.html）
-    属性なし                全件出す（schedule.html）
+    属性なし                全件出す（index.html以外の既定）
+    data-compact            1回1行の簡素表示にする（schedule.html）
     data-audience="adult"   大人向けの枠がある回だけ、大人向けの行だけ出す（adults.html）
 
   ページごとにコードを分けると、片方だけ直して食い違う事故が起きるため
@@ -31,6 +32,35 @@
   // Stripeへ移行したら決済画面は何も説明しないので、
   // そのときは schedule.html 側で読ませる設計に変える（申込導線の移行方針）。
   var audienceLabel = audience === "adult" ? "大人向け" : "お子様向け";
+  // data-compact のときは、1回を数行にまとめた簡素表示にする。
+  // 時間割・対象・定員・持ち物はDoorkeeper側に同じものがあるため出さない
+  // （日程ページに来るのは「調べている人」で、申込の詳細は次の画面で足りる）。
+  var compact = list.hasAttribute("data-compact");
+
+  // 参加費の1行サマリー。金額は events/*.js だけを見て組み立てる。
+  // ⚠️ ここに金額を書かないこと。10月の改定は events/*.js を直せば追従する。
+  //   子ども向け … timetable の price（構造化されている）
+  //   大人向け   … price を持たない（バッジを付けないため）。label 内の金額を読む
+  function priceSummary(e) {
+    var seen = {};
+    var out = [];
+    (e.timetable || []).forEach(function (t) {
+      var yen = (t.label || "").match(/[0-9,]+円/g) || [];
+      var price = t.price || yen[0];
+      if (!price) return;                      // 休憩・設営・延長タイムなど
+      // 「①Robloxコース（プログラミングあり）　2,900円 / …」→「Robloxコース」
+      var name = (t.label || "")
+        .replace(/^[\u2460-\u2473]/, "")
+        .split(/[（\u3000]/)[0]
+        .trim();
+      if (!name || seen[name]) return;
+      seen[name] = true;
+      // 金額が複数書いてある枠（PCレンタル付きなど）は「〜」を添える
+      out.push(name + " " + price + (t.price ? "" : (yen.length > 1 ? "〜" : "")));
+    });
+    return out.join("　／　");
+  }
+
   function slotsFor(e) {
     if (!audience) return e.timetable || [];
     return (e.timetable || []).filter(function (t) { return t.audience === audience; });
@@ -73,6 +103,27 @@
   list.innerHTML = visible.map(function (ev, i) {
     var locationText = (ev.location || "").trim();
     var areaText = (ev.area || "").trim();
+
+    // 簡素表示。開閉せず、1回ぶんを数行で出す。
+    if (compact) {
+      var cApply = ev.comingSoon ? null : ev.doorkeeperUrl;
+      var cPrice = priceSummary(ev);
+      return (
+        '<div class="event-row" id="event-' + ev.id + '">' +
+          '<div class="event-row-main">' +
+            '<div class="event-row-item"><span>開催日</span><span>' + ev.datetime + "</span></div>" +
+            '<div class="event-row-item"><span>会場</span><span>' + locationText + "（" + areaText + "）</span></div>" +
+            (cPrice
+              ? '<div class="event-row-item"><span>参加費</span><span>' + cPrice +
+                  '<span class="price-badge">今だけお試し価格</span></span></div>'
+              : "") +
+          "</div>" +
+          (cApply
+            ? '<a class="event-apply" href="' + cApply + '" target="_blank" rel="noreferrer">お申し込みはこちら</a>'
+            : '<span class="event-apply event-apply--soon">申込受付準備中</span>') +
+        "</div>"
+      );
+    }
     var timetableRows = slotsFor(ev).map(function (t) {
       var price = t.price ? '<span class="timeline-price">' + t.price + '</span><span class="price-badge">今だけお試し価格</span>' : "";
       return (
@@ -139,7 +190,7 @@
   // comingSoon の目的なので、見出しの直下に一覧を出しておく。
   // アンカー(#event-YYYY-MM-DD)にしているので、クリックの計測は
   // 既存の nav_click デリゲートがそのまま拾う。
-  var more = document.getElementById("event-more");
+  var more = compact ? null : document.getElementById("event-more");
   if (more) {
     var rest = events.slice(openIndex + 1);
     if (rest.length) {

@@ -376,6 +376,52 @@
       /* 日程（details/summary） */
       .event-list { display: grid; gap: 12px; }
 
+      /* ページ上部のバナー。画像を入れるまでは何も描かない（高さ0）。
+         枠に背景や最小高さを持たせると、画像が無いあいだ空箱が出るため付けない。 */
+      .page-banner img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius-lg);
+        margin: 0 0 20px;
+      }
+
+      /* 簡素表示の1回ぶん（schedule.html の data-compact）。
+         時間割・対象・定員・持ち物はDoorkeeper側に同じものがあるので出さない。
+         日程ページに来るのは「調べている人」で、申込の詳細は次の画面で足りる。 */
+      .event-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding: 18px 20px;
+        border: 1px solid #e2e8ff;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 8px 20px rgba(18, 34, 64, 0.08);
+      }
+      .event-row-main { display: grid; gap: 6px; flex: 1 1 260px; min-width: 0; }
+      /* ラベルと値を2列に固定する。値が折り返しても左端に落ちず、
+         値の列に揃う（参加費が長い回でバッジが行頭に落ちるのを防ぐ）。 */
+      .event-row-item {
+        display: grid;
+        grid-template-columns: 3.6em 1fr;
+        align-items: baseline;
+        gap: 4px 12px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      .event-row-item > span:first-child {
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: var(--subtext);
+        letter-spacing: 0.06em;
+      }
+      .event-row .event-apply { flex: 0 0 auto; }
+      @media (max-width: 640px) {
+        .event-row .event-apply { width: 100%; }
+      }
+
       /* 「このあとの開催」。開いているカードが2.5画面分あり、以降の日程が
          スクロールしないと見えないため、見出しの直下に一覧を出す。
          日程が合わなかった人に「次はいつか」を見せるのが comingSoon の目的で、

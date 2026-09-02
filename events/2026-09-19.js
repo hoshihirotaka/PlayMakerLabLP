@@ -10,7 +10,7 @@
 // 大人向け（②⑥）は 2026-08-27 に確定。
 //   参加費 … PC持参2,900円 ／ PCレンタル付き3,500円
 //   定員   … 2回合わせて8名（Doorkeeperの設定上、時間帯ごとに枠を切れないため）
-// その1＝Googleコネクト／その2＝NotebookLM（2026-08-27 定例）。**内容が違う**ので
+// その1＝Googleコネクト／その2＝Gemini Notebook（旧NotebookLM。2026-07-16に改称）。**内容が違う**ので
 // 「同じ内容を2回・都合のよいほうを」とは書かない。選ぶ基準は時間ではなく中身
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-09-19",
@@ -24,7 +24,7 @@
   capacity: "①③④⑤各回4名 / ②⑥大人向けAIコース 2回合わせて8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198775",
-  note: "<strong>路地裏GarageMarketでは土曜はじめての開催です。</strong>13:00〜20:30の通し開催ですが、<strong>受けたい回だけのお申し込みで大丈夫です。</strong><br />②⑥大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。<strong>昼（その1・Googleコネクト）と夜（その2・NotebookLM）で内容が違います。</strong>お子様にも同席いただけます。空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />⑤Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①④をお選びください。",
+  note: "<strong>路地裏GarageMarketでは土曜はじめての開催です。</strong>13:00〜20:30の通し開催ですが、<strong>受けたい回だけのお申し込みで大丈夫です。</strong><br />②⑥大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。<strong>昼（その1・Googleコネクト）と夜（その2・Gemini Notebook、旧NotebookLM）で内容が違います。</strong>お子様にも同席いただけます。空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />⑤Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①④をお選びください。",
   timetable: [
     { time: "13:00-14:00", label: "①Robloxコース", price: "1,900円" },
     { time: "14:00-14:20", label: "延長タイム・親御様個別相談" },
@@ -52,7 +52,7 @@
     { time: "19:20-19:30", label: "設営・入れ替え" },
     {
       time: "19:30-20:30",
-      label: "⑥大人向けAIコース（その2・NotebookLM）　2,900円 / PCレンタル付き 3,500円",
+      label: "⑥大人向けAIコース（その2・Gemini Notebook）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円",
       doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198874"

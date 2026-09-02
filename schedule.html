@@ -218,7 +218,7 @@
               },
               {
                 "@type": "Offer",
-                "name": "大人向けAIコース（その2 NotebookLM）",
+                "name": "大人向けAIコース（その2 Gemini Notebook）",
                 "price": "2900",
                 "priceCurrency": "JPY",
                 "validFrom": "2026-08-27T00:00:00+09:00",
@@ -227,7 +227,7 @@
               },
               {
                 "@type": "Offer",
-                "name": "大人向けAIコース（その2 NotebookLM・PCレンタル付き）",
+                "name": "大人向けAIコース（その2 Gemini Notebook・PCレンタル付き）",
                 "price": "3500",
                 "priceCurrency": "JPY",
                 "validFrom": "2026-08-27T00:00:00+09:00",
@@ -320,14 +320,24 @@
     <main>
       <section class="section" id="schedule">
         <div class="container card">
-          <h2>開催日程</h2>
-          <p style="color:var(--subtext); margin: 0 0 16px;">各イベントをタップすると詳細とタイムテーブルを確認できます。</p>
+          <!-- ヘッダーバナー。画像ができたら下の img のコメントを外してパスを入れる。
+               横長（16:9〜3:1）・幅1200px以上を推奨。images/ に置く。
+               alt には画像内の文字をそのまま書く（読み上げと、画像が出ないときの代替）。
+               画像を入れるまでは何も描かれない（空箱にならない）。 -->
+          <div class="page-banner">
+            <!-- <img src="images/banner-schedule.png" alt="ブロマスゲームラボ 開催日程" /> -->
+          </div>
 
-          <!-- 「このあとの開催」。JSで自動生成（2件以上あるときだけ出る） -->
+          <h2>開催日程</h2>
+          <p style="color:var(--subtext); margin: 0 0 16px;">時間割・持ち物・定員は、各回の申込ページに記載しています。</p>
+
+          <!-- 「このあとの開催」は data-compact のとき出さない（全件が並ぶので重複する）。
+               簡素表示をやめたら、この要素がそのまま復活する。 -->
           <div id="event-more" class="event-more"></div>
 
-          <!-- イベントはここに自動描画されます -->
-          <div id="event-list" class="event-list"></div>
+          <!-- イベントはここに自動描画されます。
+               data-compact = 1回1行の簡素表示（時間割はDoorkeeper側に譲る） -->
+          <div id="event-list" class="event-list" data-compact></div>
           <!-- JSが動かない環境向け。日付は書かず、常に最新が並ぶDoorkeeperのトップへ送る
                （ここに開催日を直書きすると、イベント追加のたびに更新が必要になるため） -->
           <noscript>
