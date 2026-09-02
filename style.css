@@ -578,6 +578,28 @@
       .faq-item { padding: 10px 0; border-bottom: 1px dashed #d7e0f2; }
       .faq-item:last-child { border-bottom: none; }
 
+      /* FAQは畳んでおく（2026-09-02）。全部開いていると日程ページの35%を占めるが、
+         答え自体はDOMに残るので検索には出る。減らすのは見えている量だけ。 */
+      .faq-item > summary {
+        cursor: pointer;
+        font-weight: 700;
+        line-height: 1.7;
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .faq-item > summary::-webkit-details-marker { display: none; }
+      .faq-item > summary::after {
+        content: "＋";
+        margin-left: auto;
+        color: var(--subtext);
+        font-weight: 800;
+        flex: 0 0 auto;
+      }
+      .faq-item[open] > summary::after { content: "−"; }
+      .faq-item > p { margin: 10px 0 2px; line-height: 1.8; }
+
       /* 作品ギャラリー */
       .game-grid { display: grid; gap: 16px; }
       .game-card {
