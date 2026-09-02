@@ -41,10 +41,12 @@
   // ⚠️ ここに金額を書かないこと。10月の改定は events/*.js を直せば追従する。
   //   子ども向け … timetable の price（構造化されている）
   //   大人向け   … price を持たない（バッジを付けないため）。label 内の金額を読む
+  // ⚠️ 全枠ではなく slotsFor() を通すこと。大人向けページで子ども向けの金額まで
+  //    並べてしまうため（申込先は大人向けなので、金額と行き先が食い違う）。
   function priceSummary(e) {
     var seen = {};
     var out = [];
-    (e.timetable || []).forEach(function (t) {
+    slotsFor(e).forEach(function (t) {
       var yen = (t.label || "").match(/[0-9,]+円/g) || [];
       var price = t.price || yen[0];
       if (!price) return;                      // 休憩・設営・延長タイムなど
@@ -106,20 +108,36 @@
 
     // 簡素表示。開閉せず、1回ぶんを数行で出す。
     if (compact) {
-      var cApply = ev.comingSoon ? null : ev.doorkeeperUrl;
+      // ⚠️ ev.doorkeeperUrl はお子様向けの申込先。audience 指定時にそのまま使うと
+      //    大人向けページの申込ボタンが子ども向けイベントへ送る（2026-08-25に本番で発生）。
+      var cSlot = slotsFor(ev)[0] || {};
+      var cApply = audience ? cSlot.doorkeeperUrl : (ev.comingSoon ? null : ev.doorkeeperUrl);
       var cPrice = priceSummary(ev);
+      // ev.datetime は開催全体の時間帯（例 13:00-20:30）。大人向けページでそのまま出すと
+      // 講座の時間に見えてしまうため、その枠の時間に差し替える。
+      // 同じ日に内容の違う枠が並ぶ回があるため（9/19は昼＝Googleコネクト、夜＝Gemini Notebook）、
+      // 時間だけでなく label の括弧書きも添える。どちらに申し込むかの判断材料になる。
+      var cWhen = audience
+        ? ev.date + " " + slotsFor(ev).map(function (t) {
+            var sub = (t.label || "").match(/（([^）]+)）/);
+            return t.time + (sub ? "（" + sub[1] + "）" : "");
+          }).join("　／　")
+        : ev.datetime;
       return (
         '<div class="event-row" id="event-' + ev.id + '">' +
           '<div class="event-row-main">' +
-            '<div class="event-row-item"><span>開催日</span><span>' + ev.datetime + "</span></div>" +
+            '<div class="event-row-item"><span>開催日</span><span>' + cWhen + "</span></div>" +
             '<div class="event-row-item"><span>会場</span><span>' + locationText + "（" + areaText + "）</span></div>" +
             (cPrice
               ? '<div class="event-row-item"><span>参加費</span><span>' + cPrice +
                   '<span class="price-badge">今だけお試し価格</span></span></div>'
               : "") +
           "</div>" +
+          // トップは大人向け・お子様向けの両方の入口で、参加費の行には両方の金額が並ぶ。
+          // ボタンだけ見て別のイベントに申し込むのを防ぐため、誰向けかを添える。
           (cApply
-            ? '<a class="event-apply" href="' + cApply + '" target="_blank" rel="noreferrer">お申し込みはこちら</a>'
+            ? '<div class="apply-block"><span class="apply-label">' + audienceLabel + '</span>' +
+                '<a class="event-apply" href="' + cApply + '" target="_blank" rel="noreferrer">お申し込みはこちら</a></div>'
             : '<span class="event-apply event-apply--soon">申込受付準備中</span>') +
         "</div>"
       );
