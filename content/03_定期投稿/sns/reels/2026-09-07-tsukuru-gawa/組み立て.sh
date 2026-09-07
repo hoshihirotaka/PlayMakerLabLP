@@ -15,7 +15,7 @@ mkdir -p "$W"
 
 FUKEI=~/Desktop/8:28風景/IMG_0009_emoji_ほしアレンジ.mp4
 SAKUHIN=~/Movies/CapCut/893Dダイヤ防衛サバイバー.mov
-PHOTO=~/Desktop/"スクリーンショット 2026-09-07 10.07.34.png"   # ⚠️ 絵文字加工後のものに差し替える
+PHOTO=~/Downloads/風景.png   # 絵文字加工済み・1920x1080
 BANNER=~/Downloads/大人向けブロマスインスタ.png
 CAL=~/Downloads/カレンダー.png
 HIKI=~/Desktop/8:28風景/IMG_0008.MOV   # 59.6分の固定カメラ。カードの背景に使う
@@ -41,16 +41,16 @@ $FF -y -v error -ss 25.5 -t 2.8 -i "$FUKEI" \
 
 echo "⑤ 教室の写真を中央→右へパン 4.9秒"
 $FF -y -v error -loop 1 -t 4.9 -i "$PHOTO" \
-  -vf "crop=509:905:'480+(850-480)*t/4.9':0,scale=1080:1920,fps=30,setsar=1" \
+  -vf "crop=607:1080:'656+(1150-656)*t/4.9':0,scale=1080:1920,fps=30,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/05.mp4"
 
-echo "⑥ 大人向けAIバナー（動く映像に重ねる）3.9秒"
+echo "⑥ 大人向けAIバナー（引きの教室に重ねる）3.9秒"
 $FF -y -v error -ss 600 -t 3.9 -i "$HIKI" -loop 1 -i "$BANNER" -filter_complex \
   "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:80:shortest=1,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/06.mp4"
 
-echo "⑦ 日程カード（動く映像に重ねる）4.0秒"
-$FF -y -v error -ss 1500 -t 4.0 -i "$HIKI" -loop 1 -i "$CAL" -filter_complex \
+echo "⑦ 日程カード（手持ちの風景に重ねる。⑥と質感を分ける）4.0秒"
+$FF -y -v error -ss 15.0 -t 4.0 -i "$FUKEI" -loop 1 -i "$CAL" -filter_complex \
   "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:80:shortest=1,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/07.mp4"
 
