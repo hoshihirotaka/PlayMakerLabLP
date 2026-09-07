@@ -18,6 +18,7 @@ SAKUHIN=~/Movies/CapCut/893Dダイヤ防衛サバイバー.mov
 PHOTO=~/Desktop/"スクリーンショット 2026-09-07 10.07.34.png"   # ⚠️ 絵文字加工後のものに差し替える
 BANNER=~/Downloads/大人向けブロマスインスタ.png
 CAL=~/Downloads/カレンダー.png
+HIKI=~/Desktop/8:28風景/IMG_0008.MOV   # 59.6分の固定カメラ。カードの背景に使う
 
 # ③に使う秒。⚠️ 切り出す前にその秒のテロップを目視すること
 SAKUHIN_SS=3.0
@@ -44,13 +45,13 @@ $FF -y -v error -loop 1 -t 4.9 -i "$PHOTO" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/05.mp4"
 
 echo "⑥ 大人向けAIバナー（動く映像に重ねる）3.9秒"
-$FF -y -v error -ss 5.0 -t 3.9 -i "$FUKEI" -loop 1 -i "$BANNER" -filter_complex \
-  "[0:v]scale=1080:1920,fps=30,boxblur=28:2[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:285:shortest=1,setsar=1" \
+$FF -y -v error -ss 600 -t 3.9 -i "$HIKI" -loop 1 -i "$BANNER" -filter_complex \
+  "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',boxblur=28:2,fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:285:shortest=1,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/06.mp4"
 
 echo "⑦ 日程カード（動く映像に重ねる）4.0秒"
-$FF -y -v error -ss 8.0 -t 4.0 -i "$FUKEI" -loop 1 -i "$CAL" -filter_complex \
-  "[0:v]scale=1080:1920,fps=30,boxblur=28:2[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:285:shortest=1,setsar=1" \
+$FF -y -v error -ss 1500 -t 4.0 -i "$HIKI" -loop 1 -i "$CAL" -filter_complex \
+  "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',boxblur=28:2,fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:285:shortest=1,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/07.mp4"
 
 echo "連結"
