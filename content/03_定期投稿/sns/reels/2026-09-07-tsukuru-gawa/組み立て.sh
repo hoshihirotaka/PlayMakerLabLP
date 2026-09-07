@@ -46,12 +46,12 @@ $FF -y -v error -loop 1 -t 4.9 -i "$PHOTO" \
 
 echo "⑥ 大人向けAIバナー（動く映像に重ねる）3.9秒"
 $FF -y -v error -ss 600 -t 3.9 -i "$HIKI" -loop 1 -i "$BANNER" -filter_complex \
-  "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',boxblur=28:2,fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:285:shortest=1,setsar=1" \
+  "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:80:shortest=1,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/06.mp4"
 
 echo "⑦ 日程カード（動く映像に重ねる）4.0秒"
 $FF -y -v error -ss 1500 -t 4.0 -i "$HIKI" -loop 1 -i "$CAL" -filter_complex \
-  "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',boxblur=28:2,fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:285:shortest=1,setsar=1" \
+  "[0:v]scale=1296:2304,crop=1080:1920:'(iw-1080)*t/4':'(ih-1920)/2',fps=30[bg];[1:v]scale=1080:1350[card];[bg][card]overlay=0:80:shortest=1,setsar=1" \
   -an -c:v libx264 -pix_fmt yuv420p "$W/07.mp4"
 
 echo "連結"
