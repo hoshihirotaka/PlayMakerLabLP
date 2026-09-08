@@ -10,6 +10,7 @@
 // 2026-08-18にAIを外して修正済み。**タイトルのAIの有無は、その回のDreamCoreの有無と一致させる**
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-09-25",
+  trialPrice: true, // 〜9月のお試し価格。10月からの正規価格には付けない（バッジが出る条件）
   date: "2026年9月25日（金）",
   datetime: "2026年9月25日(金) 16:50-20:30",
   location: "路地裏GarageMarket",

@@ -16,6 +16,7 @@
 // 「同じ内容を2回・都合のよいほうを」とは書かない。選ぶ基準は時間ではなく中身
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-09-19",
+  trialPrice: true, // 〜9月のお試し価格。10月からの正規価格には付けない（バッジが出る条件）
   date: "2026年9月19日（土）",
   datetime: "2026年9月19日(土) 13:00-20:30",
   location: "路地裏GarageMarket",

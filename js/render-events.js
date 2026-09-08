@@ -133,9 +133,13 @@
           '<div class="event-row-main">' +
             '<div class="event-row-item"><span>開催日</span><span>' + cWhen + "</span></div>" +
             '<div class="event-row-item"><span>会場</span><span>' + locationText + "（" + areaText + "）</span></div>" +
+            // バッジは ev.trialPrice: true のときだけ。price があるだけでは出さない
+            // （2026-09-08）。以前は無条件だったので、10月の正規価格に「今だけお試し価格」が
+            // 付く状態だった。**書き忘れたらバッジが出ないだけ**になるよう、安全側に倒してある。
             (cPrice
               ? '<div class="event-row-item"><span>参加費</span><span>' + cPrice +
-                  '<span class="price-badge">今だけお試し価格</span></span></div>'
+                  (ev.trialPrice ? '<span class="price-badge">今だけお試し価格</span>' : "") +
+                  "</span></div>"
               : "") +
           "</div>" +
           // トップは大人向け・お子様向けの両方の入口で、参加費の行には両方の金額が並ぶ。
@@ -148,7 +152,11 @@
       );
     }
     var timetableRows = slotsFor(ev).map(function (t) {
-      var price = t.price ? '<span class="timeline-price">' + t.price + '</span><span class="price-badge">今だけお試し価格</span>' : "";
+      // 上と同じ理由でバッジは ev.trialPrice のときだけ（2026-09-08）
+      var price = t.price
+        ? '<span class="timeline-price">' + t.price + "</span>" +
+            (ev.trialPrice ? '<span class="price-badge">今だけお試し価格</span>' : "")
+        : "";
       return (
         '<div class="timeline-item">' +
           '<div class="timeline-time">' + t.time + "</div>" +

@@ -1,5 +1,6 @@
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-07-05",
+  trialPrice: true, // 〜9月のお試し価格。10月からの正規価格には付けない（バッジが出る条件）
   date: "2026年7月5日（日）",
   datetime: "2026年7月5日(日) 11:00-17:00",
   location: "路地裏GarageMarket",

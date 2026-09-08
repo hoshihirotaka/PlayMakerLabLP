@@ -1,5 +1,6 @@
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-07-18",
+  trialPrice: true, // 〜9月のお試し価格。10月からの正規価格には付けない（バッジが出る条件）
   date: "2026年7月18日（土）",
   datetime: "2026年7月18日(土) 14:30-17:20",
   location: "ONVO SALON URAWA（オンヴォサロン浦和）",
