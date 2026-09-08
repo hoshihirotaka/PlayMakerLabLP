@@ -1,5 +1,8 @@
 # Doorkeeper説明文 大人向けAI講座 2026-09-25ドラフト
 
+> **イベント名（2026-09-09 確定 → SCHEDULE-PATTERNS.md §5）**
+> `【9/25(金)】大人向けAI講座｜NotebookLMで資料作成`
+
 > **運用メモ（Doorkeeperには貼らない）**
 > - ベース: [doorkeeper-adult-ai-2026-08-28-draft.md](doorkeeper-adult-ai-2026-08-28-draft.md)（第2回）。
 >   **ただし8/28と違い、この回はNotebookLM（現Gemini Notebook）だけを扱う**（2026-08-27 定例）。

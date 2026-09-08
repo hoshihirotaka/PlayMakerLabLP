@@ -1,5 +1,8 @@
 # Doorkeeper説明文 大人向けAI講座 2026-09-19ドラフト（昼・夜の2回開催）
 
+> **イベント名（2026-09-09 確定 → SCHEDULE-PATTERNS.md §5）**
+> `【9/19(土)】大人向けAI講座｜Googleでカレンダーとメール連携／NotebookLMで資料作成`
+
 > **運用メモ（Doorkeeperには貼らない）**
 > - ベース: [doorkeeper-adult-ai-2026-09-13-draft.md](doorkeeper-adult-ai-2026-09-13-draft.md)。
 >   **教材の内容は変えていない**ので、勉強会パート（実践①②③・事前準備・FAQ）は同じ

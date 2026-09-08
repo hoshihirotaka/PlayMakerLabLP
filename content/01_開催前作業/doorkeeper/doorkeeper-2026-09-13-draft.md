@@ -1,5 +1,8 @@
 # Doorkeeper説明文 2026-09-13ドラフト（南与野・子ども向け）
 
+> **イベント名（2026-09-09 確定 → SCHEDULE-PATTERNS.md §5）**
+> `【9/13(日)】Roblox教室｜キーボードの上を走るコースを作る`
+
 > **運用メモ（Doorkeeperには貼らない）**
 > - ベース: [doorkeeper-2026-08-28-draft.md](doorkeeper-2026-08-28-draft.md)
 > - **日曜パターンの「派生案」で実施**（[SCHEDULE-PATTERNS.md](../../04_共通/SCHEDULE-PATTERNS.md) §2）。

@@ -1,5 +1,8 @@
 # Doorkeeper説明文 大人向けAI講座 2026-09-13ドラフト
 
+> **イベント名（2026-09-09 確定 → SCHEDULE-PATTERNS.md §5）**
+> `【9/13(日)】大人向けAI講座｜Googleでカレンダーとメール連携`
+
 > **運用メモ（Doorkeeperには貼らない）**
 > - ベース: [doorkeeper-adult-ai-2026-08-28-draft.md](doorkeeper-adult-ai-2026-08-28-draft.md)（第2回）。
 >   **ただし8/28と違い、この回はGoogleコネクトだけを扱う**（2026-08-27 定例）。
