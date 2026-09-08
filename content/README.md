@@ -37,6 +37,7 @@ content/
     ├── NOTE-GUIDE.md             # note執筆ガイド（記事の書き方）
     ├── NOTE-EDITOR-AUTOMATION.md # note入稿ガイド（ブラウザ操作でnoteに流し込む手順）
     ├── SNS-GUIDE.md              # SNSシェア文言ガイド（Xの文字数ルール・媒体別の使い分け）
+    ├── CHATGPT-ADS-GUIDE.md       # ChatGPT経由の自然流入と広告の区別・評価方針
     ├── 公式LINE設定.md            # 公式LINEのあいさつ文・リッチメニュー・応答設定の原稿
     └── 同意書-Googleフォーム設問リスト.md # 入会同意書をGoogleフォーム化するための設問一覧
 ```
