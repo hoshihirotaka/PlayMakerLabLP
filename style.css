@@ -305,6 +305,19 @@
       .notice strong { color: #0f2c59; }
       .notice a { color: #0f6e9e; }
 
+      /* 公式LINEの友だち追加ボタン（2026-09-08）。.notice の中に置く前提。
+         画像はLINE公式のもので、サイズが固定なので拡大しない。 */
+      .line-btn {
+        display: block;
+        width: fit-content;
+        margin-top: 12px;
+      }
+      .line-btn img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
       /* コースカード */
       .course-card {
         padding: 18px;

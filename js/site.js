@@ -200,6 +200,26 @@
     },
     true
   );
+
+  // ⑦ 公式LINEの友だち追加。2026-09-08に公式LINEを「新規の受け皿」にしたため、
+  //    日程が合わなかった人がここから抜ける。lin.ee は外部ドメインだが、
+  //    ④と同じ理由（クロスドメイン設定で拡張計測の離脱クリックが止まっている）で
+  //    自前で拾わないと1件も記録されない。
+  //    ⚠️ doorkeeper_click（＝申込）とは別のイベントにする。混ぜると
+  //    Google広告のコンバージョンに友だち追加が混入して、判断がずれる。
+  //    ⚠️ これをコンバージョンに設定しないこと。申込ではなくリード獲得。
+  document.addEventListener(
+    "click",
+    function (e) {
+      var el = e.target;
+      if (!el || typeof el.closest !== "function") return;
+      var a = el.closest('a[href*="lin.ee"], a[href*="line.me"]');
+      if (!a) return;
+      // どのページから登録されたかが分かると、置き場所の良し悪しが判断できる
+      send("line_click", { click_item: location.pathname.replace(/^.*\//, "").replace(/\.html$/, "") || "index" });
+    },
+    true
+  );
 })();
 
 /* ④ アンカー追従 */
