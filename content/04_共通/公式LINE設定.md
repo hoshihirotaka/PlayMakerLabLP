@@ -398,7 +398,29 @@ https://hoshihirotaka.github.io/PlayMakerLabLP/schedule.html
 
 ## 6. 友だち追加の導線
 
-**友だち追加URL: `https://lin.ee/wfkk7Ik`**（転送先 `https://line.me/R/ti/p/@361prjng`／LINE ID `@361prjng`）
+**友だち追加URL（恒久）: `https://line.me/R/ti/p/@361prjng`**（LINE ID `@361prjng`）
+
+### ⚠️ 短縮URL（lin.ee）は毎回変わります。ずれても間違いではありません
+
+**管理画面でコピーするたびに、新しい `lin.ee/xxxxx` が発行されます。**
+末尾の `ts` が発行日時なだけで、**飛び先は同じアカウントです。**
+
+```
+lin.ee/wfkk7Ik  → line.me/R/ti/p/@361prjng?oat_content=url&ts=08300807   （8/30 08:07 発行）
+lin.ee/RkQ2pUy  → line.me/R/ti/p/@361prjng?ts=09081118&oat_content=url   （9/8 11:18 発行）
+```
+
+**記録と手元のURLが違っても、作業を止めないこと。** 2026-09-08に実際に確認しました。
+迷ったら `line.me/R/ti/p/@361prjng` を使えば確実です。
+
+### 友だち追加ボタン（画像つき・Doorkeeperで使える）
+
+```html
+<a href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+```
+
+**テキストリンクより、公式のボタン画像のほうがクリックされます。**
+Doorkeeperの説明文はHTMLが通ります（`doorkeeper-community.md` で `<img>` が動いている実績あり）。
 
 2026-08-30に控えた。**それまでどこにも記録がなく、DMに入れるとき探すことになった。**
 URLが変わったらここを直すこと。

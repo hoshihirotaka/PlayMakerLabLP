@@ -199,7 +199,7 @@ AIで作れるようになるほど、問われるのは「作れること」で
 公式LINEにご登録いただくと、**今後の日程をお知らせします。**
 南与野・浦和で、月に数回ひらいています。
 
-→ https://lin.ee/wfkk7Ik
+<a href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
 
 ご質問もそのままトークにお送りください（平日10時〜21時ごろにお返事します）。
 
