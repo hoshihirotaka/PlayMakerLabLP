@@ -487,7 +487,7 @@ https://hoshihirotaka.github.io/PlayMakerLabLP/schedule.html
 
 ## 6. 友だち追加の導線
 
-**友だち追加URL（恒久）: `https://line.me/R/ti/p/@361prjng`**（LINE ID `@361prjng`）
+**友だち追加URL: 管理画面で発行された `https://lin.ee/...` をそのまま使う。**<br />（転送先 `https://line.me/R/ti/p/@361prjng` ／ LINE ID `@361prjng`。**これは確認用で、貼る先には使わない**）
 
 ### ⚠️ 短縮URL（lin.ee）は毎回変わります。ずれても間違いではありません
 
@@ -500,7 +500,12 @@ lin.ee/RkQ2pUy  → line.me/R/ti/p/@361prjng?ts=09081118&oat_content=url   （9/
 ```
 
 **記録と手元のURLが違っても、作業を止めないこと。** 2026-09-08に実際に確認しました。
-迷ったら `line.me/R/ti/p/@361prjng` を使えば確実です。
+
+**⚠️ 実際に使うのは短縮URL（`lin.ee/...`）のほう。**
+`ts` と `oat_content=url` が付くので、**LINE側が流入経路を見ている可能性がある**（2026-09-08 本人の指摘）。
+恒久形に置き換えると、その情報が落ちる。**発行された短縮URLをそのまま使うこと。**
+
+`line.me/R/ti/p/@361prjng` は**中身を確かめるとき用**で、貼る先には使わない。
 
 ### 友だち追加ボタン（画像つき・Doorkeeperで使える）
 

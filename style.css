@@ -310,7 +310,7 @@
       .line-btn {
         display: block;
         width: fit-content;
-        margin-top: 12px;
+        margin: 12px auto 0; /* 中央寄せ（2026-09-08） */
       }
       .line-btn img {
         display: block;
