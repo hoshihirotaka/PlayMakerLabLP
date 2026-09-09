@@ -23,7 +23,6 @@
     <meta property="og:url" content="https://hoshihirotaka.github.io/PlayMakerLabLP/schedule.html" />
     <meta name="twitter:card" content="summary_large_image" />
 
-
     <!-- Google tag (gtag.js) — GA4 と Google広告 をまとめて即時読み込み
          以前はGA4だけ window.load 後に読み込んでいたが、全画像の読み込み完了を待つため
          モバイルで数秒遅れ、早期離脱がまるごと計測から漏れていた。エンゲージメント時間も
@@ -328,8 +327,30 @@
             <!-- <img src="images/banner-schedule.png" alt="ブロマスゲームラボ 開催日程" /> -->
           </div>
 
-          <h2>開催日程</h2>
-          <p style="color:var(--subtext); margin: 0 0 16px;">時間割・持ち物・定員は、各回の申込ページに記載しています。</p>
+          <h2>ゲームクリエイター教室</h2>
+
+          <!-- 「この教室のポイント」（2026-09-09 追加）
+               このページの役割は比較・検討（AGENTS.md 44行目・117行目）。
+               競合2社（コードランド／Solid）を見て、両社が書けないものだけを並べた
+               （→ ~/curriculum/運営/決定ログ.md「実際に2社を見た」）。
+               ⚠️ カリキュラムの幅・レベルは書かない。Unity/Python/Javaと並べられて負ける。
+               ⚠️ 少人数だけを単独で出さない。2社とも押しているので差にならない。
+               ⚠️ 無名なので「コース」から入らない。大手はブランドがあるから入れる。
+               ⚠️ ポイントは4つまで。増やすとモバイルで日程が画面外に落ちる
+                  （4つで開催予定の見出しが744px・画面812px）。 -->
+          <p style="color: var(--subtext); margin: 0 0 14px;">お子様向けの<strong>Roblox教室</strong>と<strong>AI教室</strong>。ゲームを<strong>遊ぶ側から作る側へ</strong>。</p>
+
+          <h3 style="margin: 0 0 10px; font-size: 1.05rem; color: #0f2c59;">この教室のポイント</h3>
+          <ul style="margin: 0 0 16px; padding-left: 1.2em; font-size: 0.95rem;">
+            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">1回ごとのお申し込み</strong>次回の予約や、通い続けるお約束はありません。</li>
+            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">教室ではなく、路地裏の市場で</strong>閉じた部屋ではないので、様子を見てから決められます。</li>
+            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">作ったら、その日のうちに遊んでもらう</strong>発表会を待ちません。毎回その場で感想をもらいます。</li>
+            <li style="line-height: 1.7;"><strong style="display: block; color: #0f2c59;">教えるのは現役のゲーム開発者</strong>ゲーム業界歴20年以上。各回4名までで見ます。</li>
+          </ul>
+
+          <div class="curri-note">小学1年生〜高校生。<strong>持ち物はありません</strong>（パソコンは会場でご用意）。各回の時間割は申込ページに。場所やペースを合わせる<strong>個別プラン</strong>は<a href="plans.html">こちら</a>。</div>
+
+          <h3 style="margin: 20px 0 12px; font-size: 1.05rem; color: #0f2c59;">開催予定</h3>
 
           <!-- 「このあとの開催」は data-compact のとき出さない（全件が並ぶので重複する）。
                簡素表示をやめたら、この要素がそのまま復活する。 -->
@@ -458,7 +479,6 @@
     <script src="events/2026-09-25.js"></script>
     <script src="events/2026-10-11.js"></script>
     <script src="events/2026-10-23.js"></script>
-
 
     <!-- index.html と共通のスクリプト -->
 
