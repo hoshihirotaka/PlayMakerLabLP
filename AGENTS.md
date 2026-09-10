@@ -73,7 +73,7 @@
 | 作品ギャラリー | `works.html` | 作品＋ブラウザで遊べる作品 | — |
 | 個別プラン | `online-home.html` | **限定公開のテスト中。`noindex` 維持・sitemap 除外** | — |
 
-**ナビ（6ページ共通）**: カリキュラム / 作品ギャラリー / プラン / お子様向け日程 / 大人向け日程 / 講師
+**ナビ（公開7ページ共通・項目は6つ）**: カリキュラム / 作品ギャラリー / プラン / お子様向け日程 / 大人向け日程 / 講師
 
 ### 全ページに影響する場所（触るPRは単独で出す）
 
@@ -239,7 +239,7 @@ fi
 
 `bromas_funnel_renewal_plan.md`（ルート直下）に、こう書かれていた。
 
-> 実測では男性75〜84%、13-24歳が配信の40〜60%を占め、母親への到達は5本合計でも僅少だった
+> （実測の男女比・年齢構成・母親への到達の内訳が、そのまま書かれていた）
 
 **オーディエンス構成そのもの。** 2026-08-21に追記され、4日間公開されていた。
 発見時に `~/curriculum/運営/集客導線_統合改修プラン.md` へ移した。
@@ -276,6 +276,7 @@ Notionの主なドキュメント: 「中高生向けコピー案とGoogle広告
 | [NOTE-EDITOR-AUTOMATION.md](content/04_共通/NOTE-EDITOR-AUTOMATION.md) | noteエディタへの入稿手順 |
 | [SNS-GUIDE.md](content/04_共通/SNS-GUIDE.md) | SNSシェア文言。Xの文字数の数え方・媒体別の使い分け |
 | [REEL-WORKFLOW.md](content/04_共通/REEL-WORKFLOW.md) | リール制作。動画解析からSRT・キャプションまで |
+| [CHATGPT-ADS-GUIDE.md](content/04_共通/CHATGPT-ADS-GUIDE.md) | ChatGPT経由の自然流入と広告の区別・評価方針 |
 | [content/README.md](content/README.md) | content配下のフォルダ定義と命名規則 |
 
 ## 当日資料（Canva）
