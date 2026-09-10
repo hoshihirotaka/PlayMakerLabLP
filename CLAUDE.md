@@ -49,4 +49,4 @@
 
 `index.html` / `schedule.html` / `adults.html` / `plans.html` / `curriculum.html` /
 `works.html` / `about.html`。共通処理は `js/` にあり、**全ページに影響します**。
-日程を追加するときの修正箇所は**4か所**（AGENTS.md に手順あり）。
+日程を追加するときの修正箇所は**6か所**（AGENTS.md に手順あり）。
