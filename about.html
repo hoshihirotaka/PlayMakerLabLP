@@ -6,16 +6,6 @@
     <title>この教室について | ブロマスゲームラボ</title>
     <meta name="description" content="ブロマスゲームラボが大切にしていること、講師の紹介、この活動を始めた理由。ゲーム業界歴20年以上のゲーム企画職が、埼玉・南与野で子ども向けゲームクリエイター教室を運営しています。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/about.html" />
-    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
-         先読みしてしまい出し分けの意味がなくなる -->
-    <link
-      rel="preload"
-      as="image"
-      href="assets/R.webp"
-      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
-      imagesizes="(max-width: 767px) 77vw, 480px"
-      type="image/webp"
-    />
     <meta property="og:title" content="この教室について | ブロマスゲームラボ" />
     <meta property="og:description" content="大切にしていること、講師の紹介、この活動を始めた理由。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -75,6 +65,62 @@
          構造化データを一致させるため、このページには置かない。 -->
     <!-- events/*.js と curriculum/curriculum.js は読み込まない。
          日程も教材一覧も扱わないため、preload も外してある。 -->
+    <!-- このページ専用。共通CSS・描画JSは変更しない。 -->
+    <style>
+
+      .about-visual h1 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.5; color: #163c55; margin: 0 0 16px; }
+      .about-visual .visual-heading { display: flex; align-items: center; gap: 12px; }
+      .about-visual .visual-icon { flex-shrink: 0; color: #16748c; }
+      .about-visual .visual-heading h1, .about-visual .visual-heading h2 { margin: 0; }
+      .about-visual .visual-heading { margin-bottom: 16px; }
+
+      .about-visual .about-intro { background: linear-gradient(120deg, #eef8fa, #faf7ef); }
+      .about-visual .about-intro p { margin: 0 0 12px; line-height: 1.7; color: var(--subtext); }
+      .about-visual .about-intro .about-support { font-size: .9rem; margin-bottom: 0; }
+      .about-visual .feature-card { display: grid; grid-template-columns: 32px 1fr; gap: 10px; border-top: 3px solid #67aebb; }
+      .about-visual .feature-card h3 { align-self: center; }
+      .about-visual .feature-card p { grid-column: 1 / -1; }
+      .about-visual .feature-card:nth-child(2) { border-top-color: #bda270; }
+      .about-visual .feature-card:nth-child(3) { border-top-color: #a58ac4; }
+      .about-visual #teacher .card { background: linear-gradient(130deg, #f1f8fa, #fff 65%); }
+      .about-visual .vision { border-left: 4px solid #70a8b7; background: linear-gradient(115deg, #edf6f8, #f7f4ed); }
+      @media (max-width: 640px) {
+      }
+
+      /* この節だけの図解。文言はHTML、折りたたみはJS不要のdetails。 */
+      .about-visual .school-story { color: var(--subtext); }
+      .about-visual .school-story h2 { color: #163c55; margin: 0 0 12px; }
+      .about-visual .school-lead { font-size: 1.1rem; font-weight: 700; color: #163c55; margin: 0 0 14px; }
+      .about-visual .school-map { list-style: none; padding: 0; margin: 0 0 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+      .about-visual .school-map li { position: relative; display: flex; align-items: center; gap: 10px; padding: 14px 12px; border-radius: 12px; background: #eef7f9; color: #163c55; font-weight: 700; }
+      .about-visual .school-map li:nth-child(2) { background: #f8f4e9; }
+      .about-visual .school-map li:nth-child(3) { background: #f3eff9; }
+      .about-visual .school-map li + li::before { content: ''; position: absolute; left: -18px; top: calc(50% - 4px); width: 8px; height: 8px; border-top: 2px solid #698995; border-right: 2px solid #698995; transform: rotate(45deg); }
+      .about-visual .school-story svg, .about-visual .school-map svg { flex: 0 0 28px; width: 28px; height: 28px; color: #367587; }
+      .about-visual .school-note { margin: 10px 0; font-size: .9rem; line-height: 1.7; }
+      .about-visual .school-contact { line-height: 1.7; margin: 16px 0 10px; }
+      .about-visual .school-line { text-align: center; margin: 10px 0 16px; }
+      .about-visual .school-detail { border: 1px solid #d7e2e8; border-radius: 12px; margin: 10px 0; overflow: hidden; }
+      .about-visual .school-detail summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; color: #163c55; list-style: none; line-height: 1.6; }
+      .about-visual .school-detail summary::-webkit-details-marker { display: none; }
+      .about-visual .school-detail summary::after { content: '+'; font-size: 1.4rem; flex-shrink: 0; }
+      .about-visual .school-detail[open] summary::after { content: '−'; }
+      .about-visual .school-detail summary:focus-visible { outline: 3px solid #16748c; outline-offset: -3px; }
+      .about-visual .school-summary-note { display: block; font-size: .9rem; font-weight: 400; color: var(--subtext); }
+      .about-visual .school-read { display: block; font-size: .8rem; color: #176681; margin-top: 4px; text-decoration: underline; text-underline-offset: 3px; }
+      .about-visual .school-detail-body { padding: 0 14px 4px; line-height: 1.8; }
+      .about-visual .school-detail[open] summary { background: #f3f8fa; }
+      .about-visual .school-gains-title { margin: 22px 0 12px; font-size: 1.05rem; color: #163c55; }
+      .about-visual .school-gains { padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; list-style: none; }
+      .about-visual .school-gains li { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #d7e2e8; border-radius: 12px; font-size: .9rem; line-height: 1.6; color: #163c55; }
+      @media (max-width: 700px) {
+        .about-visual .school-map { grid-template-columns: 1fr; gap: 18px; }
+        .about-visual .school-map li { padding: 10px 12px; }
+        .about-visual .school-map li + li::before { left: calc(50% - 4px); top: -14px; transform: rotate(135deg); }
+        .about-visual .school-gains { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .about-visual .school-gains li { flex-direction: column; align-items: flex-start; padding: 10px; gap: 6px; }
+      }
+    </style>
   </head>
 
   <body>
@@ -96,31 +142,36 @@
       </div>
     </nav>
 
-    <main>
+    <main class="about-visual">
       <section class="section">
         <div class="container">
-          <div class="card centered" style="margin-bottom: 18px;">
-            <h2>ゲーム制作に特化した教室です</h2>
-            <p>「ゲームを作りたい」という欲求は普遍的です。<br />この好奇心を大切に「必要そうだからプログラミングを教える」のではなく、「興味のあるゲーム制作を通して、形にしていくプロセス」を大切にしていきます。</p>
-            <p>文法よりも、企画と設計。つまり「どうすれば実現していくか」を主役にします。</p>
-            <div class="chips" style="justify-content: center; margin-top: 14px;">
-              <span class="chip">目的主導型: 作りたいから学ぶ</span>
-              <span class="chip">AIや大人の協力で時間を解放する</span>
-            </div>
+          <div class="card about-intro" style="margin-bottom: 18px;">
+            <div class="visual-heading"><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 23v-3a10 10 0 1110 0v3zM11 27h10M14 30h4M16 8v7M12 12l4 3 4-3"/></svg><h1>ゲーム制作に特化した教室です</h1></div>
+            <p class="school-lead">「ゲームを作りたい」から、得意を見つける。</p>
+            <ol class="school-map" aria-label="ゲーム制作を通して好きと得意を見つける流れ">
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="26" height="19" rx="5"/><path d="M7 16h8M11 12v8M22 14h.01M25 19h.01"/></svg><span>作りたいものがある</span></li>
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4a8 8 0 00-9 11L3 23a4 4 0 006 6l8-8A8 8 0 0028 10l-6 6-6-6z"/></svg><span>作ってみる・試してみる</span></li>
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 23v-3a10 10 0 1110 0v3zM11 27h10M14 30h4M16 8v7M12 12l4 3 4-3"/></svg><span>好き・得意が見えてくる</span></li>
+            </ol>
+            <p class="school-note">企画・デザイン・音楽・プログラミング。<br />ゲーム制作には、いろいろな入口があります。</p>
+            <p class="about-support">文法よりも、企画と設計を主役に。AIや大人の協力で時間を解放し、作りたいものを形にしていきます。</p>
+            <p class="school-contact">気になることがあれば、気軽にご相談ください。</p>
+            <p class="school-line"><a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" width="116" loading="lazy" /></a></p>
+
           </div>
           <div class="grid-3">
             <div class="feature-card">
-              <div class="feature-icon">🎮</div>
+              <svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="5"/><path d="M8 16h6M11 13v6M22 14h.01M25 18h.01"/></svg>
               <h3>プロが直接みます</h3>
               <p>ゲームプランナー歴20年以上の講師が毎回直接指導。現場のリアルな視点で、お子さんの発想を形に変えます。</p>
             </div>
             <div class="feature-card">
-              <div class="feature-icon">🔍</div>
+              <svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="13" r="9"/><path d="M21 20l8 9M9 13h10M14 8v10"/></svg>
               <h3>特性から逆算します</h3>
               <p>ゲーム制作はプログラミングだけではありません。企画・デザイン・サウンド・AIなど、お子さんの「好き」と「得意」に合ったアプローチを一緒に探します。</p>
             </div>
             <div class="feature-card">
-              <div class="feature-icon">🤝</div>
+              <svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="8" r="4"/><circle cx="5" cy="14" r="3"/><circle cx="27" cy="14" r="3"/><path d="M9 28v-6a7 7 0 0114 0v6M1 28v-5a4 4 0 015-4M31 28v-5a4 4 0 00-5-4"/></svg>
               <h3>業界ネットワークで広がる</h3>
               <p>3D・音楽・プログラミングなど、各分野の専門クリエイターと連携。講師の得意分野以外も、本物のプロの視点を届けます。</p>
             </div>
@@ -183,48 +234,36 @@
               計測は分けない（js/site.js ⑦ line_click）。 -->
       <section class="section">
         <div class="container card">
-          <h2>新しい教室だと思っています</h2>
-
-          <p>プログラミングという手法からではなく、<strong>「ゲームを作りたい」という動機から入る</strong>教室です。作っていく過程のなかで、お子さんの適性を見つけようとしています。</p>
-
-          <p><strong>新しい形なので、判断が難しいのは当然だと思います。</strong>まずは友だち追加をして、気軽にご相談いただければと思います。</p>
-
-          <p style="text-align:center; margin: 18px 0 6px;">
-            <a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" width="116" loading="lazy" /></a>
-          </p>
-
-          <h3 style="margin: 28px 0 10px; font-size: 1.05rem; color: #0f2c59;">私自身、プログラミングは苦手でした</h3>
-
-          <p>何度かトライしましたが、うまくいきませんでした。それでも<strong>スクリプター</strong>（キャラクターが登場して会話する、劇のような場面を組む仕事）で実績を残すことができました。</p>
+          <div class="school-story">
+            <h2>新しい教室だと思っています</h2>
+            <details class="school-detail">
+              <summary><span><strong>私自身、プログラミングは苦手でした。</strong><span class="school-summary-note">それでも、ゲームを作る仕事を続けてきました。</span><span class="school-read">講師の経験を読む</span></span></summary>
+              <div class="school-detail-body"><p>何度かトライしましたが、うまくいきませんでした。それでも<strong>スクリプター</strong>（キャラクターが登場して会話する、劇のような場面を組む仕事）で実績を残すことができました。</p>
 
           <p>ゲームを作るのが好きだったからだと思います。好きだったから、悩みながらも進捗の管理を覚え、新しい技術を学び、案件に活かすことができました。</p>
 
-          <p><strong>興味から始まり、挑戦してみる。そこから学ぶことが、一番の学びだと思います。</strong></p>
-
-          <h3 style="margin: 28px 0 10px; font-size: 1.05rem; color: #0f2c59;">大人になるまで待つのは、もったいない</h3>
-
-          <p>AIが広がったことで、<strong>できることよりも、経験からくる判断が大事になりました。</strong></p>
+          <p><strong>興味から始まり、挑戦してみる。そこから学ぶことが、一番の学びだと思います。</strong></p></div>
+            </details>
+            <details class="school-detail">
+              <summary><span><strong>大人になるまで待つのは、もったいない</strong><span class="school-read">今、挑戦してほしい理由を読む</span></span></summary>
+              <div class="school-detail-body"><p>AIが広がったことで、<strong>できることよりも、経験からくる判断が大事になりました。</strong></p>
 
           <p>そしていま、ゲームを作る敷居は下がっています。<strong>お子様の年齢でも挑戦できる時代です。</strong>Robloxは遊んでいる人にお子さんが多いので、気持ちのわかる中学生や高校生が、世界で活躍しています。</p>
 
-          <p><strong>大人になるまで待つのは、もったいないと思いませんか。</strong></p>
+          <p><strong>大人になるまで待つのは、もったいないと思いませんか。</strong></p></div>
+            </details>
 
-          <h3 style="margin: 28px 0 10px; font-size: 1.05rem; color: #0f2c59;">ゲームを作る過程で得られるもの</h3>
-
-          <ul style="margin: 0 0 14px; padding-left: 1.2em; line-height: 1.9;">
-            <li>ユーザーの気持ちを考える</li>
-            <li>チームでの開発</li>
-            <li>プログラミング思考</li>
-            <li>最先端の技術</li>
-          </ul>
-
-          <p>箇条書きでは語りきれません。</p>
-
-          <p style="margin-top: 20px;">ご興味があれば、友だち追加をして<strong>現場を経験したクリエイターと話してみませんか。</strong></p>
-
-          <p style="text-align:center; margin: 18px 0 0;">
-            <a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" width="116" loading="lazy" /></a>
-          </p>
+            <h3 class="school-gains-title">ゲームを作る過程で得られるもの</h3>
+            <ul class="school-gains">
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 28L4 16C-3 5 10-1 16 9 22-1 35 5 28 16z"/></svg><span>ユーザーの<br />気持ちを考える</span></li>
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="10" r="5"/><circle cx="24" cy="12" r="4"/><path d="M2 28v-5a9 9 0 0118 0v5M23 20a7 7 0 017 7"/></svg><span>チームでの開発</span></li>
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 7L2 16l8 9M22 7l8 9-8 9M19 3l-6 26"/></svg><span>プログラミング思考</span></li>
+              <li><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4a8 8 0 00-9 11L3 23a4 4 0 006 6l8-8A8 8 0 0028 10l-6 6-6-6z"/></svg><span>最先端の技術</span></li>
+            </ul>
+            <p class="school-note">箇条書きでは語りきれません。</p>
+            <p class="school-contact">新しい形なので、判断が難しいのは当然だと思います。<br />ご興味があれば、<strong>現場を経験したクリエイターと話してみませんか。</strong></p>
+            <p class="school-line"><a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" width="116" loading="lazy" /></a></p>
+          </div>
         </div>
       </section>
 
