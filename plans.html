@@ -6,16 +6,6 @@
     <title>通い方（プラン） | ブロマスゲームラボ</title>
     <meta name="description" content="体験会のあとの続け方をご案内します。会場で一緒に学ぶ通常プランと、ペースを合わせられる個別プラン。オリジナルの企画・作品づくりはどちらにも追加できます。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/plans.html" />
-    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
-         先読みしてしまい出し分けの意味がなくなる -->
-    <link
-      rel="preload"
-      as="image"
-      href="assets/R.webp"
-      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
-      imagesizes="(max-width: 767px) 77vw, 480px"
-      type="image/webp"
-    />
     <meta property="og:title" content="通い方（プラン） | ブロマスゲームラボ" />
     <meta property="og:description" content="体験会のあとの続け方。会場で一緒に学ぶ通常プランと、ペースを合わせられる個別プランから選べます。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -72,6 +62,42 @@
          開催情報の構造化データを複数ページへ重複させないため。 -->
     <!-- events/*.js と curriculum/curriculum.js は読み込まない。
          このページは日程も教材一覧も扱わないため、preload も外してある。 -->
+
+    <!-- plans.html 専用。文字はHTML、装飾はインラインSVG/CSSで保持する。 -->
+    <style>
+      .plans-visual { --plan-ink: #163c55; }
+      .plans-visual h1 { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0 0 10px; color: var(--plan-ink); }
+      .plans-visual .plans-intro { color: var(--subtext); margin: 0 0 20px; line-height: 1.7; }
+      .plans-visual .plan-panel { border: 1px solid #cddfe4; border-radius: 16px; padding: 18px; background: #fff; }
+      .plans-visual .plan-start { display: flex; align-items: center; gap: 14px; background: #eef8fb; }
+      .plans-visual .plan-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+      .plans-visual h2, .plans-visual h3 { margin: 0; color: var(--plan-ink); font-size: 1.15rem; line-height: 1.5; }
+      .plans-visual .plan-icon { width: 44px; height: 44px; flex: 0 0 44px; color: #16748c; }
+      .plans-visual p { line-height: 1.7; }
+      .plans-visual .plan-panel p { margin: 6px 0 0; color: var(--subtext); }
+      .plans-visual .plan-connector { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 8px 0; color: #486675; font-size: .85rem; }
+      .plans-visual .plan-arrow { width: 24px; height: 28px; flex-shrink: 0; }
+      .plans-visual .plan-choice-title { text-align: center; margin: 0 0 12px; }
+      .plans-visual .plan-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .plans-visual .plan-group { border-top: 4px solid #32a8bd; }
+      .plans-visual .plan-personal { border-top: 4px solid #bd9556; }
+      .plans-visual .plan-personal .plan-icon { color: #956c30; }
+      .plans-visual .plan-label { display: block; font-size: .8rem; font-weight: 500; color: #526475; }
+      .plans-visual .plan-status { display: inline-block; font-size: .75rem; color: #71501d; background: #fff1d4; padding: 2px 8px; border-radius: 20px; }
+      .plans-visual ul { padding-left: 1.2em; margin: 8px 0 0; color: var(--subtext); line-height: 1.7; }
+      .plans-visual .plan-contact { font-size: .9rem; border-top: 1px solid #e5e9ed; padding-top: 10px; }
+      .plans-visual .plan-option { background: linear-gradient(110deg, #f4f2fb, #f3f8ff); border-color: #dcd6ee; }
+      .plans-visual .plan-option .plan-heading { margin-bottom: 4px; }
+      .plans-visual .plan-option .plan-icon { color: #78619f; }
+      .plans-visual .plan-footnote { margin: 14px 0 0; font-size: .9rem; color: var(--subtext); }
+      .plans-visual .plan-footnote a { color: #0f6e9e; }
+      @media (max-width: 640px) {
+        .plans-visual .plan-choices { grid-template-columns: 1fr; gap: 10px; }
+        .plans-visual .plan-panel { padding: 14px; }
+        .plans-visual .plan-heading { margin-bottom: 8px; }
+        .plans-visual .plan-icon { width: 36px; height: 36px; flex-basis: 36px; }
+      }
+    </style>
   </head>
 
   <body>
@@ -93,47 +119,36 @@
       </div>
     </nav>
 
-    <main>
-      <section class="section">
+    <main class="plans-visual">
+      <section class="section" aria-labelledby="plans-title">
         <div class="container card">
-          <h2>体験会のあとの続け方</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;">体験会のあとに、続け方を選べます。オリジナルの企画・作品づくりは、どちらのプランにも追加できるオプションです。途中での切り替えも相談しながら調整できます。</p>
-
-          <div class="flow-list" aria-label="体験から継続・オプションまでの流れ">
-            <div class="flow-step">
-              <div class="flow-title">① 体験</div>
-              <p>イベントページからお申し込み。特定の会場（路地裏など）で開催します。</p>
-            </div>
-            <div class="flow-arrow">↓<span class="flow-note">（参加後にお知らせ）</span></div>
-            <div class="flow-step">
-              <div class="flow-title">② 継続を選ぶ</div>
-              <ul>
-                <li>通常プラン継続（同じ会場、既存カリキュラム）</li>
-                <li>個別プラン（オンライン・自宅、場所とペースを合わせる）<span class="flow-note">※現在準備中</span></li>
-              </ul>
-            </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-step">
-              <div class="flow-title">③ オプション：オリジナル企画・作品づくり</div>
-              <p>通常プラン・個別プランどちらでも追加できます。</p>
-            </div>
+          <h1 id="plans-title">体験会のあとの続け方</h1>
+          <p class="plans-intro">まずは体験。そのあと、お子さんに合う続け方を選べます。途中での切り替えも相談しながら調整できます。</p>
+          <div class="plan-panel plan-start">
+            <svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="7" width="36" height="26" rx="4"/><path d="M17 41h14M24 33v8M20 15l11 6-11 6z"/></svg>
+            <div><h2>① まずは体験</h2><p>イベントページからお申し込み。路地裏などの会場で開催します。</p></div>
           </div>
-
-          <div class="grid-2 course-item-grid">
-            <div class="course-item">
-              <div class="course-item-title">通常プラン（グループ学習・制作）</div>
-              <p>みんなで一緒に学び・制作するスタイルです。同じ会場で、既存カリキュラムから日程とコースを選んでお申し込みください。</p>
-            </div>
-            <div class="course-item">
-              <div class="course-item-title">個別プラン（オンライン・自宅）</div>
-              <p>場所や時間を、お子さんのペースに合わせて選べるスタイルです。学ぶ内容は通常プランと同じカリキュラムから選べます。担当講師から専用ページをご案内し、日程などを選んでいただきます。（現在準備中）</p>
-              <p><strong>ご希望の方は、体験会当日にスタッフへお申し付けください。公式LINEにご招待いたします。</strong></p>
-              <p>オリジナルの企画・作品づくりに挑戦したい方は、通常プラン・個別プランどちらでもオプションとしてご相談いただけます。</p>
-            </div>
+          <div class="plan-connector"><svg class="plan-arrow" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v22M5 17l7 7 7-7"/></svg><span>参加後に、続け方をご案内</span></div>
+          <h2 class="plan-choice-title">② 続け方を選ぶ</h2>
+          <div class="plan-choices">
+            <section class="plan-panel plan-group" aria-labelledby="plan-group-title">
+              <div class="plan-heading"><svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="14" r="6"/><circle cx="34" cy="17" r="5"/><path d="M5 37v-5a12 12 0 0124 0v5zM32 27a10 10 0 0111 10H34"/></svg><h3 id="plan-group-title">通常プラン<span class="plan-label">グループ学習・制作</span></h3></div>
+              <p>みんなで一緒に学び・制作するスタイル。</p>
+              <ul><li>体験会と同じ会場で学ぶ</li><li>既存カリキュラムから日程とコースを選んでお申し込み</li></ul>
+            </section>
+            <section class="plan-panel plan-personal" aria-labelledby="plan-personal-title">
+              <div class="plan-heading"><svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="7" width="38" height="29" rx="4"/><circle cx="24" cy="17" r="5"/><path d="M14 30a10 10 0 0120 0M17 42h14M24 36v6"/></svg><h3 id="plan-personal-title">個別プラン<span class="plan-label">オンライン・自宅 <span class="plan-status">現在準備中</span></span></h3></div>
+              <p>お子さんのペースに合わせるスタイル。</p>
+              <ul><li>場所や時間を相談して選ぶ</li><li>通常プランと同じカリキュラム</li><li>担当講師が専用ページをご案内し、日程などを選択</li></ul>
+              <p class="plan-contact"><strong>ご希望の方は体験会当日にスタッフへ。公式LINEにご招待します。</strong></p>
+            </section>
           </div>
-          <div class="info" style="margin-top: 16px;">
-            取り組める教材は<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>をご覧ください。体験会と教材が共通なので、続きからスムーズに始められます。
-          </div>
+          <div class="plan-connector"><svg class="plan-arrow" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v22M5 17l7 7 7-7"/></svg><span>どちらのプランにも追加できます</span></div>
+          <section class="plan-panel plan-option" aria-labelledby="plan-option-title">
+            <div class="plan-heading"><svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5l5 12 13 2-10 9 3 14-11-7-11 7 3-14L6 19l13-2z"/></svg><h2 id="plan-option-title"><span class="plan-label">③ ご希望に応じたオプション</span>オリジナル企画・作品づくり</h2></div>
+            <p>自分だけの企画・作品づくりに挑戦したい方は、ご相談ください。</p>
+          </section>
+          <p class="plan-footnote">取り組める教材は<a href="curriculum.html">カリキュラム一覧</a>へ。体験会と教材が共通なので、続きからスムーズに始められます。</p>
         </div>
       </section>
     </main>
