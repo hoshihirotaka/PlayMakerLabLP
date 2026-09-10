@@ -141,6 +141,19 @@
                判定は timetable の audience プロパティで、ラベルの文言では判定していない。 -->
           <div id="event-list" class="event-list" data-audience="adult" data-compact></div>
 
+
+          <!-- 日程が合わなかった方の受け皿（2026-09-10 追加）。schedule.html と同じ役割。
+               大人向けだけボタンが無く、ここだけ穴が空いていた
+               （content/04_共通/公式LINE設定.md §0-b・「サイトへの反映」の節）。
+               申込リンクより下に置く。上に置くと申し込む人の邪魔になる。
+               計測は js/site.js の ⑦ line_click。click_item に "adults" が入るので、
+               schedule.html からの登録と区別できる。doorkeeper_click とは混ぜない。 -->
+          <p class="notice"><strong>この日程では都合がつきませんでしたか？</strong><br />
+            この講座は<strong>1回ごとのお申し込み</strong>で、次回のお約束はありません。急いで決めていただく必要もありません。<br />
+            公式LINEにご登録いただくと、<strong>次回以降の日程をお知らせします。</strong>都合の合う回でご参加ください。<br />
+            「自分の仕事で使えるか」といったご質問も、そのままトークにお送りください（平日10時〜21時ごろにお返事します）。
+            <a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" width="116" loading="lazy" /></a>
+          </p>
           <p style="margin: 20px 0 0; color: var(--subtext); font-size: 0.9rem;">お子様向けの体験会の日程は<a href="schedule.html" style="color: #0f6e9e;">開催日程</a>をご覧ください。</p>
         </div>
       </section>
