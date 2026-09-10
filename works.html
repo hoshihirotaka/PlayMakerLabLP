@@ -6,16 +6,6 @@
     <title>参加者の作品ギャラリー | ブロマスゲームラボ</title>
     <meta name="description" content="ブロマスゲームラボの体験会で子どもたちが作ったRobloxの作品を紹介しています。ブラウザでそのまま遊べる作品もあります。埼玉・南与野で開催中。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/works.html" />
-    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
-         先読みしてしまい出し分けの意味がなくなる -->
-    <link
-      rel="preload"
-      as="image"
-      href="assets/R.webp"
-      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
-      imagesizes="(max-width: 767px) 77vw, 480px"
-      type="image/webp"
-    />
     <meta property="og:title" content="参加者の作品ギャラリー | ブロマスゲームラボ" />
     <meta property="og:description" content="体験会で子どもたちが作ったRobloxの作品を紹介しています。ブラウザでそのまま遊べる作品もあります。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -77,6 +67,24 @@
     <!-- events/*.js と curriculum/curriculum.js は読み込まない。
          このページはイベントデータもカリキュラムデータも使わないため、
          index.html にある preload も意図的に外してある。 -->
+    <!-- このページ専用。共通CSS・描画JSは変更しない。 -->
+    <style>
+
+      .works-visual h1 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.5; color: #163c55; margin: 0 0 16px; }
+      .works-visual .visual-heading { display: flex; align-items: center; gap: 12px; }
+      .works-visual .visual-icon { flex-shrink: 0; color: #16748c; }
+      .works-visual .visual-heading h1, .works-visual .visual-heading h2 { margin: 0; }
+      .works-visual .visual-heading { margin-bottom: 16px; }
+
+      .works-visual .works-label { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; margin: 0 0 12px; color: #163c55; }
+      .works-visual .works-caption { display: block; font-size: .8rem; font-weight: 500; color: var(--subtext); }
+      .works-visual .works-label svg { width: 26px; height: 26px; }
+      .works-visual .work-card { box-shadow: none; border-color: #d5e4e9; }
+      .works-visual .work-body { background: linear-gradient(135deg, #f2f8fa, #fff 60%); }
+      .works-visual .work-meta { border-left: 3px solid #63aabc; padding-left: 8px; }
+      .works-visual .game-title { border-left: 4px solid #a58ac4; background: #f5f2fa; }
+      .works-visual #play { padding-top: 12px; border-top: 1px solid #dce5ec; }
+    </style>
   </head>
   <body>
     <div class="orb one" aria-hidden="true"></div>
@@ -97,10 +105,10 @@
       </div>
     </nav>
 
-    <main>
+    <main class="works-visual">
       <section class="section" id="works">
         <div class="container card">
-          <h2>作品ギャラリー</h2>
+          <div class="visual-heading"><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="3"/><circle cx="11" cy="11" r="3"/><path d="M4 25l8-8 5 5 6-9 6 9"/></svg><h1>作品ギャラリー</h1></div>
 
           <!--
             ▼ ここに載せてよいのは、アンケートの「作品の掲載可否」で
@@ -115,7 +123,7 @@
               回ごとの照合の記録は ~/curriculum/運営/作品掲載の許諾記録.md にある
               （このリポジトリはPUBLICなので、個別の事情はそちらに置く）。
           -->
-          <h3 style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ワークショップで生まれた作品（講師コメント付き）</h3>
+          <h2 class="works-label"><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27l2-8L22 4l6 6-15 15-8 2zM18 8l6 6M7 19l6 6"/></svg><span>ワークショップで生まれた作品<span class="works-caption">講師コメント付き</span></span></h2>
           <div class="grid-2" style="margin-bottom: 24px;">
             <div class="work-card">
               <picture>
@@ -244,7 +252,7 @@
             番号（play1 / play2）にしないのは、並び順を変えたり作品を足したときに
             リンクの指す先がズレるため。作品を追加するときは id も作品名で付ける。
           -->
-          <h3 id="play" style="margin: 0 0 12px; font-size: 1.05rem; color: #0f2c59;">ブラウザでそのまま遊べる作品</h3>
+          <h2 id="play" class="works-label"><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="5"/><path d="M8 16h6M11 13v6M22 14h.01M25 18h.01"/></svg><span>ブラウザでそのまま遊べる作品</span></h2>
           <div class="game-grid">
             <div class="game-card" id="play-neko">
               <div class="game-title">小学3年生の作品: ねこレストラン物語</div>

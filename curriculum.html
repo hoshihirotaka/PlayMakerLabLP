@@ -6,16 +6,6 @@
     <title>カリキュラム一覧 | ブロマスゲームラボ</title>
     <meta name="description" content="ブロマスゲームラボで学べる教材の一覧です。Robloxコースは体験用・プログラミング・クリエイティブ、AIコースはゲーム制作まで。回ごとにテーマが変わります。" />
     <link rel="canonical" href="https://hoshihirotaka.github.io/PlayMakerLabLP/curriculum.html" />
-    <!-- ヒーロー画像の先読み。picture側と同じ条件にしないと、モバイルで1080px版を
-         先読みしてしまい出し分けの意味がなくなる -->
-    <link
-      rel="preload"
-      as="image"
-      href="assets/R.webp"
-      imagesrcset="assets/R-600.webp 600w, assets/R-900.webp 900w, assets/R.webp 1080w"
-      imagesizes="(max-width: 767px) 77vw, 480px"
-      type="image/webp"
-    />
     <meta property="og:title" content="カリキュラム一覧 | ブロマスゲームラボ" />
     <meta property="og:description" content="Roblox×AIで学べる教材の一覧。体験用・プログラミング・クリエイティブから選べます。" />
     <meta property="og:image" content="https://hoshihirotaka.github.io/PlayMakerLabLP/assets/R.png" />
@@ -77,6 +67,30 @@
     <!-- JSON-LD（Event / Organization）は index.html にのみ置く。
          開催情報の構造化データを複数ページへ重複させないため。 -->
     <!-- events/*.js は読み込まない。このページは日程を扱わないため。 -->
+    <!-- このページ専用。共通CSS・描画JSは変更しない。 -->
+    <style>
+
+      .curriculum-visual h1 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.5; color: #163c55; margin: 0 0 16px; }
+      .curriculum-visual .visual-heading { display: flex; align-items: center; gap: 12px; }
+      .curriculum-visual .visual-icon { flex-shrink: 0; color: #16748c; }
+      .curriculum-visual .visual-heading h1, .curriculum-visual .visual-heading h2 { margin: 0; }
+      .curriculum-visual .visual-heading { margin-bottom: 16px; }
+
+      .curriculum-visual .curriculum-key { margin: 0 0 16px; display: grid; gap: 4px; padding: 10px 14px; border-radius: 14px; background: #f1f8fa; }
+      .curriculum-visual .curriculum-key > div { display: grid; grid-template-columns: 24px 9em 1fr; gap: 8px; align-items: center; }
+      .curriculum-visual .curriculum-key svg { width: 22px; height: 22px; }
+      .curriculum-visual dt { font-weight: 700; font-size: .85rem; color: #163c55; }
+      .curriculum-visual dd { margin: 0; font-size: .85rem; color: var(--subtext); }
+      .curriculum-visual .curri-card { border-top: 3px solid #55aabb; box-shadow: none; background: linear-gradient(135deg, #f4fafb, white 45%); }
+      .curriculum-visual .curri-card:has(.tag-program) { border-top-color: #49a37d; }
+      .curriculum-visual .curri-card:has(.tag-creative) { border-top-color: #a58ac4; }
+      .curriculum-visual .curri-card.soon { border-top-color: #b3bac2; }
+      .curriculum-visual .curri-icon { float: left; margin-right: 8px; }
+      @media (max-width: 640px) {
+        .curriculum-visual .curriculum-key > div { grid-template-columns: 22px 1fr; gap: 0 8px; }
+        .curriculum-visual .curriculum-key dd { grid-column: 2; }
+      }
+    </style>
   </head>
 
   <body>
@@ -98,11 +112,15 @@
       </div>
     </nav>
 
-    <main>
+    <main class="curriculum-visual">
       <section class="section" id="curriculum">
         <div class="container card">
-          <h2>カリキュラム一覧</h2>
-          <p style="color: var(--subtext); margin: 0 0 16px;"><strong>体験用</strong>はプログラミングなしで初めての方向け、<strong>プログラミング</strong>は仕組みや動きをコードで作る教材、<strong>クリエイティブ</strong>はデザインや演出など「表現」を楽しむ教材です。</p>
+          <div class="visual-heading"><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 8L3 16l8 8M21 8l8 8-8 8M18 5l-4 22"/></svg><h1>カリキュラム一覧</h1></div>
+          <dl class="curriculum-key" aria-label="教材の種類">
+            <div><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="5"/><path d="M8 16h6M11 13v6M22 14h.01M25 18h.01"/></svg><dt>体験用</dt><dd>初めての方へ。プログラミングなしで体験</dd></div>
+            <div><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 8L3 16l8 8M21 8l8 8-8 8M18 5l-4 22"/></svg><dt>プログラミング</dt><dd>仕組みや動きをコードで作る</dd></div>
+            <div><svg class="visual-icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27l2-8L22 4l6 6-15 15-8 2zM18 8l6 6M7 19l6 6"/></svg><dt>クリエイティブ</dt><dd>デザインや演出など、表現を楽しむ</dd></div>
+          </dl>
           <div class="curri-tabs" id="curriTabs">
             <button class="curri-tab is-active" type="button" data-filter="all">すべて</button>
             <button class="curri-tab" type="button" data-filter="Roblox">Robloxコース</button>
