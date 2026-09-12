@@ -33,40 +33,9 @@
   // そのときは schedule.html 側で読ませる設計に変える（申込導線の移行方針）。
   var audienceLabel = audience === "adult" ? "大人向け" : "お子様向け";
   // data-compact のときは、1回を数行にまとめた簡素表示にする。
-  // 時間割・対象・定員・持ち物はDoorkeeper側に同じものがあるため出さない
-  // （日程ページに来るのは「調べている人」で、申込の詳細は次の画面で足りる）。
+  // 各枠の内容・時間・参加費を表示する。同内容の枠は時間をまとめ、
+  // 経験者向けは開閉して確認できる。分類はイベントの構造化フィールドを使う。
   var compact = list.hasAttribute("data-compact");
-
-  // 参加費の1行サマリー。金額は events/*.js だけを見て組み立てる。
-  // ⚠️ ここに金額を書かないこと。10月の改定は events/*.js を直せば追従する。
-  //   子ども向け … timetable の price（構造化されている）
-  //   大人向け   … price を持たない（バッジを付けないため）。label 内の金額を読む
-  // ⚠️ 全枠ではなく slotsFor() を通すこと。大人向けページで子ども向けの金額まで
-  //    並べてしまうため（申込先は大人向けなので、金額と行き先が食い違う）。
-  function priceSummary(e) {
-    var seen = {};
-    var out = [];
-    slotsFor(e).forEach(function (t) {
-      // そのページの申込ボタンで申し込めるものだけを並べる。
-      // お子様向けページに大人向けの金額を出すと、申し込めないものの金額が
-      // ボタンの隣に並ぶ（2026-08-25の取り違えと同じ形）。大人向けの案内は
-      // 金額ではなく、日程セクション下の .notice で文章として出す。
-      if (!audience && t.audience) return;
-      var yen = (t.label || "").match(/[0-9,]+円/g) || [];
-      var price = t.price || yen[0];
-      if (!price) return;                      // 休憩・設営・延長タイムなど
-      // 「①Robloxコース（プログラミングあり）　2,900円 / …」→「Robloxコース」
-      var name = (t.label || "")
-        .replace(/^[\u2460-\u2473]/, "")
-        .split(/[（\u3000]/)[0]
-        .trim();
-      if (!name || seen[name]) return;
-      seen[name] = true;
-      // 金額が複数書いてある枠（PCレンタル付きなど）は「〜」を添える
-      out.push(name + " " + price + (t.price ? "" : (yen.length > 1 ? "〜" : "")));
-    });
-    return out.join("　／　");
-  }
 
   function slotsFor(e) {
     if (!audience) return e.timetable || [];
@@ -82,14 +51,18 @@
     return;
   }
 
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
+  var todayId = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  if (compact) events = events.filter(function (e) { return e.id >= todayId; });
+  if (!events.length) {
+    list.innerHTML = '<p class="curri-loading">次回の開催が決まりましたら、こちらでお知らせします。</p>';
+    return;
+  }
   var openIndex = -1;
   var nextEvent = null;
 
   for (var j = 0; j < events.length; j++) {
     var d = new Date(events[j].id + "T00:00:00+09:00");
-    if (!isNaN(d.getTime()) && d >= today) {
+    if (!isNaN(d.getTime()) && events[j].id >= todayId) {
       openIndex = j;
       nextEvent = events[j];
       break;
@@ -113,43 +86,42 @@
 
     // 簡素表示。開閉せず、1回ぶんを数行で出す。
     if (compact) {
-      // ⚠️ ev.doorkeeperUrl はお子様向けの申込先。audience 指定時にそのまま使うと
-      //    大人向けページの申込ボタンが子ども向けイベントへ送る（2026-08-25に本番で発生）。
+      function esc(value) {
+        return String(value || "").replace(/[&<>"']/g, function (c) {
+          return {"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"}[c];
+        });
+      }
+      var slots = slotsFor(ev).filter(function (t) {
+        return audience ? true : (!t.audience && t.price);
+      });
+      var first = [];
+      slots.filter(function (t) { return t.level !== "experienced"; }).forEach(function (t) {
+        var same = first.find(function (g) { return g.title === t.title && g.price === t.price && g.adultPrice === t.adultPrice && g.description === t.description && g.separateBooking === t.separateBooking; });
+        if (same && t.title) same.time += " ／ " + t.time;
+        else first.push(Object.assign({}, t));
+      });
+      var experienced = slots.filter(function (t) { return t.level === "experienced"; });
+      function slotHtml(t) {
+        var title = t.title || t.label;
+        var cost = t.adultPrice || t.price || "参加費は準備中";
+        return '<div class="visit-slot"><h4>' + esc(title) + '</h4>' +
+          '<p class="visit-slot-time">' + esc(t.time) + '</p>' +
+          (t.description ? '<p>' + esc(t.description) + '</p>' : '') +
+          '<p class="visit-slot-price">' + (t.audience ? 'PC持参 ' : '') + esc(cost) + '</p>' +
+          (t.separateBooking ? '<p class="visit-small">この体験はRobloxとは別のお申し込みです。</p>' : '') +
+          '</div>';
+      }
       var cSlot = slotsFor(ev)[0] || {};
       var cApply = audience ? cSlot.doorkeeperUrl : (ev.comingSoon ? null : ev.doorkeeperUrl);
-      var cPrice = priceSummary(ev);
-      // ev.datetime は開催全体の時間帯（例 13:00-20:30）。大人向けページでそのまま出すと
-      // 講座の時間に見えてしまうため、その枠の時間に差し替える。
-      // 同じ日に内容の違う枠が並ぶ回があるため（9/19は昼＝Googleコネクト、夜＝Gemini Notebook）、
-      // 時間だけでなく label の括弧書きも添える。どちらに申し込むかの判断材料になる。
-      var cWhen = audience
-        ? ev.date + " " + slotsFor(ev).map(function (t) {
-            var sub = (t.label || "").match(/（([^）]+)）/);
-            return t.time + (sub ? "（" + sub[1] + "）" : "");
-          }).join("　／　")
-        : ev.datetime;
-      return (
-        '<div class="event-row" id="event-' + ev.id + '">' +
-          '<div class="event-row-main">' +
-            '<div class="event-row-item"><span>開催日</span><span>' + cWhen + "</span></div>" +
-            '<div class="event-row-item"><span>会場</span><span>' + locationText + "（" + areaText + "）</span></div>" +
-            // バッジは ev.trialPrice: true のときだけ。price があるだけでは出さない
-            // （2026-09-08）。以前は無条件だったので、10月の正規価格に「今だけお試し価格」が
-            // 付く状態だった。**書き忘れたらバッジが出ないだけ**になるよう、安全側に倒してある。
-            (cPrice
-              ? '<div class="event-row-item"><span>参加費</span><span>' + cPrice +
-                  (ev.trialPrice ? '<span class="price-badge">今だけお試し価格</span>' : "") +
-                  "</span></div>"
-              : "") +
-          "</div>" +
-          // トップは大人向け・お子様向けの両方の入口で、参加費の行には両方の金額が並ぶ。
-          // ボタンだけ見て別のイベントに申し込むのを防ぐため、誰向けかを添える。
-          (cApply
-            ? '<div class="apply-block"><span class="apply-label">' + audienceLabel + '</span>' +
-                '<a class="event-apply" href="' + cApply + '" target="_blank" rel="noreferrer">お申し込みはこちら</a></div>'
-            : '<span class="event-apply event-apply--soon">申込受付準備中</span>') +
-        "</div>"
-      );
+      return '<article class="visit-event" id="event-' + ev.id + '">' +
+        '<h3>' + esc(ev.date) + '</h3>' +
+        '<p class="visit-small">' + esc(locationText) + '（' + esc(areaText) + '）</p>' +
+        '<div class="visit-slots">' + first.map(slotHtml).join('') + '</div>' +
+        (experienced.length ? '<details class="visit-more"><summary>参加経験のある方へ：プログラミングの枠を見る</summary>' + experienced.map(slotHtml).join('') + '</details>' : '') +
+        (ev.trialPrice ? '<p class="visit-small">9月までのお試し価格です。</p>' : '') +
+        (cApply ? '<a class="event-apply" href="' + esc(cApply) + '" target="_blank" rel="noreferrer">' +
+          (audience ? 'この日の講座を選んで申し込む' : 'この日の時間を選んで申し込む') + '</a>' :
+          '<p class="event-apply--soon">申込受付準備中</p>') + '</article>';
     }
     var timetableRows = slotsFor(ev).map(function (t) {
       // 上と同じ理由でバッジは ev.trialPrice のときだけ（2026-09-08）

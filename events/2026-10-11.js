@@ -29,14 +29,14 @@
   timetable: [
     // 2026-05-15にRobloxと統合したあと、子ども向けAIの参加者は 5→3→0 と消えた。
     // ページを分けて出し直す（2026-09-08 定例）。尺は30分のまま・延長は未確定
-    { time: "11:00-11:30", label: "①AIコース（DreamCore）", price: "2,000円" },
+    { time: "11:00-11:30", label: "①AIコース（DreamCore）", course: "ai-game", level: "beginner", title: "AIでゲームを作る体験", description: "作りたいゲームを言葉にして、AIと一緒に形にします。", separateBooking: true, price: "2,000円" },
     { time: "11:30-11:50", label: "延長タイム・親御様個別相談" },
     { time: "11:50-12:00", label: "設営・入れ替え" },
-    { time: "12:00-13:00", label: "②Robloxコース", price: "3,000円" },
+    { time: "12:00-13:00", label: "②Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "Roblox Studioでゲームを作ります。題材は決まり次第ご案内します。", price: "3,000円" },
     { time: "13:00-13:20", label: "延長タイム・親御様個別相談" },
     // 通しで回すとここが消える。日曜でまとまった休憩が取れるのはこの1回だけ
     { time: "13:20-14:20", label: "休憩" },
-    { time: "14:20-15:20", label: "③Robloxコース", price: "3,000円" },
+    { time: "14:20-15:20", label: "③Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "Roblox Studioでゲームを作ります。題材は決まり次第ご案内します。", price: "3,000円" },
     { time: "15:20-15:40", label: "延長タイム・親御様個別相談" },
     { time: "15:40-16:00", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。
@@ -47,6 +47,8 @@
       time: "16:00-17:00",
       label: "④大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
+      title: "大人向けAI講座（テーマは準備中）",
+      description: "扱う内容が決まり次第、このページでご案内します。",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円"
     }
   ]

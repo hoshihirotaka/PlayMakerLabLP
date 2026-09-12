@@ -78,6 +78,7 @@
       </style>
     </noscript>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="visit.css">
     <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
     <!-- JSON-LD は schedule.html にある。子ども向け体験会のEventを載せているため、
          このページ（大人向け）には置かない。 -->
@@ -102,38 +103,15 @@
       </div>
     </nav>
 
-    <main>
+    <main class="visit-page">
       <section class="section" id="adults">
         <div class="container card">
-          <h2>大人向けAI講座</h2>
-
-          <!-- 「この講座のポイント」（2026-09-09 追加）
-               以前は .info 4つが全部「条件」で、比較材料がひとつも無かった。
-               ポイントを上に出し、条件はリストにして下へ（詳細は申込ページにある）。
-               ⚠️ 保護者を前提にしない。これまでの大人の参加者は保護者3名・独身1名で、
-                  4人に1人は保護者ではない（→ 決定ログ「大人の参加者の内訳」）。 -->
-          <p style="color: var(--subtext); margin: 0 0 14px;">仕事でAIを使ってみたい方向けの、<strong>60分の講座</strong>です。回ごとにテーマが違います。</p>
-
-          <h3 style="margin: 0 0 10px; font-size: 1.05rem; color: #0f2c59;">この講座のポイント</h3>
-          <ul style="margin: 0 0 16px; padding-left: 1.2em; font-size: 0.95rem;">
-            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">見ているだけの時間はありません</strong>ご自身のPCで、その場で動かします。</li>
-            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">1回ごとのお申し込み</strong>受けたい回だけ。通い続けるお約束はありません。</li>
-            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">教えるのは、子ども向けのゲーム教室を運営しているゲーム開発者</strong>ゲーム業界歴20年以上。各回8名までで見ます。</li>
-            <li style="line-height: 1.7;"><strong style="display: block; color: #0f2c59;">同じ日に、お子様向けの教室もあります</strong>親子で来ていただくこともできます（お一人でのご参加が大半です）。</li>
-          </ul>
-
-          <h3 style="margin: 20px 0 10px; font-size: 1.05rem; color: #0f2c59;">ご参加にあたって</h3>
-          <ul style="margin: 0 0 16px; padding-left: 1.2em; font-size: 0.95rem; line-height: 1.7; color: var(--subtext);">
-            <li>対象は<strong>仕事でAIを使ってみたい初心者の方</strong>。ふだんAIを使っていない方を想定しています。</li>
-            <li><strong>Googleアカウント</strong>をお持ちの方（個人の @gmail.com を推奨）。</li>
-            <li>ノートパソコン（Chrome推奨）。お持ちでない方は<strong>レンタル付き</strong>を（4台限定）。</li>
-            <li>お子様の同席、空いているパソコンでのご自身の作業も問題ありません。</li>
-          </ul>
-
-          <div class="curri-note">終了後に<strong>アンケートへのご協力</strong>をお願いする回のため、<strong>通常よりお安く</strong>ご案内しています（5分ほど・記名は任意です）。詳しい条件と持ち物は、各回の申込ページに記載しています。</div>
-
-          <h3 style="margin: 24px 0 12px; font-size: 1.05rem; color: #0f2c59;">開催予定</h3>
-
+          <p class="visit-kicker">大人向けAI講座・初心者歓迎</p>
+          <h1>いつもの仕事で使うAIを、<br />一緒に動かしてみませんか。</h1>
+          <p class="visit-lead">予定の登録、メールの要点整理、資料からのスライド作成。回ごとのテーマに沿って、ご自身のPCで操作を試す60分です。設定から講師と一緒に進めます。</p>
+          <ul class="visit-facts"><li>コードは書きません</li><li>各回8名まで</li><li>1回ごとの申し込み</li><li>PCレンタルあり</li></ul>
+          <h2>やってみたい内容と日程を選ぶ</h2>
+          <p class="visit-small">会場は路地裏GarageMarket（埼玉・南与野）。参加費は各枠に表示しています（当日会場払い）。</p>
           <!-- ▼ お子様向け日程と同じ仕組みを使う。
                描画は js/render-events.js（3ページ共有）。データは events/*.js。
                data-audience="adult" を付けると、大人向けの枠がある回だけ、
@@ -141,7 +119,13 @@
                判定は timetable の audience プロパティで、ラベルの文言では判定していない。 -->
           <div id="event-list" class="event-list" data-audience="adult" data-compact></div>
 
-          <p style="margin: 20px 0 0; color: var(--subtext); font-size: 0.9rem;">お子様向けの体験会の日程は<a href="schedule.html" style="color: #0f6e9e;">開催日程</a>をご覧ください。</p>
+          <div class="visit-prep">
+            <h2>ご参加の準備</h2>
+            <ul><li>Googleアカウントをご用意ください（個人の @gmail.com を推奨）。</li><li>ノートPCをご持参ください。お持ちでない方はレンタル付きチケットをお選びください（4台限定）。</li><li>終了後にアンケートへのご協力をお願いします（5分ほど・記名は任意）。</li></ul>
+            <p>ゲーム業界歴20年以上のゲーム開発者がサポートします。<a href="about.html">講師・会場について</a></p>
+            <p>お一人でもご参加いただけます。お子様の同席も可能です。<a href="schedule.html">お子様向けのゲーム制作体験はこちら</a>。</p>
+          </div>
+          <noscript><p>開催日程とお申し込みは<a href="https://gameschool.doorkeeper.jp/">Doorkeeperの開催予定一覧</a>からご確認ください。</p></noscript>
         </div>
       </section>
 
@@ -158,7 +142,7 @@
             </details>
             <details class="faq-item">
               <summary>Q: 費用は参加費のほかにかかりますか？（有料プランは必要ですか）</summary>
-              <p>A: 不要です。内容は<strong>すべて無料の範囲</strong>で実施できます（無料版には1日の生成回数の上限がありますが、60分で使い切ることはありません）。</p>
+              <p>A: 不要です。内容は<strong>すべて無料の範囲</strong>で実施できます（無料版の利用上限や提供条件によって、当日の進め方を調整する場合があります）。</p>
             </details>
             <details class="faq-item">
               <summary>Q: 会社・学校のGoogleアカウントでも参加できますか？</summary>
@@ -174,7 +158,7 @@
             </details>
             <details class="faq-item">
               <summary>Q: 当日中に全部できるようになりますか？</summary>
-              <p>A: 約60分なので「全部の自動化マスター」まではいきません。代わりに、カレンダー連携・Gmail連携の<strong>型</strong>を持ち帰れる内容にしています。帰宅後にご自身で再現できることを優先します。</p>
+              <p>A: 各回のテーマに沿って、まず一度ご自身で操作することを目指します。帰宅後にも同じ手順を試せるよう、一緒に確認しながら進めます。</p>
             </details>
           </div>
           <p style="margin: 16px 0 0; color: var(--subtext); font-size: 0.9rem;">その回ごとの内容・持ち物の詳細は、各回のお申し込みページに記載しています。</p>

@@ -29,7 +29,7 @@
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198775",
   note: "<strong>路地裏GarageMarketでは土曜はじめての開催です。</strong>13:00〜20:30の通し開催ですが、<strong>受けたい回だけのお申し込みで大丈夫です。</strong><br />②⑥大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。<strong>昼（その1・Googleコネクト）と夜（その2・Gemini Notebook、旧NotebookLM）で内容が違います。</strong>お子様にも同席いただけます。空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />⑤Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①④をお選びください。",
   timetable: [
-    { time: "13:00-14:00", label: "①Robloxコース", price: "1,900円" },
+    { time: "13:00-14:00", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "キーボードの上を走るコースを作ります。", price: "1,900円" },
     { time: "14:00-14:20", label: "延長タイム・親御様個別相談" },
     { time: "14:20-14:30", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。
@@ -40,23 +40,27 @@
       time: "14:30-15:30",
       label: "②大人向けAIコース（その1・Googleコネクト）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
+      title: "カレンダーとメールをAIで整理する",
+      description: "Geminiで予定の登録とGmailの要点整理を実際に試します。",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円",
       doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198874"
     },
     { time: "15:30-15:40", label: "設営・入れ替え" },
-    { time: "15:40-16:10", label: "③AIコース", price: "900円" },
+    { time: "15:40-16:10", label: "③AIコース", course: "ai-game", level: "beginner", title: "AIでゲームを作る体験", description: "作りたいゲームを言葉にして、AIと一緒に形にします。", separateBooking: false, price: "900円" },
     { time: "16:10-16:50", label: "休憩" },
-    { time: "16:50-17:50", label: "④Robloxコース", price: "1,900円" },
+    { time: "16:50-17:50", label: "④Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "キーボードの上を走るコースを作ります。", price: "1,900円" },
     { time: "17:50-18:10", label: "延長タイム・親御様個別相談" },
     { time: "18:10-18:20", label: "設営・入れ替え" },
     // ⑤は募集開始時点でプログラミングありに確定させる（9/13と同じ運用）。
     // 個別プランは公式LINEでご案内している方向けに充てる場合のみ差し替える
-    { time: "18:20-19:20", label: "⑤Robloxコース（プログラミングあり）", price: "1,900円" },
+    { time: "18:20-19:20", label: "⑤Robloxコース（プログラミングあり）", course: "roblox", level: "experienced", title: "Robloxプログラミング", description: "仕掛けをプログラムで動かします。", price: "1,900円" },
     { time: "19:20-19:30", label: "設営・入れ替え" },
     {
       time: "19:30-20:30",
       label: "⑥大人向けAIコース（その2・Gemini Notebook）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
+      title: "手元の資料からスライドを作る",
+      description: "資料を読み込ませ、内容への質問とスライド作成を試します。",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円",
       doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198874"
     }

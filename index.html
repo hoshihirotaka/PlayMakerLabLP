@@ -83,6 +83,7 @@
       </style>
     </noscript>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="visit.css">
     <!-- Google広告(AW-977501883)のタグは、head冒頭のGA4ブロックに統合済み -->
   </head>
   <body>
@@ -107,28 +108,21 @@
     <header class="hero">
       <div class="container hero-inner">
           <div>
-            <!-- 会場は直下の次回開催バーと重複、リピート率は実績バンドと重複のため割愛 -->
+            <!-- 料金は開催日ごとのイベントデータから表示する。 -->
             <div class="tagline">
               <span class="tag">小1〜高校生</span>
-              <span class="tag tag-strong">体験 900円/1,900円</span>
+              <span class="tag tag-strong">PC未経験でもOK</span>
             </div>
-          <h1>Roblox×AIで、<br />自分だけのゲームを作ろう！</h1>
+          <h1>好きなゲームを、<br />自分で作る体験を。</h1>
           <p>
-            ただ遊ぶだけで終わらせない。<br />
-            「どうすれば面白くなるか？」を考えて形にする、ゲームクリエイター教室です。
+            RobloxやAIを使って、アイデアを遊べる形に。<br />
+            ゲーム開発者と一緒に、作って、遊んで、工夫する教室です。
           </p>
           <div class="hero-next" id="hero-next"></div>
-          <!-- 告知。9月の申し込みが始まったことを最初の画面で伝える。
-               ※手で書いた告知なので、役目が終わったらこのブロックごと消す。
-                  日付から自動生成する版は、日程セクションの「このあとの開催」にある。 -->
-          <p class="hero-news">9月の申し込みが始まりました！</p>
+
           <div class="cta-row">
-            <a class="cta" href="#schedule" onclick="gtag('event', 'schedule_click');">直近の予定を確認する</a>
-            <!-- 行き先は #join（まずは一度、遊びに来てください）。
-                 このセクションに公式Instagram・noteへの導線があり、
-                 「雰囲気を確認する」の受け皿になっている。
-                 一度 works.html に変えたが、本人の指示で戻した（2026-08-25）。 -->
-            <a class="cta outline" href="#join">教室の雰囲気を確認する</a>
+            <a class="cta" href="schedule.html" onclick="gtag('event', 'schedule_click');">子ども向けの体験・日程を見る</a>
+            <a class="cta outline" href="adults.html">大人向けAI講座を見る</a>
           </div>
           <div class="hero-note">小学生は保護者の同伴を推奨。中高生は単独参加もOK。家族でのゲーム開発も応援します。</div>
         </div>
@@ -170,61 +164,42 @@
               </picture>
             </div>
           </div>
-          <div class="hero-note">AIとRobloxで、「作る側」になるハードルは子ども世代まで下がりました。大人になるまで待つ理由はありません。</div>
+          <div class="hero-note">教室の様子と参加者の作品。ゲーム制作が初めての方も、一緒に操作を覚えていきます。</div>
         </div>
       </div>
     </header>
 
     <main>
 
-      <!-- 開催実績 -->
-      <section class="section" style="padding-top: 8px;">
+      <section class="section" id="start">
         <div class="container">
-          <div class="stats-band">
-            <div class="stat">
-              <div class="stat-number">20年以上</div>
-              <div class="stat-label">プロのゲーム制作歴</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">3人に1人</div>
-              <div class="stat-label">がリピート参加</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">9割</div>
-              <div class="stat-label">が「楽しかった」と回答</div>
-            </div>
+          <div class="visit-choices">
+            <article class="visit-choice"><p class="visit-kicker">お子様向け</p><h2>自分のゲームを作ってみたい</h2><p>Robloxでコースや仕掛けを作る体験。パソコンは会場でご用意しています。AIでゲームを作る日もあります。</p><p class="visit-small">小学1年生〜高校生・1回から参加OK</p><a class="cta" href="schedule.html">体験内容・時間・料金を見る</a></article>
+            <article class="visit-choice"><p class="visit-kicker">大人向け</p><h2>仕事でAIを使ってみたい</h2><p>予定やメールの整理、資料の活用など、身近な使い方を実際に試す講座です。テーマを選んでご参加いただけます。</p><p class="visit-small">初心者向け・各回60分・PCレンタルあり</p><a class="cta outline" href="adults.html">講座の内容・日程を見る</a></article>
           </div>
-          <p class="stats-note">※これまでの参加記録・アンケート集計より</p>
         </div>
       </section>
-
-      <!-- ゲーム制作に特化した教室です -->
-
-      <!-- ただのゲーム遊び vs クリエイター思考 -->
-      <section class="section">
+      <section class="section" id="schedule">
         <div class="container card">
-          <h2>ただのゲーム遊び vs 世界へ届けるクリエイター</h2>
-          <div class="compare">
-            <div class="compare-card normal">
-              <strong>ただ遊ぶだけ</strong>
-              <ul>
-                <li>遊んで終わり</li>
-                <li>仕組みは分からない</li>
-                <li>発想が広がらない</li>
-              </ul>
-            </div>
-            <div class="compare-card creator">
-              <strong>クリエイター思考</strong>
-              <ul>
-                <li>ルールを設計する</li>
-                <li>面白さを言語化できる</li>
-                <li>世界へ公開できる</li>
-              </ul>
-            </div>
-          </div>
+          <h2>次の子ども向け体験</h2>
+
+          <!-- ここは直近1件だけ。全日程・FAQ・参加者の声は schedule.html にある。
+
+               ▼ 件数の出し分けは下の data-limit で行っている。
+                 描画スクリプトは schedule.html と同じものを共有しているので、
+                 片方だけ直すことはできない（直すなら両方）。
+
+               ▼ イベントを追加する場所は index.html と schedule.html の
+                 それぞれ2か所（head の preload と body 下部の <script>）。
+                 合計4か所。詳しくは AGENTS.md を参照。 -->
+
+          <div id="event-list" data-limit="1" data-compact></div>
+          <p class="cta-block" style="margin: 16px 0 0;"><a class="cta outline" href="schedule.html">ほかの日程・よくある質問を見る</a></p>
+          <!-- .info は中の <strong> が display:block（「日時」などのラベル用）なので
+               文中の強調には使えない。専用の .notice を使う。 -->
+          <p class="notice">保護者様ご自身が学ぶ<strong>大人向けAI講座</strong>は<strong>別のイベント</strong>です。参加条件や持ち物が異なるので、<a href="adults.html">大人向け日程</a>をご覧ください。</p>
         </div>
       </section>
-
       <section class="section" id="works">
         <div class="container card">
           <h2>作品ギャラリー</h2>
@@ -270,104 +245,7 @@
           <p class="cta-block" style="margin: 0;"><a class="cta outline" href="works.html">作品をもっと見る<span class="cta-sub">（遊べる作品もあります）</span></a></p>
         </div>
       </section>
-      <section class="section">
-        <div class="container card">
-          <h2>まずは体験してみる</h2>
-          <div class="grid-3" style="margin-bottom: 18px;">
-            <div class="info">
-              <strong>Roblox制作の基礎</strong>
-              Roblox Studio操作 / ゲーム要素の作り方 / 配信の考え方
-            </div>
-            <div class="info">
-              <strong>AIの使い方</strong>
-              DreamCore・ClaudeCode・Codexを使って最短で試作
-            </div>
-            <div class="info">
-              <strong>企画力と発想法</strong>
-              ルール設計 / 面白さの検証 / 改善サイクル
-            </div>
-          </div>
-          <p style="color:var(--subtext); margin: 0 0 16px;">体験会では2つのコースを同日開催しています。どちらから始めるかを選んでください。</p>
-          <div class="grid-2">
-            <div class="course-card highlight">
-              <div class="course-head">
-                <picture>
-                  <source srcset="assets/roblox.webp" type="image/webp" />
-                  <img src="assets/roblox.png" alt="Robloxコース" width="256" height="256" loading="lazy" decoding="async" />
-                </picture>
-                <div>
-                  <div class="course-title">Robloxコース</div>
-                  <div class="course-meta">対象: 小1〜高校生 / 参加費 1,900円 <span class="price-badge">今だけお試し価格</span><br /><!-- （友達と一緒に参加で両方300円引き） --></div>
-                </div>
-              </div>
-              <div>自分だけのミニゲームを作って、遊んで、改善まで体験。教材（テーマ）は回ごとに変わります（<a href="curriculum.html" style="color: #0f6e9e;">カリキュラム一覧</a>）。世界では中高生クリエイターが活躍するRoblox——その第一歩を、ここで。</div>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-time">前半</div>
-                  <div>まずは「遊べる形」を作る。地形・仕掛け・ゴールを配置する</div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-time">中盤</div>
-                  <div>自由時間でオリジナルなワールドを作る</div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-time">後半</div>
-                  <div>実際に遊んで改善し、公開できる形に近づける</div>
-                </div>
-              </div>
-            </div>
-            <div class="course-card">
-              <div class="course-head">
-                <picture>
-                  <source srcset="assets/ai.webp" type="image/webp" />
-                  <img src="assets/ai.png" alt="AIコース" width="256" height="256" loading="lazy" decoding="async" />
-                </picture>
-                <div>
-                  <div class="course-title">AIコース</div>
-                  <div class="course-meta">対象: 小1〜高校生（文字入力できればOK） / 参加費 900円 <span class="price-badge">今だけお試し価格</span><br /><!-- （友達と一緒に参加で両方300円引き） --></div>
-                </div>
-              </div>
-              <div>AIに指示を出して、アイデアの芯を素早く形に。</div>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-time">前半</div>
-                  <div>アイデアを言葉にしてAIに投げる</div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-time">中盤</div>
-                  <div>できたものを見て、面白さの条件を探る</div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-time">後半</div>
-                  <div>指示を改善して「自分のゲーム」に寄せる</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section" id="schedule">
-        <div class="container card">
-          <h2>直近の開催</h2>
-
-          <!-- ここは直近1件だけ。全日程・FAQ・参加者の声は schedule.html にある。
-
-               ▼ 件数の出し分けは下の data-limit で行っている。
-                 描画スクリプトは schedule.html と同じものを共有しているので、
-                 片方だけ直すことはできない（直すなら両方）。
-
-               ▼ イベントを追加する場所は index.html と schedule.html の
-                 それぞれ2か所（head の preload と body 下部の <script>）。
-                 合計4か所。詳しくは AGENTS.md を参照。 -->
-
-          <div id="event-list" data-limit="1" data-compact></div>
-          <p class="cta-block" style="margin: 16px 0 0;"><a class="cta outline" href="schedule.html">ほかの日程・よくある質問を見る</a></p>
-          <!-- .info は中の <strong> が display:block（「日時」などのラベル用）なので
-               文中の強調には使えない。専用の .notice を使う。 -->
-          <p class="notice">保護者様ご自身が学ぶ<strong>大人向けAI講座</strong>は<strong>別のイベント</strong>です。参加条件や持ち物が異なるので、<a href="adults.html">大人向け日程</a>をご覧ください。</p>
-        </div>
-      </section>
 
       <!-- カリキュラム一覧 -->
       <section class="section" id="curriculum">
