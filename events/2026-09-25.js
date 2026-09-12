@@ -23,10 +23,10 @@
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198875",
   note: "③大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。<strong>③の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません（<strong>20:30には終了します</strong>。延長はありません）。<br />②Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。",
   timetable: [
-    { time: "16:50-17:50", label: "①Robloxコース", price: "1,900円" },
+    { time: "16:50-17:50", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "キーボードの上を走るコースを作ります。", price: "1,900円" },
     { time: "17:50-18:10", label: "延長タイム・親御様個別相談" },
     { time: "18:10-18:20", label: "設営・入れ替え" },
-    { time: "18:20-19:20", label: "②Robloxコース（プログラミングあり）", price: "1,900円" },
+    { time: "18:20-19:20", label: "②Robloxコース（プログラミングあり）", course: "roblox", level: "experienced", title: "Robloxプログラミング", description: "仕掛けをプログラムで動かします。", price: "1,900円" },
     { time: "19:20-19:30", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。参加費が決まったら label に追記する
     // audience:"adult" は adults.html が拾うための印（AGENTS.md 参照）。
@@ -35,6 +35,8 @@
       time: "19:30-20:30",
       label: "③大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
+      title: "手元の資料からスライドを作る",
+      description: "資料を読み込ませ、内容への質問とスライド作成を試します。",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円",
       doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198876"
     }

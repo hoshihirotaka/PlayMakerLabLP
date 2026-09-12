@@ -22,7 +22,7 @@
   doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198773",
   note: "②大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の①が終わったあとの時間帯なので、そのままご受講いただけます。<strong>②の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />④Robloxコース（プログラミングあり）は、<strong>体験会で基礎を覚えた方におすすめ</strong>の回です。はじめてのご参加なら①③をお選びください。",
   timetable: [
-    { time: "11:00-12:00", label: "①Robloxコース", price: "1,900円" },
+    { time: "11:00-12:00", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "キーボードの上を走るコースを作ります。", price: "1,900円" },
     { time: "12:00-12:20", label: "延長タイム・親御様個別相談" },
     { time: "12:20-12:30", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。参加費が決まったら label に追記する
@@ -32,15 +32,17 @@
       time: "12:30-13:30",
       label: "②大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
+      title: "カレンダーとメールをAIで整理する",
+      description: "Geminiで予定の登録とGmailの要点整理を実際に試します。",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円",
       doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/198774"
     },
     { time: "13:30-14:30", label: "休憩" },
-    { time: "14:30-15:30", label: "③Robloxコース", price: "1,900円" },
+    { time: "14:30-15:30", label: "③Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "キーボードの上を走るコースを作ります。", price: "1,900円" },
     { time: "15:30-15:50", label: "延長タイム・親御様個別相談" },
     { time: "15:50-16:00", label: "設営・入れ替え" },
     // ④は募集開始時点でプログラミングありに確定した（個別プランの相談がなかったため）。
     // Doorkeeperの公開ページにも個別プランの行はないので、ここも1行にしてある
-    { time: "16:00-17:00", label: "④Robloxコース（プログラミングあり）", price: "1,900円" }
+    { time: "16:00-17:00", label: "④Robloxコース（プログラミングあり）", course: "roblox", level: "experienced", title: "Robloxプログラミング", description: "仕掛けをプログラムで動かします。", price: "1,900円" }
   ]
 });

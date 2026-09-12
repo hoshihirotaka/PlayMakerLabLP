@@ -66,6 +66,7 @@
       </style>
     </noscript>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="visit.css">
     <!-- 日程のデータを先読みする。理由は index.html と同じ。
          ▼ イベントを追加したときは、下部の <script> と合わせてここにも1行足すこと。
             index.html にも同じ2か所がある（AGENTS.md 参照）。 -->
@@ -316,58 +317,30 @@
       </div>
     </nav>
 
-    <main>
+    <main class="visit-page">
       <section class="section" id="schedule">
         <div class="container card">
-          <!-- ヘッダーバナー。画像ができたら下の img のコメントを外してパスを入れる。
-               横長（16:9〜3:1）・幅1200px以上を推奨。images/ に置く。
-               alt には画像内の文字をそのまま書く（読み上げと、画像が出ないときの代替）。
-               画像を入れるまでは何も描かれない（空箱にならない）。 -->
-          <div class="page-banner">
-            <!-- <img src="images/banner-schedule.png" alt="ブロマスゲームラボ 開催日程" /> -->
-          </div>
-
-          <h2>ゲームクリエイター教室</h2>
-
-          <!-- 「この教室のポイント」（2026-09-09 追加）
-               このページの役割は比較・検討（AGENTS.md 44行目・117行目）。
-               競合2社（コードランド／Solid）を見て、両社が書けないものだけを並べた
-               （→ ~/curriculum/運営/決定ログ.md「実際に2社を見た」）。
-               ⚠️ カリキュラムの幅・レベルは書かない。Unity/Python/Javaと並べられて負ける。
-               ⚠️ 少人数だけを単独で出さない。2社とも押しているので差にならない。
-               ⚠️ 無名なので「コース」から入らない。大手はブランドがあるから入れる。
-               ⚠️ 会場名や会場固有の表現を売りに使わない。会場は変わりうる
-                  （公民館での無料体験会を検討中）。「路地裏の市場で」は
-                  怪しく響くうえ正式名称とも違うので、2026-09-09に外した。
-               ⚠️ ポイントは4つまで。増やすとモバイルで日程が画面外に落ちる
-                  （4つで開催予定の見出しが744px・画面812px）。 -->
-          <p style="color: var(--subtext); margin: 0 0 14px;">お子様向けの<strong>Roblox教室</strong>と<strong>AI教室</strong>。ゲームを<strong>遊ぶ側から作る側へ</strong>。</p>
-
-          <h3 style="margin: 0 0 10px; font-size: 1.05rem; color: #0f2c59;">この教室のポイント</h3>
-          <ul style="margin: 0 0 16px; padding-left: 1.2em; font-size: 0.95rem;">
-            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">1回ごとのお申し込み</strong>次回の予約や、通い続けるお約束はありません。</li>
-            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">教室ではなく、大人の見える場所で</strong>閉じた部屋ではないので、様子を見てから決められます。</li>
-            <li style="margin-bottom: 9px; line-height: 1.65;"><strong style="display: block; color: #0f2c59;">作ったら、その日のうちに遊んでもらう</strong>発表会を待ちません。毎回その場で感想をもらいます。</li>
-            <li style="line-height: 1.7;"><strong style="display: block; color: #0f2c59;">教えるのは現役のゲーム開発者</strong>ゲーム業界歴20年以上。各回4名までで見ます。</li>
-          </ul>
-
-          <div class="curri-note">小学1年生〜高校生。<strong>持ち物はありません</strong>（パソコンは会場でご用意）。各回の時間割は申込ページに。場所やペースを合わせる<strong>個別プラン</strong>は<a href="plans.html">こちら</a>。</div>
-
-          <h3 style="margin: 20px 0 12px; font-size: 1.05rem; color: #0f2c59;">開催予定</h3>
-
+          <p class="visit-kicker">お子様向け・1回から参加できるゲーム制作体験</p>
+          <h1>好きなRobloxで、<br />自分のゲームを作ってみよう。</h1>
+          <p class="visit-lead">パソコンが初めてでも大丈夫。ゲーム開発者と一緒に操作を覚え、コースや仕掛けを作ります。できたゲームは、その場で遊んで試してみましょう。</p>
+          <ul class="visit-facts"><li>小学1年生〜高校生</li><li>会場のPCで参加OK</li><li>各回4名まで</li><li>1回だけの参加もOK</li></ul>
+          <p class="visit-small">初めての方は「はじめてのRobloxゲーム制作」をお選びください。各回60分です。AIでゲームを作る体験のある日もあります。</p>
+          <h2>参加できる日と時間</h2>
+          <p class="visit-small">ご希望の時間を1つ選んでご参加いただけます。参加費は各枠に表示しています（当日会場払い）。</p>
           <!-- 「このあとの開催」は data-compact のとき出さない（全件が並ぶので重複する）。
                簡素表示をやめたら、この要素がそのまま復活する。 -->
           <div id="event-more" class="event-more"></div>
 
           <!-- イベントはここに自動描画されます。
-               data-compact = 1回1行の簡素表示（時間割はDoorkeeper側に譲る） -->
+               data-compact = 内容・時間・料金をまとめ、経験者向けは開閉表示 -->
           <div id="event-list" class="event-list" data-compact></div>
 
           <!-- 大人向けの案内。index.html と同じ文言。
                簡素化で ev.note（大人向けは別イベントという説明）が出なくなったため、
                ここで文章として残す。参加費の行に大人向けの金額を混ぜない方針とセット
                （申込ボタンはお子様向けに行くので、金額だけ並ぶと取り違えのもとになる）。 -->
-          <p class="notice">保護者様ご自身が学ぶ<strong>大人向けAI講座</strong>は<strong>別のイベント</strong>です。参加条件や持ち物が異なるので、<a href="adults.html">大人向け日程</a>をご覧ください。<strong>同じ日・同じ会場</strong>で開催しているので、お子様の回とあわせてご参加いただけます。</p>
+          <p class="notice">場所は路地裏GarageMarket（埼玉・南与野）。南与野駅から徒歩16分、与野本町駅から徒歩14分です。小学生は保護者の同伴を推奨しています。<a href="about.html">会場・講師について</a></p>
+          <p class="notice">大人の方向けには、仕事での使い方を試す<a href="adults.html">大人向けAI講座</a>もあります。</p>
           <!-- JSが動かない環境向け。日付は書かず、常に最新が並ぶDoorkeeperのトップへ送る
                （ここに開催日を直書きすると、イベント追加のたびに更新が必要になるため） -->
           <noscript>
@@ -386,11 +359,9 @@
                ⚠️ 長い語りは about.html に置いてある。ここは短く保つこと。
                   日程を見に来た人の下に長文を積まない（AGENTS.md「LPとして改修しない」）。
                計測は js/site.js の ⑦ line_click。doorkeeper_click とは分ける。 -->
-          <p class="notice"><strong>都合の合う日がありませんでしたか？</strong><br />
-            この教室は、プログラミングという手法からではなく「ゲームを作りたい」という気持ちから入る場所です。新しい形なので、判断が難しいのは当然だと思います。<strong>時間をおいて考えて、比較・検討していただくのが良いかもしれません。</strong><br />
-            公式LINEにご登録いただくと、<strong>今後の日程をお知らせします。</strong>タイミングが合う時で問題ありません。<br />
-            ご質問もそのままトークにお送りください（平日10時〜21時ごろにお返事します）。
-            <a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" width="116" loading="lazy" /></a>
+          <p class="notice"><strong>日程が合わない方・相談してから決めたい方へ</strong><br />
+            公式LINEで今後の日程をご案内します。ご質問もトークにお送りいただけます（平日10時〜21時ごろにお返事します）。
+            <a class="line-btn" href="https://lin.ee/RkQ2pUy"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINEで日程を受け取る・相談する" height="36" width="116" loading="lazy" /></a>
           </p>
           <p style="color:var(--subtext); font-size:0.9rem; margin: 10px 0 0; text-align:center;">
             なぜこの形にしているのかは <a href="about.html">教室について</a> に書いています。
@@ -451,7 +422,7 @@
             </details>
             <details class="faq-item">
               <summary>Q: 2回目の参加でも楽しめますか？</summary>
-              <p>A: はい。教材を回ごとに切り替えているので、毎回違うゲーム作りを体験できます。前回の続きを作り込むこともできます。</p>
+              <p>A: はい。同じテーマの日も、仕掛けを足したり、前回の続きを作り込んだりして楽しめます。テーマは各日程の案内をご確認ください。</p>
             </details>
             <details class="faq-item">
               <summary>Q: 継続的な教室はありますか？</summary>
@@ -459,7 +430,7 @@
             </details>
             <details class="faq-item">
               <summary>Q: 料金はいくらですか？</summary>
-              <p>A: 体験会はRobloxコース 1,900円／AIコース 900円（当日現金払い・今だけのお試し価格）です。通常プランの料金は体験会と同じ金額で個別プランの料金は、個別にご案内しています。</p>
+              <p>A: 日程ごとに上の枠に表示しています。当日会場でお支払いください。個別プランの料金は、個別にご案内しています。</p>
             </details>
           </div>
         </div>

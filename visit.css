@@ -1,0 +1,32 @@
+/* First-visit guidance; only index, schedule and adults load this file. */
+.visit-lead {font-size:1.08rem;line-height:1.85;max-width:48rem;color:var(--subtext)}
+.visit-kicker {font-weight:700;color:#0f6e9e;letter-spacing:.04em;margin:0 0 8px}
+.visit-facts {display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none;margin:18px 0 24px}
+.visit-facts li {background:#edf5f9;color:#163b52;border-radius:8px;padding:8px 12px;font-size:.92rem}
+.visit-choices {display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.visit-choice {padding:24px;background:#f3f8fc;border:1px solid #dbe5ed;border-radius:18px}
+.visit-choice h3 {margin-top:0;color:#0f2c59}
+.visit-choice p {line-height:1.8}
+.visit-event {border:1px solid #d6e3ed;border-radius:16px;padding:24px;margin:16px 0;background:#fff}
+.visit-event>h3 {font-size:1.2rem;color:#0f2c59;margin:0 0 8px}
+.visit-slots {display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:18px 0}
+.visit-slot {background:#f3f8fc;border-radius:12px;padding:16px;min-width:0}
+.visit-slot h4 {margin:0 0 10px;color:#0f2c59;font-size:1rem;line-height:1.6}
+.visit-slot p {margin:6px 0;line-height:1.7}
+.visit-slot-time {font-size:1.25rem;font-weight:750;color:#0f2c59}
+.visit-slot-price {font-weight:700}
+.visit-small {font-size:.9rem;color:var(--subtext);line-height:1.7}
+.visit-more {margin:12px 0 18px}
+.visit-more summary {cursor:pointer;color:#164b68;line-height:1.7;padding:10px 0}
+.visit-more .visit-slot {margin:8px 0}
+.visit-event .event-apply {display:block;width:fit-content;max-width:100%;box-sizing:border-box;text-align:center;white-space:normal}
+.visit-prep {border-top:1px solid #dbe5ed;margin-top:28px;padding-top:16px;line-height:1.85}
+.visit-link {color:#0f6e9e;text-decoration:underline}
+.visit-page h1 {font-size:clamp(1.65rem,4vw,2.4rem);line-height:1.5;color:#0f2c59;margin:0 0 14px}
+.visit-page h2 {margin-top:24px}
+@media(max-width:767px) {
+ .visit-choices,.visit-slots {grid-template-columns:1fr}
+ .visit-choice,.visit-event {padding:18px}
+ .visit-event .event-apply {width:100%}
+ .visit-facts {gap:6px;margin:14px 0 20px}
+}
