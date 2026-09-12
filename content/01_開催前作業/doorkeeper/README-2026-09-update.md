@@ -1,20 +1,21 @@
-# 9月のDoorkeeper差し替え原稿
+# 9月のDoorkeeper原稿：元の版と短縮案
 
-2026-09-12作成。ホームページの案内整理に合わせた6件の説明本文です。**Doorkeeper管理画面への保存は未実施です。**
+既存6ファイルは、2026-09-12の短縮・再構成を行う前の内容に復元しました。今回作った原稿は、ファイル名に `short-20260912` を付けて別ファイルとして保存しています。どちらの版も残して比較できます。
 
-| 開催日 | 子ども向け | 大人向け |
+**短縮案は差し替え候補です。Doorkeeper公開ページへの保存は未実施です。** 元の原稿にある過去の運用メモもそのまま復元しています。過去の「未公開」などの記載は現在の公開状態を示すものではありません。
+
+| 対象 | 変更前の版（復元済み） | 今回作った別バージョン |
 | --- | --- | --- |
-| 9/13 | [原稿](doorkeeper-2026-09-13-draft.md)・[イベント](https://gameschool.doorkeeper.jp/events/198773) | [原稿](doorkeeper-adult-ai-2026-09-13-draft.md)・[イベント](https://gameschool.doorkeeper.jp/events/198774) |
-| 9/19 | [原稿](doorkeeper-2026-09-19-v2-draft.md)・[イベント](https://gameschool.doorkeeper.jp/events/198775) | [原稿](doorkeeper-adult-ai-2026-09-19-draft.md)・[イベント](https://gameschool.doorkeeper.jp/events/198874) |
-| 9/25 | [原稿](doorkeeper-2026-09-25-draft.md)・[イベント](https://gameschool.doorkeeper.jp/events/198875) | [原稿](doorkeeper-adult-ai-2026-09-25-draft.md)・[イベント](https://gameschool.doorkeeper.jp/events/198876) |
+| 子ども向け 13日 | [元の原稿](doorkeeper-2026-09-13-draft.md) | [今回の短縮案](doorkeeper-2026-09-13-short-20260912-draft.md) |
+| 子ども向け 19日 | [元の原稿](doorkeeper-2026-09-19-v2-draft.md) | [今回の短縮案](doorkeeper-2026-09-19-v2-short-20260912-draft.md) |
+| 子ども向け 25日 | [元の原稿](doorkeeper-2026-09-25-draft.md) | [今回の短縮案](doorkeeper-2026-09-25-short-20260912-draft.md) |
+| 大人向け 13日 | [元の原稿](doorkeeper-adult-ai-2026-09-13-draft.md) | [今回の短縮案](doorkeeper-adult-ai-2026-09-13-short-20260912-draft.md) |
+| 大人向け 19日 | [元の原稿](doorkeeper-adult-ai-2026-09-19-draft.md) | [今回の短縮案](doorkeeper-adult-ai-2026-09-19-short-20260912-draft.md) |
+| 大人向け 25日 | [元の原稿](doorkeeper-adult-ai-2026-09-25-draft.md) | [今回の短縮案](doorkeeper-adult-ai-2026-09-25-short-20260912-draft.md) |
 
-## 差し替え方
+9/19子ども向けの元の版はv2です。v1には変更を加えていません。
 
-1. 対応するイベントの管理画面で、現在の説明本文を控えます。
-2. 原稿の最初の区切り線より下だけを説明欄へ貼り付けます。上の運用メモは貼りません。
-3. 保存前にプレビューで時間・料金・リンクを確認します。タイトル・チケット・日時・料金・定員の設定は変更しません。
-4. 保存後は公開ページを開き、本文の先頭と末尾、各回の時間・価格を確認します。
+## 短縮案を使う場合
 
-9/19子ども向けはv2が正本です。v1は使いません。子どものRoblox基礎2枠は同内容、大人向けの昼と夜は別内容です。
-
-過去の運用メモはGit履歴に残っています。公開未確認のまま反映済みと扱わないでください。
+対象イベントの現在の説明本文を控えたうえで、短縮案の最初の区切り線より下だけを説明欄へ貼り付けます。運用メモは貼りません。タイトル・チケット・日時・料金・定員の設定は変更しません。
+保存前のプレビューと保存後の公開ページで、時間・料金・リンクを確認してください。
