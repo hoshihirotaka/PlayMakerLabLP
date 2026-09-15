@@ -28,5 +28,7 @@
 | --- | --- | --- |
 | 子ども向け 19日 | [短縮版](doorkeeper-2026-09-19-v2-short-20260912-draft.md) | [v2](doorkeeper-2026-09-19-v2-short-v2-20260916-draft.md) |
 | 子ども向け 25日 | [短縮版](doorkeeper-2026-09-25-short-20260912-draft.md) | [v2](doorkeeper-2026-09-25-short-v2-20260916-draft.md) |
+| 大人向け 19日 | [短縮版](doorkeeper-adult-ai-2026-09-19-short-20260912-draft.md) | [v2](doorkeeper-adult-ai-2026-09-19-short-v2-20260916-draft.md)（スケジュールのみ・冒頭は足していない） |
+| 大人向け 25日 | [短縮版](doorkeeper-adult-ai-2026-09-25-short-20260912-draft.md) | [v2](doorkeeper-adult-ai-2026-09-25-short-v2-20260916-draft.md)（スケジュールのみ） |
 
 **公開ページには見出しの直後に画像が入っています。本文を丸ごと貼り替えると画像が消えるので注意してください。**
