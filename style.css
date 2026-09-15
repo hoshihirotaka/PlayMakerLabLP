@@ -112,6 +112,11 @@
       /* 日本語の見出し・リードを語の途中で折らない（2026-09-16）。
          スマホで「詳しく／なって」「活きてきま／す。」のように割れていたため、句ごとに inline-block にする */
       .phrase { display: inline-block; }
+      /* 黄色のマーカー（下半分だけ塗る）。--accent-3 と同じ黄 */
+      .marker {
+        background: linear-gradient(transparent 58%, rgba(255, 209, 102, 0.75) 58%);
+        font-weight: 700;
+      }
       @media (max-width: 767px) {
         /* タグ3つ（小1〜高校生／PC未経験OK／Roblox）を375px幅で1行に収める */
         .hero .tagline { gap: 6px; }
