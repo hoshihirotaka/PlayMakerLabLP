@@ -4,7 +4,7 @@
 > イベント名：【9/19(土)】大人向けAI講座｜Googleでカレンダーとメール連携／NotebookLMで資料作成
 > 対象：https://gameschool.doorkeeper.jp/events/198874
 > 2026-09-16 v2：公開中の `doorkeeper-adult-ai-2026-09-19-short-20260912-draft.md` を複製し、**タイムスケジュール**を足した。回の見出しに番号（②⑥）を付けた。
-> 2026-09-16 更新：**画像はDoorkeeper公開中の位置のまま本文に入れた**（丸ごと貼り替えても消えない）。**スケジュールは「講師・お問い合わせ」の直前に移した**（本人指定）。
+> 2026-09-16 更新：**画像はDoorkeeper公開中の位置のまま本文に入れた**（丸ごと貼り替えても消えない）。**画像はHTMLの`<img>`で幅50%**（元は画面幅いっぱい・本人指定）。**スケジュールは「講師・お問い合わせ」の直前に移した**（本人指定）。
 > 以下の本文のみを説明欄へ貼り付ける。**公開ページへの保存は未実施。**
 > 番号は子ども向けページ（198775）と同じ通し番号。延長タイムの行は大人向けには関係ないので外した。
 > **チケット名（番号を入れる場合）：**
@@ -32,13 +32,13 @@
 
 GeminiとGoogleカレンダー・Gmailをつなぎ、予定の登録やメールの要点整理を試します。設定の入り口から一緒に確認します。
 
-![](https://gameschool.doorkeeper.jp/files/da85e0d1c17a35bc5f1e71155acfa7fc046731b5/seminar_01_calendar_add.png)
+<img src="https://gameschool.doorkeeper.jp/files/da85e0d1c17a35bc5f1e71155acfa7fc046731b5/seminar_01_calendar_add.png" alt="Geminiからカレンダーに予定を入れた画面" width="50%">
 
 ### ⑥ その2｜19:30〜20:30：資料からスライド作成
 
 NotebookLMに資料を読み込ませ、内容への質問とスライド作成を試します。回答の根拠を元の資料で確認するところまで体験します。
 
-![](https://gameschool.doorkeeper.jp/files/80924f8f1772e6dbbb3f1c2a5c456821fc1a53d9/seminar_02_nblm_source_loaded.png)
+<img src="https://gameschool.doorkeeper.jp/files/80924f8f1772e6dbbb3f1c2a5c456821fc1a53d9/seminar_02_nblm_source_loaded.png" alt="NotebookLMに資料を読み込ませた画面" width="50%">
 
 **2つの回は内容が違います。** 片方だけでも、両方でも参加できます。両方受ける場合は、それぞれの回のお申し込み・お支払いが必要です。
 
