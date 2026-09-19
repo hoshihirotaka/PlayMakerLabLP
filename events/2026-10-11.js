@@ -49,8 +49,8 @@
       time: "16:00-17:00",
       label: "④大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
-      title: "大人向けAI講座（テーマは準備中）",
-      description: "扱う内容が決まり次第、このページでご案内します。",
+      title: "予定・ToDo・メールをAIで整理する",
+      description: "Geminiで予定とToDoの登録、Gmailの要点整理を実際に試します。",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円"
     }
   ]
