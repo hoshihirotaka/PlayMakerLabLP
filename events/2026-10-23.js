@@ -23,7 +23,7 @@
   comingSoon: true,
   note: "②大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の回が終わったあとの時間帯なので、そのままご受講いただけます。<strong>②の時間帯は、お子様にも同席いただけます。</strong><br />お申し込みの受付は準備でき次第お知らせします。",
   timetable: [
-    { time: "18:00-19:00", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "家具に変身して隠れる、かくれんぼゲームを作ります。", price: "3,000円" },
+    { time: "18:00-19:00", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "家具に変身して隠れる、かくれんぼゲームを作ります。プログラミングのあり・なしは当日選べます。", price: "3,000円" },
     { time: "19:00-19:20", label: "延長タイム・親御様個別相談" },
     { time: "19:20-19:30", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。
