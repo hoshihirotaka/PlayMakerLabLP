@@ -32,11 +32,11 @@
     { time: "11:00-11:30", label: "①AIコース（DreamCore）", course: "ai-game", level: "beginner", title: "AIでゲームを作る体験", description: "作りたいゲームを言葉にして、AIと一緒に形にします。", separateBooking: true, price: "2,000円" },
     { time: "11:30-11:50", label: "延長タイム・親御様個別相談" },
     { time: "11:50-12:00", label: "設営・入れ替え" },
-    { time: "12:00-13:00", label: "②Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "Roblox Studioでゲームを作ります。題材は決まり次第ご案内します。", price: "3,000円" },
+    { time: "12:00-13:00", label: "②Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "家具に変身して隠れる、かくれんぼゲームを作ります。", price: "3,000円" },
     { time: "13:00-13:20", label: "延長タイム・親御様個別相談" },
     // 通しで回すとここが消える。日曜でまとまった休憩が取れるのはこの1回だけ
     { time: "13:20-14:20", label: "休憩" },
-    { time: "14:20-15:20", label: "③Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "Roblox Studioでゲームを作ります。題材は決まり次第ご案内します。", price: "3,000円" },
+    { time: "14:20-15:20", label: "③Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "家具に変身して隠れる、かくれんぼゲームを作ります。", price: "3,000円" },
     { time: "15:20-15:40", label: "延長タイム・親御様個別相談" },
     { time: "15:40-16:00", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。
