@@ -108,7 +108,10 @@
           '<p class="visit-slot-time">' + esc(t.time) + '</p>' +
           (t.description ? '<p>' + esc(t.description) + '</p>' : '') +
           '<p class="visit-slot-price">' + (t.audience ? 'PC持参 ' : '') + esc(cost) + '</p>' +
-          (t.separateBooking ? '<p class="visit-small">この体験はRobloxとは別のお申し込みです。</p>' : '') +
+          // 別申込の枠（DreamCoreなど）は、枠に doorkeeperUrl があればその枠だけの申込リンクを出す（2026-09-19）。
+          // URLが無いあいだは案内文だけ。回の申込ボタン（Roblox側）とは別物。
+          (t.separateBooking ? '<p class="visit-small">この体験はRobloxとは別のお申し込みです。</p>' +
+            (t.doorkeeperUrl ? '<a class="visit-slot-apply" href="' + esc(t.doorkeeperUrl) + '" target="_blank" rel="noreferrer">この体験に申し込む</a>' : '') : '') +
           '</div>';
       }
       var cSlot = slotsFor(ev)[0] || {};

@@ -1,5 +1,8 @@
+// Doorkeeperは2026-09-23に2本とも公開済み。doorkeeperUrl・JSON-LDとも反映済み。
+//   Roblox:    https://gameschool.doorkeeper.jp/events/199500
+//   大人向け:  https://gameschool.doorkeeper.jp/events/199499（②の枠）
+// utmは付けない（→ 決定ログ「LP→DoorkeeperのUTMを削除した」）
 // 日程は2026-08-11に確定。時間割・参加費は2026-09-08の定例を受けて記入（Doorkeeperはまだなので comingSoon: true のまま）。
-// Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
 //
 // ⚠️ trialPrice を付けないこと。10月からは正規価格なので「今だけお試し価格」バッジは出さない
 //    （content/04_共通/料金の棚卸し.md ①）。
@@ -20,10 +23,10 @@
   target: "①: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ②: 大人の方向け（保護者参加OK）",
   capacity: "①4名 / ②大人向けAIコース 8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  comingSoon: true,
-  note: "②大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の回が終わったあとの時間帯なので、そのままご受講いただけます。<strong>②の時間帯は、お子様にも同席いただけます。</strong><br />お申し込みの受付は準備でき次第お知らせします。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/199500",
+  note: "②大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の回が終わったあとの時間帯なので、そのままご受講いただけます。<strong>②の時間帯は、お子様にも同席いただけます。</strong>",
   timetable: [
-    { time: "18:00-19:00", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "Roblox Studioでゲームを作ります。題材は決まり次第ご案内します。", price: "3,000円" },
+    { time: "18:00-19:00", label: "①Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "家具に変身して隠れる、かくれんぼゲームを作ります。プログラミングのあり・なしは当日選べます。", price: "3,000円" },
     { time: "19:00-19:20", label: "延長タイム・親御様個別相談" },
     { time: "19:20-19:30", label: "設営・入れ替え" },
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。
@@ -32,8 +35,9 @@
       time: "19:30-20:30",
       label: "②大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
-      title: "大人向けAI講座（テーマは準備中）",
-      description: "扱う内容が決まり次第、このページでご案内します。",
+      title: "手元の資料からスライドと画像を作る",
+      description: "資料を読み込ませてスライドを作り、AIでの画像生成も試します。",
+      doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/199499",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円"
     }
   ]
