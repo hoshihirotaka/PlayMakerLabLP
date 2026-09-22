@@ -105,10 +105,12 @@ A: できます。場所の都合上、お子さまの活動を優先させて�
 延長タイムは参加費に含まれます（追加料金はありません）。
 このページでお申し込みいただけるのは**①**です。
 
-## 📄 お申し込み前にご確認ください
+## 講師・お問い合わせ
+
+講師：星 弘高。ゲーム業界歴20年以上。コンソール・スマホゲームの開発と運営に携わってきたゲームクリエイターです。
+
+お問い合わせ：hitta.games@gmail.com
 
 - [利用規約](https://hoshihirotaka.github.io/PlayMakerLabLP/legal/terms.html)
 - [プライバシーポリシー](https://hoshihirotaka.github.io/PlayMakerLabLP/legal/privacy.html)
 - [免責事項](https://hoshihirotaka.github.io/PlayMakerLabLP/legal/disclaimer.html)
-
-お問い合わせ：hitta.games@gmail.com

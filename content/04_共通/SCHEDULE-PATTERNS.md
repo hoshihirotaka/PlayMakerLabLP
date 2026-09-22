@@ -1034,7 +1034,7 @@ done
 
 ### LP側（`events/YYYY-MM-DD.js` と `index.html`）
 
-- [ ] `comingSoon` を外し、`doorkeeperUrl` を入れる（**utmを付ける**。既存イベントと同じ形式）
+- [ ] `comingSoon` を外し、`doorkeeperUrl` を入れる。⚠️ **utmは付けない**（自サイト→Doorkeeperのutmは廃止済み。→ 決定ログ『LP→DoorkeeperのUTMを削除した』）。別申込の枠（DreamCore・大人向け）は**枠ごとに** `doorkeeperUrl` を入れる
 - [ ] `index.html` のJSON-LDに追加。**未公開のイベントは `offers` に入れない**
 - [ ] `note` から「参加費・お申し込み方法は準備でき次第」を削除する
 - [ ] **選択枠（④⑤）は募集開始で確定する。** 実施しないほうの行をLPから外し、

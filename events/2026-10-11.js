@@ -1,9 +1,9 @@
-// Doorkeeper作成済み・★未公開（2026-09-22）。公開するまで doorkeeperUrl には入れない（SCHEDULE-PATTERNS.md §8）
+// Doorkeeperは2026-09-23に3本とも公開済み。doorkeeperUrl・JSON-LDとも反映済み。
 //   Roblox:    https://gameschool.doorkeeper.jp/events/199496
-//   DreamCore: https://gameschool.doorkeeper.jp/events/199497 （公開したら①の枠の doorkeeperUrl に入れる）
-//   大人向け:  https://gameschool.doorkeeper.jp/events/199498 （公開したら④の枠の doorkeeperUrl に入れる）
+//   DreamCore: https://gameschool.doorkeeper.jp/events/199497（①の枠）
+//   大人向け:  https://gameschool.doorkeeper.jp/events/199498（④の枠）
+// utmは付けない（自サイト→Doorkeeperのutmは廃止済み。→ 決定ログ「LP→DoorkeeperのUTMを削除した」）
 // 日程は2026-08-11に確定。時間割・参加費は2026-09-08の定例を受けて記入（Doorkeeperはまだなので comingSoon: true のまま）。
-// Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
 //
 // ⚠️ trialPrice を付けないこと。10月からは正規価格なので「今だけお試し価格」バッジは出さない
 //    （content/04_共通/料金の棚卸し.md ①）。9月までのファイルにだけ trialPrice: true が付いている。
@@ -28,14 +28,14 @@
   target: "①②③: 小学1年生〜高校生（保護者参加OK、小学生は同伴推奨） / ④: 大人の方向け（保護者参加OK）",
   capacity: "①②③各回4名 / ④大人向けAIコース 8名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  comingSoon: true,
-  note: "④大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の回が終わったあとの時間帯なので、そのままご受講いただけます。<strong>④の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />①AIコース（DreamCore）は、プログラミングを使わずにAIでゲームを作る回です。<strong>こちらも別のお申し込みになります。</strong><br />②③は同じ内容です。ご都合のよいほうをお選びください。<br />お申し込みの受付は準備でき次第お知らせします。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/199496",
+  note: "④大人向けAIコースは保護者様ご自身向けの<strong>別イベント</strong>です（お申し込みは別枠）。お子様の回が終わったあとの時間帯なので、そのままご受講いただけます。<strong>④の時間帯は、お子様にも同席いただけます。</strong>空いているパソコンを使って、ご自身の続きを進めていただいても問題ありません。<br />①AIコース（DreamCore）は、プログラミングを使わずにAIでゲームを作る回です。<strong>こちらも別のお申し込みになります。</strong><br />②③は同じ内容です。ご都合のよいほうをお選びください。",
   timetable: [
     // 2026-05-15にRobloxと統合したあと、子ども向けAIの参加者は 5→3→0 と消えた。
     // ページを分けて出し直す（2026-09-08 定例）。尺は30分のまま・延長は未確定
     // DreamCoreはRobloxとは別のDoorkeeperイベントにする（2026-09-19 本人）。広告は出さず、サイトからだけリンクする。
-    // Doorkeeperを作ったら、この枠に doorkeeperUrl（utm付き）を足すと「この体験に申し込む」リンクが出る
-    { time: "11:00-11:30", label: "①AIコース（DreamCore）", course: "ai-game", level: "beginner", title: "AIでゲームを作る体験", description: "作りたいゲームを言葉にして、AIと一緒に形にします。", separateBooking: true, price: "2,000円" },
+    // 枠に doorkeeperUrl があるので、枠の中に「この体験に申し込む」リンクが出る
+    { time: "11:00-11:30", label: "①AIコース（DreamCore）", course: "ai-game", level: "beginner", title: "AIでゲームを作る体験", description: "作りたいゲームを言葉にして、AIと一緒に形にします。", separateBooking: true, doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/199497", price: "2,000円" },
     { time: "11:30-11:50", label: "延長タイム・親御様個別相談" },
     { time: "11:50-12:00", label: "設営・入れ替え" },
     { time: "12:00-13:00", label: "②Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "家具に変身して隠れる、かくれんぼゲームを作ります。プログラミングのあり・なしは当日選べます。", price: "3,000円" },
@@ -48,13 +48,13 @@
     // 大人向けは price を使わず label 内に金額を書く（バッジを付けないため）。
     // audience:"adult" は adults.html が拾うための印（AGENTS.md 参照）。
     // 10月の大人向けAIは改定の対象外。9月と同額で据え置き。
-    // doorkeeperUrl は大人向けのイベントができてから入れる
     {
       time: "16:00-17:00",
       label: "④大人向けAIコース（仕事活用初心者向け）　2,900円 / PCレンタル付き 3,500円",
       audience: "adult",
       title: "予定・ToDo・メールをAIで整理する",
       description: "Geminiで予定とToDoの登録、Gmailの要点整理を実際に試します。",
+      doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/199498",
       adultPrice: "2,900円 ／ PCレンタル付き 3,500円"
     }
   ]
