@@ -1,5 +1,6 @@
 # Doorkeeper説明文 DreamCore（AIでゲームを作る体験）2026-10-11ドラフト
 
+> - **対象：https://gameschool.doorkeeper.jp/events/199497（2026-09-22 作成・★未公開）**
 > **運用メモ（Doorkeeperには貼らない）**
 > - **Robloxとは別のDoorkeeperイベント**（2026-09-19 本人）。**広告は出さない。サイトからだけリンクする**
 > - 作ったら `events/2026-10-11.js` のDreamCore枠に `doorkeeperUrl`（utm付き）を足す。枠の中に「この体験に申し込む」が出る
@@ -77,7 +78,7 @@ AIの時代は「ゲームが作れる」ことより「どんなゲームにす
 同じ日の12:00〜13:00と14:20〜15:20に、**家具に変身して隠れる、かくれんぼゲーム**を作るRoblox体験があります。
 両方受ける場合は、それぞれお申し込みください。
 
-→ Roblox体験のお申し込みは【URL調整中】
+→ Roblox体験のお申し込みは【URL調整中】 <!-- 公開したら https://gameschool.doorkeeper.jp/events/199496 -->
 
 ## よくある質問
 

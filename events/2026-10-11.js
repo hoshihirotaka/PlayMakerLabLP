@@ -1,3 +1,7 @@
+// Doorkeeper作成済み・★未公開（2026-09-22）。公開するまで doorkeeperUrl には入れない（SCHEDULE-PATTERNS.md §8）
+//   Roblox:    https://gameschool.doorkeeper.jp/events/199496
+//   DreamCore: https://gameschool.doorkeeper.jp/events/199497 （公開したら①の枠の doorkeeperUrl に入れる）
+//   大人向け:  https://gameschool.doorkeeper.jp/events/199498 （公開したら④の枠の doorkeeperUrl に入れる）
 // 日程は2026-08-11に確定。時間割・参加費は2026-09-08の定例を受けて記入（Doorkeeperはまだなので comingSoon: true のまま）。
 // Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング
 //
