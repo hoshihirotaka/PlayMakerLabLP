@@ -2,7 +2,7 @@
 //   Roblox:    https://gameschool.doorkeeper.jp/events/199500
 //   大人向け:  https://gameschool.doorkeeper.jp/events/199499（②の枠）
 // utmは付けない（→ 決定ログ「LP→DoorkeeperのUTMを削除した」）
-// 日程は2026-08-11に確定。時間割・参加費は2026-09-08の定例を受けて記入（Doorkeeperはまだなので comingSoon: true のまま）。
+// 日程は2026-08-11に確定。時間割・参加費は2026-09-08の定例を受けて記入（Doorkeeperは2026-09-23に公開し、doorkeeperUrl を入れた）。
 //
 // ⚠️ trialPrice を付けないこと。10月からは正規価格なので「今だけお試し価格」バッジは出さない
 //    （content/04_共通/料金の棚卸し.md ①）。
