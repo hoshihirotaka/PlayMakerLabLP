@@ -52,7 +52,7 @@ AIは気になるけれど、何から触ればいいか分からない。
 node -e 'const s=require("fs").readFileSync("原稿.md","utf8"); console.log(s.length)'
 ```
 
-## タグの規則（2026-09-24）
+## タグの規則（2026-09-23）
 
 **1つ目は必ず `#ブロマスゲームラボ`。Robloxはカタカナで `#ロブロックス`。**
 規則は [SNS-GUIDE.md](../../04_共通/SNS-GUIDE.md) の「ハッシュタグの付け方」にある。
