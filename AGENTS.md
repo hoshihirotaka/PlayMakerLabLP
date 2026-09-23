@@ -134,7 +134,7 @@
 `events/*.js` の枠に付ける表示用フィールド：
 - `title` / `description`：参加者向けの体験名と内容。未確定のテーマは作らない。
 - `course` / `level`：教科と対象（`beginner` / `experienced`）。
-- `separateBooking`：Robloxとは別に申し込む枠の注意表示。
+- `separateBooking`：Robloxとは別に申し込む枠の注意表示。**その枠に `doorkeeperUrl` を付けると、枠の中に「この体験に申し込む」リンクが出る**（2026-09-19。DreamCoreを別イベントにしたため）。回の申込ボタンとは別。クリックは既存の `doorkeeper_click` に乗る
 - 料金は既存の `price` / `adultPrice`、時間は `time` を使用する。
 
 `visit.css` は今回の3ページだけで読み込む。共通の `style.css` と計測は変更しない。
