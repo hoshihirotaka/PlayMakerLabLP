@@ -77,7 +77,32 @@ ffprobe -v error -show_entries format=duration \
   -of default=noprint_wrappers=1 "動画.mp4"
 ```
 
-ffmpeg は `/usr/local/bin/ffmpeg` にある（PATHから拾えないことがあるのでフルパス推奨）。
+ffmpeg は `/opt/homebrew/bin/ffmpeg` にある（**2026-09-24にarm64版へ入れ替え。フルパス必須**。下の「ffmpegが動かなくなったとき」を参照）。
+
+### ⚠️ ffmpegが動かなくなったとき（2026-09-24）
+
+**`Bad CPU type in executable` が出たら、これ。**
+
+このMacは arm64。`/usr/local/bin/ffmpeg` は**x86_64版**で、Rosettaが無くなった時点で実行できなくなった。
+2026-09-24に arm64版（ffmpeg 9.0.2）を入れ直した。
+
+```
+使う   /opt/homebrew/bin/ffmpeg   /opt/homebrew/bin/ffprobe
+壊れた /usr/local/bin/ffmpeg      /usr/local/bin/ffprobe
+```
+
+**PATHは `/usr/local/bin` を先に見るので、`ffmpeg` と打つと壊れたほうが当たる。フルパスで呼ぶこと。**
+
+入れ直しは `/opt/homebrew/bin/brew install ffmpeg`。
+PATH上の `brew` はIntel版（`/usr/local/bin/brew`）なので、**こちらもフルパスで呼ぶ。**
+
+**解像度だけ知りたいときは ffprobe が無くても読める。**
+
+```bash
+mdls -name kMDItemPixelWidth -name kMDItemPixelHeight -name kMDItemDurationSeconds 動画.mp4
+```
+
+※ 各回の制作メモに残っている `/usr/local/bin/ffmpeg` は、**当時そう実行した記録**なのでそのままにしてある。
 
 ### 2. 静止区間を測る（最重要）
 
@@ -144,7 +169,7 @@ CapCutの字幕書き出しは**有料**なので、書き出した動画から�
 
 ```bash
 # 字幕帯だけを切り出してコンタクトシート化 → 目視で書き起こす
-/usr/local/bin/ffmpeg -i 書き出した.mov \
+/opt/homebrew/bin/ffmpeg -i 書き出した.mov \
   -vf "fps=1,crop=1080:520:0:1180,scale=430:-1,tile=4x8" -frames:v 1 tel.png
 ```
 

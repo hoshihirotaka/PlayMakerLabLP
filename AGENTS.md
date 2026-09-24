@@ -299,7 +299,7 @@ Notionの主なドキュメント: 「中高生向けコピー案とGoogle広告
 - **Notion** … ドキュメントハブへの読み書き
 - **Roblox Studio（weppy-roblox-mcp）** … 教材プロジェクトの調査・スクリプト修正・プロパティ変更
 - **Claude in Chrome** … note入稿など、ログイン済みセッションが要る作業
-- ffmpeg は `/usr/local/bin/ffmpeg`（PATHから拾えないことがある）
+- ffmpeg は `/opt/homebrew/bin/ffmpeg`（**2026-09-24にarm64版へ入れ替え**。`/usr/local/bin` の旧Intel版は動かない。PATHは旧版を先に拾うのでフルパス必須）
 
 ## 制作ガイド
 
