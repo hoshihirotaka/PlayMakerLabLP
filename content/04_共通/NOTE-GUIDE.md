@@ -12,6 +12,7 @@ noteはファネル上「信頼構築・取り組みの深さ」を担うチャ�
 ```
 note-session-XX.md          # 活動報告（回数）
 note-monthly-YYYY-MM.md     # 月次振り返り（月に1本）
+note-coderdojo-YYYY-MM.md   # CoderDojo南会津の回（参加した月だけ）
 note-column-XX-slug.md      # 技術・考察コラム（連番＋内容を示すslug）
 note-YYYY-MM-DD.md          # 回数に紐づかない単発記事
 ```
@@ -31,6 +32,7 @@ note-column-03-game-design-thinking.md # ゲームデザイン思考について
 |------|------|------|------------|
 | 活動報告 | 毎回開催後 | 当日の様子・反省・気づき | `note-session-XX.md` |
 | 月次振り返り | 月に1本 | 開催日以外の27日間にやっていたこと（仕組み・判断・試行錯誤） | `note-monthly-YYYY-MM.md` |
+| CoderDojo南会津 | 参加した月だけ | 外部の場に出て何をしてきたか。**ブロマスの記事とは読者層が違う** | `note-coderdojo-YYYY-MM.md` |
 | 技術・考察コラム | 不定期 | AI活用・教材づくり・ゲームデザイン思考など | `note-column-XX-slug.md` |
 | お知らせ | イベント前後 | 開催情報・募集（インスタの補足として） | `note-YYYY-MM-DD.md` |
 
