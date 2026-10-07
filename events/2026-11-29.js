@@ -3,7 +3,9 @@
 // 満席になったら後ろに回を足すかもしれない（本人）。足すなら部屋の予約も延ばす。
 // Doorkeeperの申込締切は前日（11/28）12:00。会場のキャンセルが前日18:00まで無料のため（→ 決定ログ 11月の予定が決まった）。
 // お題は「盗んで逃げろ」（E0-08）。11/8と同じ内容。
-// Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング。
+// Doorkeeperは2026-10-07に作成（★未公開）：https://gameschool.doorkeeper.jp/events/199778
+// 公開したら doorkeeperUrl に入れて comingSoon を消す。
+// （旧）Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング。
 //
 // ⚠️ trialPrice を付けないこと（10月からの正規価格）。
 // 定員は4名。今年いっぱいは各回4名（2026-10-07 本人）。

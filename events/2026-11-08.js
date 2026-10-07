@@ -1,6 +1,11 @@
 // 2026-10-07 本人決定：11/8（日）路地裏は「10月の日曜（10/11）と同じ形」。大人向けAIはGoogle連携（10/11と同じ題材）。
 // お題は「盗んで逃げろ」（E0-08・決定）。E0-08は全員コピペで進める（「あり／なし」の選択は出さない。→ 決定ログ 11月・12月のお題の方向）。
-// Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める（枠の分も）。JSON-LDへの追加もそのタイミング。
+// Doorkeeperは2026-10-07に3本作成（★未公開）。公開したら下のURLを入れて comingSoon を消す。
+//   Roblox:    https://gameschool.doorkeeper.jp/events/199776（イベント側の doorkeeperUrl）
+//   DreamCore: https://gameschool.doorkeeper.jp/events/199775（①の枠）
+//   大人向け:  https://gameschool.doorkeeper.jp/events/199777（④の枠）
+// ⚠️ 未公開のうちは入れない。大人向けページは comingSoon に関係なく枠の doorkeeperUrl へリンクするため。
+// （旧）Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める（枠の分も）。JSON-LDへの追加もそのタイミング。
 //
 // ⚠️ 今週末（10/10〜11）までマージしない・Doorkeeperも公開しない（2026-10-07 本人）。
 //    ①DreamCoreは、与野で個別プランの要望があれば「募集なし・11:00-12:00は予約あり」に置き換えるかもしれない。今週末に本人が決める。
