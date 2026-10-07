@@ -6,7 +6,7 @@
 // Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング。
 //
 // ⚠️ trialPrice を付けないこと（10月からの正規価格）。
-// ⚠️ 定員4名は10月の各回に合わせた仮置き。部屋は着席8人なので、保護者の席も含めて本人が決める。
+// 定員は4名。今年いっぱいは各回4名（2026-10-07 本人）。
 (window.EVENTS = window.EVENTS || []).push({
   id: "2026-11-29",
   date: "2026年11月29日（日）",
