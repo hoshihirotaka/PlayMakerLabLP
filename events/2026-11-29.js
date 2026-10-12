@@ -3,9 +3,7 @@
 // 満席になったら後ろに回を足すかもしれない（本人）。足すなら部屋の予約も延ばす。
 // Doorkeeperの申込締切は前日（11/28）12:00。会場のキャンセルが前日18:00まで無料のため（→ 決定ログ 11月の予定が決まった）。
 // お題は「盗んで逃げろ」（E0-08）。11/8と同じ内容。
-// Doorkeeperは2026-10-07に作成（★未公開）：https://gameschool.doorkeeper.jp/events/199778
-// 公開したら doorkeeperUrl に入れて comingSoon を消す。
-// （旧）Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める。JSON-LDへの追加もそのタイミング。
+// Doorkeeperは2026-10-07に作成、2026-10-12に公開（199778）。doorkeeperUrl・JSON-LDとも反映済み。
 //
 // ⚠️ trialPrice を付けないこと（10月からの正規価格）。
 // 定員は4名。今年いっぱいは各回4名（2026-10-07 本人）。
@@ -20,8 +18,8 @@
   target: "小学1年生〜高校生（保護者参加OK、小学生は同伴推奨）",
   capacity: "4名（予約優先）",
   equipment: "パソコン持参大歓迎（会場でも用意あり）",
-  comingSoon: true,
-  note: "11月8日（日）の路地裏GarageMarketと同じ内容です。ご都合のよい日をお選びください。<br />お申し込みの受付は準備でき次第お知らせします。",
+  doorkeeperUrl: "https://gameschool.doorkeeper.jp/events/199778",
+  note: "11月8日（日）の路地裏GarageMarketと同じ内容です。ご都合のよい日をお選びください。",
   timetable: [
     { time: "14:20-15:20", label: "Robloxコース", course: "roblox", level: "beginner", title: "はじめてのRobloxゲーム制作", description: "宝を盗んで、追いかけてくる番人から逃げるゲームを作ります。", price: "3,000円" },
     { time: "15:20-15:40", label: "延長タイム・親御様個別相談" }
