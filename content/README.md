@@ -30,8 +30,7 @@ content/
 │   ├── note/              # コラム記事
 │   └── sns/               # コラム記事のシェア文言
 └── 04_共通/
-    ├── doorkeeper-community.md   # Doorkeeperコミュニティページ
-    ├── doorkeeper-top.md         # Doorkeeperトップページ
+    ├── doorkeeper-community.md   # Doorkeeperのグループトップ（gameschool.doorkeeper.jp）の本文。Doorkeeperの管理画面では「コミュニティ」
     ├── seo.md                    # SEO関連テキスト
     ├── SCHEDULE-PATTERNS.md      # タイムスケジュールのパターン集（曜日・会場ごとのコマ割りの型）
     ├── NOTE-GUIDE.md             # note執筆ガイド（記事の書き方）
