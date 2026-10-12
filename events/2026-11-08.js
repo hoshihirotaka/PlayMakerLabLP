@@ -7,8 +7,7 @@
 // ⚠️ 未公開のうちは入れない。大人向けページは comingSoon に関係なく枠の doorkeeperUrl へリンクするため。
 // （旧）Doorkeeperはまだなので comingSoon: true のまま。Doorkeeperができたら comingSoon を消し、doorkeeperUrl を埋める（枠の分も）。JSON-LDへの追加もそのタイミング。
 //
-// ⚠️ 今週末（10/10〜11）までマージしない・Doorkeeperも公開しない（2026-10-07 本人）。
-//    ①DreamCoreは、与野で個別プランの要望があれば「募集なし・11:00-12:00は予約あり」に置き換えるかもしれない。今週末に本人が決める。
+// ✅ ①DreamCoreは11月もやる（2026-10-12 本人決定）。時間割はこのままでよい。
 //
 // ⚠️ trialPrice を付けないこと（10月からの正規価格）。
 (window.EVENTS = window.EVENTS || []).push({
