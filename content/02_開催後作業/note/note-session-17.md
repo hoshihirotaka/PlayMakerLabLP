@@ -86,6 +86,7 @@ https://hoshihirotaka.github.io/PlayMakerLabLP/schedule.html?utm_source=note&utm
 <!--
 運用メモ（noteには貼らない）
 
+- **2026-10-13 noteに下書き保存済み**：https://editor.note.com/notes/nf1b7bdfc2bac/edit/ （公開は本人。リンクのカード化・画像は本人）
 - 2026-10-13 下書き。記録（決定ログ・残枠ログ・フォローメール・事前連絡）から書いた
 - 題名は NOTE-GUIDE.md「題名のルール」（ブロマスゲームラボ・Roblox・さいたま市）に合わせた
 - 回の番号：9月の3回が回14〜16（開催実績.md）なので、10/11は第17回。noteの活動報告は第13回（8/28）のあと14〜16を書いていない
