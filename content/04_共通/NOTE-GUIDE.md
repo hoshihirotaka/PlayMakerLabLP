@@ -15,6 +15,7 @@ note-monthly-YYYY-MM.md     # 月次振り返り（月に1本）
 note-coderdojo-YYYY-MM.md   # CoderDojo南会津の回（参加した月だけ）
 note-column-XX-slug.md      # 技術・考察コラム（連番＋内容を示すslug）
 note-YYYY-MM-DD.md          # 回数に紐づかない単発記事
+note-roblox-trend-YYYY-MM.md # Robloxの流行（月1・毎月20日ごろ）。YYYY-MM はお題の月（翌月）
 ```
 
 ### コラム記事のslug例
@@ -35,6 +36,7 @@ note-column-03-game-design-thinking.md # ゲームデザイン思考について
 | CoderDojo南会津 | 参加した月だけ | 外部の場に出て何をしてきたか。**ブロマスの記事とは読者層が違う** | `note-coderdojo-YYYY-MM.md` |
 | 技術・考察コラム | 不定期 | AI活用・教材づくり・ゲームデザイン思考など | `note-column-XX-slug.md` |
 | お知らせ | イベント前後 | 開催情報・募集（インスタの補足として） | `note-YYYY-MM-DD.md` |
+| Robloxの流行 | 月1（毎月20日ごろ） | 公式ランキングから見たジャンル・メカニクスの流行 →「だから◯月のお題は◯◯」。**調査日を本文に書く**。ゲーム名・リンクは出さない（しくみと見た目で書く） | `note-roblox-trend-YYYY-MM.md`（`03_定期投稿/note/`） |
 
 **活動報告と月次振り返りは役割が違う。** 活動報告は「当日の教室で何が起きたか」、
 月次振り返りは「その裏で何を作っていたか」。内容は重ならせない。
