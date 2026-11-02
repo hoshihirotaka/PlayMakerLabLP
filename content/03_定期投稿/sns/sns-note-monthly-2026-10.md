@@ -1,7 +1,7 @@
 # note-monthly-2026-10｜10月の振り返り シェア文言
 
 - 対象記事: [note-monthly-2026-10.md](../note/note-monthly-2026-10.md)
-- 記事URL: `[URL]`（公開後に控える。投稿本文には貼らない）
+- 記事URL: https://note.com/shgame/n/n2ca50b7103ce （2026-11-02 公開。投稿本文には貼らない）
 - 型：[SNS-GUIDE.md](../../04_共通/SNS-GUIDE.md)「noteを紹介するときの型」（2026-10-13）＝**リンクは貼らない・冒頭に名前・noteの題名をそのまま**
 
 ---
