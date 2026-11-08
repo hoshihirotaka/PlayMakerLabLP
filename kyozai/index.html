@@ -249,7 +249,8 @@
 
         function show(p) {
           document.title = p.title + " | ブロマスゲームラボ";
-          doc.innerHTML = p.html + '<p class="built">更新：' + p.built + "</p>";
+          // 止める力はないが、使ってよいものではないと伝える一行（2026-11-08 本人）
+          doc.innerHTML = p.html + '<p class="built">更新：' + p.built + "<br>© ブロマスゲームラボ　転載・再配布はご遠慮ください</p>";
           doc.querySelectorAll(".code").forEach(function (box) {
             var btn = document.createElement("button");
             btn.type = "button";
