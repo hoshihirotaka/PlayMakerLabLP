@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>教室で使う教材 | ブロマスゲームラボ</title>
+    <!-- 参加者向け。検索結果には出さない（カリキュラム一覧からリンクして辿ってもらう）。sitemap にも入れない。 -->
+    <meta name="robots" content="noindex,nofollow" />
+    <!--
+      教室で使う教材を、パスワードを知っている人だけが読めるようにするページ。
+
+      このリポジトリはPUBLIC。教材の中身は data.json に「暗号化したもの」だけを置く。
+      パスワードはどこにも書かない（このファイルにも、data.json にも、コミットメッセージにも）。
+      ブラウザの中でパスワードから鍵を作り（PBKDF2-SHA256）、HMAC-SHA256で照合してから
+      AES-256-CBCで復号して表示する。
+
+      作り方・月ごとの入れ替え: ~/curriculum/tools/サイト教材/README.md（PRIVATE）
+      ⚠️ 前の月の data.json は git の履歴に残る。前の月のパスワードを知っている人は、
+         履歴から前の月の教材を読める。先生メモは入れていないので、それで困るものは載せない。
+    -->
+    <style>
+      :root {
+        --bg: #f7f5f0;
+        --surface: #ffffff;
+        --text: #1a2333;
+        --subtext: #495972;
+        --accent: #ff6b6b;
+        --accent-2: #3cc2ff;
+        --line: #e3e6ee;
+        --code-bg: #1e2433;
+        --code-text: #e8ecf5;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.8;
+      }
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+      .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+      header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; }
+      header a { color: var(--text); text-decoration: none; font-weight: bold; }
+      header .back { font-weight: normal; font-size: 14px; color: var(--subtext); }
+
+      /* パスワード入力 */
+      .gate {
+        max-width: 420px;
+        margin: 48px auto;
+        padding: 28px 24px;
+        background: var(--surface);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(33, 52, 92, 0.1);
+      }
+      .gate h1 { font-size: 22px; margin: 0 0 8px; }
+      .gate p { margin: 0 0 16px; color: var(--subtext); font-size: 15px; }
+      .gate label { display: block; font-weight: bold; margin-bottom: 6px; }
+      .gate input {
+        width: 100%;
+        font-size: 20px;
+        padding: 10px 12px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+      }
+      .gate input:focus { outline: none; border-color: var(--accent-2); }
+      .gate button {
+        width: 100%;
+        margin-top: 14px;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        background: var(--accent);
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .gate button:disabled { opacity: 0.6; cursor: wait; }
+      .gate .msg { min-height: 1.6em; margin: 12px 0 0; color: #c0392b; font-weight: bold; }
+      .gate .hint { margin-top: 18px; font-size: 13px; }
+
+      /* 教材 */
+      #doc { display: none; padding: 24px 0 80px; }
+      #doc h1 { font-size: 28px; line-height: 1.4; }
+      #doc h2 { font-size: 22px; margin-top: 48px; padding-bottom: 6px; border-bottom: 3px solid var(--accent-2); }
+      #doc h3 { font-size: 18px; margin-top: 32px; }
+      #doc h4 { font-size: 16px; }
+      #doc img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); }
+      #doc figure { margin: 16px 0; }
+      #doc blockquote { margin: 16px 0; padding: 8px 16px; background: var(--surface); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; }
+      #doc .table { overflow-x: auto; }
+      #doc table { border-collapse: collapse; margin: 12px 0; background: var(--surface); }
+      #doc th, #doc td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+      #doc th { background: #eef4fb; }
+      #doc :not(pre) > code { background: #eceff5; padding: 1px 6px; border-radius: 4px; font-size: 0.92em; }
+      #doc details { margin: 16px 0; padding: 8px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+      #doc summary { cursor: pointer; font-weight: bold; }
+      #doc hr { border: 0; border-top: 1px dashed var(--line); margin: 32px 0; }
+      #doc .built { color: var(--subtext); font-size: 13px; }
+
+      /* コード：コピーしたときに中身が1文字も変わらないよう、表示も加工しない */
+      .code { position: relative; margin: 12px 0; }
+      .code pre {
+        margin: 0;
+        padding: 40px 14px 14px;
+        overflow-x: auto;
+        background: var(--code-bg);
+        color: var(--code-text);
+        border-radius: 10px;
+        font-size: 14px;
+        line-height: 1.6;
+        tab-size: 4;
+        -moz-tab-size: 4;
+      }
+      .code pre code { font-family: Menlo, Consolas, "Courier New", monospace; white-space: pre; }
+      .code .copy {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 4px 14px;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--text);
+        background: #fff;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .code .copy.done { background: #49d6a3; color: #fff; }
+      .code[data-lang]::before {
+        content: attr(data-lang);
+        position: absolute;
+        top: 10px;
+        left: 14px;
+        font-size: 12px;
+        color: #9aa6bf;
+        font-family: Menlo, Consolas, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <a href="../index.html">ブロマスゲームラボ</a>
+        <a class="back" href="../curriculum.html">カリキュラム一覧へ</a>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <form class="gate" id="gate" autocomplete="off">
+        <h1>教室で使う教材</h1>
+        <p>教室でお伝えしたパスワードを入れてください。</p>
+        <label for="pass">パスワード</label>
+        <input id="pass" type="text" inputmode="latin" autocapitalize="off" autocorrect="off" spellcheck="false" required />
+        <button id="open" type="submit">ひらく</button>
+        <p class="msg" id="msg" role="alert"></p>
+        <p class="hint">パスワードは月ごとに変わります。わからないときは先生に聞いてください。</p>
+      </form>
+      <article id="doc"></article>
+    </main>
+
+    <script>
+      (function () {
+        var form = document.getElementById("gate");
+        var input = document.getElementById("pass");
+        var button = document.getElementById("open");
+        var msg = document.getElementById("msg");
+        var doc = document.getElementById("doc");
+        var KEY = "kyozai-pass";
+
+        function b64(s) {
+          var bin = atob(s), out = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+          return out;
+        }
+
+        // build.rb と同じ形にそろえる（全角で打っても通る・前後の空白は無視）
+        function normalize(p) {
+          return (p.normalize ? p.normalize("NFKC") : p).trim();
+        }
+
+        var dataPromise = null;
+        function loadData() {
+          if (!dataPromise) {
+            dataPromise = fetch("data.json", { cache: "no-store" }).then(function (r) {
+              if (!r.ok) throw new Error("load");
+              return r.json();
+            });
+          }
+          return dataPromise;
+        }
+
+        function decrypt(pass) {
+          if (!(window.crypto && crypto.subtle)) return Promise.reject(new Error("nocrypto"));
+          return loadData().then(function (d) {
+            var subtle = crypto.subtle;
+            var iv = b64(d.iv), ct = b64(d.data), mac = b64(d.mac);
+            return subtle
+              .importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveBits"])
+              .then(function (base) {
+                return subtle.deriveBits({ name: "PBKDF2", salt: b64(d.salt), iterations: d.iterations, hash: "SHA-256" }, base, 512);
+              })
+              .then(function (bits) {
+                var all = new Uint8Array(bits);
+                return Promise.all([
+                  subtle.importKey("raw", all.slice(0, 32), { name: "AES-CBC" }, false, ["decrypt"]),
+                  subtle.importKey("raw", all.slice(32, 64), { name: "HMAC", hash: "SHA-256" }, false, ["verify"])
+                ]);
+              })
+              .then(function (keys) {
+                var signed = new Uint8Array(iv.length + ct.length);
+                signed.set(iv, 0);
+                signed.set(ct, iv.length);
+                // 先に照合する。合わなければパスワード違い
+                return subtle.verify("HMAC", keys[1], mac, signed).then(function (ok) {
+                  if (!ok) throw new Error("wrong");
+                  return subtle.decrypt({ name: "AES-CBC", iv: iv }, keys[0], ct);
+                });
+              })
+              .then(function (buf) {
+                return JSON.parse(new TextDecoder().decode(buf));
+              });
+          });
+        }
+
+        // 会場のPCによってはクリップボードのAPIが断られるので、そのときは古いやり方で写す
+        function copyText(text) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text).catch(function () { return copyOld(text); });
+          }
+          return copyOld(text);
+        }
+        function copyOld(text) {
+          return new Promise(function (resolve, reject) {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy") ? resolve() : reject(); } catch (e) { reject(e); }
+            document.body.removeChild(ta);
+          });
+        }
+
+        function show(p) {
+          document.title = p.title + " | ブロマスゲームラボ";
+          doc.innerHTML = p.html + '<p class="built">更新：' + p.built + "</p>";
+          doc.querySelectorAll(".code").forEach(function (box) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "copy";
+            btn.textContent = "コピー";
+            btn.addEventListener("click", function () {
+              copyText(box.querySelector("code").textContent).then(function () {
+                btn.textContent = "コピーしました";
+                btn.classList.add("done");
+                setTimeout(function () { btn.textContent = "コピー"; btn.classList.remove("done"); }, 2000);
+              }, function () {
+                btn.textContent = "うまくいきませんでした";
+              });
+            });
+            box.appendChild(btn);
+          });
+          form.style.display = "none";
+          doc.style.display = "block";
+          window.scrollTo(0, 0);
+        }
+
+        function tryOpen(pass, remember) {
+          button.disabled = true;
+          msg.textContent = "";
+          return decrypt(pass).then(function (p) {
+            if (remember) { try { sessionStorage.setItem(KEY, pass); } catch (e) {} }
+            show(p);
+          }, function (e) {
+            button.disabled = false;
+            if (e && e.message === "nocrypto") msg.textContent = "このブラウザでは開けません。ChromeかEdgeでお試しください。";
+            else if (e && e.message === "load") msg.textContent = "教材を読み込めませんでした。ネットにつながっているか確かめてください。";
+            else msg.textContent = "パスワードがちがうようです。";
+            try { sessionStorage.removeItem(KEY); } catch (e2) {}
+          });
+        }
+
+        form.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          tryOpen(normalize(input.value), true);
+        });
+
+        // 同じタブで読み込み直したときは、もう一度打たなくてよい（タブを閉じると忘れる）
+        var saved = null;
+        try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+        if (saved) tryOpen(saved, false);
+        else input.focus();
+      })();
+    </script>
+  </body>
+</html>
