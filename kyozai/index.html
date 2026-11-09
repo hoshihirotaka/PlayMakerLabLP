@@ -131,6 +131,16 @@
         cursor: pointer;
       }
       .code .copy.done { background: #49d6a3; color: #fff; }
+      #doc .download {
+        padding: 12px 24px;
+        font-size: 17px;
+        font-weight: bold;
+        color: #fff;
+        background: var(--accent);
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+      }
       .code[data-lang]::before {
         content: attr(data-lang);
         position: absolute;
@@ -266,6 +276,22 @@
               });
             });
             box.appendChild(btn);
+          });
+          // 教材と一緒に暗号化したファイル（.rbxl）を、その場で取り出して保存する
+          doc.querySelectorAll(".download").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var name = btn.getAttribute("data-file");
+              var data = p.files && p.files[name];
+              if (!data) { btn.textContent = "ファイルが見つかりません"; return; }
+              var url = URL.createObjectURL(new Blob([b64(data)], { type: "application/octet-stream" }));
+              var a = document.createElement("a");
+              a.href = url;
+              a.download = name;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+            });
           });
           form.style.display = "none";
           doc.style.display = "block";
