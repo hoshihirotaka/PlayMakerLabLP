@@ -1,7 +1,7 @@
 window.CURRICULUM = {
   "meta": {
-    "generatedAt": "2026-07-23",
-    "sourceRepo": "LP編集（教材リポ E0-05-アバターモーション を取り込み）",
+    "generatedAt": "2026-11-11",
+    "sourceRepo": "LP編集（教材リポ E0-06〜08 の体験会を取り込み）",
     "note": "このファイルはLPが編集する公開カタログ（source of truth）。教材リポジトリの curriculum-for-lp.md を元に、status・命名・タグ・公開可否はLPが確定する。掲載外の教材（PC基礎・公開とKPI・ボードゲーム）は科目タブに馴染まないため現状は非掲載。UEFNはEpic製ツールだが当面Roblox枠に置き表示名で明示。アバターモーション体験（E0-05）は体験用。既存のアバター変身（roblox-avatar・準備中）とは別教材。"
   },
   "materials": [
@@ -69,6 +69,39 @@ window.CURRICULUM = {
       "sessions": 1,
       "summary": "動きとかぶりものでアバターを変身させる。",
       "detail": "歩き方の切り替え、おどり床でのモーション再生、パーツで帽子を作って装着まで体験します。色変えより「動き」で別人になる面白さが中心です。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-keyboard-run",
+      "name": "キーボードラン体験",
+      "subject": "Roblox",
+      "tags": ["体験用"],
+      "icon": "⌨️",
+      "sessions": 1,
+      "summary": "走るほど速くなる、巨大キーボードのランゲーム。",
+      "detail": "走るとスピードが上がり続けるしくみと、増え方を変える倍率の床を作ります。いまの速さを画面に表示して、どこまで遠くへ行けるかに挑戦します。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-prophunt-trial",
+      "name": "変身かくれんぼ体験",
+      "subject": "Roblox",
+      "tags": ["体験用"],
+      "icon": "🪑",
+      "sessions": 1,
+      "summary": "家具に化けて隠れる、かくれんぼゲーム。",
+      "detail": "部屋に家具を並べ、近づいてEキーを押すとその家具に化けられるしくみを作ります。どこに、どう置けば見つかりにくいかを考えます。",
+      "status": "published"
+    },
+    {
+      "id": "roblox-steal",
+      "name": "宝を盗んで逃げろ体験",
+      "subject": "Roblox",
+      "tags": ["体験用", "クリエイティブ"],
+      "icon": "💰",
+      "sessions": 1,
+      "summary": "宝を盗んで、番人から逃げ切るゲーム。",
+      "detail": "宝・番人・段差などのしかけを並べて、基地まで持ち帰るステージを作ります。同じしかけでも「どこに、何を置くか」でむずかしさが変わる、レベルデザインを体験します。",
       "status": "published"
     },
     {
