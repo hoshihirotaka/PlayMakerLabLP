@@ -1,7 +1,7 @@
 window.CURRICULUM = {
   "meta": {
     "generatedAt": "2026-11-11",
-    "sourceRepo": "LP編集（教材リポ E0-06〜08 の体験会を取り込み）",
+    "sourceRepo": "LP編集（教材リポ E0-06〜08 の体験会、M1-05・M1-53 を準備中で取り込み）",
     "note": "このファイルはLPが編集する公開カタログ（source of truth）。教材リポジトリの curriculum-for-lp.md を元に、status・命名・タグ・公開可否はLPが確定する。掲載外の教材（PC基礎・公開とKPI・ボードゲーム）は科目タブに馴染まないため現状は非掲載。UEFNはEpic製ツールだが当面Roblox枠に置き表示名で明示。アバターモーション体験（E0-05）は体験用。既存のアバター変身（roblox-avatar・準備中）とは別教材。"
   },
   "materials": [
@@ -160,6 +160,17 @@ window.CURRICULUM = {
       "status": "coming_soon"
     },
     {
+      "id": "roblox-keyboard-run-read",
+      "name": "キーボードラン（スクリプトを読む）",
+      "subject": "Roblox",
+      "tags": ["プログラミング"],
+      "icon": "📖",
+      "sessions": 12,
+      "summary": "1本のスクリプトを、1行ずつ読み切る。",
+      "detail": "「キーボードラン体験」で使った、走ると速くなるスクリプトを1行ずつ読み解きます。くり返し・条件・プロパティなどを自分のことばで説明し、自分の作りたいゲームに移せるようにします。",
+      "status": "coming_soon"
+    },
+    {
       "id": "roblox-mechanics",
       "name": "メカニクス体験",
       "subject": "Roblox",
@@ -202,6 +213,17 @@ window.CURRICULUM = {
       "summary": "ブラシで山・川・海の地形を手作りする。",
       "detail": "地形ブラシを使って、山・谷・川・海・雪山などの自然な世界を手作業で作ります。プログラミングは不要で、世界観づくりに集中できます。",
       "status": "published"
+    },
+    {
+      "id": "roblox-ai-assistant",
+      "name": "Studio のAIで場面づくり",
+      "subject": "Roblox",
+      "tags": ["クリエイティブ"],
+      "icon": "🤖",
+      "sessions": 8,
+      "summary": "Robloxに入っているAIだけで、1つの場面を作る。",
+      "detail": "Roblox Studioに入っているAI機能で、マテリアル・柄・スクリプトを作り、1つの場面を仕上げます。思ったものが出るまで言い方を変える、AIへの伝え方を身につけます。",
+      "status": "coming_soon"
     },
     {
       "id": "ai-dreamcore",

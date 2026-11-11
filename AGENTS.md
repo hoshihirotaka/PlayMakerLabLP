@@ -99,7 +99,7 @@
 | お子様向け日程 | `schedule.html` | **日程全件 ＋ 参加者の声 ＋ FAQ**。申し込む直前に必要なものを1ページに | `events/*.js` ／ **JSON-LD はここ** |
 | 大人向け日程 | `adults.html` | 大人向けAI講座（条件・料金・日程・申込） | `events/*.js`（`audience:"adult"` の枠だけ） |
 | プラン | `plans.html` | 体験会のあとの通い方（通常／個別） | — |
-| カリキュラム | `curriculum.html` | 教材21件＋タブ | `curriculum/curriculum.js` |
+| カリキュラム | `curriculum.html` | 教材23件＋タブ | `curriculum/curriculum.js` |
 | 作品ギャラリー | `works.html` | 作品＋ブラウザで遊べる作品 | — |
 | 個別プラン | `online-home.html` | **限定公開のテスト中。`noindex` 維持・sitemap 除外** | — |
 
