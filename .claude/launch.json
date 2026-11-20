@@ -4,8 +4,8 @@
     {
       "name": "site",
       "runtimeExecutable": "ruby",
-      "runtimeArgs": ["-run", "-e", "httpd", ".", "-p", "4173"],
-      "port": 4173
+      "runtimeArgs": ["-run", "-e", "httpd", ".", "-p", "4174"],
+      "port": 4174
     }
   ]
 }
