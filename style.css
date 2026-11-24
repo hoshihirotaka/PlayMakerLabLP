@@ -1056,3 +1056,7 @@
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-18px); }
       }
+
+      /* about.html「ゲームを作る仕事は、ひとつではありません」の図（2026-11-24） */
+      .roles-figure { margin: 16px auto 20px; max-width: 560px; }
+      .roles-figure svg { display: block; width: 100%; height: auto; }
